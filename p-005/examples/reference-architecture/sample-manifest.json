@@ -1,0 +1,19 @@
+{
+  "candidate_count": 8,
+  "files": {
+    "architecture.dot": "c84398cb442bd48497f496e0712f05e31730a23ebb5402d3b63b78ef7e3c35e6",
+    "architecture.mmd": "e9380188377d07b2825aed964c2fdff3c5a34ceb05c7ea76741ea9703b2d2fc6",
+    "attack-paths.json": "addb1dc63560745e21ac84381ba8d2c07c6a906eb5bcef6be56b87b0f744dd45",
+    "controls.json": "b4bab837d6fbc7d49d9a13e27333a78b205b85e6b97f247c97a3f4da34e05dd8",
+    "mitigations.json": "a1963c7b3c704c344a3a927478bc442e497991de540ef982e16bcf53657bce9a",
+    "model.json": "3afa4af67fb4b4c78d9fddb2e4f0ee20e028968c48c524dfaf154ece0988049b",
+    "threat-register.json": "a8728f046b39efe12dc3be5fd61be18c57a9a6103cd391654c8e0a6135603736",
+    "trust-boundaries.mmd": "ade72ae2f9615576c31959700202ce9b7717924f1d285042df8c35fdb6f6dbd8",
+    "verification-plan.json": "1182915e7af0d7685651a4a14ebdc0e1f46b7f17f487b544fc7a170fea51ed6b"
+  },
+  "full_run_candidate_count": 34,
+  "model_digest": "3afa4af67fb4b4c78d9fddb2e4f0ee20e028968c48c524dfaf154ece0988049b",
+  "schema_version": "p005-selected-examples-1.0",
+  "scope": "Selected synthetic sample, not a complete generated run",
+  "target_testing": "NOT_TESTED"
+}

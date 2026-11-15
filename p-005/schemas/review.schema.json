@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "at_utc": {
+      "title": "At Utc",
+      "type": "string"
+    },
+    "authenticated_identity": {
+      "const": false,
+      "default": false,
+      "title": "Authenticated Identity",
+      "type": "boolean"
+    },
+    "decision": {
+      "enum": [
+        "PROPOSED",
+        "ACCEPTED_FOR_TESTING",
+        "REJECTED_WITH_REASON",
+        "NOT_APPLICABLE",
+        "NEEDS_INFORMATION"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "model_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Model Digest",
+      "type": "string"
+    },
+    "priority_override": {
+      "anyOf": [
+        {
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Priority Override"
+    },
+    "reason": {
+      "minLength": 8,
+      "title": "Reason",
+      "type": "string"
+    },
+    "reviewer_role": {
+      "title": "Reviewer Role",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "p005-review-1.0",
+      "default": "p005-review-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sequence": {
+      "minimum": 1,
+      "title": "Sequence",
+      "type": "integer"
+    },
+    "synthetic_editorial_only": {
+      "const": true,
+      "default": true,
+      "title": "Synthetic Editorial Only",
+      "type": "boolean"
+    },
+    "threat_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "Threat Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "threat_id",
+    "model_digest",
+    "sequence",
+    "reviewer_role",
+    "decision",
+    "reason",
+    "at_utc"
+  ],
+  "title": "HumanReview",
+  "type": "object"
+}

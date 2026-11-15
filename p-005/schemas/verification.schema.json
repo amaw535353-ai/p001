@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "boundary_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+        "type": "string"
+      },
+      "title": "Boundary Ids",
+      "type": "array"
+    },
+    "executable": {
+      "const": false,
+      "default": false,
+      "title": "Executable",
+      "type": "boolean"
+    },
+    "executor": {
+      "const": "human_assessor",
+      "default": "human_assessor",
+      "title": "Executor",
+      "type": "string"
+    },
+    "expected_result": {
+      "title": "Expected Result",
+      "type": "string"
+    },
+    "forbidden_actor": {
+      "title": "Forbidden Actor",
+      "type": "string"
+    },
+    "negative_path": {
+      "title": "Negative Path",
+      "type": "string"
+    },
+    "permitted_actor": {
+      "title": "Permitted Actor",
+      "type": "string"
+    },
+    "positive_path": {
+      "title": "Positive Path",
+      "type": "string"
+    },
+    "prerequisites": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Prerequisites",
+      "type": "array"
+    },
+    "required_evidence": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Required Evidence",
+      "type": "array"
+    },
+    "roe_check_state": {
+      "enum": [
+        "REQUIRES_NEW_AUTHORIZATION",
+        "OUT_OF_SCOPE"
+      ],
+      "title": "Roe Check State",
+      "type": "string"
+    },
+    "run_status": {
+      "const": "NOT_TESTED",
+      "default": "NOT_TESTED",
+      "title": "Run Status",
+      "type": "string"
+    },
+    "scope_state": {
+      "enum": [
+        "IN_SCOPE_MODEL_ONLY",
+        "OUT_OF_SCOPE",
+        "REQUIRES_NEW_AUTHORIZATION"
+      ],
+      "title": "Scope State",
+      "type": "string"
+    },
+    "setup_assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Setup Assumptions",
+      "type": "array"
+    },
+    "test_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "Test Id",
+      "type": "string"
+    },
+    "threat_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "Threat Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "test_id",
+    "threat_id",
+    "boundary_ids",
+    "setup_assumptions",
+    "permitted_actor",
+    "forbidden_actor",
+    "positive_path",
+    "negative_path",
+    "expected_result",
+    "required_evidence",
+    "prerequisites",
+    "scope_state",
+    "roe_check_state"
+  ],
+  "title": "VerificationCase",
+  "type": "object"
+}

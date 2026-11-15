@@ -1,0 +1,134 @@
+[
+  {
+    "boundary_ids": [
+      "boundary-b542321529be78f0c33de0b7e23a5f519c18c1fd1080860c9f433ae51fe9b2f9",
+      "boundary-c9bf2a6f1deb6551072ba557f788012fcab3ca0a466a1b4fa9082fa525976575"
+    ],
+    "edge_ids": [
+      "tenant-a-agent-mcp",
+      "tenant-a-mcp-ticket"
+    ],
+    "id": "path-893dd2eda98eecdf1cdb06e77eb4c067bc83bdf6ea882dca8d009fe34e852f72",
+    "node_ids": [
+      "tenant-a-agent",
+      "tenant-a-mcp",
+      "tenant-a-tickets"
+    ],
+    "status": "HYPOTHESIS",
+    "uncertainty": "Modeled connectivity only; reachability, authorization and preconditions NOT_TESTED"
+  },
+  {
+    "boundary_ids": [
+      "boundary-a52935b52e057beed3c1db19f88deaf6ddda2c5afab5abb6aec202441442ba2d"
+    ],
+    "edge_ids": [
+      "tenant-a-approval-ticket"
+    ],
+    "id": "path-c40cc60c0585afaa9dad8e8ae77e8c85b5691985fbc99fa264abdf29ff61080a",
+    "node_ids": [
+      "tenant-a-approval",
+      "tenant-a-tickets"
+    ],
+    "status": "HYPOTHESIS",
+    "uncertainty": "Modeled connectivity only; reachability, authorization and preconditions NOT_TESTED"
+  },
+  {
+    "boundary_ids": [
+      "boundary-77ef6e16d846f4c6d01d841a8d25efc06c09265bbe3b2e0ca5087f65a81781f2",
+      "boundary-bfe664f037749f2346024f2946acbb6a2488e35f63fb2318bd495ed0f0ca90e7"
+    ],
+    "edge_ids": [
+      "tenant-a-documents-retriever",
+      "tenant-a-retriever-connector"
+    ],
+    "id": "path-9ce817a92ef3c690ed4e39aade6ab642f252fe209d616b47ed17e713b63e42b0",
+    "node_ids": [
+      "tenant-a-documents",
+      "tenant-a-retriever",
+      "tenant-a-connector"
+    ],
+    "status": "HYPOTHESIS",
+    "uncertainty": "Modeled connectivity only; reachability, authorization and preconditions NOT_TESTED"
+  },
+  {
+    "boundary_ids": [
+      "boundary-b542321529be78f0c33de0b7e23a5f519c18c1fd1080860c9f433ae51fe9b2f9"
+    ],
+    "edge_ids": [
+      "tenant-a-mcp-ticket"
+    ],
+    "id": "path-0d092bdac520632428a4ea76dd62efb8560b59b41e4d9055656c26ddc608db6b",
+    "node_ids": [
+      "tenant-a-mcp",
+      "tenant-a-tickets"
+    ],
+    "status": "HYPOTHESIS",
+    "uncertainty": "Modeled connectivity only; reachability, authorization and preconditions NOT_TESTED"
+  },
+  {
+    "boundary_ids": [
+      "boundary-148cd8aa62793bc0e6e63addbfa086dc032aad539f1f2c48eba110e841c94c4e",
+      "boundary-61819f07e2143ff4f5da03a3a2c96dff73121f8904ca0c944ac861c7d15fe9cb"
+    ],
+    "edge_ids": [
+      "tenant-b-agent-mcp",
+      "tenant-b-mcp-ticket"
+    ],
+    "id": "path-90569baa87de58b0bbb4840f902efc4657e5f9546d37ef03a1b9d21d557f52e1",
+    "node_ids": [
+      "tenant-b-agent",
+      "tenant-b-mcp",
+      "tenant-b-tickets"
+    ],
+    "status": "HYPOTHESIS",
+    "uncertainty": "Modeled connectivity only; reachability, authorization and preconditions NOT_TESTED"
+  },
+  {
+    "boundary_ids": [
+      "boundary-89d0b678edd79137187e43b563ae6b23c55a4f48f82b606b17ff913393158107"
+    ],
+    "edge_ids": [
+      "tenant-b-approval-ticket"
+    ],
+    "id": "path-e827e4b76cbef52124200cbc0ccc3737fc74064e36e5f3c7494a25ffcda1dadc",
+    "node_ids": [
+      "tenant-b-approval",
+      "tenant-b-tickets"
+    ],
+    "status": "HYPOTHESIS",
+    "uncertainty": "Modeled connectivity only; reachability, authorization and preconditions NOT_TESTED"
+  },
+  {
+    "boundary_ids": [
+      "boundary-2d106196c06e10138e9a72ec902ac88b930614d2abb111e58fde27565bafc4fb",
+      "boundary-e3e425d08886160bb96c0e7f0768442fc2d6c2988196a2eea1a3f6386e76fba0"
+    ],
+    "edge_ids": [
+      "tenant-b-documents-retriever",
+      "tenant-b-retriever-connector"
+    ],
+    "id": "path-dc32907e7f1ba20fa285de5af2011cf7978b8cf9d7fae7ce406295e105979764",
+    "node_ids": [
+      "tenant-b-documents",
+      "tenant-b-retriever",
+      "tenant-b-connector"
+    ],
+    "status": "HYPOTHESIS",
+    "uncertainty": "Modeled connectivity only; reachability, authorization and preconditions NOT_TESTED"
+  },
+  {
+    "boundary_ids": [
+      "boundary-148cd8aa62793bc0e6e63addbfa086dc032aad539f1f2c48eba110e841c94c4e"
+    ],
+    "edge_ids": [
+      "tenant-b-mcp-ticket"
+    ],
+    "id": "path-6a18319b9732a79b48cf9e107b8f39db8b383571658c705a3e42d4a555980dc3",
+    "node_ids": [
+      "tenant-b-mcp",
+      "tenant-b-tickets"
+    ],
+    "status": "HYPOTHESIS",
+    "uncertainty": "Modeled connectivity only; reachability, authorization and preconditions NOT_TESTED"
+  }
+]

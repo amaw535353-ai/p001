@@ -1,0 +1,1198 @@
+{
+  "$defs": {
+    "Boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_ids": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Actor Ids",
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "confidence": {
+          "default": "DECLARATION",
+          "enum": [
+            "DIRECT_METADATA",
+            "DECLARATION",
+            "INFERENCE",
+            "UNKNOWN"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "edge_ids": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Edge Ids",
+          "type": "array"
+        },
+        "epistemic_status": {
+          "default": "DECLARED",
+          "enum": [
+            "OBSERVED",
+            "DECLARED",
+            "INFERRED",
+            "UNKNOWN",
+            "UNVERIFIED",
+            "BLOCKED",
+            "NOT_TESTED",
+            "ERROR"
+          ],
+          "title": "Epistemic Status",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "reasons": {
+          "items": {
+            "enum": [
+              "ZONE",
+              "TENANT",
+              "OWNER",
+              "IDENTITY",
+              "AGENT_TOOL",
+              "APPROVAL",
+              "CONTENT",
+              "PROVIDER",
+              "CONTROL_PLANE",
+              "UNKNOWN_TRUST"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Reasons",
+          "type": "array"
+        },
+        "requires_human_review": {
+          "const": true,
+          "default": true,
+          "title": "Requires Human Review",
+          "type": "boolean"
+        },
+        "zone_pair": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "title": "Zone Pair",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "evidence_refs",
+        "zone_pair",
+        "edge_ids",
+        "reasons"
+      ],
+      "title": "Boundary",
+      "type": "object"
+    },
+    "EvidenceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "human_reviewed": {
+          "default": false,
+          "title": "Human Reviewed",
+          "type": "boolean"
+        },
+        "id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "measured_scope": {
+          "title": "Measured Scope",
+          "type": "string"
+        },
+        "pointer": {
+          "title": "Pointer",
+          "type": "string"
+        },
+        "sanitized_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sanitized Sha256",
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "OBSERVED",
+            "DECLARED",
+            "INFERRED",
+            "UNKNOWN",
+            "UNVERIFIED",
+            "BLOCKED",
+            "NOT_TESTED",
+            "ERROR"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "pointer",
+        "sanitized_sha256",
+        "status",
+        "measured_scope"
+      ],
+      "title": "EvidenceRef",
+      "type": "object"
+    },
+    "Features": {
+      "additionalProperties": false,
+      "properties": {
+        "autonomous": {
+          "default": false,
+          "title": "Autonomous",
+          "type": "boolean"
+        },
+        "budget": {
+          "default": "UNKNOWN",
+          "enum": [
+            "DECLARED",
+            "MISSING",
+            "UNKNOWN"
+          ],
+          "title": "Budget",
+          "type": "string"
+        },
+        "coding_workspace": {
+          "default": false,
+          "title": "Coding Workspace",
+          "type": "boolean"
+        },
+        "dependency_provenance": {
+          "default": "UNKNOWN",
+          "enum": [
+            "DECLARED",
+            "UNKNOWN"
+          ],
+          "title": "Dependency Provenance",
+          "type": "string"
+        },
+        "egress": {
+          "default": false,
+          "title": "Egress",
+          "type": "boolean"
+        },
+        "generates_content": {
+          "default": false,
+          "title": "Generates Content",
+          "type": "boolean"
+        },
+        "logging": {
+          "default": "UNKNOWN",
+          "enum": [
+            "DECLARED",
+            "DISABLED",
+            "UNKNOWN"
+          ],
+          "title": "Logging",
+          "type": "string"
+        },
+        "persistent_memory": {
+          "default": false,
+          "title": "Persistent Memory",
+          "type": "boolean"
+        },
+        "privileged_actions": {
+          "default": false,
+          "title": "Privileged Actions",
+          "type": "boolean"
+        },
+        "retention": {
+          "default": "UNKNOWN",
+          "enum": [
+            "DECLARED",
+            "UNKNOWN"
+          ],
+          "title": "Retention",
+          "type": "string"
+        },
+        "untrusted_content": {
+          "default": false,
+          "title": "Untrusted Content",
+          "type": "boolean"
+        }
+      },
+      "title": "Features",
+      "type": "object"
+    },
+    "Flow": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_binding": {
+          "default": "UNKNOWN",
+          "enum": [
+            "DECLARED",
+            "MISSING",
+            "UNKNOWN"
+          ],
+          "title": "Approval Binding",
+          "type": "string"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "authorization": {
+          "default": "UNKNOWN",
+          "enum": [
+            "CONTROL_DECLARED",
+            "UNKNOWN",
+            "DISABLED"
+          ],
+          "title": "Authorization",
+          "type": "string"
+        },
+        "authorization_point_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Authorization Point Id"
+        },
+        "channel": {
+          "default": "UNKNOWN",
+          "title": "Channel",
+          "type": "string"
+        },
+        "classification": {
+          "default": "UNKNOWN",
+          "enum": [
+            "PUBLIC",
+            "INTERNAL",
+            "CONFIDENTIAL",
+            "RESTRICTED",
+            "UNKNOWN"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "confidence": {
+          "default": "DECLARATION",
+          "enum": [
+            "DIRECT_METADATA",
+            "DECLARATION",
+            "INFERENCE",
+            "UNKNOWN"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "data_type": {
+          "title": "Data Type",
+          "type": "string"
+        },
+        "declared_grant_effect": {
+          "anyOf": [
+            {
+              "enum": [
+                "ALLOW",
+                "DENY"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Declared Grant Effect"
+        },
+        "delegation": {
+          "default": "UNKNOWN",
+          "enum": [
+            "NONE",
+            "SCOPED",
+            "BROAD",
+            "UNKNOWN"
+          ],
+          "title": "Delegation",
+          "type": "string"
+        },
+        "encryption": {
+          "default": "UNKNOWN",
+          "enum": [
+            "DECLARED_TLS",
+            "OBSERVED_TLS",
+            "PLAINTEXT",
+            "UNKNOWN"
+          ],
+          "title": "Encryption",
+          "type": "string"
+        },
+        "enforcement_result": {
+          "const": "NOT_TESTED",
+          "default": "NOT_TESTED",
+          "title": "Enforcement Result",
+          "type": "string"
+        },
+        "entry_point": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Entry Point"
+        },
+        "epistemic_status": {
+          "default": "DECLARED",
+          "enum": [
+            "OBSERVED",
+            "DECLARED",
+            "INFERRED",
+            "UNKNOWN",
+            "UNVERIFIED",
+            "BLOCKED",
+            "NOT_TESTED",
+            "ERROR"
+          ],
+          "title": "Epistemic Status",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "expected_decision": {
+          "default": "UNKNOWN",
+          "enum": [
+            "ALLOW",
+            "DENY",
+            "UNKNOWN"
+          ],
+          "title": "Expected Decision",
+          "type": "string"
+        },
+        "grants_freshness": {
+          "default": "UNKNOWN",
+          "enum": [
+            "DECLARED",
+            "STALE",
+            "UNKNOWN"
+          ],
+          "title": "Grants Freshness",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "invokes",
+            "retrieves",
+            "responds",
+            "delegates",
+            "executes",
+            "approves",
+            "authenticates",
+            "authorizes",
+            "logs",
+            "stores",
+            "deploys",
+            "reads",
+            "writes",
+            "hosts",
+            "transmits"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "principal_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Principal Id"
+        },
+        "requires_human_review": {
+          "const": true,
+          "default": true,
+          "title": "Requires Human Review",
+          "type": "boolean"
+        },
+        "source": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Source",
+          "type": "string"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        },
+        "target": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Target",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "token_audience": {
+          "default": "UNKNOWN",
+          "enum": [
+            "EXPECTED",
+            "MISMATCH",
+            "UNKNOWN"
+          ],
+          "title": "Token Audience",
+          "type": "string"
+        },
+        "transformation": {
+          "default": "UNKNOWN",
+          "title": "Transformation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "evidence_refs",
+        "source",
+        "target",
+        "kind",
+        "tenant_id",
+        "data_type"
+      ],
+      "title": "Flow",
+      "type": "object"
+    },
+    "IntegrationResult": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_refs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "project": {
+          "enum": [
+            "P-001",
+            "P-002",
+            "P-003",
+            "P-004"
+          ],
+          "title": "Project",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "VERIFIED",
+            "CONTRACT_ONLY",
+            "NOT_TESTED",
+            "BLOCKED",
+            "INCOMPATIBLE"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project",
+        "status",
+        "evidence_refs",
+        "reason"
+      ],
+      "title": "IntegrationResult",
+      "type": "object"
+    },
+    "Node": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Address"
+        },
+        "allowed_actor_ids": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Allowed Actor Ids",
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "confidence": {
+          "default": "DECLARATION",
+          "enum": [
+            "DIRECT_METADATA",
+            "DECLARATION",
+            "INFERENCE",
+            "UNKNOWN"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "environment_id": {
+          "default": "synthetic-lab",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Environment Id",
+          "type": "string"
+        },
+        "epistemic_status": {
+          "default": "DECLARED",
+          "enum": [
+            "OBSERVED",
+            "DECLARED",
+            "INFERRED",
+            "UNKNOWN",
+            "UNVERIFIED",
+            "BLOCKED",
+            "NOT_TESTED",
+            "ERROR"
+          ],
+          "title": "Epistemic Status",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "features": {
+          "$ref": "#/$defs/Features"
+        },
+        "id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "integrity": {
+          "default": "UNKNOWN",
+          "enum": [
+            "LOW",
+            "HIGH",
+            "UNKNOWN"
+          ],
+          "title": "Integrity",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "Asset",
+            "Actor",
+            "HumanIdentity",
+            "WorkloadIdentity",
+            "IdentityProvider",
+            "Agent",
+            "Tool",
+            "MCPServer",
+            "A2APeer",
+            "LLMGateway",
+            "ModelEndpoint",
+            "Retriever",
+            "Connector",
+            "VectorDatabase",
+            "ApplicationService",
+            "API",
+            "DataStore",
+            "DocumentCollection",
+            "KubernetesNamespace",
+            "CloudResource",
+            "SecretStore",
+            "TelemetrySink",
+            "ExternalDependency",
+            "ApprovalGate",
+            "CIPipeline",
+            "Browser",
+            "PolicyEnforcementPoint",
+            "PolicyDecisionPoint",
+            "Evaluator",
+            "Guardrail",
+            "Memory"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "owner_role": {
+          "title": "Owner Role",
+          "type": "string"
+        },
+        "principal_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Principal Id"
+        },
+        "privilege": {
+          "default": "UNKNOWN",
+          "enum": [
+            "NONE",
+            "READ",
+            "WRITE",
+            "ADMIN",
+            "UNKNOWN"
+          ],
+          "title": "Privilege",
+          "type": "string"
+        },
+        "reachable": {
+          "default": "NOT_TESTED",
+          "enum": [
+            "OBSERVED",
+            "DECLARED",
+            "INFERRED",
+            "UNKNOWN",
+            "UNVERIFIED",
+            "BLOCKED",
+            "NOT_TESTED",
+            "ERROR"
+          ],
+          "title": "Reachable",
+          "type": "string"
+        },
+        "requires_human_review": {
+          "const": true,
+          "default": true,
+          "title": "Requires Human Review",
+          "type": "boolean"
+        },
+        "sensitivity": {
+          "default": "UNKNOWN",
+          "enum": [
+            "PUBLIC",
+            "INTERNAL",
+            "CONFIDENTIAL",
+            "RESTRICTED",
+            "UNKNOWN"
+          ],
+          "title": "Sensitivity",
+          "type": "string"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        },
+        "source_snapshot": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Source Snapshot",
+          "type": "string"
+        },
+        "surface": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Surface",
+          "type": "array"
+        },
+        "tenant_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "zone_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Zone Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "evidence_refs",
+        "kind",
+        "label",
+        "owner_role",
+        "zone_id",
+        "tenant_id",
+        "source_snapshot"
+      ],
+      "title": "Node",
+      "type": "object"
+    },
+    "Scope": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_activity": {
+          "const": "offline-modeling-only",
+          "default": "offline-modeling-only",
+          "title": "Allowed Activity",
+          "type": "string"
+        },
+        "in_scope_node_ids": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+            "type": "string"
+          },
+          "maxItems": 512,
+          "title": "In Scope Node Ids",
+          "type": "array"
+        },
+        "out_of_scope_node_ids": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+            "type": "string"
+          },
+          "maxItems": 512,
+          "title": "Out Of Scope Node Ids",
+          "type": "array"
+        },
+        "prohibited_activities": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Prohibited Activities",
+          "type": "array"
+        },
+        "real_legal_authority": {
+          "const": "NOT_VERIFIED",
+          "default": "NOT_VERIFIED",
+          "title": "Real Legal Authority",
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "source_digest": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Digest"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "Scope",
+      "type": "object"
+    },
+    "TrustZone": {
+      "additionalProperties": false,
+      "properties": {
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "confidence": {
+          "default": "DECLARATION",
+          "enum": [
+            "DIRECT_METADATA",
+            "DECLARATION",
+            "INFERENCE",
+            "UNKNOWN"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "epistemic_status": {
+          "default": "DECLARED",
+          "enum": [
+            "OBSERVED",
+            "DECLARED",
+            "INFERRED",
+            "UNKNOWN",
+            "UNVERIFIED",
+            "BLOCKED",
+            "NOT_TESTED",
+            "ERROR"
+          ],
+          "title": "Epistemic Status",
+          "type": "string"
+        },
+        "evidence_refs": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Evidence Refs",
+          "type": "array"
+        },
+        "id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "owner_role": {
+          "title": "Owner Role",
+          "type": "string"
+        },
+        "requires_human_review": {
+          "const": true,
+          "default": true,
+          "title": "Requires Human Review",
+          "type": "boolean"
+        },
+        "tenant_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "trust_level": {
+          "enum": [
+            "UNTRUSTED",
+            "APPLICATION",
+            "PRIVILEGED",
+            "EXTERNAL",
+            "UNKNOWN"
+          ],
+          "title": "Trust Level",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "evidence_refs",
+        "label",
+        "tenant_id",
+        "owner_role",
+        "trust_level"
+      ],
+      "title": "TrustZone",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "author_role": {
+      "const": "builder",
+      "default": "builder",
+      "title": "Author Role",
+      "type": "string"
+    },
+    "boundaries": {
+      "items": {
+        "$ref": "#/$defs/Boundary"
+      },
+      "maxItems": 1024,
+      "title": "Boundaries",
+      "type": "array"
+    },
+    "created_utc": {
+      "title": "Created Utc",
+      "type": "string"
+    },
+    "dataset_seed": {
+      "title": "Dataset Seed",
+      "type": "integer"
+    },
+    "engagement_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "Engagement Id",
+      "type": "string"
+    },
+    "engagement_version": {
+      "minimum": 1,
+      "title": "Engagement Version",
+      "type": "integer"
+    },
+    "environment_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "Environment Id",
+      "type": "string"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/EvidenceRef"
+      },
+      "maxItems": 4096,
+      "minItems": 1,
+      "title": "Evidence",
+      "type": "array"
+    },
+    "exclusions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Exclusions",
+      "type": "array"
+    },
+    "flows": {
+      "items": {
+        "$ref": "#/$defs/Flow"
+      },
+      "maxItems": 1024,
+      "title": "Flows",
+      "type": "array"
+    },
+    "git_commit": {
+      "title": "Git Commit",
+      "type": "string"
+    },
+    "integrations": {
+      "items": {
+        "$ref": "#/$defs/IntegrationResult"
+      },
+      "maxItems": 4,
+      "title": "Integrations",
+      "type": "array"
+    },
+    "model_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "Model Id",
+      "type": "string"
+    },
+    "model_scope": {
+      "$ref": "#/$defs/Scope"
+    },
+    "model_version": {
+      "minimum": 1,
+      "title": "Model Version",
+      "type": "integer"
+    },
+    "nodes": {
+      "items": {
+        "$ref": "#/$defs/Node"
+      },
+      "maxItems": 512,
+      "minItems": 1,
+      "title": "Nodes",
+      "type": "array"
+    },
+    "review_state": {
+      "default": "DRAFT",
+      "enum": [
+        "DRAFT",
+        "NEEDS_REVIEW",
+        "REVIEWED",
+        "APPROVED_FOR_TEST_DESIGN",
+        "SUPERSEDED"
+      ],
+      "title": "Review State",
+      "type": "string"
+    },
+    "sanitization_status": {
+      "const": "REDACTED_BEFORE_PUBLIC_HASH",
+      "default": "REDACTED_BEFORE_PUBLIC_HASH",
+      "title": "Sanitization Status",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "p005-model-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "snapshot_source": {
+      "title": "Snapshot Source",
+      "type": "string"
+    },
+    "source_context": {
+      "items": {
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          ]
+        },
+        "type": "object"
+      },
+      "maxItems": 16,
+      "title": "Source Context",
+      "type": "array"
+    },
+    "source_snapshot_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Source Snapshot Hash",
+      "type": "string"
+    },
+    "system_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "System Id",
+      "type": "string"
+    },
+    "tenants": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+        "type": "string"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Tenants",
+      "type": "array"
+    },
+    "tool_versions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Tool Versions",
+      "type": "object"
+    },
+    "zones": {
+      "items": {
+        "$ref": "#/$defs/TrustZone"
+      },
+      "maxItems": 128,
+      "minItems": 1,
+      "title": "Zones",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "model_id",
+    "engagement_id",
+    "engagement_version",
+    "system_id",
+    "model_version",
+    "created_utc",
+    "snapshot_source",
+    "source_snapshot_hash",
+    "git_commit",
+    "dataset_seed",
+    "tool_versions",
+    "environment_id",
+    "assumptions",
+    "exclusions",
+    "model_scope",
+    "tenants",
+    "zones",
+    "nodes",
+    "flows",
+    "evidence"
+  ],
+  "title": "Model",
+  "type": "object"
+}

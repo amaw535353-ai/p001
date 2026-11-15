@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "acceptance_criteria": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Acceptance Criteria",
+      "type": "array"
+    },
+    "external_mapping_status": {
+      "const": "UNMAPPED_PENDING_P083",
+      "default": "UNMAPPED_PENDING_P083",
+      "title": "External Mapping Status",
+      "type": "string"
+    },
+    "external_requirement_id": {
+      "const": null,
+      "default": null,
+      "title": "External Requirement Id",
+      "type": "null"
+    },
+    "id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "objective": {
+      "title": "Objective",
+      "type": "string"
+    },
+    "owner_role": {
+      "title": "Owner Role",
+      "type": "string"
+    },
+    "requirement": {
+      "title": "Requirement",
+      "type": "string"
+    },
+    "state": {
+      "const": "CONTROL_PROPOSED",
+      "default": "CONTROL_PROPOSED",
+      "title": "State",
+      "type": "string"
+    },
+    "threat_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "Threat Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "threat_id",
+    "requirement",
+    "owner_role",
+    "objective",
+    "acceptance_criteria"
+  ],
+  "title": "ControlRequirement",
+  "type": "object"
+}

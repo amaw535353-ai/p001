@@ -1,0 +1,50 @@
+{
+  "R10": [
+    {
+      "rationale": "Agent/tool invocation is a candidate capability-abuse boundary",
+      "technique_id": "AML.T0053"
+    }
+  ],
+  "R11": [
+    {
+      "rationale": "Persistent state may be an agent-context poisoning surface",
+      "technique_id": "AML.T0080"
+    }
+  ],
+  "R13": [
+    {
+      "rationale": "Corpus/index integrity is a candidate RAG poisoning surface",
+      "technique_id": "AML.T0070"
+    }
+  ],
+  "R18": [
+    {
+      "rationale": "Budget exhaustion relates to denial of AI service",
+      "technique_id": "AML.T0029"
+    }
+  ],
+  "R36": [
+    {
+      "rationale": "Dependency provenance relates to AI supply chain compromise",
+      "technique_id": "AML.T0010"
+    }
+  ],
+  "R37": [
+    {
+      "rationale": "Cascading agent/tool work can relate to agentic resource consumption",
+      "technique_id": "AML.T0034.002"
+    }
+  ],
+  "R4": [
+    {
+      "rationale": "Information disclosure hypotheses may warrant inference-exfiltration design review",
+      "technique_id": "AML.T0024"
+    }
+  ],
+  "R5": [
+    {
+      "rationale": "Low-trust instruction content can match the prompt-injection technique definition",
+      "technique_id": "AML.T0051"
+    }
+  ]
+}

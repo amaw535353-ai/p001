@@ -1,0 +1,179 @@
+{
+  "$defs": {
+    "Predicate": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "eq",
+            "ne",
+            "in"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "field",
+        "op",
+        "value"
+      ],
+      "title": "Predicate",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "all": {
+      "items": {
+        "$ref": "#/$defs/Predicate"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "title": "All",
+      "type": "array"
+    },
+    "any": {
+      "items": {
+        "$ref": "#/$defs/Predicate"
+      },
+      "maxItems": 12,
+      "title": "Any",
+      "type": "array"
+    },
+    "attacker_capability": {
+      "title": "Attacker Capability",
+      "type": "string"
+    },
+    "exclude": {
+      "items": {
+        "$ref": "#/$defs/Predicate"
+      },
+      "maxItems": 12,
+      "title": "Exclude",
+      "type": "array"
+    },
+    "falsifier": {
+      "title": "Falsifier",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "impact": {
+      "title": "Impact",
+      "type": "string"
+    },
+    "impact_level": {
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ],
+      "title": "Impact Level",
+      "type": "string"
+    },
+    "method": {
+      "title": "Method",
+      "type": "string"
+    },
+    "mitigation": {
+      "title": "Mitigation",
+      "type": "string"
+    },
+    "negative": {
+      "title": "Negative",
+      "type": "string"
+    },
+    "positive": {
+      "title": "Positive",
+      "type": "string"
+    },
+    "preconditions": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Preconditions",
+      "type": "array"
+    },
+    "property": {
+      "title": "Property",
+      "type": "string"
+    },
+    "required_evidence": {
+      "const": "modeled-flow-with-provenance",
+      "title": "Required Evidence",
+      "type": "string"
+    },
+    "risk_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Risk Ids",
+      "type": "array"
+    },
+    "target_behavior": {
+      "title": "Target Behavior",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "trust_assumption": {
+      "title": "Trust Assumption",
+      "type": "string"
+    },
+    "version": {
+      "const": "1.0",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "version",
+    "title",
+    "method",
+    "risk_ids",
+    "all",
+    "required_evidence",
+    "preconditions",
+    "attacker_capability",
+    "target_behavior",
+    "trust_assumption",
+    "property",
+    "impact",
+    "mitigation",
+    "positive",
+    "negative",
+    "falsifier",
+    "impact_level"
+  ],
+  "title": "Rule",
+  "type": "object"
+}

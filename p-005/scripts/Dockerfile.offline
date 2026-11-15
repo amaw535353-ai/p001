@@ -1,0 +1,14 @@
+# Optional engineering check only; no container is needed by the offline core.
+FROM python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/app/src:/tmp/p005-deps
+COPY --chmod=0444 requirements.lock /tmp/requirements.lock
+COPY --chmod=0555 generated/setup/wheels/ /wheels/
+USER 10001:10001
+RUN python -m pip install --no-index --no-cache-dir --find-links=/wheels --require-hashes -r /tmp/requirements.lock --target=/tmp/p005-deps
+WORKDIR /app
+COPY --chmod=0555 src /app/src
+COPY --chmod=0555 fixtures /app/fixtures
+COPY --chmod=0555 catalogs /app/catalogs
+COPY --chmod=0555 scripts/demo.py /app/scripts/demo.py
+COPY --chmod=0444 requirements.lock /app/requirements.lock
+CMD ["python", "scripts/demo.py"]
