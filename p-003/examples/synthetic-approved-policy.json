@@ -1,0 +1,202 @@
+{
+  "schema_version": "1.0",
+  "id": "edf698d6-9b0f-5b0d-96a9-4ae6ffa0e9cb",
+  "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+  "source": "p003 generated engagement-policy",
+  "author": "p003-exporter",
+  "reviewer": null,
+  "classification": "synthetic-internal",
+  "created_at": "2026-11-15T08:00:00Z",
+  "content_digest": "d393fb99ad3f95122106a8c46aad8d57b91e528bd607ff6534dc2e5772e652ff",
+  "kind": "engagement-policy",
+  "engagement_id": "ENG-DEMO-A",
+  "engagement_version": 1,
+  "status": "ACTIVE",
+  "policy_digest": "749c096ddd09e6fea9b83758c68b134a196c7060a914dd7730b3b0d9af7a05cd",
+  "scope": {
+    "schema_version": "1.0",
+    "id": "6441906c-983b-5be5-be0d-7d16474a0adc",
+    "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+    "source": "p003 deterministic simulated fixture",
+    "author": "demo-a-requestor",
+    "reviewer": null,
+    "classification": "synthetic-internal",
+    "created_at": "2026-11-15T08:00:00Z",
+    "content_digest": "3af7f06b22b8293ae53e75ddc090cc18cbdbf8b4ff00d1e7adbbe1d85abc8339",
+    "included_asset_ids": [
+      "demo-a-health"
+    ],
+    "exclusions": [
+      {
+        "selector": {
+          "kind": "url",
+          "value": "http://127.0.0.1:8000/admin"
+        },
+        "reason": "Administrative mutation excluded from this exercise"
+      }
+    ],
+    "activities": [
+      "passive-inspection",
+      "bounded-local-api"
+    ],
+    "procedures": [
+      "Review synthetic health contract without invoking a target from this tool."
+    ],
+    "project_ids": [
+      "P-003"
+    ],
+    "candidate_risk_ids": [],
+    "risk_mapping_status": "candidate hypotheses; taxonomy source unavailable",
+    "constraints": [
+      "No scanner execution, no redirects, exact paths and methods only."
+    ]
+  },
+  "target_inventory": [
+    {
+      "schema_version": "1.0",
+      "id": "ff9bdf32-887d-5703-9c1b-2b7006d02c2c",
+      "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "source": "p003 deterministic simulated fixture",
+      "author": "demo-a-requestor",
+      "reviewer": null,
+      "classification": "synthetic-internal",
+      "created_at": "2026-11-15T08:00:00Z",
+      "content_digest": "ee0900555627366d322f9bd3f7d7a5ef10fcb4bbc4d3375b12f6ef624da65c41",
+      "asset_id": "demo-a-health",
+      "tenant": "tenant-a",
+      "owner": "demo-a-owner",
+      "service": "fictional marker API",
+      "environment": "local-lab",
+      "selector": {
+        "kind": "url",
+        "value": "http://127.0.0.1:8000/health"
+      },
+      "methods": [
+        "GET"
+      ],
+      "data_class": "synthetic-only",
+      "ownership": "synthetic-owned",
+      "included": true,
+      "third_party_restrictions": [],
+      "trust_boundaries": [
+        "Local reviewer -> policy -> future runner"
+      ]
+    }
+  ],
+  "window": {
+    "start": "2026-11-15T09:00:00Z",
+    "end": "2026-11-15T17:00:00Z"
+  },
+  "expires_at": "2026-11-15T17:00:00Z",
+  "resource_limits_and_stops": {
+    "schema_version": "1.0",
+    "id": "b356a7d3-2238-5bfe-8e67-3d3ab4b35fd0",
+    "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+    "source": "p003 deterministic simulated fixture",
+    "author": "demo-a-requestor",
+    "reviewer": null,
+    "classification": "synthetic-internal",
+    "created_at": "2026-11-15T08:00:00Z",
+    "content_digest": "00103cbac49685fdf42bad9362b4fd69009e265a9af2315904ffde0e5d82b2a8",
+    "window": {
+      "start": "2026-11-15T09:00:00Z",
+      "end": "2026-11-15T17:00:00Z"
+    },
+    "allowed": [
+      "passive-inspection",
+      "bounded-local-api"
+    ],
+    "forbidden": [
+      "denial-of-service",
+      "phishing",
+      "exfiltration",
+      "privilege-escalation",
+      "persistence",
+      "destruction"
+    ],
+    "max_total_requests": 100,
+    "max_requests_per_minute": 10,
+    "max_cost_units": 0,
+    "max_interruption_ms": 0,
+    "source_identities": [
+      "demo-a-workload"
+    ],
+    "human_checkpoint": true,
+    "emergency_contact": "demo-a-reviewer",
+    "contact_confirmed": true,
+    "stop_conditions": [
+      "budget-exhausted",
+      "contact-missing",
+      "data-breach",
+      "service-interruption",
+      "human-stop"
+    ],
+    "recovery": "Stop the future runner and request an independent human review; no automatic resume.",
+    "communications": "Fictional local handover only; never send messages from this toolkit."
+  },
+  "evidence_policy": {
+    "schema_version": "1.0",
+    "id": "66f2d5f4-b0d0-5248-b2d4-c46759ccab42",
+    "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+    "source": "p003 deterministic simulated fixture",
+    "author": "demo-a-requestor",
+    "reviewer": null,
+    "classification": "synthetic-internal",
+    "created_at": "2026-11-15T08:00:00Z",
+    "content_digest": "a09339900473a486738964cf9e3e9e224f9180cf4805b8ffc9bdd96b33e7c4e1",
+    "data_class": "synthetic-only",
+    "storage_ids": [
+      "p003-private"
+    ],
+    "access_roles": [
+      "assessor",
+      "reviewer",
+      "owner"
+    ],
+    "retention_days": 30,
+    "redact_before_export": true,
+    "deletion": "Archive owned training data; human reviews retention/deletion.",
+    "incident_notification": "Stop immediately and prepare an unsent escalation notice.",
+    "custody_references": []
+  },
+  "authority_provenance": {
+    "schema_version": "1.0",
+    "id": "1efc4ce6-a97f-4530-8451-55e7adfb0d13",
+    "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+    "source": "explicit simulated training approval",
+    "author": "demo-a-reviewer",
+    "reviewer": "demo-a-reviewer",
+    "classification": "synthetic-internal",
+    "created_at": "2026-11-15T08:20:00Z",
+    "content_digest": "063e08bd6c20c6cf19c736262b9fa91b3c357ea1df0a6c5afb1ee90e6983beb8",
+    "engagement_id": "ENG-DEMO-A",
+    "version": 1,
+    "policy_digest": "749c096ddd09e6fea9b83758c68b134a196c7060a914dd7730b3b0d9af7a05cd",
+    "approving_role": "reviewer",
+    "evidence_ref": "training-review-a-v1",
+    "evidence_sha256": "64705e388c025af00f717c8a7783b5f199f3f72d828685791f415d8a73b51542",
+    "reviewed": true,
+    "checklist": "SIMULATED-REVIEW-NOT-IDENTITY-VERIFICATION",
+    "targets": [
+      {
+        "kind": "url",
+        "value": "http://127.0.0.1:8000/health"
+      }
+    ],
+    "activities": [
+      "passive-inspection",
+      "bounded-local-api"
+    ],
+    "window": {
+      "start": "2026-11-15T09:00:00Z",
+      "end": "2026-11-15T17:00:00Z"
+    },
+    "exceptions": [],
+    "revocation_history": [],
+    "real_legal_authority": "NOT VERIFIED"
+  },
+  "ledger_head": "687f5e3d4b383b4e5eb96ad27987359afaabddb9974463707c6489acb0d1e87d",
+  "consumption": "Not a bearer capability. Re-read the current ledger and review evidence before every action.",
+  "enforcement": "NOT VERIFIED: a future runner may ignore this export; no signature or online revocation feed.",
+  "real_legal_authority": "NOT VERIFIED"
+}

@@ -1,0 +1,36 @@
+{
+  "aisvs": {
+    "version": "1.01",
+    "tag": "v1.01",
+    "commit": "3ae3af45c363467b8ad823ef79219236e67ca22f",
+    "source": "https://github.com/OWASP/AISVS",
+    "license": "CC-BY-SA-4.0",
+    "sha256": {
+      "aisvs/C05.md": "db9d91763d3334434c0d3311b4ac850f6d14b7d445bb7c93106b9d72740c892c",
+      "aisvs/LICENSE.md": "28a9529c7d0bb4dc51f4bf5c116a3d16ef247a052f7591466768ddf563fd1cf5"
+    }
+  },
+  "oscal": {
+    "version": "1.2.3",
+    "tag": "v1.2.3",
+    "commit": "e061961c7702afeabffdf5e59894d35e748dade1",
+    "source": "https://github.com/usnistgov/OSCAL/releases/download/v1.2.3/oscal_assessment-plan_schema.json",
+    "license": "NIST public domain; see official OSCAL repository LICENSE.md",
+    "sha256": {
+      "oscal/assessment-plan-1.2.3.schema.json": "ea687b9d0ab1d84c9cb11ee0a5e22b17956fe892ee93f5acca937bef81d23ea2",
+      "oscal/LICENSE.md": "63407ac41abc46911bc9759fc0c19fd0ba7f66c59bb6746e51d85e2f2f3244b1"
+    }
+  },
+  "redmine": {
+    "version": "6.1.0",
+    "commit": "872d7816955d5d3d6c7d7e3a4a70d4b50c275993",
+    "source": "https://github.com/redmine/redmine/tree/6.1.0",
+    "sha256": {},
+    "inspected_upstream_files": {
+      "app/controllers/issues_controller.rb": "7fcc275ab7d5ddeff13996ce75f029301f3065412fc0e0f39b21e6d56ea6a31c",
+      "config/routes.rb": "cb5f68afbdd93d822b6f6ed60a387441fc49c7368fc39007a6e5db16e0846afc"
+    },
+    "live_version": "NOT TESTED",
+    "wiki_access": "403 from environment proxy"
+  }
+}

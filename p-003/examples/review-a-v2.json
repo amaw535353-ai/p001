@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "id": "9c5d41a5-d2cc-5db4-b5ba-fb8aaa18949e",
+  "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+  "source": "p003 deterministic simulated fixture",
+  "author": "demo-a-reviewer",
+  "reviewer": "demo-a-reviewer",
+  "classification": "synthetic-internal",
+  "created_at": "2026-11-15T08:00:00Z",
+  "content_digest": "2ab41cd52619d856073f49656f601c71723f84016fe7b2462976e86fa3fe40bc",
+  "evidence_ref": "training-review-a-v2",
+  "engagement_id": "ENG-DEMO-A",
+  "version": 2,
+  "policy_digest": "d05620b70168680359d8c4dc623dced9070d448112e7e0b9a26274ac9a6c1e42",
+  "claimed_authority": "fictional training reviewer only",
+  "checklist": "SIMULATED-REVIEW-NOT-IDENTITY-VERIFICATION",
+  "reviewed": true,
+  "real_legal_authority": "NOT VERIFIED"
+}

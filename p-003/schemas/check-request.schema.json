@@ -1,0 +1,231 @@
+{
+  "$defs": {
+    "Budget": {
+      "additionalProperties": false,
+      "properties": {
+        "used_total": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Used Total",
+          "type": "integer"
+        },
+        "used_last_minute": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Used Last Minute",
+          "type": "integer"
+        },
+        "requested": {
+          "maximum": 1000000,
+          "minimum": 1,
+          "title": "Requested",
+          "type": "integer"
+        },
+        "used_cost_units": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Used Cost Units",
+          "type": "integer"
+        },
+        "requested_cost_units": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Requested Cost Units",
+          "type": "integer"
+        },
+        "interruption_ms": {
+          "maximum": 1000000,
+          "minimum": 0,
+          "title": "Interruption Ms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "used_total",
+        "used_last_minute",
+        "requested",
+        "used_cost_units",
+        "requested_cost_units",
+        "interruption_ms"
+      ],
+      "title": "Budget",
+      "type": "object"
+    },
+    "Context": {
+      "additionalProperties": false,
+      "properties": {
+        "tenant": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Tenant",
+          "type": "string"
+        },
+        "environment": {
+          "enum": [
+            "local-lab",
+            "offline"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "method": {
+          "enum": [
+            "GET",
+            "HEAD",
+            "POST",
+            "PUT",
+            "OPTIONS"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "source_identity": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Source Identity",
+          "type": "string"
+        },
+        "checkpoint_completed": {
+          "title": "Checkpoint Completed",
+          "type": "boolean"
+        },
+        "contact_available": {
+          "title": "Contact Available",
+          "type": "boolean"
+        },
+        "redirects_expected": {
+          "title": "Redirects Expected",
+          "type": "boolean"
+        },
+        "data_class": {
+          "const": "synthetic-only",
+          "title": "Data Class",
+          "type": "string"
+        },
+        "storage_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Storage Id",
+          "type": "string"
+        },
+        "redaction_confirmed": {
+          "title": "Redaction Confirmed",
+          "type": "boolean"
+        },
+        "data_breach": {
+          "title": "Data Breach",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "tenant",
+        "environment",
+        "method",
+        "source_identity",
+        "checkpoint_completed",
+        "contact_available",
+        "redirects_expected",
+        "data_class",
+        "storage_id",
+        "redaction_confirmed",
+        "data_breach"
+      ],
+      "title": "Context",
+      "type": "object"
+    },
+    "Selector": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "url",
+            "ip",
+            "cidr",
+            "host",
+            "namespace",
+            "project"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "maxLength": 2048,
+          "minLength": 1,
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "value"
+      ],
+      "title": "Selector",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "notice": {
+      "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "title": "Notice",
+      "type": "string"
+    },
+    "engagement_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Engagement Id",
+      "type": "string"
+    },
+    "engagement_version": {
+      "minimum": 1,
+      "title": "Engagement Version",
+      "type": "integer"
+    },
+    "actor": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Actor",
+      "type": "string"
+    },
+    "test_class": {
+      "enum": [
+        "passive-inspection",
+        "config-review",
+        "bounded-local-api",
+        "synthetic-prompt-evaluation"
+      ],
+      "title": "Test Class",
+      "type": "string"
+    },
+    "target": {
+      "$ref": "#/$defs/Selector"
+    },
+    "at": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "At",
+      "type": "string"
+    },
+    "budget": {
+      "$ref": "#/$defs/Budget"
+    },
+    "context": {
+      "$ref": "#/$defs/Context"
+    }
+  },
+  "required": [
+    "engagement_id",
+    "engagement_version",
+    "actor",
+    "test_class",
+    "target",
+    "at",
+    "budget",
+    "context"
+  ],
+  "title": "CheckRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://p003.example.test/schemas/1.0/check-request.schema.json"
+}

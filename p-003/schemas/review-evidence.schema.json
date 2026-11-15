@@ -1,0 +1,122 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "notice": {
+      "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "title": "Notice",
+      "type": "string"
+    },
+    "source": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+    },
+    "author": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Author",
+      "type": "string"
+    },
+    "reviewer": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reviewer"
+    },
+    "classification": {
+      "default": "synthetic-internal",
+      "enum": [
+        "synthetic-public",
+        "synthetic-internal"
+      ],
+      "title": "Classification",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "evidence_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Evidence Ref",
+      "type": "string"
+    },
+    "engagement_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Engagement Id",
+      "type": "string"
+    },
+    "version": {
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "policy_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Policy Digest",
+      "type": "string"
+    },
+    "claimed_authority": {
+      "const": "fictional training reviewer only",
+      "default": "fictional training reviewer only",
+      "title": "Claimed Authority",
+      "type": "string"
+    },
+    "checklist": {
+      "const": "SIMULATED-REVIEW-NOT-IDENTITY-VERIFICATION",
+      "title": "Checklist",
+      "type": "string"
+    },
+    "reviewed": {
+      "const": true,
+      "title": "Reviewed",
+      "type": "boolean"
+    },
+    "real_legal_authority": {
+      "const": "NOT VERIFIED",
+      "default": "NOT VERIFIED",
+      "title": "Real Legal Authority",
+      "type": "string"
+    }
+  },
+  "required": [
+    "author",
+    "checklist",
+    "content_digest",
+    "created_at",
+    "engagement_id",
+    "evidence_ref",
+    "id",
+    "policy_digest",
+    "reviewed",
+    "source",
+    "version"
+  ],
+  "title": "ReviewEvidence",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://p003.example.test/schemas/1.0/review-evidence.schema.json"
+}

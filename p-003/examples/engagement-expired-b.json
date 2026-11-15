@@ -1,0 +1,269 @@
+{
+  "schema_version": "1.0",
+  "id": "44d34103-3810-5c39-aabe-909e8907d52c",
+  "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+  "source": "p003 deterministic simulated fixture",
+  "author": "demo-b-requestor",
+  "reviewer": null,
+  "classification": "synthetic-internal",
+  "created_at": "2026-11-15T08:00:00Z",
+  "content_digest": "62bff73cc1f662402197eee182595b092ed4aa0a1aeb8f4122ea6d4a03a510c7",
+  "engagement_id": "ENG-DEMO-B",
+  "version": 1,
+  "client": {
+    "schema_version": "1.0",
+    "id": "d8fe4dba-0a18-5c2e-887a-19579ec8c2bf",
+    "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+    "source": "p003 deterministic simulated fixture",
+    "author": "demo-b-requestor",
+    "reviewer": null,
+    "classification": "synthetic-internal",
+    "created_at": "2026-11-15T08:00:00Z",
+    "content_digest": "38885095aaedee354c12af898c98df29a896f214d6159cb7887b1a875b903a09",
+    "client_id": "CLIENT-DEMO-B",
+    "name": "Fictional Birch Research",
+    "owner_role": "owner",
+    "contact_role": "reviewer",
+    "data_sensitivity": "synthetic-only",
+    "caveats": "Fictional roles and synthetic assets only; no legal or identity verification."
+  },
+  "tenant": "tenant-b",
+  "goals": [
+    "Prepare and independently review a fictional consultancy engagement."
+  ],
+  "engagement_type": "configuration-audit",
+  "business_context": "Synthetic training dataset seed 42.",
+  "risk_assumptions": [
+    "Local ownership is declared, not independently proven."
+  ],
+  "sponsors": [
+    "demo-b-owner"
+  ],
+  "actors": [
+    {
+      "ref": "demo-b-requestor",
+      "client_id": "CLIENT-DEMO-B",
+      "tenant": "tenant-b",
+      "role": "requestor",
+      "identity_status": "fictional-role-not-identity-verification"
+    },
+    {
+      "ref": "demo-b-assessor",
+      "client_id": "CLIENT-DEMO-B",
+      "tenant": "tenant-b",
+      "role": "assessor",
+      "identity_status": "fictional-role-not-identity-verification"
+    },
+    {
+      "ref": "demo-b-reviewer",
+      "client_id": "CLIENT-DEMO-B",
+      "tenant": "tenant-b",
+      "role": "reviewer",
+      "identity_status": "fictional-role-not-identity-verification"
+    },
+    {
+      "ref": "demo-b-owner",
+      "client_id": "CLIENT-DEMO-B",
+      "tenant": "tenant-b",
+      "role": "owner",
+      "identity_status": "fictional-role-not-identity-verification"
+    }
+  ],
+  "window": {
+    "start": "2026-10-01T09:00:00Z",
+    "end": "2026-10-01T17:00:00Z"
+  },
+  "scope": {
+    "schema_version": "1.0",
+    "id": "b1790ba1-d5fa-5b8b-a692-c719e5090c8f",
+    "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+    "source": "p003 deterministic simulated fixture",
+    "author": "demo-b-requestor",
+    "reviewer": null,
+    "classification": "synthetic-internal",
+    "created_at": "2026-11-15T08:00:00Z",
+    "content_digest": "c6225cb56db05ac0e136025f3ad0f493a2e3c63e182292c25e282897f6600a8c",
+    "included_asset_ids": [
+      "demo-b-health"
+    ],
+    "exclusions": [
+      {
+        "selector": {
+          "kind": "url",
+          "value": "http://127.0.0.1:8000/admin"
+        },
+        "reason": "Administrative mutation excluded from this exercise"
+      }
+    ],
+    "activities": [
+      "passive-inspection",
+      "bounded-local-api"
+    ],
+    "procedures": [
+      "Review synthetic health contract without invoking a target from this tool."
+    ],
+    "project_ids": [
+      "P-003"
+    ],
+    "candidate_risk_ids": [],
+    "risk_mapping_status": "candidate hypotheses; taxonomy source unavailable",
+    "constraints": [
+      "No scanner execution, no redirects, exact paths and methods only."
+    ]
+  },
+  "roe": {
+    "schema_version": "1.0",
+    "id": "e9767261-618b-5674-a328-5c08b8bee5d0",
+    "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+    "source": "p003 deterministic simulated fixture",
+    "author": "demo-b-requestor",
+    "reviewer": null,
+    "classification": "synthetic-internal",
+    "created_at": "2026-11-15T08:00:00Z",
+    "content_digest": "09fde1681b1d77b743e72d3bae6fbdad49d84d5a2eeef90145e03396da917c68",
+    "window": {
+      "start": "2026-10-01T09:00:00Z",
+      "end": "2026-10-01T17:00:00Z"
+    },
+    "allowed": [
+      "passive-inspection",
+      "bounded-local-api"
+    ],
+    "forbidden": [
+      "denial-of-service",
+      "phishing",
+      "exfiltration",
+      "privilege-escalation",
+      "persistence",
+      "destruction"
+    ],
+    "max_total_requests": 100,
+    "max_requests_per_minute": 10,
+    "max_cost_units": 0,
+    "max_interruption_ms": 0,
+    "source_identities": [
+      "demo-b-workload"
+    ],
+    "human_checkpoint": true,
+    "emergency_contact": "demo-b-reviewer",
+    "contact_confirmed": true,
+    "stop_conditions": [
+      "budget-exhausted",
+      "contact-missing",
+      "data-breach",
+      "service-interruption",
+      "human-stop"
+    ],
+    "recovery": "Stop the future runner and request an independent human review; no automatic resume.",
+    "communications": "Fictional local handover only; never send messages from this toolkit."
+  },
+  "assets": [
+    {
+      "schema_version": "1.0",
+      "id": "6777399a-1528-51cc-b9f1-53accd9cd2ab",
+      "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "source": "p003 deterministic simulated fixture",
+      "author": "demo-b-requestor",
+      "reviewer": null,
+      "classification": "synthetic-internal",
+      "created_at": "2026-11-15T08:00:00Z",
+      "content_digest": "b0e6532a33e301e94420960ab78bfa3ede26cb279c6ba72dcf4a5697dff60cfb",
+      "asset_id": "demo-b-health",
+      "tenant": "tenant-b",
+      "owner": "demo-b-owner",
+      "service": "fictional marker API",
+      "environment": "local-lab",
+      "selector": {
+        "kind": "url",
+        "value": "http://127.0.0.1:8001/health"
+      },
+      "methods": [
+        "GET"
+      ],
+      "data_class": "synthetic-only",
+      "ownership": "synthetic-owned",
+      "included": true,
+      "third_party_restrictions": [],
+      "trust_boundaries": [
+        "Local reviewer -> policy -> future runner"
+      ]
+    }
+  ],
+  "evidence_policy": {
+    "schema_version": "1.0",
+    "id": "c7130516-a980-56c1-a9de-aa1443dec585",
+    "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+    "source": "p003 deterministic simulated fixture",
+    "author": "demo-b-requestor",
+    "reviewer": null,
+    "classification": "synthetic-internal",
+    "created_at": "2026-11-15T08:00:00Z",
+    "content_digest": "8fe3e59b3787864fb1e535b9e116e996e613904a61df2e920cf33dd076ddaa6f",
+    "data_class": "synthetic-only",
+    "storage_ids": [
+      "p003-private"
+    ],
+    "access_roles": [
+      "assessor",
+      "reviewer",
+      "owner"
+    ],
+    "retention_days": 30,
+    "redact_before_export": true,
+    "deletion": "Archive owned training data; human reviews retention/deletion.",
+    "incident_notification": "Stop immediately and prepare an unsent escalation notice.",
+    "custody_references": []
+  },
+  "requirements": [
+    {
+      "source": "OWASP AISVS",
+      "version": "1.01",
+      "requirement_id": "v1.01-C5.2.1",
+      "exact_text": "**Verify that** every AI resource (datasets, endpoints, vector collections, embedding indices, compute instances) enforces access controls with explicit allow-lists and default-deny policies.",
+      "level": 2,
+      "applicability": "Candidate control for later independent AI assessment; not a P-003 compliance claim.",
+      "asset_ids": [
+        "demo-b-health"
+      ],
+      "planned_method": "Independent review of actual target controls under approved scope.",
+      "required_evidence": [
+        "Sanitized independently observed behavior and target configuration"
+      ],
+      "state": "planned"
+    },
+    {
+      "source": "OWASP AISVS",
+      "version": "1.01",
+      "requirement_id": "v1.01-C5.2.5",
+      "exact_text": "**Verify that** the policy decision point for agent authorization is isolated from the agent's execution environment.",
+      "level": 2,
+      "applicability": "Candidate control for later independent AI assessment; not a P-003 compliance claim.",
+      "asset_ids": [
+        "demo-b-health"
+      ],
+      "planned_method": "Independent review of actual target controls under approved scope.",
+      "required_evidence": [
+        "Sanitized independently observed behavior and target configuration"
+      ],
+      "state": "planned"
+    },
+    {
+      "source": "OWASP AISVS",
+      "version": "1.01",
+      "requirement_id": "v1.01-C5.3.1",
+      "exact_text": "**Verify that** shared model serving infrastructure prevents one tenant's fine-tuning, inference, or embedding operations from influencing or observing another tenant's operations.",
+      "level": 2,
+      "applicability": "Candidate control for later independent AI assessment; not a P-003 compliance claim.",
+      "asset_ids": [
+        "demo-b-health"
+      ],
+      "planned_method": "Independent review of actual target controls under approved scope.",
+      "required_evidence": [
+        "Sanitized independently observed behavior and target configuration"
+      ],
+      "state": "planned"
+    }
+  ],
+  "parent_digest": null,
+  "change_reason": "Initial fictional training draft."
+}

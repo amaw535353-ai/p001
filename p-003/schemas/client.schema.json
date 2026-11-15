@@ -1,0 +1,112 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "notice": {
+      "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "title": "Notice",
+      "type": "string"
+    },
+    "source": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+    },
+    "author": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Author",
+      "type": "string"
+    },
+    "reviewer": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reviewer"
+    },
+    "classification": {
+      "default": "synthetic-internal",
+      "enum": [
+        "synthetic-public",
+        "synthetic-internal"
+      ],
+      "title": "Classification",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "client_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Client Id",
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "owner_role": {
+      "const": "owner",
+      "default": "owner",
+      "title": "Owner Role",
+      "type": "string"
+    },
+    "contact_role": {
+      "const": "reviewer",
+      "default": "reviewer",
+      "title": "Contact Role",
+      "type": "string"
+    },
+    "data_sensitivity": {
+      "const": "synthetic-only",
+      "default": "synthetic-only",
+      "title": "Data Sensitivity",
+      "type": "string"
+    },
+    "caveats": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Caveats",
+      "type": "string"
+    }
+  },
+  "required": [
+    "author",
+    "caveats",
+    "client_id",
+    "content_digest",
+    "created_at",
+    "id",
+    "name",
+    "source"
+  ],
+  "title": "Client",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://p003.example.test/schemas/1.0/client.schema.json"
+}

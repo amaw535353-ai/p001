@@ -1,0 +1,224 @@
+schema_version: '1.0'
+id: 48b93bc6-b107-52c1-b8a3-d512b7e054f2
+notice: SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING
+source: p003 deterministic simulated fixture
+author: demo-a-requestor
+reviewer: null
+classification: synthetic-internal
+created_at: '2026-11-15T08:00:00Z'
+content_digest: 749c096ddd09e6fea9b83758c68b134a196c7060a914dd7730b3b0d9af7a05cd
+engagement_id: ENG-DEMO-A
+version: 1
+client:
+  schema_version: '1.0'
+  id: 741654c9-10f3-5a44-96e1-a3f24af90a8d
+  notice: SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING
+  source: p003 deterministic simulated fixture
+  author: demo-a-requestor
+  reviewer: null
+  classification: synthetic-internal
+  created_at: '2026-11-15T08:00:00Z'
+  content_digest: e59f1179d635fa640cd4407bf2344ced42ccaeb6bca4e4f7ddb8f01f4f3dc44e
+  client_id: CLIENT-DEMO-A
+  name: Fictional Aster Research
+  owner_role: owner
+  contact_role: reviewer
+  data_sensitivity: synthetic-only
+  caveats: Fictional roles and synthetic assets only; no legal or identity verification.
+tenant: tenant-a
+goals:
+- Prepare and independently review a fictional consultancy engagement.
+engagement_type: configuration-audit
+business_context: Synthetic training dataset seed 42.
+risk_assumptions:
+- Local ownership is declared, not independently proven.
+sponsors:
+- demo-a-owner
+actors:
+- ref: demo-a-requestor
+  client_id: CLIENT-DEMO-A
+  tenant: tenant-a
+  role: requestor
+  identity_status: fictional-role-not-identity-verification
+- ref: demo-a-assessor
+  client_id: CLIENT-DEMO-A
+  tenant: tenant-a
+  role: assessor
+  identity_status: fictional-role-not-identity-verification
+- ref: demo-a-reviewer
+  client_id: CLIENT-DEMO-A
+  tenant: tenant-a
+  role: reviewer
+  identity_status: fictional-role-not-identity-verification
+- ref: demo-a-owner
+  client_id: CLIENT-DEMO-A
+  tenant: tenant-a
+  role: owner
+  identity_status: fictional-role-not-identity-verification
+window:
+  start: '2026-11-15T09:00:00Z'
+  end: '2026-11-15T17:00:00Z'
+scope:
+  schema_version: '1.0'
+  id: 6441906c-983b-5be5-be0d-7d16474a0adc
+  notice: SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING
+  source: p003 deterministic simulated fixture
+  author: demo-a-requestor
+  reviewer: null
+  classification: synthetic-internal
+  created_at: '2026-11-15T08:00:00Z'
+  content_digest: 3af7f06b22b8293ae53e75ddc090cc18cbdbf8b4ff00d1e7adbbe1d85abc8339
+  included_asset_ids:
+  - demo-a-health
+  exclusions:
+  - selector:
+      kind: url
+      value: http://127.0.0.1:8000/admin
+    reason: Administrative mutation excluded from this exercise
+  activities:
+  - passive-inspection
+  - bounded-local-api
+  procedures:
+  - Review synthetic health contract without invoking a target from this tool.
+  project_ids:
+  - P-003
+  candidate_risk_ids: []
+  risk_mapping_status: candidate hypotheses; taxonomy source unavailable
+  constraints:
+  - No scanner execution, no redirects, exact paths and methods only.
+roe:
+  schema_version: '1.0'
+  id: b356a7d3-2238-5bfe-8e67-3d3ab4b35fd0
+  notice: SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING
+  source: p003 deterministic simulated fixture
+  author: demo-a-requestor
+  reviewer: null
+  classification: synthetic-internal
+  created_at: '2026-11-15T08:00:00Z'
+  content_digest: 00103cbac49685fdf42bad9362b4fd69009e265a9af2315904ffde0e5d82b2a8
+  window:
+    start: '2026-11-15T09:00:00Z'
+    end: '2026-11-15T17:00:00Z'
+  allowed:
+  - passive-inspection
+  - bounded-local-api
+  forbidden:
+  - denial-of-service
+  - phishing
+  - exfiltration
+  - privilege-escalation
+  - persistence
+  - destruction
+  max_total_requests: 100
+  max_requests_per_minute: 10
+  max_cost_units: 0
+  max_interruption_ms: 0
+  source_identities:
+  - demo-a-workload
+  human_checkpoint: true
+  emergency_contact: demo-a-reviewer
+  contact_confirmed: true
+  stop_conditions:
+  - budget-exhausted
+  - contact-missing
+  - data-breach
+  - service-interruption
+  - human-stop
+  recovery: Stop the future runner and request an independent human review; no automatic
+    resume.
+  communications: Fictional local handover only; never send messages from this toolkit.
+assets:
+- schema_version: '1.0'
+  id: ff9bdf32-887d-5703-9c1b-2b7006d02c2c
+  notice: SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING
+  source: p003 deterministic simulated fixture
+  author: demo-a-requestor
+  reviewer: null
+  classification: synthetic-internal
+  created_at: '2026-11-15T08:00:00Z'
+  content_digest: ee0900555627366d322f9bd3f7d7a5ef10fcb4bbc4d3375b12f6ef624da65c41
+  asset_id: demo-a-health
+  tenant: tenant-a
+  owner: demo-a-owner
+  service: fictional marker API
+  environment: local-lab
+  selector:
+    kind: url
+    value: http://127.0.0.1:8000/health
+  methods:
+  - GET
+  data_class: synthetic-only
+  ownership: synthetic-owned
+  included: true
+  third_party_restrictions: []
+  trust_boundaries:
+  - Local reviewer -> policy -> future runner
+evidence_policy:
+  schema_version: '1.0'
+  id: 66f2d5f4-b0d0-5248-b2d4-c46759ccab42
+  notice: SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING
+  source: p003 deterministic simulated fixture
+  author: demo-a-requestor
+  reviewer: null
+  classification: synthetic-internal
+  created_at: '2026-11-15T08:00:00Z'
+  content_digest: a09339900473a486738964cf9e3e9e224f9180cf4805b8ffc9bdd96b33e7c4e1
+  data_class: synthetic-only
+  storage_ids:
+  - p003-private
+  access_roles:
+  - assessor
+  - reviewer
+  - owner
+  retention_days: 30
+  redact_before_export: true
+  deletion: Archive owned training data; human reviews retention/deletion.
+  incident_notification: Stop immediately and prepare an unsent escalation notice.
+  custody_references: []
+requirements:
+- source: OWASP AISVS
+  version: '1.01'
+  requirement_id: v1.01-C5.2.1
+  exact_text: '**Verify that** every AI resource (datasets, endpoints, vector collections,
+    embedding indices, compute instances) enforces access controls with explicit allow-lists
+    and default-deny policies.'
+  level: 2
+  applicability: Candidate control for later independent AI assessment; not a P-003
+    compliance claim.
+  asset_ids:
+  - demo-a-health
+  planned_method: Independent review of actual target controls under approved scope.
+  required_evidence:
+  - Sanitized independently observed behavior and target configuration
+  state: planned
+- source: OWASP AISVS
+  version: '1.01'
+  requirement_id: v1.01-C5.2.5
+  exact_text: '**Verify that** the policy decision point for agent authorization is
+    isolated from the agent''s execution environment.'
+  level: 2
+  applicability: Candidate control for later independent AI assessment; not a P-003
+    compliance claim.
+  asset_ids:
+  - demo-a-health
+  planned_method: Independent review of actual target controls under approved scope.
+  required_evidence:
+  - Sanitized independently observed behavior and target configuration
+  state: planned
+- source: OWASP AISVS
+  version: '1.01'
+  requirement_id: v1.01-C5.3.1
+  exact_text: '**Verify that** shared model serving infrastructure prevents one tenant''s
+    fine-tuning, inference, or embedding operations from influencing or observing
+    another tenant''s operations.'
+  level: 2
+  applicability: Candidate control for later independent AI assessment; not a P-003
+    compliance claim.
+  asset_ids:
+  - demo-a-health
+  planned_method: Independent review of actual target controls under approved scope.
+  required_evidence:
+  - Sanitized independently observed behavior and target configuration
+  state: planned
+parent_digest: null
+change_reason: Initial fictional training draft.

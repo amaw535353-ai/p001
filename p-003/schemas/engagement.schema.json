@@ -1,0 +1,1199 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Ref",
+          "type": "string"
+        },
+        "client_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Client Id",
+          "type": "string"
+        },
+        "tenant": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Tenant",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "requestor",
+            "assessor",
+            "reviewer",
+            "owner"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "identity_status": {
+          "const": "fictional-role-not-identity-verification",
+          "default": "fictional-role-not-identity-verification",
+          "title": "Identity Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "client_id",
+        "tenant",
+        "role"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "Asset": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "notice": {
+          "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+          "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+          "title": "Notice",
+          "type": "string"
+        },
+        "source": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "author": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Author",
+          "type": "string"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviewer"
+        },
+        "classification": {
+          "default": "synthetic-internal",
+          "enum": [
+            "synthetic-public",
+            "synthetic-internal"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "created_at": {
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "content_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "asset_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "tenant": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Tenant",
+          "type": "string"
+        },
+        "owner": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Owner",
+          "type": "string"
+        },
+        "service": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Service",
+          "type": "string"
+        },
+        "environment": {
+          "enum": [
+            "local-lab",
+            "offline"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "selector": {
+          "$ref": "#/$defs/Selector"
+        },
+        "methods": {
+          "items": {
+            "enum": [
+              "GET",
+              "HEAD",
+              "POST",
+              "PUT",
+              "OPTIONS"
+            ],
+            "type": "string"
+          },
+          "maxItems": 5,
+          "minItems": 1,
+          "title": "Methods",
+          "type": "array"
+        },
+        "data_class": {
+          "const": "synthetic-only",
+          "default": "synthetic-only",
+          "title": "Data Class",
+          "type": "string"
+        },
+        "ownership": {
+          "enum": [
+            "synthetic-owned",
+            "external-unverified"
+          ],
+          "title": "Ownership",
+          "type": "string"
+        },
+        "included": {
+          "title": "Included",
+          "type": "boolean"
+        },
+        "third_party_restrictions": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Third Party Restrictions",
+          "type": "array"
+        },
+        "trust_boundaries": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Trust Boundaries",
+          "type": "array"
+        }
+      },
+      "required": [
+        "asset_id",
+        "author",
+        "content_digest",
+        "created_at",
+        "environment",
+        "id",
+        "included",
+        "methods",
+        "owner",
+        "ownership",
+        "selector",
+        "service",
+        "source",
+        "tenant",
+        "third_party_restrictions",
+        "trust_boundaries"
+      ],
+      "title": "Asset",
+      "type": "object"
+    },
+    "Client": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "notice": {
+          "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+          "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+          "title": "Notice",
+          "type": "string"
+        },
+        "source": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "author": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Author",
+          "type": "string"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviewer"
+        },
+        "classification": {
+          "default": "synthetic-internal",
+          "enum": [
+            "synthetic-public",
+            "synthetic-internal"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "created_at": {
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "content_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "client_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Client Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "owner_role": {
+          "const": "owner",
+          "default": "owner",
+          "title": "Owner Role",
+          "type": "string"
+        },
+        "contact_role": {
+          "const": "reviewer",
+          "default": "reviewer",
+          "title": "Contact Role",
+          "type": "string"
+        },
+        "data_sensitivity": {
+          "const": "synthetic-only",
+          "default": "synthetic-only",
+          "title": "Data Sensitivity",
+          "type": "string"
+        },
+        "caveats": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Caveats",
+          "type": "string"
+        }
+      },
+      "required": [
+        "author",
+        "caveats",
+        "client_id",
+        "content_digest",
+        "created_at",
+        "id",
+        "name",
+        "source"
+      ],
+      "title": "Client",
+      "type": "object"
+    },
+    "EvidencePolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "notice": {
+          "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+          "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+          "title": "Notice",
+          "type": "string"
+        },
+        "source": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "author": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Author",
+          "type": "string"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviewer"
+        },
+        "classification": {
+          "default": "synthetic-internal",
+          "enum": [
+            "synthetic-public",
+            "synthetic-internal"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "created_at": {
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "content_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "data_class": {
+          "const": "synthetic-only",
+          "default": "synthetic-only",
+          "title": "Data Class",
+          "type": "string"
+        },
+        "storage_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "title": "Storage Ids",
+          "type": "array"
+        },
+        "access_roles": {
+          "items": {
+            "enum": [
+              "requestor",
+              "assessor",
+              "reviewer",
+              "owner"
+            ],
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "title": "Access Roles",
+          "type": "array"
+        },
+        "retention_days": {
+          "maximum": 365,
+          "minimum": 1,
+          "title": "Retention Days",
+          "type": "integer"
+        },
+        "redact_before_export": {
+          "const": true,
+          "default": true,
+          "title": "Redact Before Export",
+          "type": "boolean"
+        },
+        "deletion": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Deletion",
+          "type": "string"
+        },
+        "incident_notification": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Incident Notification",
+          "type": "string"
+        },
+        "custody_references": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Custody References",
+          "type": "array"
+        }
+      },
+      "required": [
+        "access_roles",
+        "author",
+        "content_digest",
+        "created_at",
+        "custody_references",
+        "deletion",
+        "id",
+        "incident_notification",
+        "retention_days",
+        "source",
+        "storage_ids"
+      ],
+      "title": "EvidencePolicy",
+      "type": "object"
+    },
+    "Exclusion": {
+      "additionalProperties": false,
+      "properties": {
+        "selector": {
+          "$ref": "#/$defs/Selector"
+        },
+        "reason": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "selector",
+        "reason"
+      ],
+      "title": "Exclusion",
+      "type": "object"
+    },
+    "ROE": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "notice": {
+          "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+          "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+          "title": "Notice",
+          "type": "string"
+        },
+        "source": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "author": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Author",
+          "type": "string"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviewer"
+        },
+        "classification": {
+          "default": "synthetic-internal",
+          "enum": [
+            "synthetic-public",
+            "synthetic-internal"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "created_at": {
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "content_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "window": {
+          "$ref": "#/$defs/Window"
+        },
+        "allowed": {
+          "items": {
+            "enum": [
+              "passive-inspection",
+              "config-review",
+              "bounded-local-api",
+              "synthetic-prompt-evaluation"
+            ],
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "title": "Allowed",
+          "type": "array"
+        },
+        "forbidden": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Forbidden",
+          "type": "array"
+        },
+        "max_total_requests": {
+          "maximum": 1000,
+          "minimum": 1,
+          "title": "Max Total Requests",
+          "type": "integer"
+        },
+        "max_requests_per_minute": {
+          "maximum": 60,
+          "minimum": 1,
+          "title": "Max Requests Per Minute",
+          "type": "integer"
+        },
+        "max_cost_units": {
+          "maximum": 1000,
+          "minimum": 0,
+          "title": "Max Cost Units",
+          "type": "integer"
+        },
+        "max_interruption_ms": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Max Interruption Ms",
+          "type": "integer"
+        },
+        "source_identities": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Source Identities",
+          "type": "array"
+        },
+        "human_checkpoint": {
+          "const": true,
+          "default": true,
+          "title": "Human Checkpoint",
+          "type": "boolean"
+        },
+        "emergency_contact": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Emergency Contact"
+        },
+        "contact_confirmed": {
+          "title": "Contact Confirmed",
+          "type": "boolean"
+        },
+        "stop_conditions": {
+          "items": {
+            "enum": [
+              "budget-exhausted",
+              "contact-missing",
+              "data-breach",
+              "service-interruption",
+              "human-stop"
+            ],
+            "type": "string"
+          },
+          "maxItems": 5,
+          "minItems": 5,
+          "title": "Stop Conditions",
+          "type": "array"
+        },
+        "recovery": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Recovery",
+          "type": "string"
+        },
+        "communications": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Communications",
+          "type": "string"
+        }
+      },
+      "required": [
+        "allowed",
+        "author",
+        "communications",
+        "contact_confirmed",
+        "content_digest",
+        "created_at",
+        "emergency_contact",
+        "forbidden",
+        "id",
+        "max_cost_units",
+        "max_interruption_ms",
+        "max_requests_per_minute",
+        "max_total_requests",
+        "recovery",
+        "source",
+        "source_identities",
+        "stop_conditions",
+        "window"
+      ],
+      "title": "ROE",
+      "type": "object"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "const": "OWASP AISVS",
+          "default": "OWASP AISVS",
+          "title": "Source",
+          "type": "string"
+        },
+        "version": {
+          "const": "1.01",
+          "default": "1.01",
+          "title": "Version",
+          "type": "string"
+        },
+        "requirement_id": {
+          "pattern": "^v1\\.01-C5\\.\\d+\\.\\d+$",
+          "title": "Requirement Id",
+          "type": "string"
+        },
+        "exact_text": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Exact Text",
+          "type": "string"
+        },
+        "level": {
+          "maximum": 3,
+          "minimum": 1,
+          "title": "Level",
+          "type": "integer"
+        },
+        "applicability": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Applicability",
+          "type": "string"
+        },
+        "asset_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Asset Ids",
+          "type": "array"
+        },
+        "planned_method": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Planned Method",
+          "type": "string"
+        },
+        "required_evidence": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Required Evidence",
+          "type": "array"
+        },
+        "state": {
+          "enum": [
+            "planned",
+            "not-tested",
+            "not-applicable",
+            "inconclusive"
+          ],
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "requirement_id",
+        "exact_text",
+        "level",
+        "applicability",
+        "asset_ids",
+        "planned_method",
+        "required_evidence",
+        "state"
+      ],
+      "title": "Requirement",
+      "type": "object"
+    },
+    "Scope": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "notice": {
+          "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+          "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+          "title": "Notice",
+          "type": "string"
+        },
+        "source": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "author": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Author",
+          "type": "string"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviewer"
+        },
+        "classification": {
+          "default": "synthetic-internal",
+          "enum": [
+            "synthetic-public",
+            "synthetic-internal"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "created_at": {
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "content_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "included_asset_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 256,
+          "minItems": 1,
+          "title": "Included Asset Ids",
+          "type": "array"
+        },
+        "exclusions": {
+          "items": {
+            "$ref": "#/$defs/Exclusion"
+          },
+          "maxItems": 256,
+          "title": "Exclusions",
+          "type": "array"
+        },
+        "activities": {
+          "items": {
+            "enum": [
+              "passive-inspection",
+              "config-review",
+              "bounded-local-api",
+              "synthetic-prompt-evaluation"
+            ],
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "title": "Activities",
+          "type": "array"
+        },
+        "procedures": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 64,
+          "minItems": 1,
+          "title": "Procedures",
+          "type": "array"
+        },
+        "project_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Project Ids",
+          "type": "array"
+        },
+        "candidate_risk_ids": {
+          "items": {
+            "maximum": 37,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "maxItems": 37,
+          "title": "Candidate Risk Ids",
+          "type": "array"
+        },
+        "risk_mapping_status": {
+          "const": "candidate hypotheses; taxonomy source unavailable",
+          "default": "candidate hypotheses; taxonomy source unavailable",
+          "title": "Risk Mapping Status",
+          "type": "string"
+        },
+        "constraints": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 64,
+          "minItems": 1,
+          "title": "Constraints",
+          "type": "array"
+        }
+      },
+      "required": [
+        "activities",
+        "author",
+        "candidate_risk_ids",
+        "constraints",
+        "content_digest",
+        "created_at",
+        "exclusions",
+        "id",
+        "included_asset_ids",
+        "procedures",
+        "project_ids",
+        "source"
+      ],
+      "title": "Scope",
+      "type": "object"
+    },
+    "Selector": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "url",
+            "ip",
+            "cidr",
+            "host",
+            "namespace",
+            "project"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "maxLength": 2048,
+          "minLength": 1,
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "value"
+      ],
+      "title": "Selector",
+      "type": "object"
+    },
+    "Window": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Window",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "notice": {
+      "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "title": "Notice",
+      "type": "string"
+    },
+    "source": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+    },
+    "author": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Author",
+      "type": "string"
+    },
+    "reviewer": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reviewer"
+    },
+    "classification": {
+      "default": "synthetic-internal",
+      "enum": [
+        "synthetic-public",
+        "synthetic-internal"
+      ],
+      "title": "Classification",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "engagement_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Engagement Id",
+      "type": "string"
+    },
+    "version": {
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "client": {
+      "$ref": "#/$defs/Client"
+    },
+    "tenant": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Tenant",
+      "type": "string"
+    },
+    "goals": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Goals",
+      "type": "array"
+    },
+    "engagement_type": {
+      "enum": [
+        "configuration-audit",
+        "architecture-review",
+        "llm-agent-assessment"
+      ],
+      "title": "Engagement Type",
+      "type": "string"
+    },
+    "business_context": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Business Context",
+      "type": "string"
+    },
+    "risk_assumptions": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Risk Assumptions",
+      "type": "array"
+    },
+    "sponsors": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+        "type": "string"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Sponsors",
+      "type": "array"
+    },
+    "actors": {
+      "items": {
+        "$ref": "#/$defs/Actor"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "title": "Actors",
+      "type": "array"
+    },
+    "window": {
+      "$ref": "#/$defs/Window"
+    },
+    "scope": {
+      "$ref": "#/$defs/Scope"
+    },
+    "roe": {
+      "$ref": "#/$defs/ROE"
+    },
+    "assets": {
+      "items": {
+        "$ref": "#/$defs/Asset"
+      },
+      "maxItems": 256,
+      "minItems": 1,
+      "title": "Assets",
+      "type": "array"
+    },
+    "evidence_policy": {
+      "$ref": "#/$defs/EvidencePolicy"
+    },
+    "requirements": {
+      "items": {
+        "$ref": "#/$defs/Requirement"
+      },
+      "maxItems": 64,
+      "title": "Requirements",
+      "type": "array"
+    },
+    "parent_digest": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Parent Digest"
+    },
+    "change_reason": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Change Reason",
+      "type": "string"
+    }
+  },
+  "required": [
+    "actors",
+    "assets",
+    "author",
+    "business_context",
+    "change_reason",
+    "client",
+    "content_digest",
+    "created_at",
+    "engagement_id",
+    "engagement_type",
+    "evidence_policy",
+    "goals",
+    "id",
+    "parent_digest",
+    "requirements",
+    "risk_assumptions",
+    "roe",
+    "scope",
+    "source",
+    "sponsors",
+    "tenant",
+    "version",
+    "window"
+  ],
+  "title": "Engagement",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://p003.example.test/schemas/1.0/engagement.schema.json"
+}

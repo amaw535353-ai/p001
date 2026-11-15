@@ -1,0 +1,231 @@
+{
+  "$defs": {
+    "Selector": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "url",
+            "ip",
+            "cidr",
+            "host",
+            "namespace",
+            "project"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "maxLength": 2048,
+          "minLength": 1,
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "value"
+      ],
+      "title": "Selector",
+      "type": "object"
+    },
+    "Window": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "End",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "Window",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "notice": {
+      "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "title": "Notice",
+      "type": "string"
+    },
+    "source": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+    },
+    "author": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Author",
+      "type": "string"
+    },
+    "reviewer": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reviewer"
+    },
+    "classification": {
+      "default": "synthetic-internal",
+      "enum": [
+        "synthetic-public",
+        "synthetic-internal"
+      ],
+      "title": "Classification",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "engagement_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Engagement Id",
+      "type": "string"
+    },
+    "version": {
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "policy_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Policy Digest",
+      "type": "string"
+    },
+    "approving_role": {
+      "const": "reviewer",
+      "default": "reviewer",
+      "title": "Approving Role",
+      "type": "string"
+    },
+    "evidence_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Evidence Ref",
+      "type": "string"
+    },
+    "evidence_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Evidence Sha256",
+      "type": "string"
+    },
+    "reviewed": {
+      "const": true,
+      "default": true,
+      "title": "Reviewed",
+      "type": "boolean"
+    },
+    "checklist": {
+      "const": "SIMULATED-REVIEW-NOT-IDENTITY-VERIFICATION",
+      "title": "Checklist",
+      "type": "string"
+    },
+    "targets": {
+      "items": {
+        "$ref": "#/$defs/Selector"
+      },
+      "maxItems": 256,
+      "minItems": 1,
+      "title": "Targets",
+      "type": "array"
+    },
+    "activities": {
+      "items": {
+        "enum": [
+          "passive-inspection",
+          "config-review",
+          "bounded-local-api",
+          "synthetic-prompt-evaluation"
+        ],
+        "type": "string"
+      },
+      "maxItems": 4,
+      "minItems": 1,
+      "title": "Activities",
+      "type": "array"
+    },
+    "window": {
+      "$ref": "#/$defs/Window"
+    },
+    "exceptions": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 0,
+      "title": "Exceptions",
+      "type": "array"
+    },
+    "revocation_history": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+        "type": "string"
+      },
+      "maxItems": 0,
+      "title": "Revocation History",
+      "type": "array"
+    },
+    "real_legal_authority": {
+      "const": "NOT VERIFIED",
+      "default": "NOT VERIFIED",
+      "title": "Real Legal Authority",
+      "type": "string"
+    }
+  },
+  "required": [
+    "activities",
+    "author",
+    "checklist",
+    "content_digest",
+    "created_at",
+    "engagement_id",
+    "evidence_ref",
+    "evidence_sha256",
+    "exceptions",
+    "id",
+    "policy_digest",
+    "revocation_history",
+    "source",
+    "targets",
+    "version",
+    "window"
+  ],
+  "title": "Authorization",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://p003.example.test/schemas/1.0/authorization.schema.json"
+}

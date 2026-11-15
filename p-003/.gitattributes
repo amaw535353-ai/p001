@@ -1,0 +1,3 @@
+# Preserve official source/license bytes (including upstream whitespace) for hashes.
+src/p003/data/aisvs/LICENSE.md -whitespace
+src/p003/data/oscal/* -whitespace

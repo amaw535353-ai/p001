@@ -1,0 +1,207 @@
+{
+  "$defs": {
+    "EventReference": {
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Reference",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "event_type": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Event Type",
+          "type": "string"
+        },
+        "sequence": {
+          "minimum": 1,
+          "title": "Sequence",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "reference",
+        "sha256",
+        "event_type",
+        "sequence"
+      ],
+      "title": "EventReference",
+      "type": "object"
+    },
+    "ReviewReference": {
+      "additionalProperties": false,
+      "properties": {
+        "reference": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "title": "Reference",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "reference",
+        "sha256"
+      ],
+      "title": "ReviewReference",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "notice": {
+      "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "title": "Notice",
+      "type": "string"
+    },
+    "source": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+    },
+    "author": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Author",
+      "type": "string"
+    },
+    "reviewer": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reviewer"
+    },
+    "classification": {
+      "default": "synthetic-internal",
+      "enum": [
+        "synthetic-public",
+        "synthetic-internal"
+      ],
+      "title": "Classification",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "kind": {
+      "const": "evidence-manifest",
+      "title": "Kind",
+      "type": "string"
+    },
+    "engagement_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Engagement Id",
+      "type": "string"
+    },
+    "engagement_version": {
+      "minimum": 1,
+      "title": "Engagement Version",
+      "type": "integer"
+    },
+    "policy_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Policy Digest",
+      "type": "string"
+    },
+    "chain_head": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Chain Head",
+      "type": "string"
+    },
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/EventReference"
+      },
+      "title": "Artifacts",
+      "type": "array"
+    },
+    "review_references": {
+      "items": {
+        "$ref": "#/$defs/ReviewReference"
+      },
+      "title": "Review References",
+      "type": "array"
+    },
+    "custody": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Custody",
+      "type": "string"
+    },
+    "sanitization": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Sanitization",
+      "type": "string"
+    },
+    "learner_gates": {
+      "additionalProperties": {
+        "const": "NOT DEMONSTRATED",
+        "type": "string"
+      },
+      "propertyNames": {
+        "enum": [
+          "G1",
+          "G2",
+          "G3",
+          "G4"
+        ]
+      },
+      "title": "Learner Gates",
+      "type": "object"
+    }
+  },
+  "required": [
+    "artifacts",
+    "author",
+    "chain_head",
+    "content_digest",
+    "created_at",
+    "custody",
+    "engagement_id",
+    "engagement_version",
+    "id",
+    "kind",
+    "learner_gates",
+    "policy_digest",
+    "review_references",
+    "sanitization",
+    "source"
+  ],
+  "title": "EvidenceManifest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://p003.example.test/schemas/1.0/evidence-manifest.schema.json"
+}

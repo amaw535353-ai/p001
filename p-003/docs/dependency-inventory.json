@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0",
+  "id": "38f617ca-636c-4e42-a9d5-54d937dc01a0",
+  "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+  "source": "installed locked distribution metadata",
+  "author": "codex-builder",
+  "reviewer": null,
+  "classification": "synthetic-internal",
+  "created_at": "2026-11-15T10:46:41Z",
+  "content_digest": "97543f54b34749e7c0c7b501f30c496baa1e340d8bbe383ce8eac6478771f5f0",
+  "kind": "dependency-inventory",
+  "format": "P003 dependency metadata (not a certified CycloneDX/SPDX SBOM)",
+  "packages": [
+    {
+      "name": "annotated-types",
+      "version": "0.8.0",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "attrs",
+      "version": "26.1.0",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "hypothesis",
+      "version": "6.151.9",
+      "license_expression": "MPL-2.0",
+      "license_metadata": ""
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.1",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "jsonschema",
+      "version": "4.26.0",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "jsonschema-specifications",
+      "version": "2025.9.1",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "librt",
+      "version": "0.16.0",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "mypy",
+      "version": "1.19.1",
+      "license_expression": null,
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "mypy_extensions",
+      "version": "1.2.0",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "p003-engagement-governance",
+      "version": "1.0.0",
+      "license_expression": null,
+      "license_metadata": ""
+    },
+    {
+      "name": "p003-engagement-governance",
+      "version": "1.0.0",
+      "license_expression": null,
+      "license_metadata": ""
+    },
+    {
+      "name": "packaging",
+      "version": "26.3",
+      "license_expression": "Apache-2.0 OR BSD-2-Clause",
+      "license_metadata": ""
+    },
+    {
+      "name": "pathspec",
+      "version": "1.1.1",
+      "license_expression": null,
+      "license_metadata": ""
+    },
+    {
+      "name": "pip",
+      "version": "25.0.1",
+      "license_expression": null,
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "pluggy",
+      "version": "1.7.0",
+      "license_expression": null,
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "pydantic",
+      "version": "2.12.5",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "pydantic_core",
+      "version": "2.41.5",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "Pygments",
+      "version": "2.21.0",
+      "license_expression": "BSD-2-Clause",
+      "license_metadata": ""
+    },
+    {
+      "name": "pytest",
+      "version": "9.0.3",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3",
+      "license_expression": null,
+      "license_metadata": "MIT"
+    },
+    {
+      "name": "referencing",
+      "version": "0.37.0",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "regex",
+      "version": "2026.11.9",
+      "license_expression": "Apache-2.0 AND CNRI-Python",
+      "license_metadata": ""
+    },
+    {
+      "name": "rpds-py",
+      "version": "2026.9.1",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "ruff",
+      "version": "0.15.6",
+      "license_expression": null,
+      "license_metadata": ""
+    },
+    {
+      "name": "setuptools",
+      "version": "84.1.0",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "sortedcontainers",
+      "version": "2.4.0",
+      "license_expression": null,
+      "license_metadata": "Apache 2.0"
+    },
+    {
+      "name": "types-PyYAML",
+      "version": "6.0.12.20261113",
+      "license_expression": "Apache-2.0",
+      "license_metadata": ""
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.5",
+      "license_expression": "MIT",
+      "license_metadata": ""
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0",
+      "license_expression": "PSF-2.0",
+      "license_metadata": ""
+    }
+  ],
+  "lock_sha256": "8a7b13fde41138a6abd173c818446630aad6684a0ea18bcdf7d09ae9b378e255",
+  "limitations": "License metadata can be missing or ambiguous; inspect upstream terms before distribution."
+}

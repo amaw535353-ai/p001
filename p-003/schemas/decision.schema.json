@@ -1,0 +1,187 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "notice": {
+      "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "title": "Notice",
+      "type": "string"
+    },
+    "source": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+    },
+    "author": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Author",
+      "type": "string"
+    },
+    "reviewer": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reviewer"
+    },
+    "classification": {
+      "default": "synthetic-internal",
+      "enum": [
+        "synthetic-public",
+        "synthetic-internal"
+      ],
+      "title": "Classification",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "decision": {
+      "enum": [
+        "ALLOW",
+        "DENY"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "rationale": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Rationale",
+      "type": "array"
+    },
+    "matched_clauses": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+        "type": "string"
+      },
+      "title": "Matched Clauses",
+      "type": "array"
+    },
+    "engagement_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Engagement Id"
+    },
+    "engagement_version": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Engagement Version"
+    },
+    "policy_digest": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Policy Digest"
+    },
+    "approval_digest": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Approval Digest"
+    },
+    "engine_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Engine Version",
+      "type": "string"
+    },
+    "remaining_constraints": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Remaining Constraints",
+      "type": "array"
+    },
+    "request_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Request Digest",
+      "type": "string"
+    },
+    "authority_status": {
+      "const": "NOT VERIFIED",
+      "default": "NOT VERIFIED",
+      "title": "Authority Status",
+      "type": "string"
+    },
+    "target_enforcement": {
+      "const": "NOT VERIFIED",
+      "default": "NOT VERIFIED",
+      "title": "Target Enforcement",
+      "type": "string"
+    }
+  },
+  "required": [
+    "approval_digest",
+    "author",
+    "content_digest",
+    "created_at",
+    "decision",
+    "engagement_id",
+    "engagement_version",
+    "id",
+    "matched_clauses",
+    "policy_digest",
+    "rationale",
+    "remaining_constraints",
+    "request_digest",
+    "source"
+  ],
+  "title": "Decision",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://p003.example.test/schemas/1.0/decision.schema.json"
+}

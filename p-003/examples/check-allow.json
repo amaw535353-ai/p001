@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "notice": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+  "engagement_id": "ENG-DEMO-A",
+  "engagement_version": 1,
+  "actor": "demo-a-assessor",
+  "test_class": "passive-inspection",
+  "target": {
+    "kind": "url",
+    "value": "http://127.0.0.1:8000/health"
+  },
+  "at": "2026-11-15T10:00:00Z",
+  "budget": {
+    "used_total": 0,
+    "used_last_minute": 0,
+    "requested": 1,
+    "used_cost_units": 0,
+    "requested_cost_units": 0,
+    "interruption_ms": 0
+  },
+  "context": {
+    "tenant": "tenant-a",
+    "environment": "local-lab",
+    "method": "GET",
+    "source_identity": "demo-a-workload",
+    "checkpoint_completed": true,
+    "contact_available": true,
+    "redirects_expected": false,
+    "data_class": "synthetic-only",
+    "storage_id": "p003-private",
+    "redaction_confirmed": true,
+    "data_breach": false
+  }
+}

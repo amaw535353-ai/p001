@@ -1,0 +1,131 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "notice": {
+      "const": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "default": "SYNTHETIC TRAINING ENGAGEMENT — NOT AUTHORIZATION FOR REAL-WORLD TESTING",
+      "title": "Notice",
+      "type": "string"
+    },
+    "source": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+    },
+    "author": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Author",
+      "type": "string"
+    },
+    "reviewer": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reviewer"
+    },
+    "classification": {
+      "default": "synthetic-internal",
+      "enum": [
+        "synthetic-public",
+        "synthetic-internal"
+      ],
+      "title": "Classification",
+      "type": "string"
+    },
+    "created_at": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "Created At",
+      "type": "string"
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "purpose": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Purpose",
+      "type": "string"
+    },
+    "old_scope_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Old Scope Digest",
+      "type": "string"
+    },
+    "new_scope_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "New Scope Digest",
+      "type": "string"
+    },
+    "reason": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+    },
+    "evidence_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+      "title": "Evidence Ref",
+      "type": "string"
+    },
+    "approval_link": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9:_-]{0,127}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Approval Link"
+    },
+    "effective_at": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "Effective At",
+      "type": "string"
+    },
+    "status": {
+      "const": "DENIED-REQUIRES-NEW-VERSION",
+      "default": "DENIED-REQUIRES-NEW-VERSION",
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "approval_link",
+    "author",
+    "content_digest",
+    "created_at",
+    "effective_at",
+    "evidence_ref",
+    "id",
+    "new_scope_digest",
+    "old_scope_digest",
+    "purpose",
+    "reason",
+    "source"
+  ],
+  "title": "ExceptionRecord",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://p003.example.test/schemas/1.0/exception.schema.json"
+}
