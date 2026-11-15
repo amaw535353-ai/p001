@@ -1,0 +1,13 @@
+{
+  "content_version": "2026.10",
+  "format_version": "6.1.0",
+  "imported_utc": "2026-11-15T18:03:36Z",
+  "index_sha256": "d1538f5f47609ce0858c68c166153e97b433f5f64a9af609f1f494dc96917f7f",
+  "license": "Apache-2.0",
+  "schema_source_sha256": "3d1ef841e5c1c49a4e2599dcd7c75cb01e69032042560a5a27d239e9258bdd8b",
+  "schema_version": "p005-atlas-pin-1.0",
+  "sha256": "ac41ee9f99a47084ba5fdfc77ae83a28687e12390240fffeb37df7914ffe142d",
+  "source_commit": "f56c1468731d6428e5bf875263b4643b46d67437",
+  "source_url": "https://raw.githubusercontent.com/mitre-atlas/atlas-data/f56c1468731d6428e5bf875263b4643b46d67437/dist/v6/ATLAS-2026.10.yaml",
+  "validation_level": "Inspected official AtlasExport v6.1 layout; bounded structural technique projection, not full upstream semantic validation"
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "acceptance_criteria": [
+      "Allow registered fixture tool and scoped arguments",
+      "Deny unregistered tool or excessive capability",
+      "Record deterministic enforcement evidence, not model prose"
+    ],
+    "external_mapping_status": "UNMAPPED_PENDING_P083",
+    "external_requirement_id": null,
+    "id": "control-3c1116a0cceacdf91c5cffd0e82c9298dcc0636675ff39d22c77c3e44082d76a",
+    "objective": "MCP capability scope",
+    "owner_role": "tool-owner",
+    "requirement": "Authenticate service and constrain declared tool capabilities per tenant",
+    "state": "CONTROL_PROPOSED",
+    "threat_id": "threat-3c1116a0cceacdf91c5cffd0e82c9298dcc0636675ff39d22c77c3e44082d76a"
+  },
+  {
+    "acceptance_criteria": [
+      "Accept one current approved parameter set",
+      "Deny replay and altered parameters before mutation",
+      "Record deterministic enforcement evidence, not model prose"
+    ],
+    "external_mapping_status": "UNMAPPED_PENDING_P083",
+    "external_requirement_id": null,
+    "id": "control-b8d5887975dea2f275e57a191edba2d209fae3e01ce1283e4d9c9684d6457b5e",
+    "objective": "approval binding",
+    "owner_role": "workflow-owner",
+    "requirement": "Bind approval to exact principal, action, parameters, tenant and nonce with expiry",
+    "state": "CONTROL_PROPOSED",
+    "threat_id": "threat-b8d5887975dea2f275e57a191edba2d209fae3e01ce1283e4d9c9684d6457b5e"
+  },
+  {
+    "acceptance_criteria": [
+      "Use benign synthetic document as quoted context",
+      "Refuse action authority implied by untrusted document instructions",
+      "Record deterministic enforcement evidence, not model prose"
+    ],
+    "external_mapping_status": "UNMAPPED_PENDING_P083",
+    "external_requirement_id": null,
+    "id": "control-dad504ce2c92b8c0960bf4721f4c020fb01386184da0bd2a47c2fa4ea19b5b70",
+    "objective": "instruction-data separation",
+    "owner_role": "retrieval-owner",
+    "requirement": "Keep retrieved/tool text as data; authorize actions outside model reasoning",
+    "state": "CONTROL_PROPOSED",
+    "threat_id": "threat-dad504ce2c92b8c0960bf4721f4c020fb01386184da0bd2a47c2fa4ea19b5b70"
+  },
+  {
+    "acceptance_criteria": [
+      "Accept one current approved parameter set",
+      "Deny replay and altered parameters before mutation",
+      "Record deterministic enforcement evidence, not model prose"
+    ],
+    "external_mapping_status": "UNMAPPED_PENDING_P083",
+    "external_requirement_id": null,
+    "id": "control-6ad0ccfdc5a01b891340d7b7ffdebb4d988bb2586b6de94115c8d6108d761967",
+    "objective": "approval binding",
+    "owner_role": "workflow-owner",
+    "requirement": "Bind approval to exact principal, action, parameters, tenant and nonce with expiry",
+    "state": "CONTROL_PROPOSED",
+    "threat_id": "threat-6ad0ccfdc5a01b891340d7b7ffdebb4d988bb2586b6de94115c8d6108d761967"
+  },
+  {
+    "acceptance_criteria": [
+      "Allow registered fixture tool and scoped arguments",
+      "Deny unregistered tool or excessive capability",
+      "Record deterministic enforcement evidence, not model prose"
+    ],
+    "external_mapping_status": "UNMAPPED_PENDING_P083",
+    "external_requirement_id": null,
+    "id": "control-c1e92439303c316f72e6ad29ddd5516aacb8b8612f2cf822b68fdf1476e313be",
+    "objective": "MCP capability scope",
+    "owner_role": "tool-owner",
+    "requirement": "Authenticate service and constrain declared tool capabilities per tenant",
+    "state": "CONTROL_PROPOSED",
+    "threat_id": "threat-c1e92439303c316f72e6ad29ddd5516aacb8b8612f2cf822b68fdf1476e313be"
+  },
+  {
+    "acceptance_criteria": [
+      "Accept one current approved parameter set",
+      "Deny replay and altered parameters before mutation",
+      "Record deterministic enforcement evidence, not model prose"
+    ],
+    "external_mapping_status": "UNMAPPED_PENDING_P083",
+    "external_requirement_id": null,
+    "id": "control-55128ef843a3ef0ef29fac733b66c3607913410678dccf72844b1e806471b5f0",
+    "objective": "approval binding",
+    "owner_role": "workflow-owner",
+    "requirement": "Bind approval to exact principal, action, parameters, tenant and nonce with expiry",
+    "state": "CONTROL_PROPOSED",
+    "threat_id": "threat-55128ef843a3ef0ef29fac733b66c3607913410678dccf72844b1e806471b5f0"
+  },
+  {
+    "acceptance_criteria": [
+      "Use benign synthetic document as quoted context",
+      "Refuse action authority implied by untrusted document instructions",
+      "Record deterministic enforcement evidence, not model prose"
+    ],
+    "external_mapping_status": "UNMAPPED_PENDING_P083",
+    "external_requirement_id": null,
+    "id": "control-4935da0cef585e50ecf2f1ff98bd8c694e55db9c292b3b1efaaf9f8c0d47663e",
+    "objective": "instruction-data separation",
+    "owner_role": "retrieval-owner",
+    "requirement": "Keep retrieved/tool text as data; authorize actions outside model reasoning",
+    "state": "CONTROL_PROPOSED",
+    "threat_id": "threat-4935da0cef585e50ecf2f1ff98bd8c694e55db9c292b3b1efaaf9f8c0d47663e"
+  },
+  {
+    "acceptance_criteria": [
+      "Accept one current approved parameter set",
+      "Deny replay and altered parameters before mutation",
+      "Record deterministic enforcement evidence, not model prose"
+    ],
+    "external_mapping_status": "UNMAPPED_PENDING_P083",
+    "external_requirement_id": null,
+    "id": "control-3829a0074c12b2066596322c39280359b4b294b4157bd652057123963e7455fa",
+    "objective": "approval binding",
+    "owner_role": "workflow-owner",
+    "requirement": "Bind approval to exact principal, action, parameters, tenant and nonce with expiry",
+    "state": "CONTROL_PROPOSED",
+    "threat_id": "threat-3829a0074c12b2066596322c39280359b4b294b4157bd652057123963e7455fa"
+  }
+]

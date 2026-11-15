@@ -1,0 +1,229 @@
+{
+  "entries": [
+    {
+      "available": true,
+      "description": "Workload identity confusion, wrong token audience, over-scoped delegation",
+      "id": "R1",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Tool-level unauthorized external actions / confused deputy",
+      "id": "R2",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Cross-tenant RAG/document retrieval",
+      "id": "R3",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Synthetic secrets or sensitive values in responses, logs and traces",
+      "id": "R4",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Low-trust retrieved document/tool output influencing high-privilege action selection",
+      "id": "R5",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Autonomous goal drift",
+      "id": "R6",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Approval-to-action integrity/replay",
+      "id": "R7",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Unsafe downstream handling of AI-generated commands or HTML",
+      "id": "R8",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Coding-agent workspace boundaries",
+      "id": "R9",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "MCP trust boundaries",
+      "id": "R10",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Persistent memory manipulation",
+      "id": "R11",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Direct instruction boundary issues where a model exists",
+      "id": "R12",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Retrieval metadata/ranking/corpus integrity boundaries",
+      "id": "R13",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Provider gateway, cache, inference API and routing access controls",
+      "id": "R14",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Provider gateway, cache, inference API and routing access controls",
+      "id": "R15",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R16",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R17",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": true,
+      "description": "Rate/token/tool-budget exhaustion",
+      "id": "R18",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R19",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": true,
+      "description": "Inter-agent/A2A message authenticity and scope",
+      "id": "R20",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Evaluator data trust",
+      "id": "R21",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Guardrail/monitoring limitations",
+      "id": "R22",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R23",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": true,
+      "description": "Retention, privacy and user/tenant isolation assumptions",
+      "id": "R24",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R25",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R26",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R27",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R28",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R29",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R30",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R31",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R32",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R33",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": false,
+      "description": null,
+      "id": "R34",
+      "source": "MISSING: AI_Security_37_Risks_to_160_Tools_Practice_Map.md"
+    },
+    {
+      "available": true,
+      "description": "Stale authorization inheritance and tenant isolation assumptions",
+      "id": "R35",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Agent skill/plugin and model/data dependency provenance",
+      "id": "R36",
+      "source": "Supplied P-005 build prompt section 5"
+    },
+    {
+      "available": true,
+      "description": "Cascading recovery/kill switches",
+      "id": "R37",
+      "source": "Supplied P-005 build prompt section 5"
+    }
+  ],
+  "schema_version": "p005-risk-1.0",
+  "source_sha256": "e5f1b6b3009f8688393cb84d3724c136c5b917aa23bb7d659bcddab893eca35a",
+  "source_status": "PROMPT_SUBSET_FULL_TAXONOMY_BLOCKED"
+}

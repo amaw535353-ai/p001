@@ -1,0 +1,3886 @@
+{
+  "assumptions": [
+    "All topology is a synthetic design declaration, never runtime observation",
+    "Distinct tenant humans and workload principals are not interchangeable",
+    "Positive/negative permission records are expectations, not measured enforcement"
+  ],
+  "author_role": "builder",
+  "boundaries": [
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-documents-index"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-1010b34023705de200e7d984afb48dbd9e7b974ebe4839354817f087d6e91d5f",
+      "reasons": [
+        "CONTENT"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-content",
+        "tenant-a-content"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-mcp-ticket"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-148cd8aa62793bc0e6e63addbfa086dc032aad539f1f2c48eba110e841c94c4e",
+      "reasons": [
+        "OWNER"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-actions",
+        "tenant-b-actions"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-backend-audit"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-196e50dd4c0fa59443163d103c9bfc75614d469ccaeaac4bf5efbe3d6439adc2",
+      "reasons": [
+        "OWNER",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-app",
+        "tenant-b-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-backend-audit"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-1bdead8e1943089ffc45f0846fad86aa0d1ad2776cf3f852ff2634cd1fab01ca",
+      "reasons": [
+        "OWNER",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-app",
+        "tenant-a-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-connector-documents"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-1ee6c833f664f3dcfbb8980b6729c657e24cb9517281283d926fcdc6123a48ee",
+      "reasons": [
+        "ZONE",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-app",
+        "tenant-b-content"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-retriever-connector"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-2d106196c06e10138e9a72ec902ac88b930614d2abb111e58fde27565bafc4fb",
+      "reasons": [
+        "OWNER"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-app",
+        "tenant-b-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-secret-read"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-3058d6e89378053af783e2d01a372e12aa52a22363d30b98d141042110f7f33f",
+      "reasons": [
+        "ZONE",
+        "TENANT",
+        "OWNER",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-app",
+        "shared-platform"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-authenticate"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-40dc213bf63f221e7896d77d2b206c3ee06f81ac82652faf95cb07a029e3f6ea",
+      "reasons": [
+        "ZONE",
+        "TENANT",
+        "OWNER",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-app",
+        "shared-platform"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-backend-response"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-5dbcb531ee8191fbfb1fce3342896e071f1ecd0adeb76bbebaa8d7ec97c2053a",
+      "reasons": [
+        "ZONE",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-app",
+        "tenant-a-client"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-agent-api"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-607bc7d4baff19fe3e5764a9c2acdcfbcc133e654329c801386744468ede6576",
+      "reasons": [
+        "OWNER"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-app",
+        "tenant-a-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-agent-mcp"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-61819f07e2143ff4f5da03a3a2c96dff73121f8904ca0c944ac861c7d15fe9cb",
+      "reasons": [
+        "ZONE",
+        "OWNER",
+        "IDENTITY",
+        "AGENT_TOOL"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-app",
+        "tenant-b-actions"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-secret-read"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-66c3695d6fad382b47485dc9acd08fc49015dba4b0b59dadedf4afeb00915520",
+      "reasons": [
+        "ZONE",
+        "TENANT",
+        "OWNER",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-app",
+        "shared-platform"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-connector-documents"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-66fb102d656c2b4e7e0f7756bd2d8d4e087f1375f06424b49aaf4c69ef8bed70",
+      "reasons": [
+        "ZONE",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-app",
+        "tenant-a-content"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-policy"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-6c8fc1c03fa948d61efcb6b3fc84aa6f175cdc01c4c5a2586f4968b94f565c28",
+      "reasons": [
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-app",
+        "tenant-a-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-agent-api"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-7284856f8d6b7d6ced8d22cb6fd6a207a7e52bab7035c4cfa57748c6256eac70",
+      "reasons": [
+        "OWNER"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-app",
+        "tenant-b-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-retriever-gateway"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-747ac41364d6ad4dc915acb567d490b1d5478a9987c622ca3bdf50efce26e14b",
+      "reasons": [
+        "ZONE",
+        "TENANT",
+        "OWNER",
+        "IDENTITY",
+        "PROVIDER"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-app",
+        "shared-provider"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-retriever-connector"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-77ef6e16d846f4c6d01d841a8d25efc06c09265bbe3b2e0ca5087f65a81781f2",
+      "reasons": [
+        "OWNER"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-app",
+        "tenant-a-app"
+      ]
+    },
+    {
+      "actor_ids": [],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "gateway-model"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-7d7e15ad411a49a4e05c424a22d2179bd0679c6f732f03e3b3946272917f04bf",
+      "reasons": [
+        "PROVIDER"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "shared-provider",
+        "shared-provider"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-human"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-human-approval"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-821e897f6735aa2047c2b019d5ecffb6eab3a9373fade6b1ccf8dd2f1b4dd5e1",
+      "reasons": [
+        "ZONE",
+        "OWNER",
+        "APPROVAL"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-client",
+        "tenant-a-actions"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-human"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-ui-api"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-87e1bdfcc59003ba1fa2556068ac3404c6e486461224bf1485c33068e7452c00",
+      "reasons": [
+        "ZONE",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-client",
+        "tenant-b-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-approval-ticket"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-89d0b678edd79137187e43b563ae6b23c55a4f48f82b606b17ff913393158107",
+      "reasons": [
+        "IDENTITY",
+        "APPROVAL"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-actions",
+        "tenant-b-actions"
+      ]
+    },
+    {
+      "actor_ids": [],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-ci-deploy"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-a5001b90a40c75496944fa594c4205525cf9a9d3629301e0f2304523317b7142",
+      "reasons": [
+        "ZONE",
+        "TENANT",
+        "OWNER",
+        "IDENTITY",
+        "CONTROL_PLANE"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "shared-platform",
+        "tenant-a-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-approval-ticket"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-a52935b52e057beed3c1db19f88deaf6ddda2c5afab5abb6aec202441442ba2d",
+      "reasons": [
+        "IDENTITY",
+        "APPROVAL"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-actions",
+        "tenant-a-actions"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-backend-response"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-ab2d42ae5a0dd19f1ec563721237401efc0e2806ab72be022df8174f8c15d43e",
+      "reasons": [
+        "ZONE",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-app",
+        "tenant-b-client"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-mcp-ticket"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-b542321529be78f0c33de0b7e23a5f519c18c1fd1080860c9f433ae51fe9b2f9",
+      "reasons": [
+        "OWNER"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-actions",
+        "tenant-a-actions"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-documents-retriever"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-bfe664f037749f2346024f2946acbb6a2488e35f63fb2318bd495ed0f0ca90e7",
+      "reasons": [
+        "ZONE",
+        "OWNER",
+        "IDENTITY",
+        "CONTENT"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-content",
+        "tenant-a-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-agent-mcp"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-c9bf2a6f1deb6551072ba557f788012fcab3ca0a466a1b4fa9082fa525976575",
+      "reasons": [
+        "ZONE",
+        "OWNER",
+        "IDENTITY",
+        "AGENT_TOOL"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-app",
+        "tenant-a-actions"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-human"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-human-approval"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-cdb8fb9e93c7ab1b9f025ede825739e66cf37ae288dcd8331dbb77b8319f4ada",
+      "reasons": [
+        "ZONE",
+        "OWNER",
+        "APPROVAL"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-client",
+        "tenant-b-actions"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-backend-retriever"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-d141a92582686387438ee46c1bd97669493709f7333b69fd652964b2f612ba40",
+      "reasons": [
+        "OWNER"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-app",
+        "tenant-a-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-authenticate"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-d7aa1f9c627f0df968655a3cc59ce9abdffd3435f0d3fd40e36be350542a2da5",
+      "reasons": [
+        "ZONE",
+        "TENANT",
+        "OWNER",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-app",
+        "shared-platform"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-retriever-gateway"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-d7f9bad4c47f47b883987c9f263ae743e13dde6393c1886147018e7b16e0cb62",
+      "reasons": [
+        "ZONE",
+        "TENANT",
+        "OWNER",
+        "IDENTITY",
+        "PROVIDER"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-app",
+        "shared-provider"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-documents-index"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-dca9ff4d33171ed4b9a9e5707cf149068243108e5553da9331c9c95b934184a8",
+      "reasons": [
+        "CONTENT"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-content",
+        "tenant-b-content"
+      ]
+    },
+    {
+      "actor_ids": [],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-ci-deploy"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-dd1c2860704fe9931ae429dc2efc4b0528e34d50b429bcd01503643969e3afb6",
+      "reasons": [
+        "ZONE",
+        "TENANT",
+        "OWNER",
+        "IDENTITY",
+        "CONTROL_PLANE"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "shared-platform",
+        "tenant-b-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-policy"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-e3753269a08b647234b706bb2be25173a870b4a97c209b57043566afe8bee40d",
+      "reasons": [
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-app",
+        "tenant-b-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-documents-retriever"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-e3e425d08886160bb96c0e7f0768442fc2d6c2988196a2eea1a3f6386e76fba0",
+      "reasons": [
+        "ZONE",
+        "OWNER",
+        "IDENTITY",
+        "CONTENT"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-content",
+        "tenant-b-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-a-human"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-a-ui-api"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-e7b9ec31c6dbf4805c5c2d8550ba52c4fc670425afec832de84a021d4eaea2b5",
+      "reasons": [
+        "ZONE",
+        "IDENTITY"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-a-client",
+        "tenant-a-app"
+      ]
+    },
+    {
+      "actor_ids": [
+        "tenant-b-workload"
+      ],
+      "assumptions": [
+        "Candidate boundary derived from declared graph; human confirmation required"
+      ],
+      "confidence": "INFERENCE",
+      "edge_ids": [
+        "tenant-b-backend-retriever"
+      ],
+      "epistemic_status": "INFERRED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "boundary-f7f51182f23eda9e44939f35c42b22a889cd99561e84f80a293d189793612804",
+      "reasons": [
+        "OWNER"
+      ],
+      "requires_human_review": true,
+      "zone_pair": [
+        "tenant-b-app",
+        "tenant-b-app"
+      ]
+    }
+  ],
+  "created_utc": "2026-11-15T00:00:00Z",
+  "dataset_seed": 2026,
+  "engagement_id": "synthetic-modeling-engagement",
+  "engagement_version": 1,
+  "environment_id": "synthetic-lab",
+  "evidence": [
+    {
+      "human_reviewed": false,
+      "id": "fixture-evidence",
+      "measured_scope": "Synthetic design declaration; no target contacted",
+      "pointer": "/",
+      "sanitized_sha256": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "source": "synthetic-fixture",
+      "status": "DECLARED"
+    }
+  ],
+  "exclusions": [
+    "Live target assessment",
+    "Real customer, account, model API or financial transaction",
+    "GPU, hardware fault and attestation systems absent"
+  ],
+  "flows": [
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "UNKNOWN",
+      "authorization_point_id": null,
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-inference",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "UNKNOWN",
+      "grants_freshness": "UNKNOWN",
+      "id": "gateway-model",
+      "kind": "invokes",
+      "principal_id": null,
+      "requires_human_review": true,
+      "source": "shared-gateway",
+      "source_id": null,
+      "target": "shared-model",
+      "tenant_id": "shared",
+      "token_audience": "UNKNOWN",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": "POST /assist",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "UNKNOWN",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-ui-api",
+      "kind": "invokes",
+      "principal_id": "tenant-a-human",
+      "requires_human_review": true,
+      "source": "tenant-a-browser",
+      "source_id": null,
+      "target": "tenant-a-api",
+      "tenant_id": "tenant-a",
+      "token_audience": "UNKNOWN",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-api-backend",
+      "kind": "invokes",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-api",
+      "source_id": null,
+      "target": "tenant-a-backend",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-authenticate",
+      "kind": "authenticates",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-api",
+      "source_id": null,
+      "target": "shared-idp",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-policy",
+      "kind": "authorizes",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-pep",
+      "source_id": null,
+      "target": "tenant-a-pdp",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-backend-retriever",
+      "kind": "retrieves",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-backend",
+      "source_id": null,
+      "target": "tenant-a-retriever",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-retriever-connector",
+      "kind": "retrieves",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-retriever",
+      "source_id": null,
+      "target": "tenant-a-connector",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-connector-documents",
+      "kind": "reads",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-connector",
+      "source_id": null,
+      "target": "tenant-a-documents",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-documents-index",
+      "kind": "stores",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-documents",
+      "source_id": null,
+      "target": "tenant-a-index",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-documents-retriever",
+      "kind": "responds",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-documents",
+      "source_id": null,
+      "target": "tenant-a-retriever",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-retriever-gateway",
+      "kind": "invokes",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-retriever",
+      "source_id": null,
+      "target": "shared-gateway",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-agent-api",
+      "kind": "invokes",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-api",
+      "source_id": null,
+      "target": "tenant-a-agent",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "BROAD",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-agent-mcp",
+      "kind": "delegates",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-agent",
+      "source_id": null,
+      "target": "tenant-a-mcp",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-mcp-ticket",
+      "kind": "executes",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-mcp",
+      "source_id": null,
+      "target": "tenant-a-tickets",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "DECLARED",
+      "assumptions": [],
+      "authorization": "UNKNOWN",
+      "authorization_point_id": null,
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "UNKNOWN",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-human-approval",
+      "kind": "approves",
+      "principal_id": "tenant-a-human",
+      "requires_human_review": true,
+      "source": "tenant-a-human",
+      "source_id": null,
+      "target": "tenant-a-approval",
+      "tenant_id": "tenant-a",
+      "token_audience": "UNKNOWN",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-approval-ticket",
+      "kind": "approves",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-approval",
+      "source_id": null,
+      "target": "tenant-a-tickets",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-backend-audit",
+      "kind": "logs",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-backend",
+      "source_id": null,
+      "target": "tenant-a-audit",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "RESTRICTED",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-secret-read",
+      "kind": "reads",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-backend",
+      "source_id": null,
+      "target": "shared-secret-store",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "UNKNOWN",
+      "authorization_point_id": null,
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-deployment-manifest",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "UNKNOWN",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-ci-deploy",
+      "kind": "deploys",
+      "principal_id": null,
+      "requires_human_review": true,
+      "source": "shared-ci",
+      "source_id": null,
+      "target": "tenant-a-backend",
+      "tenant_id": "shared",
+      "token_audience": "UNKNOWN",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-a-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-a-backend-response",
+      "kind": "responds",
+      "principal_id": "tenant-a-workload",
+      "requires_human_review": true,
+      "source": "tenant-a-backend",
+      "source_id": null,
+      "target": "tenant-a-browser",
+      "tenant_id": "tenant-a",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": "POST /assist",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "UNKNOWN",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-ui-api",
+      "kind": "invokes",
+      "principal_id": "tenant-b-human",
+      "requires_human_review": true,
+      "source": "tenant-b-browser",
+      "source_id": null,
+      "target": "tenant-b-api",
+      "tenant_id": "tenant-b",
+      "token_audience": "UNKNOWN",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-api-backend",
+      "kind": "invokes",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-api",
+      "source_id": null,
+      "target": "tenant-b-backend",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-authenticate",
+      "kind": "authenticates",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-api",
+      "source_id": null,
+      "target": "shared-idp",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-policy",
+      "kind": "authorizes",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-pep",
+      "source_id": null,
+      "target": "tenant-b-pdp",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-backend-retriever",
+      "kind": "retrieves",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-backend",
+      "source_id": null,
+      "target": "tenant-b-retriever",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-retriever-connector",
+      "kind": "retrieves",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-retriever",
+      "source_id": null,
+      "target": "tenant-b-connector",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-connector-documents",
+      "kind": "reads",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-connector",
+      "source_id": null,
+      "target": "tenant-b-documents",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-documents-index",
+      "kind": "stores",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-documents",
+      "source_id": null,
+      "target": "tenant-b-index",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-documents-retriever",
+      "kind": "responds",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-documents",
+      "source_id": null,
+      "target": "tenant-b-retriever",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-retriever-gateway",
+      "kind": "invokes",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-retriever",
+      "source_id": null,
+      "target": "shared-gateway",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-agent-api",
+      "kind": "invokes",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-api",
+      "source_id": null,
+      "target": "tenant-b-agent",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "BROAD",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-agent-mcp",
+      "kind": "delegates",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-agent",
+      "source_id": null,
+      "target": "tenant-b-mcp",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-mcp-ticket",
+      "kind": "executes",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-mcp",
+      "source_id": null,
+      "target": "tenant-b-tickets",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "DECLARED",
+      "assumptions": [],
+      "authorization": "UNKNOWN",
+      "authorization_point_id": null,
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "UNKNOWN",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-human-approval",
+      "kind": "approves",
+      "principal_id": "tenant-b-human",
+      "requires_human_review": true,
+      "source": "tenant-b-human",
+      "source_id": null,
+      "target": "tenant-b-approval",
+      "tenant_id": "tenant-b",
+      "token_audience": "UNKNOWN",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-approval-ticket",
+      "kind": "approves",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-approval",
+      "source_id": null,
+      "target": "tenant-b-tickets",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-backend-audit",
+      "kind": "logs",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-backend",
+      "source_id": null,
+      "target": "tenant-b-audit",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "RESTRICTED",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-secret-read",
+      "kind": "reads",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-backend",
+      "source_id": null,
+      "target": "shared-secret-store",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "UNKNOWN",
+      "authorization_point_id": null,
+      "channel": "UNKNOWN",
+      "classification": "UNKNOWN",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-deployment-manifest",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "UNKNOWN",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-ci-deploy",
+      "kind": "deploys",
+      "principal_id": null,
+      "requires_human_review": true,
+      "source": "shared-ci",
+      "source_id": null,
+      "target": "tenant-b-backend",
+      "tenant_id": "shared",
+      "token_audience": "UNKNOWN",
+      "transformation": "UNKNOWN"
+    },
+    {
+      "approval_binding": "UNKNOWN",
+      "assumptions": [],
+      "authorization": "CONTROL_DECLARED",
+      "authorization_point_id": "tenant-b-pep",
+      "channel": "UNKNOWN",
+      "classification": "CONFIDENTIAL",
+      "confidence": "DECLARATION",
+      "data_type": "synthetic-content-or-authority",
+      "declared_grant_effect": null,
+      "delegation": "UNKNOWN",
+      "encryption": "UNKNOWN",
+      "enforcement_result": "NOT_TESTED",
+      "entry_point": null,
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "expected_decision": "ALLOW",
+      "grants_freshness": "UNKNOWN",
+      "id": "tenant-b-backend-response",
+      "kind": "responds",
+      "principal_id": "tenant-b-workload",
+      "requires_human_review": true,
+      "source": "tenant-b-backend",
+      "source_id": null,
+      "target": "tenant-b-browser",
+      "tenant_id": "tenant-b",
+      "token_audience": "EXPECTED",
+      "transformation": "UNKNOWN"
+    }
+  ],
+  "git_commit": "6e153d22b6822bed22e9895b0bef7b176456c258",
+  "integrations": [],
+  "model_id": "synthetic-enterprise-ai",
+  "model_scope": {
+    "allowed_activity": "offline-modeling-only",
+    "in_scope_node_ids": [
+      "shared-idp",
+      "shared-secret-store",
+      "shared-ci",
+      "shared-gateway",
+      "shared-model",
+      "tenant-a-human",
+      "tenant-a-workload",
+      "tenant-a-browser",
+      "tenant-a-api",
+      "tenant-a-backend",
+      "tenant-a-pep",
+      "tenant-a-pdp",
+      "tenant-a-retriever",
+      "tenant-a-connector",
+      "tenant-a-documents",
+      "tenant-a-index",
+      "tenant-a-agent",
+      "tenant-a-mcp",
+      "tenant-a-tickets",
+      "tenant-a-approval",
+      "tenant-a-audit",
+      "tenant-b-human",
+      "tenant-b-workload",
+      "tenant-b-browser",
+      "tenant-b-api",
+      "tenant-b-backend",
+      "tenant-b-pep",
+      "tenant-b-pdp",
+      "tenant-b-retriever",
+      "tenant-b-connector",
+      "tenant-b-documents",
+      "tenant-b-index",
+      "tenant-b-agent",
+      "tenant-b-mcp",
+      "tenant-b-tickets",
+      "tenant-b-approval",
+      "tenant-b-audit"
+    ],
+    "out_of_scope_node_ids": [],
+    "prohibited_activities": [
+      "live-testing",
+      "scanning",
+      "cloud-changes"
+    ],
+    "real_legal_authority": "NOT_VERIFIED",
+    "source": "synthetic-fixture-modeling-scope",
+    "source_digest": null
+  },
+  "model_version": 1,
+  "nodes": [
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "shared-idp",
+      "integrity": "HIGH",
+      "kind": "IdentityProvider",
+      "label": "shared-idp",
+      "owner_role": "identity-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "shared",
+      "zone_id": "shared-platform"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "shared-secret-store",
+      "integrity": "HIGH",
+      "kind": "SecretStore",
+      "label": "shared-secret-store",
+      "owner_role": "platform-security",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "RESTRICTED",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "shared",
+      "zone_id": "shared-platform"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "shared-ci",
+      "integrity": "HIGH",
+      "kind": "CIPipeline",
+      "label": "shared-ci",
+      "owner_role": "platform-engineering",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "shared",
+      "zone_id": "shared-platform"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": true,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "shared-gateway",
+      "integrity": "HIGH",
+      "kind": "LLMGateway",
+      "label": "shared-gateway",
+      "owner_role": "provider-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "shared",
+      "zone_id": "shared-provider"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": true,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "shared-model",
+      "integrity": "HIGH",
+      "kind": "ModelEndpoint",
+      "label": "shared-model",
+      "owner_role": "provider-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "shared",
+      "zone_id": "shared-provider"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-human",
+      "integrity": "HIGH",
+      "kind": "HumanIdentity",
+      "label": "tenant-a-human",
+      "owner_role": "identity-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-client"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-workload",
+      "integrity": "HIGH",
+      "kind": "WorkloadIdentity",
+      "label": "tenant-a-workload",
+      "owner_role": "identity-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-browser",
+      "integrity": "HIGH",
+      "kind": "Browser",
+      "label": "tenant-a-browser",
+      "owner_role": "application-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [
+        "synthetic UI input"
+      ],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-client"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-api",
+      "integrity": "HIGH",
+      "kind": "API",
+      "label": "tenant-a-api",
+      "owner_role": "application-owner",
+      "principal_id": "tenant-a-workload",
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [
+        "POST /assist",
+        "POST /action"
+      ],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-backend",
+      "integrity": "HIGH",
+      "kind": "ApplicationService",
+      "label": "tenant-a-backend",
+      "owner_role": "application-owner",
+      "principal_id": "tenant-a-workload",
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-pep",
+      "integrity": "HIGH",
+      "kind": "PolicyEnforcementPoint",
+      "label": "tenant-a-pep",
+      "owner_role": "identity-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-pdp",
+      "integrity": "HIGH",
+      "kind": "PolicyDecisionPoint",
+      "label": "tenant-a-pdp",
+      "owner_role": "identity-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-retriever",
+      "integrity": "HIGH",
+      "kind": "Retriever",
+      "label": "tenant-a-retriever",
+      "owner_role": "retrieval-owner",
+      "principal_id": "tenant-a-workload",
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-connector",
+      "integrity": "HIGH",
+      "kind": "Connector",
+      "label": "tenant-a-connector",
+      "owner_role": "data-owner",
+      "principal_id": "tenant-a-workload",
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": true
+      },
+      "id": "tenant-a-documents",
+      "integrity": "HIGH",
+      "kind": "DocumentCollection",
+      "label": "tenant-a-documents",
+      "owner_role": "data-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "CONFIDENTIAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-content"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-index",
+      "integrity": "HIGH",
+      "kind": "VectorDatabase",
+      "label": "tenant-a-index",
+      "owner_role": "data-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "CONFIDENTIAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-content"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": true,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": true,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-agent",
+      "integrity": "HIGH",
+      "kind": "Agent",
+      "label": "tenant-a-agent",
+      "owner_role": "agent-owner",
+      "principal_id": "tenant-a-workload",
+      "privilege": "WRITE",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": true,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-mcp",
+      "integrity": "HIGH",
+      "kind": "MCPServer",
+      "label": "tenant-a-mcp",
+      "owner_role": "tool-owner",
+      "principal_id": "tenant-a-workload",
+      "privilege": "WRITE",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-actions"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": true,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-tickets",
+      "integrity": "HIGH",
+      "kind": "API",
+      "label": "tenant-a-tickets",
+      "owner_role": "workflow-owner",
+      "principal_id": "tenant-a-workload",
+      "privilege": "WRITE",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [
+        "POST /mock-ticket"
+      ],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-actions"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-approval",
+      "integrity": "HIGH",
+      "kind": "ApprovalGate",
+      "label": "tenant-a-approval",
+      "owner_role": "workflow-owner",
+      "principal_id": null,
+      "privilege": "WRITE",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-actions"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "DECLARED",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-a-audit",
+      "integrity": "HIGH",
+      "kind": "TelemetrySink",
+      "label": "tenant-a-audit",
+      "owner_role": "security-monitoring",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "CONFIDENTIAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-a",
+      "zone_id": "tenant-a-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-human",
+      "integrity": "HIGH",
+      "kind": "HumanIdentity",
+      "label": "tenant-b-human",
+      "owner_role": "identity-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-client"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-workload",
+      "integrity": "HIGH",
+      "kind": "WorkloadIdentity",
+      "label": "tenant-b-workload",
+      "owner_role": "identity-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-browser",
+      "integrity": "HIGH",
+      "kind": "Browser",
+      "label": "tenant-b-browser",
+      "owner_role": "application-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [
+        "synthetic UI input"
+      ],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-client"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-api",
+      "integrity": "HIGH",
+      "kind": "API",
+      "label": "tenant-b-api",
+      "owner_role": "application-owner",
+      "principal_id": "tenant-b-workload",
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [
+        "POST /assist",
+        "POST /action"
+      ],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-backend",
+      "integrity": "HIGH",
+      "kind": "ApplicationService",
+      "label": "tenant-b-backend",
+      "owner_role": "application-owner",
+      "principal_id": "tenant-b-workload",
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-pep",
+      "integrity": "HIGH",
+      "kind": "PolicyEnforcementPoint",
+      "label": "tenant-b-pep",
+      "owner_role": "identity-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-pdp",
+      "integrity": "HIGH",
+      "kind": "PolicyDecisionPoint",
+      "label": "tenant-b-pdp",
+      "owner_role": "identity-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-retriever",
+      "integrity": "HIGH",
+      "kind": "Retriever",
+      "label": "tenant-b-retriever",
+      "owner_role": "retrieval-owner",
+      "principal_id": "tenant-b-workload",
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-connector",
+      "integrity": "HIGH",
+      "kind": "Connector",
+      "label": "tenant-b-connector",
+      "owner_role": "data-owner",
+      "principal_id": "tenant-b-workload",
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": true
+      },
+      "id": "tenant-b-documents",
+      "integrity": "HIGH",
+      "kind": "DocumentCollection",
+      "label": "tenant-b-documents",
+      "owner_role": "data-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "CONFIDENTIAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-content"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-index",
+      "integrity": "HIGH",
+      "kind": "VectorDatabase",
+      "label": "tenant-b-index",
+      "owner_role": "data-owner",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "CONFIDENTIAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-content"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": true,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": true,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-agent",
+      "integrity": "HIGH",
+      "kind": "Agent",
+      "label": "tenant-b-agent",
+      "owner_role": "agent-owner",
+      "principal_id": "tenant-b-workload",
+      "privilege": "WRITE",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-app"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": true,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-mcp",
+      "integrity": "HIGH",
+      "kind": "MCPServer",
+      "label": "tenant-b-mcp",
+      "owner_role": "tool-owner",
+      "principal_id": "tenant-b-workload",
+      "privilege": "WRITE",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-actions"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": true,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-tickets",
+      "integrity": "HIGH",
+      "kind": "API",
+      "label": "tenant-b-tickets",
+      "owner_role": "workflow-owner",
+      "principal_id": "tenant-b-workload",
+      "privilege": "WRITE",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [
+        "POST /mock-ticket"
+      ],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-actions"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "UNKNOWN",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-approval",
+      "integrity": "HIGH",
+      "kind": "ApprovalGate",
+      "label": "tenant-b-approval",
+      "owner_role": "workflow-owner",
+      "principal_id": null,
+      "privilege": "WRITE",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "INTERNAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-actions"
+    },
+    {
+      "address": null,
+      "allowed_actor_ids": [],
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "environment_id": "synthetic-lab",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "features": {
+        "autonomous": false,
+        "budget": "UNKNOWN",
+        "coding_workspace": false,
+        "dependency_provenance": "UNKNOWN",
+        "egress": false,
+        "generates_content": false,
+        "logging": "DECLARED",
+        "persistent_memory": false,
+        "privileged_actions": false,
+        "retention": "UNKNOWN",
+        "untrusted_content": false
+      },
+      "id": "tenant-b-audit",
+      "integrity": "HIGH",
+      "kind": "TelemetrySink",
+      "label": "tenant-b-audit",
+      "owner_role": "security-monitoring",
+      "principal_id": null,
+      "privilege": "READ",
+      "reachable": "NOT_TESTED",
+      "requires_human_review": true,
+      "sensitivity": "CONFIDENTIAL",
+      "source_id": null,
+      "source_snapshot": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+      "surface": [],
+      "tenant_id": "tenant-b",
+      "zone_id": "tenant-b-app"
+    }
+  ],
+  "review_state": "DRAFT",
+  "sanitization_status": "REDACTED_BEFORE_PUBLIC_HASH",
+  "schema_version": "p005-model-1.0",
+  "snapshot_source": "architecture.yaml",
+  "source_context": [],
+  "source_snapshot_hash": "4615c4763a1ff91c32a0fa8b4a07713849c227eb72e1cd8e9d10915d3d5c76ed",
+  "system_id": "fable-ai-assistant",
+  "tenants": [
+    "tenant-a",
+    "tenant-b",
+    "shared"
+  ],
+  "tool_versions": {
+    "p005": "1.0.0"
+  },
+  "zones": [
+    {
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "shared-platform",
+      "label": "shared-platform",
+      "owner_role": "platform-security",
+      "requires_human_review": true,
+      "tenant_id": "shared",
+      "trust_level": "PRIVILEGED"
+    },
+    {
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "shared-provider",
+      "label": "shared-provider",
+      "owner_role": "provider-owner",
+      "requires_human_review": true,
+      "tenant_id": "shared",
+      "trust_level": "EXTERNAL"
+    },
+    {
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "tenant-a-client",
+      "label": "tenant-a-client",
+      "owner_role": "application-owner",
+      "requires_human_review": true,
+      "tenant_id": "tenant-a",
+      "trust_level": "UNTRUSTED"
+    },
+    {
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "tenant-a-app",
+      "label": "tenant-a-app",
+      "owner_role": "application-owner",
+      "requires_human_review": true,
+      "tenant_id": "tenant-a",
+      "trust_level": "APPLICATION"
+    },
+    {
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "tenant-a-content",
+      "label": "tenant-a-content",
+      "owner_role": "data-owner",
+      "requires_human_review": true,
+      "tenant_id": "tenant-a",
+      "trust_level": "UNTRUSTED"
+    },
+    {
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "tenant-a-actions",
+      "label": "tenant-a-actions",
+      "owner_role": "workflow-owner",
+      "requires_human_review": true,
+      "tenant_id": "tenant-a",
+      "trust_level": "PRIVILEGED"
+    },
+    {
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "tenant-b-client",
+      "label": "tenant-b-client",
+      "owner_role": "application-owner",
+      "requires_human_review": true,
+      "tenant_id": "tenant-b",
+      "trust_level": "UNTRUSTED"
+    },
+    {
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "tenant-b-app",
+      "label": "tenant-b-app",
+      "owner_role": "application-owner",
+      "requires_human_review": true,
+      "tenant_id": "tenant-b",
+      "trust_level": "APPLICATION"
+    },
+    {
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "tenant-b-content",
+      "label": "tenant-b-content",
+      "owner_role": "data-owner",
+      "requires_human_review": true,
+      "tenant_id": "tenant-b",
+      "trust_level": "UNTRUSTED"
+    },
+    {
+      "assumptions": [],
+      "confidence": "DECLARATION",
+      "epistemic_status": "DECLARED",
+      "evidence_refs": [
+        "fixture-evidence"
+      ],
+      "id": "tenant-b-actions",
+      "label": "tenant-b-actions",
+      "owner_role": "workflow-owner",
+      "requires_human_review": true,
+      "tenant_id": "tenant-b",
+      "trust_level": "PRIVILEGED"
+    }
+  ]
+}

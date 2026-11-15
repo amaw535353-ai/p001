@@ -1,0 +1,1253 @@
+schema_version: p005-model-1.0
+model_id: synthetic-enterprise-ai
+engagement_id: synthetic-modeling-engagement
+engagement_version: 1
+system_id: fable-ai-assistant
+model_version: 2
+created_utc: '2026-11-15T00:00:00Z'
+snapshot_source: synthetic-fixture
+source_snapshot_hash: '0000000000000000000000000000000000000000000000000000000000000000'
+git_commit: 6e153d22b6822bed22e9895b0bef7b176456c258
+dataset_seed: 2026
+tool_versions:
+  p005: 1.0.0
+environment_id: synthetic-lab
+assumptions:
+- All topology is a synthetic design declaration, never runtime observation
+- Distinct tenant humans and workload principals are not interchangeable
+- Positive/negative permission records are expectations, not measured enforcement
+exclusions:
+- Live target assessment
+- Real customer, account, model API or financial transaction
+- GPU, hardware fault and attestation systems absent
+model_scope:
+  source: synthetic-fixture-modeling-scope
+  in_scope_node_ids:
+  - shared-idp
+  - shared-secret-store
+  - shared-ci
+  - shared-gateway
+  - shared-model
+  - tenant-a-human
+  - tenant-a-workload
+  - tenant-a-browser
+  - tenant-a-api
+  - tenant-a-backend
+  - tenant-a-pep
+  - tenant-a-pdp
+  - tenant-a-retriever
+  - tenant-a-connector
+  - tenant-a-documents
+  - tenant-a-index
+  - tenant-a-agent
+  - tenant-a-mcp
+  - tenant-a-tickets
+  - tenant-a-approval
+  - tenant-a-audit
+  - tenant-b-human
+  - tenant-b-workload
+  - tenant-b-browser
+  - tenant-b-api
+  - tenant-b-backend
+  - tenant-b-pep
+  - tenant-b-pdp
+  - tenant-b-retriever
+  - tenant-b-connector
+  - tenant-b-index
+  - tenant-b-agent
+  - tenant-b-mcp
+  - tenant-b-tickets
+  - tenant-b-approval
+  - tenant-b-audit
+  out_of_scope_node_ids:
+  - tenant-b-documents
+tenants:
+- tenant-a
+- tenant-b
+- shared
+zones:
+- id: shared-platform
+  label: shared-platform
+  tenant_id: shared
+  trust_level: PRIVILEGED
+  owner_role: platform-security
+  evidence_refs:
+  - fixture-evidence
+- id: shared-provider
+  label: shared-provider
+  tenant_id: shared
+  trust_level: EXTERNAL
+  owner_role: provider-owner
+  evidence_refs:
+  - fixture-evidence
+- id: tenant-a-client
+  label: tenant-a-client
+  tenant_id: tenant-a
+  trust_level: UNTRUSTED
+  owner_role: application-owner
+  evidence_refs:
+  - fixture-evidence
+- id: tenant-a-app
+  label: tenant-a-app
+  tenant_id: tenant-a
+  trust_level: APPLICATION
+  owner_role: application-owner
+  evidence_refs:
+  - fixture-evidence
+- id: tenant-a-content
+  label: tenant-a-content
+  tenant_id: tenant-a
+  trust_level: UNTRUSTED
+  owner_role: data-owner
+  evidence_refs:
+  - fixture-evidence
+- id: tenant-a-actions
+  label: tenant-a-actions
+  tenant_id: tenant-a
+  trust_level: PRIVILEGED
+  owner_role: workflow-owner
+  evidence_refs:
+  - fixture-evidence
+- id: tenant-b-client
+  label: tenant-b-client
+  tenant_id: tenant-b
+  trust_level: UNTRUSTED
+  owner_role: application-owner
+  evidence_refs:
+  - fixture-evidence
+- id: tenant-b-app
+  label: tenant-b-app
+  tenant_id: tenant-b
+  trust_level: APPLICATION
+  owner_role: application-owner
+  evidence_refs:
+  - fixture-evidence
+- id: tenant-b-content
+  label: tenant-b-content
+  tenant_id: tenant-b
+  trust_level: UNTRUSTED
+  owner_role: data-owner
+  evidence_refs:
+  - fixture-evidence
+- id: tenant-b-actions
+  label: tenant-b-actions
+  tenant_id: tenant-b
+  trust_level: PRIVILEGED
+  owner_role: workflow-owner
+  evidence_refs:
+  - fixture-evidence
+nodes:
+- id: shared-idp
+  kind: IdentityProvider
+  label: shared-idp
+  owner_role: identity-owner
+  zone_id: shared-platform
+  tenant_id: shared
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: shared-secret-store
+  kind: SecretStore
+  label: shared-secret-store
+  owner_role: platform-security
+  zone_id: shared-platform
+  tenant_id: shared
+  sensitivity: RESTRICTED
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: shared-ci
+  kind: CIPipeline
+  label: shared-ci
+  owner_role: platform-engineering
+  zone_id: shared-platform
+  tenant_id: shared
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: shared-gateway
+  kind: LLMGateway
+  label: shared-gateway
+  owner_role: provider-owner
+  zone_id: shared-provider
+  tenant_id: shared
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    generates_content: true
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: shared-model
+  kind: ModelEndpoint
+  label: shared-model
+  owner_role: provider-owner
+  zone_id: shared-provider
+  tenant_id: shared
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    generates_content: true
+    budget: UNKNOWN
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-a-human
+  kind: HumanIdentity
+  label: tenant-a-human
+  owner_role: identity-owner
+  zone_id: tenant-a-client
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-a-workload
+  kind: WorkloadIdentity
+  label: tenant-a-workload
+  owner_role: identity-owner
+  zone_id: tenant-a-app
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-a-browser
+  kind: Browser
+  label: tenant-a-browser
+  owner_role: application-owner
+  zone_id: tenant-a-client
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface:
+  - synthetic UI input
+- id: tenant-a-api
+  kind: API
+  label: tenant-a-api
+  owner_role: application-owner
+  zone_id: tenant-a-app
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: tenant-a-workload
+  surface:
+  - POST /assist
+  - POST /action
+- id: tenant-a-backend
+  kind: ApplicationService
+  label: tenant-a-backend
+  owner_role: application-owner
+  zone_id: tenant-a-app
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: tenant-a-workload
+  surface: []
+- id: tenant-a-pep
+  kind: PolicyEnforcementPoint
+  label: tenant-a-pep
+  owner_role: identity-owner
+  zone_id: tenant-a-app
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-a-pdp
+  kind: PolicyDecisionPoint
+  label: tenant-a-pdp
+  owner_role: identity-owner
+  zone_id: tenant-a-app
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-a-retriever
+  kind: Retriever
+  label: tenant-a-retriever
+  owner_role: retrieval-owner
+  zone_id: tenant-a-app
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: tenant-a-workload
+  surface: []
+- id: tenant-a-connector
+  kind: Connector
+  label: tenant-a-connector
+  owner_role: data-owner
+  zone_id: tenant-a-app
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: tenant-a-workload
+  surface: []
+- id: tenant-a-documents
+  kind: DocumentCollection
+  label: tenant-a-documents
+  owner_role: data-owner
+  zone_id: tenant-a-content
+  tenant_id: tenant-a
+  sensitivity: CONFIDENTIAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    untrusted_content: true
+    retention: UNKNOWN
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-a-index
+  kind: VectorDatabase
+  label: tenant-a-index
+  owner_role: data-owner
+  zone_id: tenant-a-content
+  tenant_id: tenant-a
+  sensitivity: CONFIDENTIAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-a-agent
+  kind: Agent
+  label: tenant-a-agent
+  owner_role: agent-owner
+  zone_id: tenant-a-app
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    autonomous: true
+    generates_content: true
+    budget: UNKNOWN
+  privilege: WRITE
+  principal_id: tenant-a-workload
+  surface: []
+- id: tenant-a-mcp
+  kind: MCPServer
+  label: tenant-a-mcp
+  owner_role: tool-owner
+  zone_id: tenant-a-actions
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    privileged_actions: true
+    dependency_provenance: UNKNOWN
+  privilege: WRITE
+  principal_id: tenant-a-workload
+  surface: []
+- id: tenant-a-tickets
+  kind: API
+  label: tenant-a-tickets
+  owner_role: workflow-owner
+  zone_id: tenant-a-actions
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    privileged_actions: true
+  privilege: WRITE
+  principal_id: tenant-a-workload
+  surface:
+  - POST /mock-ticket
+- id: tenant-a-approval
+  kind: ApprovalGate
+  label: tenant-a-approval
+  owner_role: workflow-owner
+  zone_id: tenant-a-actions
+  tenant_id: tenant-a
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: WRITE
+  principal_id: null
+  surface: []
+- id: tenant-a-audit
+  kind: TelemetrySink
+  label: tenant-a-audit
+  owner_role: security-monitoring
+  zone_id: tenant-a-app
+  tenant_id: tenant-a
+  sensitivity: CONFIDENTIAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    logging: DECLARED
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-b-human
+  kind: HumanIdentity
+  label: tenant-b-human
+  owner_role: identity-owner
+  zone_id: tenant-b-client
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-b-workload
+  kind: WorkloadIdentity
+  label: tenant-b-workload
+  owner_role: identity-owner
+  zone_id: tenant-b-app
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-b-browser
+  kind: Browser
+  label: tenant-b-browser
+  owner_role: application-owner
+  zone_id: tenant-b-client
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface:
+  - synthetic UI input
+- id: tenant-b-api
+  kind: API
+  label: tenant-b-api
+  owner_role: application-owner
+  zone_id: tenant-b-app
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: tenant-b-workload
+  surface:
+  - POST /assist
+  - POST /action
+- id: tenant-b-backend
+  kind: ApplicationService
+  label: tenant-b-backend
+  owner_role: application-owner
+  zone_id: tenant-b-app
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: tenant-b-workload
+  surface: []
+- id: tenant-b-pep
+  kind: PolicyEnforcementPoint
+  label: tenant-b-pep
+  owner_role: identity-owner
+  zone_id: tenant-b-app
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-b-pdp
+  kind: PolicyDecisionPoint
+  label: tenant-b-pdp
+  owner_role: identity-owner
+  zone_id: tenant-b-app
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-b-retriever
+  kind: Retriever
+  label: tenant-b-retriever
+  owner_role: retrieval-owner
+  zone_id: tenant-b-app
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: tenant-b-workload
+  surface: []
+- id: tenant-b-connector
+  kind: Connector
+  label: tenant-b-connector
+  owner_role: data-owner
+  zone_id: tenant-b-app
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: tenant-b-workload
+  surface: []
+- id: tenant-b-documents
+  kind: DocumentCollection
+  label: tenant-b-documents
+  owner_role: data-owner
+  zone_id: tenant-b-content
+  tenant_id: tenant-b
+  sensitivity: CONFIDENTIAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    untrusted_content: true
+    retention: UNKNOWN
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-b-index
+  kind: VectorDatabase
+  label: tenant-b-index
+  owner_role: data-owner
+  zone_id: tenant-b-content
+  tenant_id: tenant-b
+  sensitivity: CONFIDENTIAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: READ
+  principal_id: null
+  surface: []
+- id: tenant-b-agent
+  kind: Agent
+  label: tenant-b-agent
+  owner_role: agent-owner
+  zone_id: tenant-b-app
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    autonomous: true
+    generates_content: true
+    budget: UNKNOWN
+  privilege: WRITE
+  principal_id: tenant-b-workload
+  surface: []
+- id: tenant-b-mcp
+  kind: MCPServer
+  label: tenant-b-mcp
+  owner_role: tool-owner
+  zone_id: tenant-b-actions
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    privileged_actions: true
+    dependency_provenance: UNKNOWN
+  privilege: WRITE
+  principal_id: tenant-b-workload
+  surface: []
+- id: tenant-b-tickets
+  kind: API
+  label: tenant-b-tickets
+  owner_role: workflow-owner
+  zone_id: tenant-b-actions
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    privileged_actions: true
+  privilege: WRITE
+  principal_id: tenant-b-workload
+  surface:
+  - POST /mock-ticket
+- id: tenant-b-approval
+  kind: ApprovalGate
+  label: tenant-b-approval
+  owner_role: workflow-owner
+  zone_id: tenant-b-actions
+  tenant_id: tenant-b
+  sensitivity: INTERNAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features: {}
+  privilege: WRITE
+  principal_id: null
+  surface: []
+- id: tenant-b-audit
+  kind: TelemetrySink
+  label: tenant-b-audit
+  owner_role: security-monitoring
+  zone_id: tenant-b-app
+  tenant_id: tenant-b
+  sensitivity: CONFIDENTIAL
+  integrity: HIGH
+  source_snapshot: '0000000000000000000000000000000000000000000000000000000000000000'
+  evidence_refs:
+  - fixture-evidence
+  features:
+    logging: DECLARED
+  privilege: READ
+  principal_id: null
+  surface: []
+flows:
+- id: gateway-model
+  source: shared-gateway
+  target: shared-model
+  kind: invokes
+  tenant_id: shared
+  principal_id: null
+  data_type: synthetic-inference
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+- id: tenant-a-ui-api
+  source: tenant-a-browser
+  target: tenant-a-api
+  kind: invokes
+  tenant_id: tenant-a
+  principal_id: tenant-a-human
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  entry_point: POST /assist
+- id: tenant-a-api-backend
+  source: tenant-a-api
+  target: tenant-a-backend
+  kind: invokes
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-authenticate
+  source: tenant-a-api
+  target: shared-idp
+  kind: authenticates
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-policy
+  source: tenant-a-pep
+  target: tenant-a-pdp
+  kind: authorizes
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-backend-retriever
+  source: tenant-a-backend
+  target: tenant-a-retriever
+  kind: retrieves
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-retriever-connector
+  source: tenant-a-retriever
+  target: tenant-a-connector
+  kind: retrieves
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  grants_freshness: UNKNOWN
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-connector-documents
+  source: tenant-a-connector
+  target: tenant-a-documents
+  kind: reads
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-documents-index
+  source: tenant-a-documents
+  target: tenant-a-index
+  kind: stores
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-documents-retriever
+  source: tenant-a-documents
+  target: tenant-a-retriever
+  kind: responds
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-retriever-gateway
+  source: tenant-a-retriever
+  target: shared-gateway
+  kind: invokes
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-agent-api
+  source: tenant-a-api
+  target: tenant-a-agent
+  kind: invokes
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-agent-mcp
+  source: tenant-a-agent
+  target: tenant-a-mcp
+  kind: delegates
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  delegation: BROAD
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-mcp-ticket
+  source: tenant-a-mcp
+  target: tenant-a-tickets
+  kind: executes
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  approval_binding: UNKNOWN
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-human-approval
+  source: tenant-a-human
+  target: tenant-a-approval
+  kind: approves
+  tenant_id: tenant-a
+  principal_id: tenant-a-human
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  approval_binding: DECLARED
+- id: tenant-a-approval-ticket
+  source: tenant-a-approval
+  target: tenant-a-tickets
+  kind: approves
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  approval_binding: UNKNOWN
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-backend-audit
+  source: tenant-a-backend
+  target: tenant-a-audit
+  kind: logs
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-secret-read
+  source: tenant-a-backend
+  target: shared-secret-store
+  kind: reads
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: RESTRICTED
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-a-ci-deploy
+  source: shared-ci
+  target: tenant-a-backend
+  kind: deploys
+  tenant_id: shared
+  principal_id: null
+  data_type: synthetic-deployment-manifest
+  evidence_refs:
+  - fixture-evidence
+- id: tenant-a-backend-response
+  source: tenant-a-backend
+  target: tenant-a-browser
+  kind: responds
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-a-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-ui-api
+  source: tenant-b-browser
+  target: tenant-b-api
+  kind: invokes
+  tenant_id: tenant-b
+  principal_id: tenant-b-human
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  entry_point: POST /assist
+- id: tenant-b-api-backend
+  source: tenant-b-api
+  target: tenant-b-backend
+  kind: invokes
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-authenticate
+  source: tenant-b-api
+  target: shared-idp
+  kind: authenticates
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-policy
+  source: tenant-b-pep
+  target: tenant-b-pdp
+  kind: authorizes
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-backend-retriever
+  source: tenant-b-backend
+  target: tenant-b-retriever
+  kind: retrieves
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-retriever-connector
+  source: tenant-b-retriever
+  target: tenant-b-connector
+  kind: retrieves
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  grants_freshness: UNKNOWN
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-connector-documents
+  source: tenant-b-connector
+  target: tenant-b-documents
+  kind: reads
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-documents-index
+  source: tenant-b-documents
+  target: tenant-b-index
+  kind: stores
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-documents-retriever
+  source: tenant-b-documents
+  target: tenant-b-retriever
+  kind: responds
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-retriever-gateway
+  source: tenant-b-retriever
+  target: shared-gateway
+  kind: invokes
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-agent-api
+  source: tenant-b-api
+  target: tenant-b-agent
+  kind: invokes
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-agent-mcp
+  source: tenant-b-agent
+  target: tenant-b-mcp
+  kind: delegates
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  delegation: BROAD
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-mcp-ticket
+  source: tenant-b-mcp
+  target: tenant-b-tickets
+  kind: executes
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  approval_binding: UNKNOWN
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-human-approval
+  source: tenant-b-human
+  target: tenant-b-approval
+  kind: approves
+  tenant_id: tenant-b
+  principal_id: tenant-b-human
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  approval_binding: DECLARED
+- id: tenant-b-approval-ticket
+  source: tenant-b-approval
+  target: tenant-b-tickets
+  kind: approves
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  approval_binding: UNKNOWN
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-backend-audit
+  source: tenant-b-backend
+  target: tenant-b-audit
+  kind: logs
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-secret-read
+  source: tenant-b-backend
+  target: shared-secret-store
+  kind: reads
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: RESTRICTED
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: tenant-b-ci-deploy
+  source: shared-ci
+  target: tenant-b-backend
+  kind: deploys
+  tenant_id: shared
+  principal_id: null
+  data_type: synthetic-deployment-manifest
+  evidence_refs:
+  - fixture-evidence
+- id: tenant-b-backend-response
+  source: tenant-b-backend
+  target: tenant-b-browser
+  kind: responds
+  tenant_id: tenant-b
+  principal_id: tenant-b-workload
+  data_type: synthetic-content-or-authority
+  evidence_refs:
+  - fixture-evidence
+  classification: CONFIDENTIAL
+  authorization: CONTROL_DECLARED
+  authorization_point_id: tenant-b-pep
+  token_audience: EXPECTED
+  expected_decision: ALLOW
+- id: synthetic-cross-tenant-link
+  source: tenant-a-retriever
+  target: tenant-b-documents
+  kind: reads
+  tenant_id: tenant-a
+  principal_id: tenant-a-workload
+  data_type: synthetic-documents
+  classification: CONFIDENTIAL
+  expected_decision: DENY
+  evidence_refs:
+  - fixture-evidence
+evidence:
+- id: fixture-evidence
+  source: synthetic-fixture
+  pointer: /
+  sanitized_sha256: '0000000000000000000000000000000000000000000000000000000000000000'
+  status: DECLARED
+  measured_scope: Synthetic design declaration; no target contacted
+integrations: []

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "evidence_ref": {
+      "title": "Evidence Ref",
+      "type": "string"
+    },
+    "executed": {
+      "const": false,
+      "default": false,
+      "title": "Executed",
+      "type": "boolean"
+    },
+    "exit_status": {
+      "const": null,
+      "default": null,
+      "title": "Exit Status",
+      "type": "null"
+    },
+    "output_digest": {
+      "const": null,
+      "default": null,
+      "title": "Output Digest",
+      "type": "null"
+    },
+    "schema_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Schema Version"
+    },
+    "source_digest": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Digest"
+    },
+    "tested_roundtrip": {
+      "const": false,
+      "default": false,
+      "title": "Tested Roundtrip",
+      "type": "boolean"
+    },
+    "tool": {
+      "title": "Tool",
+      "type": "string"
+    },
+    "unsupported_fields": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unsupported Fields",
+      "type": "array"
+    },
+    "verification_status": {
+      "default": "BLOCKED",
+      "enum": [
+        "BLOCKED",
+        "NOT_TESTED"
+      ],
+      "title": "Verification Status",
+      "type": "string"
+    },
+    "version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Version"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    }
+  },
+  "required": [
+    "tool",
+    "warnings",
+    "unsupported_fields",
+    "evidence_ref"
+  ],
+  "title": "AdapterResult",
+  "type": "object"
+}

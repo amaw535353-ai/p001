@@ -1,0 +1,319 @@
+{
+  "$defs": {
+    "Triage": {
+      "additionalProperties": false,
+      "properties": {
+        "attacker_preconditions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Attacker Preconditions",
+          "type": "array"
+        },
+        "control_strength_unknown": {
+          "const": true,
+          "default": true,
+          "title": "Control Strength Unknown",
+          "type": "boolean"
+        },
+        "evidence_quality": {
+          "enum": [
+            "DIRECT_METADATA",
+            "DECLARATION",
+            "INFERENCE",
+            "UNKNOWN"
+          ],
+          "title": "Evidence Quality",
+          "type": "string"
+        },
+        "exposure": {
+          "enum": [
+            "OBSERVED",
+            "DECLARED",
+            "INFERRED",
+            "UNKNOWN",
+            "UNVERIFIED",
+            "BLOCKED",
+            "NOT_TESTED",
+            "ERROR"
+          ],
+          "title": "Exposure",
+          "type": "string"
+        },
+        "human_review_priority": {
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "title": "Human Review Priority",
+          "type": "string"
+        },
+        "potential_impact": {
+          "enum": [
+            "HIGH",
+            "MEDIUM",
+            "LOW",
+            "UNKNOWN"
+          ],
+          "title": "Potential Impact",
+          "type": "string"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        },
+        "uncertainty": {
+          "title": "Uncertainty",
+          "type": "string"
+        }
+      },
+      "required": [
+        "potential_impact",
+        "exposure",
+        "attacker_preconditions",
+        "evidence_quality",
+        "uncertainty",
+        "human_review_priority",
+        "rationale"
+      ],
+      "title": "Triage",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "abuse_path_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "Abuse Path Id",
+      "type": "string"
+    },
+    "analysis_method": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Analysis Method",
+      "type": "array"
+    },
+    "applicability": {
+      "default": "PROPOSED",
+      "enum": [
+        "PROPOSED",
+        "ACCEPTED_FOR_TESTING",
+        "REJECTED_WITH_REASON",
+        "NOT_APPLICABLE",
+        "NEEDS_INFORMATION"
+      ],
+      "title": "Applicability",
+      "type": "string"
+    },
+    "attacker_capability": {
+      "title": "Attacker Capability",
+      "type": "string"
+    },
+    "boundary_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+        "type": "string"
+      },
+      "title": "Boundary Ids",
+      "type": "array"
+    },
+    "business_impact_hypothesis": {
+      "title": "Business Impact Hypothesis",
+      "type": "string"
+    },
+    "confidence": {
+      "title": "Confidence",
+      "type": "string"
+    },
+    "control_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+        "type": "string"
+      },
+      "title": "Control Ids",
+      "type": "array"
+    },
+    "edge_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+        "type": "string"
+      },
+      "title": "Edge Ids",
+      "type": "array"
+    },
+    "evidence_refs": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+        "type": "string"
+      },
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "hypothesis_status": {
+      "const": "HYPOTHESIS",
+      "default": "HYPOTHESIS",
+      "title": "Hypothesis Status",
+      "type": "string"
+    },
+    "mitigation_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+        "type": "string"
+      },
+      "title": "Mitigation Ids",
+      "type": "array"
+    },
+    "node_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+        "type": "string"
+      },
+      "title": "Node Ids",
+      "type": "array"
+    },
+    "owner_role": {
+      "title": "Owner Role",
+      "type": "string"
+    },
+    "plausibility_rationale": {
+      "title": "Plausibility Rationale",
+      "type": "string"
+    },
+    "preconditions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Preconditions",
+      "type": "array"
+    },
+    "review_status": {
+      "default": "NEEDS_REVIEW",
+      "enum": [
+        "DRAFT",
+        "NEEDS_REVIEW",
+        "REVIEWED",
+        "APPROVED_FOR_TEST_DESIGN",
+        "SUPERSEDED"
+      ],
+      "title": "Review Status",
+      "type": "string"
+    },
+    "revision_history": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Revision History",
+      "type": "array"
+    },
+    "risk_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Risk Ids",
+      "type": "array"
+    },
+    "risk_source": {
+      "title": "Risk Source",
+      "type": "string"
+    },
+    "rule_trace": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        ]
+      },
+      "title": "Rule Trace",
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "p005-threat-1.0",
+      "default": "p005-threat-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "security_property": {
+      "title": "Security Property",
+      "type": "string"
+    },
+    "status": {
+      "const": "MODELLED_THREAT",
+      "default": "MODELLED_THREAT",
+      "title": "Status",
+      "type": "string"
+    },
+    "target_behavior": {
+      "title": "Target Behavior",
+      "type": "string"
+    },
+    "tenant_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "Tenant Id",
+      "type": "string"
+    },
+    "test_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+        "type": "string"
+      },
+      "title": "Test Ids",
+      "type": "array"
+    },
+    "threat_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{1,127}$",
+      "title": "Threat Id",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "triage": {
+      "$ref": "#/$defs/Triage"
+    },
+    "trust_assumption": {
+      "title": "Trust Assumption",
+      "type": "string"
+    }
+  },
+  "required": [
+    "threat_id",
+    "title",
+    "node_ids",
+    "edge_ids",
+    "boundary_ids",
+    "tenant_id",
+    "risk_ids",
+    "risk_source",
+    "analysis_method",
+    "preconditions",
+    "attacker_capability",
+    "target_behavior",
+    "trust_assumption",
+    "abuse_path_id",
+    "security_property",
+    "business_impact_hypothesis",
+    "plausibility_rationale",
+    "confidence",
+    "evidence_refs",
+    "mitigation_ids",
+    "control_ids",
+    "test_ids",
+    "owner_role",
+    "rule_trace",
+    "triage",
+    "revision_history"
+  ],
+  "title": "ThreatScenario",
+  "type": "object"
+}

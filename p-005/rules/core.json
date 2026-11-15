@@ -1,0 +1,884 @@
+{
+  "rules": [
+    {
+      "all": [
+        {
+          "field": "edge.token_audience",
+          "op": "eq",
+          "value": "MISMATCH"
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "identity-audience",
+      "impact": "Hypothesis: principal binding failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Spoofing",
+      "mitigation": "Validate issuer, audience, tenant and action at a deterministic PEP",
+      "negative": "Deny alternate audience and record a safe decision",
+      "positive": "Accept fixture identity with exact intended audience",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "principal binding",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R1"
+      ],
+      "target_behavior": "Wrong token audience at authority transition",
+      "title": "Wrong token audience at authority transition",
+      "trust_assumption": "principal binding must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "edge.delegation",
+          "op": "eq",
+          "value": "BROAD"
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "broad-delegation",
+      "impact": "Hypothesis: least privilege failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-ElevationOfPrivilege",
+      "mitigation": "Narrow delegated actions and bind caller, tenant, resource and expiry",
+      "negative": "Deny action outside delegated grant",
+      "positive": "Allow explicitly granted synthetic action",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "least privilege",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R1"
+      ],
+      "target_behavior": "Over-scoped delegation hypothesis",
+      "title": "Over-scoped delegation hypothesis",
+      "trust_assumption": "least privilege must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "edge.kind",
+          "op": "eq",
+          "value": "executes"
+        },
+        {
+          "field": "target.features.privileged_actions",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "field": "edge.authorization",
+          "op": "ne",
+          "value": "CONTROL_DECLARED"
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "tool-authority",
+      "impact": "Hypothesis: action authorization failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-ElevationOfPrivilege",
+      "mitigation": "Enforce deterministic per-action grants before tool side effects",
+      "negative": "Deny undelegated action before any side effect",
+      "positive": "Allow approved mock ticket action",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "action authorization",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R2"
+      ],
+      "target_behavior": "Unauthorized tool action / confused deputy",
+      "title": "Unauthorized tool action / confused deputy",
+      "trust_assumption": "action authorization must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "cross_tenant",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "cross-tenant",
+      "impact": "Hypothesis: tenant isolation failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-InformationDisclosure",
+      "mitigation": "Bind all retrieval and object checks to principal tenant and fresh resource ACL",
+      "negative": "Deny different-tenant synthetic document",
+      "positive": "Allow same-tenant authorized synthetic document",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "tenant isolation",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R3",
+        "R35"
+      ],
+      "target_behavior": "Cross-tenant retrieval authorization hypothesis",
+      "title": "Cross-tenant retrieval authorization hypothesis",
+      "trust_assumption": "tenant isolation must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "edge.classification",
+          "op": "in",
+          "value": [
+            "CONFIDENTIAL",
+            "RESTRICTED"
+          ]
+        },
+        {
+          "field": "target.kind",
+          "op": "in",
+          "value": [
+            "TelemetrySink",
+            "Browser"
+          ]
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "sensitive-audit",
+      "impact": "Hypothesis: data minimization failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-InformationDisclosure",
+      "mitigation": "Allowlist response and audit fields; redact secrets before persistence",
+      "negative": "Reject or redact synthetic sensitive canary from public output",
+      "positive": "Preserve required safe correlation metadata",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "data minimization",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R4"
+      ],
+      "target_behavior": "Sensitive response/log content hypothesis",
+      "title": "Sensitive response/log content hypothesis",
+      "trust_assumption": "data minimization must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "source.features.untrusted_content",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "field": "target.kind",
+          "op": "in",
+          "value": [
+            "Retriever",
+            "Agent",
+            "LLMGateway",
+            "ModelEndpoint"
+          ]
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "indirect-prompt",
+      "impact": "Hypothesis: instruction-data separation failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Keep retrieved/tool text as data; authorize actions outside model reasoning",
+      "negative": "Refuse action authority implied by untrusted document instructions",
+      "positive": "Use benign synthetic document as quoted context",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "instruction-data separation",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R5"
+      ],
+      "target_behavior": "Untrusted content promoted into reasoning or actions",
+      "title": "Untrusted content promoted into reasoning or actions",
+      "trust_assumption": "instruction-data separation must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "source.features.autonomous",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "field": "edge.kind",
+          "op": "in",
+          "value": [
+            "delegates",
+            "executes"
+          ]
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "goal-drift",
+      "impact": "Hypothesis: bounded goals failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Set deterministic action budgets, scoped goals and revocable execution capability",
+      "negative": "Stop unrelated action request and record review requirement",
+      "positive": "Complete explicitly permitted synthetic workflow",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "bounded goals",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R6"
+      ],
+      "target_behavior": "Autonomous agent authority and goal constraint hypothesis",
+      "title": "Autonomous agent authority and goal constraint hypothesis",
+      "trust_assumption": "bounded goals must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "edge.kind",
+          "op": "in",
+          "value": [
+            "approves",
+            "executes"
+          ]
+        },
+        {
+          "field": "edge.approval_binding",
+          "op": "ne",
+          "value": "DECLARED"
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "approval-integrity",
+      "impact": "Hypothesis: approval binding failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Bind approval to exact principal, action, parameters, tenant and nonce with expiry",
+      "negative": "Deny replay and altered parameters before mutation",
+      "positive": "Accept one current approved parameter set",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "approval binding",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R7"
+      ],
+      "target_behavior": "Approval-to-action integrity or replay hypothesis",
+      "title": "Approval-to-action integrity or replay hypothesis",
+      "trust_assumption": "approval binding must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "source.features.generates_content",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "field": "target.features.privileged_actions",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "unsafe-output",
+      "impact": "Hypothesis: safe output handling failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Use typed allowlisted commands and context-aware encoding at downstream consumers",
+      "negative": "Reject generated command/HTML outside the typed contract",
+      "positive": "Accept validated structured synthetic command",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "safe output handling",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R8"
+      ],
+      "target_behavior": "Generated output reaches privileged downstream consumer",
+      "title": "Generated output reaches privileged downstream consumer",
+      "trust_assumption": "safe output handling must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.features.coding_workspace",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "coding-workspace",
+      "impact": "Hypothesis: workspace containment failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Restrict file roots and require reviewed command policy independently of generated prose",
+      "negative": "Reject traversal, symlink escape and unexpected subprocess requests",
+      "positive": "Permit owned fixture workspace operation",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "workspace containment",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R9"
+      ],
+      "target_behavior": "Coding-agent workspace trust hypothesis",
+      "title": "Coding-agent workspace trust hypothesis",
+      "trust_assumption": "workspace containment must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "source.kind",
+          "op": "eq",
+          "value": "Agent"
+        },
+        {
+          "field": "target.kind",
+          "op": "eq",
+          "value": "MCPServer"
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "mcp-boundary",
+      "impact": "Hypothesis: MCP capability scope failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Authenticate service and constrain declared tool capabilities per tenant",
+      "negative": "Deny unregistered tool or excessive capability",
+      "positive": "Allow registered fixture tool and scoped arguments",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "MCP capability scope",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R10"
+      ],
+      "target_behavior": "Agent to MCP service authority boundary hypothesis",
+      "title": "Agent to MCP service authority boundary hypothesis",
+      "trust_assumption": "MCP capability scope must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.features.persistent_memory",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "persistent-memory",
+      "impact": "Hypothesis: memory integrity failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Separate tenant memory with provenance, revision controls and reset capability",
+      "negative": "Reject lower-trust unauthorized memory overwrite",
+      "positive": "Read current authorized synthetic memory",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "memory integrity",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R11"
+      ],
+      "target_behavior": "Untrusted persistent memory mutation hypothesis",
+      "title": "Untrusted persistent memory mutation hypothesis",
+      "trust_assumption": "memory integrity must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.kind",
+          "op": "eq",
+          "value": "Agent"
+        },
+        {
+          "field": "source.kind",
+          "op": "in",
+          "value": [
+            "API",
+            "Browser",
+            "HumanIdentity"
+          ]
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "direct-instructions",
+      "impact": "Hypothesis: instruction authority failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Treat user text as bounded request data; enforce policy outside the agent",
+      "negative": "Deny instruction-requested escalation independently of model output",
+      "positive": "Complete permitted synthetic assistance request",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "instruction authority",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R12"
+      ],
+      "target_behavior": "Direct user instruction boundary hypothesis",
+      "title": "Direct user instruction boundary hypothesis",
+      "trust_assumption": "instruction authority must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.kind",
+          "op": "eq",
+          "value": "VectorDatabase"
+        },
+        {
+          "field": "edge.kind",
+          "op": "in",
+          "value": [
+            "stores",
+            "writes"
+          ]
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "retrieval-integrity",
+      "impact": "Hypothesis: corpus provenance failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Verify document origin, index metadata and tenant filtering across updates",
+      "negative": "Reject altered/unowned ranking metadata",
+      "positive": "Index approved synthetic corpus with provenance",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "corpus provenance",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R13"
+      ],
+      "target_behavior": "Corpus/index integrity boundary hypothesis",
+      "title": "Corpus/index integrity boundary hypothesis",
+      "trust_assumption": "corpus provenance must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.kind",
+          "op": "in",
+          "value": [
+            "LLMGateway",
+            "ModelEndpoint"
+          ]
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "provider-routing",
+      "impact": "Hypothesis: provider isolation failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Spoofing",
+      "mitigation": "Bind gateway route/cache keys to authenticated principal, tenant and provider policy",
+      "negative": "Deny alternate route or cross-tenant cache context",
+      "positive": "Allow designated synthetic route and cache context",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "provider isolation",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R14",
+        "R15"
+      ],
+      "target_behavior": "Provider gateway routing and inference access hypothesis",
+      "title": "Provider gateway routing and inference access hypothesis",
+      "trust_assumption": "provider isolation must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.kind",
+          "op": "in",
+          "value": [
+            "Agent",
+            "ModelEndpoint",
+            "MCPServer"
+          ]
+        },
+        {
+          "field": "target.features.budget",
+          "op": "ne",
+          "value": "DECLARED"
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "budget-exhaustion",
+      "impact": "Hypothesis: availability and recovery failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-DenialOfService",
+      "mitigation": "Apply token/action quotas, bounded retries, circuit breakers and kill switches",
+      "negative": "Stop request/retry chain above budget and verify recovery",
+      "positive": "Serve a request within declared synthetic budgets",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "availability and recovery",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R18",
+        "R37"
+      ],
+      "target_behavior": "Inference/tool budgets and recovery hypothesis",
+      "title": "Inference/tool budgets and recovery hypothesis",
+      "trust_assumption": "availability and recovery must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.kind",
+          "op": "eq",
+          "value": "A2APeer"
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "a2a-scope",
+      "impact": "Hypothesis: peer authenticity failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Spoofing",
+      "mitigation": "Bind authenticated peer, tenant, purpose and delegated action scope",
+      "negative": "Reject spoofed peer or out-of-scope delegated message",
+      "positive": "Accept registered peer fixture within scope",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "peer authenticity",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R20"
+      ],
+      "target_behavior": "Inter-agent message authenticity hypothesis",
+      "title": "Inter-agent message authenticity hypothesis",
+      "trust_assumption": "peer authenticity must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.kind",
+          "op": "eq",
+          "value": "Evaluator"
+        },
+        {
+          "field": "source.features.untrusted_content",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "evaluation-data",
+      "impact": "Hypothesis: evaluation integrity failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Version evaluator inputs, isolate grading policy and require independent review",
+      "negative": "Reject input-origin attempts to change evaluation policy",
+      "positive": "Evaluate versioned approved synthetic input",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "evaluation integrity",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R21"
+      ],
+      "target_behavior": "Evaluator data trust hypothesis",
+      "title": "Evaluator data trust hypothesis",
+      "trust_assumption": "evaluation integrity must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.kind",
+          "op": "in",
+          "value": [
+            "Guardrail",
+            "TelemetrySink"
+          ]
+        },
+        {
+          "field": "target.features.logging",
+          "op": "ne",
+          "value": "DECLARED"
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "monitoring-gap",
+      "impact": "Hypothesis: audit completeness failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Repudiation",
+      "mitigation": "Separate enforcement from model guardrails and verify alert/audit fail-safe behavior",
+      "negative": "Surface missing/disabled audit path as explicit failure",
+      "positive": "Capture allowlisted synthetic event and review trail",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "audit completeness",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R22"
+      ],
+      "target_behavior": "Guardrail or logging visibility hypothesis",
+      "title": "Guardrail or logging visibility hypothesis",
+      "trust_assumption": "audit completeness must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.kind",
+          "op": "in",
+          "value": [
+            "DataStore",
+            "DocumentCollection",
+            "Memory"
+          ]
+        },
+        {
+          "field": "target.features.retention",
+          "op": "ne",
+          "value": "DECLARED"
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "retention-isolation",
+      "impact": "Hypothesis: retention and isolation failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-InformationDisclosure",
+      "mitigation": "Apply tenant-aware deletion, retention and connector refresh policies",
+      "negative": "Deny access after revocation/expiry across cached/indexed copies",
+      "positive": "Retain approved synthetic document until policy expiry",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "retention and isolation",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R24",
+        "R35"
+      ],
+      "target_behavior": "Document retention and privacy assumptions",
+      "title": "Document retention and privacy assumptions",
+      "trust_assumption": "retention and isolation must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "edge.grants_freshness",
+          "op": "eq",
+          "value": "STALE"
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "stale-grants",
+      "impact": "Hypothesis: fresh authorization failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Propagate revocation to connector grants, index copies and cache decisions",
+      "negative": "Deny revoked synthetic grant after bounded refresh interval",
+      "positive": "Allow current active grant",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "fresh authorization",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R3",
+        "R35"
+      ],
+      "target_behavior": "Stale connector authorization inheritance",
+      "title": "Stale connector authorization inheritance",
+      "trust_assumption": "fresh authorization must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.kind",
+          "op": "in",
+          "value": [
+            "MCPServer",
+            "Tool",
+            "CIPipeline"
+          ]
+        },
+        {
+          "field": "target.features.dependency_provenance",
+          "op": "ne",
+          "value": "DECLARED"
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "dependency-origin",
+      "impact": "Hypothesis: dependency authenticity failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-Tampering",
+      "mitigation": "Pin verified dependency origins, review capability changes and retain rollback",
+      "negative": "Reject unexpected plugin digest/capability expansion",
+      "positive": "Load reviewed pinned synthetic plugin definition",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "dependency authenticity",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [
+        "R36"
+      ],
+      "target_behavior": "Skill/plugin dependency provenance hypothesis",
+      "title": "Skill/plugin dependency provenance hypothesis",
+      "trust_assumption": "dependency authenticity must hold across this modeled transition",
+      "version": "1.0"
+    },
+    {
+      "all": [
+        {
+          "field": "target.features.egress",
+          "op": "eq",
+          "value": true
+        }
+      ],
+      "any": [],
+      "attacker_capability": "Control low-trust input or a lower-privilege principal; no privileged access assumed",
+      "exclude": [],
+      "falsifier": "Independent evidence shows the required enforcement reliably denies the modeled unauthorized transition",
+      "id": "network-egress",
+      "impact": "Hypothesis: egress scope failure could affect synthetic business records or authorized service operation",
+      "impact_level": "HIGH",
+      "method": "STRIDE-InformationDisclosure",
+      "mitigation": "Declare approved destinations and enforce bounded egress outside the agent",
+      "negative": "Deny undeclared destination without network access from P005",
+      "positive": "Permit explicit fixture destination class",
+      "preconditions": [
+        "Attacker can influence the modeled input or invoking principal",
+        "The stated transition is reachable in a separately authorized synthetic target"
+      ],
+      "property": "egress scope",
+      "required_evidence": "modeled-flow-with-provenance",
+      "risk_ids": [],
+      "target_behavior": "Unmodeled egress destination review hypothesis",
+      "title": "Unmodeled egress destination review hypothesis",
+      "trust_assumption": "egress scope must hold across this modeled transition",
+      "version": "1.0"
+    }
+  ],
+  "schema_version": "p005-rules-1.0"
+}

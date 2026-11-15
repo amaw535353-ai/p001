@@ -1,0 +1,242 @@
+[
+  {
+    "boundary_ids": [
+      "boundary-c9bf2a6f1deb6551072ba557f788012fcab3ca0a466a1b4fa9082fa525976575"
+    ],
+    "executable": false,
+    "executor": "human_assessor",
+    "expected_result": "Permit documented positive behavior; deny negative behavior with safe audit evidence",
+    "forbidden_actor": "Different-tenant-or-unapproved-principal",
+    "negative_path": "Deny unregistered tool or excessive capability",
+    "permitted_actor": "tenant-a-workload",
+    "positive_path": "Allow registered fixture tool and scoped arguments",
+    "prerequisites": [
+      "Independent human acceptance",
+      "Fresh P-003 scope and ROE decision",
+      "Isolated synthetic target; separate authorized execution project"
+    ],
+    "required_evidence": [
+      "Human-reviewed authorization",
+      "Sanitized request/decision/audit correlation"
+    ],
+    "roe_check_state": "REQUIRES_NEW_AUTHORIZATION",
+    "run_status": "NOT_TESTED",
+    "scope_state": "IN_SCOPE_MODEL_ONLY",
+    "setup_assumptions": [
+      "Attacker can influence the modeled input or invoking principal",
+      "The stated transition is reachable in a separately authorized synthetic target"
+    ],
+    "test_id": "test-3c1116a0cceacdf91c5cffd0e82c9298dcc0636675ff39d22c77c3e44082d76a",
+    "threat_id": "threat-3c1116a0cceacdf91c5cffd0e82c9298dcc0636675ff39d22c77c3e44082d76a"
+  },
+  {
+    "boundary_ids": [
+      "boundary-a52935b52e057beed3c1db19f88deaf6ddda2c5afab5abb6aec202441442ba2d"
+    ],
+    "executable": false,
+    "executor": "human_assessor",
+    "expected_result": "Permit documented positive behavior; deny negative behavior with safe audit evidence",
+    "forbidden_actor": "Different-tenant-or-unapproved-principal",
+    "negative_path": "Deny replay and altered parameters before mutation",
+    "permitted_actor": "tenant-a-workload",
+    "positive_path": "Accept one current approved parameter set",
+    "prerequisites": [
+      "Independent human acceptance",
+      "Fresh P-003 scope and ROE decision",
+      "Isolated synthetic target; separate authorized execution project"
+    ],
+    "required_evidence": [
+      "Human-reviewed authorization",
+      "Sanitized request/decision/audit correlation"
+    ],
+    "roe_check_state": "REQUIRES_NEW_AUTHORIZATION",
+    "run_status": "NOT_TESTED",
+    "scope_state": "IN_SCOPE_MODEL_ONLY",
+    "setup_assumptions": [
+      "Attacker can influence the modeled input or invoking principal",
+      "The stated transition is reachable in a separately authorized synthetic target"
+    ],
+    "test_id": "test-b8d5887975dea2f275e57a191edba2d209fae3e01ce1283e4d9c9684d6457b5e",
+    "threat_id": "threat-b8d5887975dea2f275e57a191edba2d209fae3e01ce1283e4d9c9684d6457b5e"
+  },
+  {
+    "boundary_ids": [
+      "boundary-bfe664f037749f2346024f2946acbb6a2488e35f63fb2318bd495ed0f0ca90e7"
+    ],
+    "executable": false,
+    "executor": "human_assessor",
+    "expected_result": "Permit documented positive behavior; deny negative behavior with safe audit evidence",
+    "forbidden_actor": "Different-tenant-or-unapproved-principal",
+    "negative_path": "Refuse action authority implied by untrusted document instructions",
+    "permitted_actor": "tenant-a-workload",
+    "positive_path": "Use benign synthetic document as quoted context",
+    "prerequisites": [
+      "Independent human acceptance",
+      "Fresh P-003 scope and ROE decision",
+      "Isolated synthetic target; separate authorized execution project"
+    ],
+    "required_evidence": [
+      "Human-reviewed authorization",
+      "Sanitized request/decision/audit correlation"
+    ],
+    "roe_check_state": "REQUIRES_NEW_AUTHORIZATION",
+    "run_status": "NOT_TESTED",
+    "scope_state": "IN_SCOPE_MODEL_ONLY",
+    "setup_assumptions": [
+      "Attacker can influence the modeled input or invoking principal",
+      "The stated transition is reachable in a separately authorized synthetic target"
+    ],
+    "test_id": "test-dad504ce2c92b8c0960bf4721f4c020fb01386184da0bd2a47c2fa4ea19b5b70",
+    "threat_id": "threat-dad504ce2c92b8c0960bf4721f4c020fb01386184da0bd2a47c2fa4ea19b5b70"
+  },
+  {
+    "boundary_ids": [
+      "boundary-b542321529be78f0c33de0b7e23a5f519c18c1fd1080860c9f433ae51fe9b2f9"
+    ],
+    "executable": false,
+    "executor": "human_assessor",
+    "expected_result": "Permit documented positive behavior; deny negative behavior with safe audit evidence",
+    "forbidden_actor": "Different-tenant-or-unapproved-principal",
+    "negative_path": "Deny replay and altered parameters before mutation",
+    "permitted_actor": "tenant-a-workload",
+    "positive_path": "Accept one current approved parameter set",
+    "prerequisites": [
+      "Independent human acceptance",
+      "Fresh P-003 scope and ROE decision",
+      "Isolated synthetic target; separate authorized execution project"
+    ],
+    "required_evidence": [
+      "Human-reviewed authorization",
+      "Sanitized request/decision/audit correlation"
+    ],
+    "roe_check_state": "REQUIRES_NEW_AUTHORIZATION",
+    "run_status": "NOT_TESTED",
+    "scope_state": "IN_SCOPE_MODEL_ONLY",
+    "setup_assumptions": [
+      "Attacker can influence the modeled input or invoking principal",
+      "The stated transition is reachable in a separately authorized synthetic target"
+    ],
+    "test_id": "test-6ad0ccfdc5a01b891340d7b7ffdebb4d988bb2586b6de94115c8d6108d761967",
+    "threat_id": "threat-6ad0ccfdc5a01b891340d7b7ffdebb4d988bb2586b6de94115c8d6108d761967"
+  },
+  {
+    "boundary_ids": [
+      "boundary-61819f07e2143ff4f5da03a3a2c96dff73121f8904ca0c944ac861c7d15fe9cb"
+    ],
+    "executable": false,
+    "executor": "human_assessor",
+    "expected_result": "Permit documented positive behavior; deny negative behavior with safe audit evidence",
+    "forbidden_actor": "Different-tenant-or-unapproved-principal",
+    "negative_path": "Deny unregistered tool or excessive capability",
+    "permitted_actor": "tenant-b-workload",
+    "positive_path": "Allow registered fixture tool and scoped arguments",
+    "prerequisites": [
+      "Independent human acceptance",
+      "Fresh P-003 scope and ROE decision",
+      "Isolated synthetic target; separate authorized execution project"
+    ],
+    "required_evidence": [
+      "Human-reviewed authorization",
+      "Sanitized request/decision/audit correlation"
+    ],
+    "roe_check_state": "REQUIRES_NEW_AUTHORIZATION",
+    "run_status": "NOT_TESTED",
+    "scope_state": "IN_SCOPE_MODEL_ONLY",
+    "setup_assumptions": [
+      "Attacker can influence the modeled input or invoking principal",
+      "The stated transition is reachable in a separately authorized synthetic target"
+    ],
+    "test_id": "test-c1e92439303c316f72e6ad29ddd5516aacb8b8612f2cf822b68fdf1476e313be",
+    "threat_id": "threat-c1e92439303c316f72e6ad29ddd5516aacb8b8612f2cf822b68fdf1476e313be"
+  },
+  {
+    "boundary_ids": [
+      "boundary-89d0b678edd79137187e43b563ae6b23c55a4f48f82b606b17ff913393158107"
+    ],
+    "executable": false,
+    "executor": "human_assessor",
+    "expected_result": "Permit documented positive behavior; deny negative behavior with safe audit evidence",
+    "forbidden_actor": "Different-tenant-or-unapproved-principal",
+    "negative_path": "Deny replay and altered parameters before mutation",
+    "permitted_actor": "tenant-b-workload",
+    "positive_path": "Accept one current approved parameter set",
+    "prerequisites": [
+      "Independent human acceptance",
+      "Fresh P-003 scope and ROE decision",
+      "Isolated synthetic target; separate authorized execution project"
+    ],
+    "required_evidence": [
+      "Human-reviewed authorization",
+      "Sanitized request/decision/audit correlation"
+    ],
+    "roe_check_state": "REQUIRES_NEW_AUTHORIZATION",
+    "run_status": "NOT_TESTED",
+    "scope_state": "IN_SCOPE_MODEL_ONLY",
+    "setup_assumptions": [
+      "Attacker can influence the modeled input or invoking principal",
+      "The stated transition is reachable in a separately authorized synthetic target"
+    ],
+    "test_id": "test-55128ef843a3ef0ef29fac733b66c3607913410678dccf72844b1e806471b5f0",
+    "threat_id": "threat-55128ef843a3ef0ef29fac733b66c3607913410678dccf72844b1e806471b5f0"
+  },
+  {
+    "boundary_ids": [
+      "boundary-e3e425d08886160bb96c0e7f0768442fc2d6c2988196a2eea1a3f6386e76fba0"
+    ],
+    "executable": false,
+    "executor": "human_assessor",
+    "expected_result": "Permit documented positive behavior; deny negative behavior with safe audit evidence",
+    "forbidden_actor": "Different-tenant-or-unapproved-principal",
+    "negative_path": "Refuse action authority implied by untrusted document instructions",
+    "permitted_actor": "tenant-b-workload",
+    "positive_path": "Use benign synthetic document as quoted context",
+    "prerequisites": [
+      "Independent human acceptance",
+      "Fresh P-003 scope and ROE decision",
+      "Isolated synthetic target; separate authorized execution project"
+    ],
+    "required_evidence": [
+      "Human-reviewed authorization",
+      "Sanitized request/decision/audit correlation"
+    ],
+    "roe_check_state": "REQUIRES_NEW_AUTHORIZATION",
+    "run_status": "NOT_TESTED",
+    "scope_state": "IN_SCOPE_MODEL_ONLY",
+    "setup_assumptions": [
+      "Attacker can influence the modeled input or invoking principal",
+      "The stated transition is reachable in a separately authorized synthetic target"
+    ],
+    "test_id": "test-4935da0cef585e50ecf2f1ff98bd8c694e55db9c292b3b1efaaf9f8c0d47663e",
+    "threat_id": "threat-4935da0cef585e50ecf2f1ff98bd8c694e55db9c292b3b1efaaf9f8c0d47663e"
+  },
+  {
+    "boundary_ids": [
+      "boundary-148cd8aa62793bc0e6e63addbfa086dc032aad539f1f2c48eba110e841c94c4e"
+    ],
+    "executable": false,
+    "executor": "human_assessor",
+    "expected_result": "Permit documented positive behavior; deny negative behavior with safe audit evidence",
+    "forbidden_actor": "Different-tenant-or-unapproved-principal",
+    "negative_path": "Deny replay and altered parameters before mutation",
+    "permitted_actor": "tenant-b-workload",
+    "positive_path": "Accept one current approved parameter set",
+    "prerequisites": [
+      "Independent human acceptance",
+      "Fresh P-003 scope and ROE decision",
+      "Isolated synthetic target; separate authorized execution project"
+    ],
+    "required_evidence": [
+      "Human-reviewed authorization",
+      "Sanitized request/decision/audit correlation"
+    ],
+    "roe_check_state": "REQUIRES_NEW_AUTHORIZATION",
+    "run_status": "NOT_TESTED",
+    "scope_state": "IN_SCOPE_MODEL_ONLY",
+    "setup_assumptions": [
+      "Attacker can influence the modeled input or invoking principal",
+      "The stated transition is reachable in a separately authorized synthetic target"
+    ],
+    "test_id": "test-3829a0074c12b2066596322c39280359b4b294b4157bd652057123963e7455fa",
+    "threat_id": "threat-3829a0074c12b2066596322c39280359b4b294b4157bd652057123963e7455fa"
+  }
+]

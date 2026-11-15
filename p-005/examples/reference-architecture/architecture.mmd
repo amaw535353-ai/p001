@@ -1,0 +1,97 @@
+flowchart LR
+  subgraph n941e4bc69927af845ad0ac93["shared-platform - PRIVILEGED"]
+    n00d036e1ae50081c4fd98b8c["shared-idp - IdentityProvider - DECLARED"]
+    na58a0e32c9ebd1e3c391ff81["shared-secret-store - SecretStore - DECLARED"]
+    n269e15d74d26056ff8b765c3["shared-ci - CIPipeline - DECLARED"]
+  end
+  subgraph n6477c89a333ed52625ed2fad["shared-provider - EXTERNAL"]
+    n071795066419379fce6d632a["shared-gateway - LLMGateway - DECLARED"]
+    n4e7921fdf2c103af82bc0bf2["shared-model - ModelEndpoint - DECLARED"]
+  end
+  subgraph n444e7be21d68dc6f4ee97a0d["tenant-a-client - UNTRUSTED"]
+    n7eb01c55aa2d47a092c82ee7["tenant-a-human - HumanIdentity - DECLARED"]
+    n4afc8ef93b6f5f66a668e946["tenant-a-browser - Browser - DECLARED"]
+  end
+  subgraph nd126a6f58529ca15965e4787["tenant-a-app - APPLICATION"]
+    nf60b9bdf84c8bfc58d27f10b["tenant-a-workload - WorkloadIdentity - DECLARED"]
+    nbe30b2ae5c267c9eaac9ab6d["tenant-a-api - API - DECLARED"]
+    n476ff6583e08ff2566691421["tenant-a-backend - ApplicationService - DECLARED"]
+    nf87765e288f50fa79d87eac2["tenant-a-pep - PolicyEnforcementPoint - DECLARED"]
+    n88d3be4439fe8f2dc14e4ff9["tenant-a-pdp - PolicyDecisionPoint - DECLARED"]
+    nce21048daacf0d2abb631941["tenant-a-retriever - Retriever - DECLARED"]
+    n0ac697432ebf3cb31c70caed["tenant-a-connector - Connector - DECLARED"]
+    n301a6024864dc5720b13e002["tenant-a-agent - Agent - DECLARED"]
+    n7eb3adddc41464cedd3d0921["tenant-a-audit - TelemetrySink - DECLARED"]
+  end
+  subgraph ned94d9ff579411a0f3af7bf7["tenant-a-content - UNTRUSTED"]
+    n8356f83e92219ab5b4b6b2fa["tenant-a-documents - DocumentCollection - DECLARED"]
+    n9e461132da3f35eb415c12bb["tenant-a-index - VectorDatabase - DECLARED"]
+  end
+  subgraph n87ebcceb0df2b984fd465f7c["tenant-a-actions - PRIVILEGED"]
+    n14da1d4b2e62fcdc5064d668["tenant-a-mcp - MCPServer - DECLARED"]
+    n52e5a6c052a219b2cb99c767["tenant-a-tickets - API - DECLARED"]
+    na8460b1675f4b6d986e7365e["tenant-a-approval - ApprovalGate - DECLARED"]
+  end
+  subgraph n2a0fcf9d229c05fa40f51452["tenant-b-client - UNTRUSTED"]
+    nb71b5fd2497c0cbe351d1bf7["tenant-b-human - HumanIdentity - DECLARED"]
+    na489cbe88a75bf994878ac0d["tenant-b-browser - Browser - DECLARED"]
+  end
+  subgraph nf9be57edfe830961e683700f["tenant-b-app - APPLICATION"]
+    naa88567dcbbb8ae4c619d993["tenant-b-workload - WorkloadIdentity - DECLARED"]
+    na17d5d3e5f17b4125343ebdf["tenant-b-api - API - DECLARED"]
+    na6b30e2b9851d5f57dbf86ce["tenant-b-backend - ApplicationService - DECLARED"]
+    n16de0ef787f190777548996d["tenant-b-pep - PolicyEnforcementPoint - DECLARED"]
+    n680cb12b7aeb11ffe0c839a8["tenant-b-pdp - PolicyDecisionPoint - DECLARED"]
+    n064d63846999420de3359c0f["tenant-b-retriever - Retriever - DECLARED"]
+    n0600bc6538f9488eabff80c0["tenant-b-connector - Connector - DECLARED"]
+    n570d45b86e15446b8aab2c70["tenant-b-agent - Agent - DECLARED"]
+    n7c2c94a2ae84b53be3aba5bc["tenant-b-audit - TelemetrySink - DECLARED"]
+  end
+  subgraph n6bc3c6c26a10698d0c4920b4["tenant-b-content - UNTRUSTED"]
+    n4f8590a32e19543d873ed848["tenant-b-documents - DocumentCollection - DECLARED"]
+    nad91d5d3ba454fbaedc5ae3c["tenant-b-index - VectorDatabase - DECLARED"]
+  end
+  subgraph nb4041c25c3e1b617bf3b347f["tenant-b-actions - PRIVILEGED"]
+    n87b58e9fc0135fbb4dedc636["tenant-b-mcp - MCPServer - DECLARED"]
+    n819e8a7dd20c8f866b78bf5c["tenant-b-tickets - API - DECLARED"]
+    nc36aa116f0196302eb2a34d1["tenant-b-approval - ApprovalGate - DECLARED"]
+  end
+  n071795066419379fce6d632a -->|invokes DECLARED| n4e7921fdf2c103af82bc0bf2
+  n4afc8ef93b6f5f66a668e946 -->|invokes DECLARED| nbe30b2ae5c267c9eaac9ab6d
+  nbe30b2ae5c267c9eaac9ab6d -->|invokes DECLARED| n476ff6583e08ff2566691421
+  nbe30b2ae5c267c9eaac9ab6d -->|authenticates DECLARED| n00d036e1ae50081c4fd98b8c
+  nf87765e288f50fa79d87eac2 -->|authorizes DECLARED| n88d3be4439fe8f2dc14e4ff9
+  n476ff6583e08ff2566691421 -->|retrieves DECLARED| nce21048daacf0d2abb631941
+  nce21048daacf0d2abb631941 -->|retrieves DECLARED| n0ac697432ebf3cb31c70caed
+  n0ac697432ebf3cb31c70caed -->|reads DECLARED| n8356f83e92219ab5b4b6b2fa
+  n8356f83e92219ab5b4b6b2fa -->|stores DECLARED| n9e461132da3f35eb415c12bb
+  n8356f83e92219ab5b4b6b2fa -->|responds DECLARED| nce21048daacf0d2abb631941
+  nce21048daacf0d2abb631941 -->|invokes DECLARED| n071795066419379fce6d632a
+  nbe30b2ae5c267c9eaac9ab6d -->|invokes DECLARED| n301a6024864dc5720b13e002
+  n301a6024864dc5720b13e002 -->|delegates DECLARED| n14da1d4b2e62fcdc5064d668
+  n14da1d4b2e62fcdc5064d668 -->|executes DECLARED| n52e5a6c052a219b2cb99c767
+  n7eb01c55aa2d47a092c82ee7 -->|approves DECLARED| na8460b1675f4b6d986e7365e
+  na8460b1675f4b6d986e7365e -->|approves DECLARED| n52e5a6c052a219b2cb99c767
+  n476ff6583e08ff2566691421 -->|logs DECLARED| n7eb3adddc41464cedd3d0921
+  n476ff6583e08ff2566691421 -->|reads DECLARED| na58a0e32c9ebd1e3c391ff81
+  n269e15d74d26056ff8b765c3 -->|deploys DECLARED| n476ff6583e08ff2566691421
+  n476ff6583e08ff2566691421 -->|responds DECLARED| n4afc8ef93b6f5f66a668e946
+  na489cbe88a75bf994878ac0d -->|invokes DECLARED| na17d5d3e5f17b4125343ebdf
+  na17d5d3e5f17b4125343ebdf -->|invokes DECLARED| na6b30e2b9851d5f57dbf86ce
+  na17d5d3e5f17b4125343ebdf -->|authenticates DECLARED| n00d036e1ae50081c4fd98b8c
+  n16de0ef787f190777548996d -->|authorizes DECLARED| n680cb12b7aeb11ffe0c839a8
+  na6b30e2b9851d5f57dbf86ce -->|retrieves DECLARED| n064d63846999420de3359c0f
+  n064d63846999420de3359c0f -->|retrieves DECLARED| n0600bc6538f9488eabff80c0
+  n0600bc6538f9488eabff80c0 -->|reads DECLARED| n4f8590a32e19543d873ed848
+  n4f8590a32e19543d873ed848 -->|stores DECLARED| nad91d5d3ba454fbaedc5ae3c
+  n4f8590a32e19543d873ed848 -->|responds DECLARED| n064d63846999420de3359c0f
+  n064d63846999420de3359c0f -->|invokes DECLARED| n071795066419379fce6d632a
+  na17d5d3e5f17b4125343ebdf -->|invokes DECLARED| n570d45b86e15446b8aab2c70
+  n570d45b86e15446b8aab2c70 -->|delegates DECLARED| n87b58e9fc0135fbb4dedc636
+  n87b58e9fc0135fbb4dedc636 -->|executes DECLARED| n819e8a7dd20c8f866b78bf5c
+  nb71b5fd2497c0cbe351d1bf7 -->|approves DECLARED| nc36aa116f0196302eb2a34d1
+  nc36aa116f0196302eb2a34d1 -->|approves DECLARED| n819e8a7dd20c8f866b78bf5c
+  na6b30e2b9851d5f57dbf86ce -->|logs DECLARED| n7c2c94a2ae84b53be3aba5bc
+  na6b30e2b9851d5f57dbf86ce -->|reads DECLARED| na58a0e32c9ebd1e3c391ff81
+  n269e15d74d26056ff8b765c3 -->|deploys DECLARED| na6b30e2b9851d5f57dbf86ce
+  na6b30e2b9851d5f57dbf86ce -->|responds DECLARED| na489cbe88a75bf994878ac0d

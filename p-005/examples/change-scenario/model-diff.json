@@ -1,0 +1,87 @@
+{
+  "after_digest": "98aa17d40812a3389730553ba1863e0c8a9a0e1d420e4ec12f9aa48b74455347",
+  "atlas_mappings": "REQUIRES_REASSESSMENT",
+  "before_digest": "3afa4af67fb4b4c78d9fddb2e4f0ee20e028968c48c524dfaf154ece0988049b",
+  "graph": {
+    "boundaries": {
+      "added": [
+        "boundary-bf44e22347761d4b0b5a0ed9066fc76b00bb0a9b602ead6b823c0aab1bd2dbc7"
+      ],
+      "changed": [],
+      "removed": []
+    },
+    "flows": {
+      "added": [
+        "synthetic-cross-tenant-link"
+      ],
+      "changed": [],
+      "removed": []
+    },
+    "nodes": {
+      "added": [],
+      "changed": [],
+      "removed": []
+    },
+    "zones": {
+      "added": [],
+      "changed": [],
+      "removed": []
+    }
+  },
+  "hypotheses": {
+    "added": [
+      "threat-6fba890e0d742737e852348703c3b5f79434e51fcee4fdaa1ef9a2bbc9a10d48",
+      "threat-713025200435d64cc741f44a58dd9149e3573250a46edf92e41bb90bc67cb808"
+    ],
+    "removed": [],
+    "retained_require_review": [
+      "threat-040de89fa8c84759f98ec0eacc7ba584c8ae5dcb766759412b19a82ebe9f5f74",
+      "threat-0c4cc0265a364aaf3936cd93dee93877fd0042cd13f0702042727d7d2c4cc755",
+      "threat-103017e8a1ccede3fa0e6ae66ad60f7ca87223f666d8d6ddf6b3441b6293f1d4",
+      "threat-15be4a6fdcd8e1c7db3750b671f0b5b32d66deeab3a8d12800f8ab2b4a5fcbb0",
+      "threat-16a0d29551ce3d9b4c663528be3d8b64aebce88381b4d71d0b76fb8f14b8db21",
+      "threat-2fe482ffb84b570de437e82fb695f9151fdf2ab66da2f5f4143d44f7c39712ff",
+      "threat-2ffa5da03bbc9475f9b2c971f66a2ab067aa4629dd1924f4e435ee9d3f1dec0e",
+      "threat-3829a0074c12b2066596322c39280359b4b294b4157bd652057123963e7455fa",
+      "threat-38f0564c39d812097103e9cafd40ed8e2bb25b4d14a4ecc90a1c4e9254ac9a39",
+      "threat-3a18e282ecd99a0a0d5242f54d57eb9ac7429f31a37e2581ccd98c3885d398f3",
+      "threat-3c1116a0cceacdf91c5cffd0e82c9298dcc0636675ff39d22c77c3e44082d76a",
+      "threat-3e005df383a1fd424258cc0669ec46ac44b3f15d41e06604f576c8a0c608b47a",
+      "threat-45cafc4ebdc271b8aca6ba1153de9ea91703646504036fdf8c780b6be1611be7",
+      "threat-4935da0cef585e50ecf2f1ff98bd8c694e55db9c292b3b1efaaf9f8c0d47663e",
+      "threat-4ca5defa4eba05ae242e6523258f49e25bc98f8663ebd5f2e3e1ec4553e8b0c0",
+      "threat-4d1babd0a259c51388acba0bcd2acc7edc37ceafa4adf1cdd11bcc66b78a0ea7",
+      "threat-55128ef843a3ef0ef29fac733b66c3607913410678dccf72844b1e806471b5f0",
+      "threat-5968f881105a4927e71c4f689f5cf5297ff2a6c9aa13a68fcbbd05e28b339927",
+      "threat-61837d951ff46195e2595b5cf8c41d831b0482e5d069e6feeccb45bf55eeef77",
+      "threat-6ad0ccfdc5a01b891340d7b7ffdebb4d988bb2586b6de94115c8d6108d761967",
+      "threat-6bada4de2be6bdc4624f961c8a261e2dd1e3258ec084caf026f1473c70430ca2",
+      "threat-7b727e182e0d70a53a314e155bc66bf8622dcae89004053b5183e998d96e2ae4",
+      "threat-7d4d359852dea85d6e4a7f65175ce9a71b51c40ed3c66ab4b072b44bce2e2713",
+      "threat-84710503ecd4a211175da49b18cc3808de43111a7d38369c58b492904977f732",
+      "threat-a716fcf805f5c325bdbeb5d405bf0a61841a98e9c8b0210870a8c809ecfa801d",
+      "threat-a79539653e41c7dbebfc0454424b7c755af376640443b7aa10afed691d36f066",
+      "threat-b8d5887975dea2f275e57a191edba2d209fae3e01ce1283e4d9c9684d6457b5e",
+      "threat-c1e92439303c316f72e6ad29ddd5516aacb8b8612f2cf822b68fdf1476e313be",
+      "threat-d312ef23f5e485f684801eac132995909a2876df1f5f3a6bd224cdbac0524f6c",
+      "threat-d701f30d3ee7426d77975027ef1bd7a8b012436a41aca0cfb5312a6f763dbe04",
+      "threat-dad504ce2c92b8c0960bf4721f4c020fb01386184da0bd2a47c2fa4ea19b5b70",
+      "threat-dd163e15ae7796b81e4ee30ee7088f232a35d59d2b8e643a223cd56cf0966104",
+      "threat-e8357be2eded1b61a9d45cd79de7296f2bf8f7daf660a1683e5bfc19d1597fec",
+      "threat-f1045d7bab7b121f77537a05334ceacc62d29324d839bc96d3408dd011208520"
+    ]
+  },
+  "impacted_ids": [
+    "boundary-bf44e22347761d4b0b5a0ed9066fc76b00bb0a9b602ead6b823c0aab1bd2dbc7",
+    "synthetic-cross-tenant-link"
+  ],
+  "newly_out_of_scope": [
+    "tenant-b-documents"
+  ],
+  "previous_decisions": "INVALIDATED",
+  "previous_tests": "STALE_NOT_EXECUTED",
+  "rationale": "Architecture/source version changed; retained IDs are not approval continuity",
+  "review_state": "NEEDS_REVIEW",
+  "schema_version": "p005-diff-1.0",
+  "scope_changed": true
+}

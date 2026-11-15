@@ -1,0 +1,73 @@
+{
+  "$defs": {
+    "Risk": {
+      "additionalProperties": false,
+      "properties": {
+        "available": {
+          "title": "Available",
+          "type": "boolean"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Description"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "source",
+        "available"
+      ],
+      "title": "Risk",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/Risk"
+      },
+      "maxItems": 37,
+      "minItems": 37,
+      "title": "Entries",
+      "type": "array"
+    },
+    "schema_version": {
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_sha256": {
+      "title": "Source Sha256",
+      "type": "string"
+    },
+    "source_status": {
+      "title": "Source Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "source_status",
+    "source_sha256",
+    "entries"
+  ],
+  "title": "RiskCatalog",
+  "type": "object"
+}
