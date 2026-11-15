@@ -1,0 +1,94 @@
+{
+  "$defs": {
+    "InputEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "default": "openapi-service",
+          "title": "Key",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "p001",
+            "openapi",
+            "architecture",
+            "python",
+            "kubernetes",
+            "compose",
+            "p002",
+            "p003",
+            "iac-reviewed",
+            "onyx",
+            "openhands",
+            "dependencies",
+            "env-example",
+            "dockerfile"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "origin": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Origin"
+        },
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Path"
+        },
+        "tenant_id": {
+          "default": "tenant-a",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "InputEntry",
+      "type": "object"
+    }
+  },
+  "$id": "urn:p004:input:1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "inputs": {
+      "items": {
+        "$ref": "#/$defs/InputEntry"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Inputs",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "p004-input-v1",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "inputs"
+  ],
+  "title": "InputConfig",
+  "type": "object"
+}

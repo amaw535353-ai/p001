@@ -1,0 +1,12 @@
+{
+  "engagement_id": "ENG-DEMO-A",
+  "approved_engagement_version": 1,
+  "policy_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+  "actor": "demo-a-assessor",
+  "tenant": "tenant-a",
+  "source_identity": "demo-a-workload",
+  "storage_id": "p003-private",
+  "checkpoint_completed": false,
+  "contact_available": false,
+  "redaction_confirmed": false
+}

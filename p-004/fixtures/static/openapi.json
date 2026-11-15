@@ -1,0 +1,9 @@
+{
+  "openapi": "3.1.0",
+  "info": {"title": "P004 synthetic local fixture", "version": "1.0.0"},
+  "paths": {
+    "/": {"get": {"responses": {"200": {"description": "Synthetic HTML"}}}},
+    "/api/catalog": {"get": {"responses": {"200": {"description": "Synthetic service metadata"}}}},
+    "/health": {"get": {"responses": {"200": {"description": "Synthetic readiness"}}}}
+  }
+}

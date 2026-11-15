@@ -1,0 +1,1 @@
+{"schema_version":"p004-traffic-fixture-v1","status":"fixture-only; NOT OBSERVED","requests":[{"method":"GET","url":"http://127.0.0.1:8764/","status":200},{"method":"GET","url":"http://127.0.0.1:8764/api/catalog","status":200}]}

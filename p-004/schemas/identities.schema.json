@@ -1,0 +1,415 @@
+{
+  "$defs": {
+    "Asset": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Address"
+        },
+        "asset_id": {
+          "pattern": "^[a-z][a-z0-9_-]{2,80}$",
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "attributes": {
+          "additionalProperties": true,
+          "title": "Attributes",
+          "type": "object"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "constraints": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Constraints",
+          "type": "array"
+        },
+        "discovery_method": {
+          "enum": [
+            "static",
+            "openapi",
+            "p001",
+            "p002",
+            "p003",
+            "playwright",
+            "zap",
+            "manual",
+            "guarded-http"
+          ],
+          "title": "Discovery Method",
+          "type": "string"
+        },
+        "environment_id": {
+          "default": "local-lab",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+          "title": "Environment Id",
+          "type": "string"
+        },
+        "evidence_claims": {
+          "items": {
+            "$ref": "#/$defs/EvidenceClaim"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Evidence Claims",
+          "type": "array"
+        },
+        "first_seen_utc": {
+          "title": "First Seen Utc",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z][a-z0-9_-]{2,80}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "client",
+            "tenant",
+            "human-identity",
+            "workload-identity",
+            "service-account",
+            "identity-provider",
+            "application",
+            "ui",
+            "api-service",
+            "model-endpoint",
+            "agent",
+            "mcp-tool",
+            "a2a-peer",
+            "connector",
+            "retrieval-pipeline",
+            "vector-db",
+            "database",
+            "object-store",
+            "document",
+            "container",
+            "cluster",
+            "namespace",
+            "cloud-emulator",
+            "external-integration",
+            "secret-manager",
+            "telemetry",
+            "ci-cd",
+            "other"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "last_seen_utc": {
+          "title": "Last Seen Utc",
+          "type": "string"
+        },
+        "requires_human_confirmation": {
+          "default": true,
+          "title": "Requires Human Confirmation",
+          "type": "boolean"
+        },
+        "source_refs": {
+          "items": {
+            "$ref": "#/$defs/Source"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Source Refs",
+          "type": "array"
+        },
+        "status": {
+          "default": "DECLARED",
+          "enum": [
+            "OBSERVED",
+            "DECLARED",
+            "INFERRED",
+            "UNVERIFIED",
+            "NOT_APPLICABLE",
+            "NOT_TESTED",
+            "BLOCKED",
+            "ERROR"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "source_refs",
+        "evidence_claims",
+        "discovery_method",
+        "confidence",
+        "first_seen_utc",
+        "last_seen_utc",
+        "asset_id",
+        "kind",
+        "label"
+      ],
+      "title": "Asset",
+      "type": "object"
+    },
+    "Context": {
+      "additionalProperties": false,
+      "properties": {
+        "approved_engagement_version": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Approved Engagement Version"
+        },
+        "dataset_seed": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dataset Seed"
+        },
+        "engagement_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Engagement Id"
+        },
+        "environment_id": {
+          "default": "local-lab",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+          "title": "Environment Id",
+          "type": "string"
+        },
+        "git_commit": {
+          "title": "Git Commit",
+          "type": "string"
+        },
+        "mode": {
+          "default": "offline",
+          "enum": [
+            "offline",
+            "guarded-http"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "outcome": {
+          "default": "COMPLETE",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "BLOCKED",
+            "ERROR"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "policy_digest": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Policy Digest"
+        },
+        "run_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "sanitization_status": {
+          "const": "allowlist-projection-and-redaction",
+          "default": "allowlist-projection-and-redaction",
+          "title": "Sanitization Status",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "timestamp_utc": {
+          "title": "Timestamp Utc",
+          "type": "string"
+        },
+        "tool_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Tool Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "timestamp_utc",
+        "git_commit"
+      ],
+      "title": "Context",
+      "type": "object"
+    },
+    "EvidenceClaim": {
+      "additionalProperties": false,
+      "properties": {
+        "discovery_method": {
+          "enum": [
+            "static",
+            "openapi",
+            "p001",
+            "p002",
+            "p003",
+            "playwright",
+            "zap",
+            "manual",
+            "guarded-http"
+          ],
+          "title": "Discovery Method",
+          "type": "string"
+        },
+        "measured_scope": {
+          "title": "Measured Scope",
+          "type": "string"
+        },
+        "source_ref": {
+          "$ref": "#/$defs/Source"
+        },
+        "status": {
+          "enum": [
+            "OBSERVED",
+            "DECLARED",
+            "INFERRED",
+            "UNVERIFIED",
+            "NOT_APPLICABLE",
+            "NOT_TESTED",
+            "BLOCKED",
+            "ERROR"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_ref",
+        "discovery_method",
+        "status",
+        "measured_scope"
+      ],
+      "title": "EvidenceClaim",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "line": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "pointer": {
+          "title": "Pointer",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "pointer"
+      ],
+      "title": "Source",
+      "type": "object"
+    }
+  },
+  "$id": "urn:p004:identities:1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "context": {
+      "$ref": "#/$defs/Context"
+    },
+    "records": {
+      "items": {
+        "$ref": "#/$defs/Asset"
+      },
+      "title": "Records",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "snapshot_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Snapshot Digest",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "context",
+    "snapshot_digest",
+    "records"
+  ],
+  "title": "identitiesExport",
+  "type": "object"
+}

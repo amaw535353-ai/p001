@@ -1,0 +1,27 @@
+name: P004 offline and local safety checks
+on:
+  push:
+    paths: ['p-004/**', 'p-003/src/**', 'p-002/src/**', '.github/workflows/p004-offline.yml']
+  pull_request:
+    paths: ['p-004/**', 'p-003/src/**', 'p-002/src/**', '.github/workflows/p004-offline.yml']
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: ./scripts/setup
+        working-directory: p-004
+      - name: Offline suite with Python socket and DNS operations disabled
+        run: PYTHONPATH=tests/no-network .venv/bin/python -m pytest tests -m 'not local_network'
+        working-directory: p-004
+      - name: Guarded loopback tests and complete engineering checks
+        run: make verify
+        working-directory: p-004
+      - name: Actual P001-P003 offline import with networking disabled
+        run: PYTHONPATH=tests/no-network .venv/bin/python scripts/demo.py --diff
+        working-directory: p-004

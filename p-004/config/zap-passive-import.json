@@ -1,0 +1,11 @@
+{
+  "schema_version": "p004-zap-passive-import-v1",
+  "mode": "safe",
+  "generate_traffic": false,
+  "active_scan": false,
+  "spider": false,
+  "ajax_spider": false,
+  "force_browse": false,
+  "fuzz": false,
+  "source": "guarded-sanitized-traffic-only"
+}
