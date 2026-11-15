@@ -1,0 +1,56 @@
+{
+  "id": "S08",
+  "schema_version": "1.0",
+  "title": "Lower-trust instruction fixture",
+  "hypothesis": {
+    "risk_ids": [
+      5
+    ]
+  },
+  "supporting_pids": [
+    "P-002"
+  ],
+  "subsystem": "document body",
+  "business_objective": "Prepare later RAG exercise",
+  "actor": "Untrusted document contributor",
+  "starting_state": "Validated clean two-tenant baseline at 2026-01-15T12:00:00Z; department-specific grants; no implicit sharing.",
+  "trust_boundary": "document data -> future consumer",
+  "assumptions": [
+    "Reference evaluator is intended policy, not native enforcement.",
+    "Public synthetic identities are not SSO."
+  ],
+  "steps": [
+    {
+      "operation": "untrusted-text",
+      "description": "Create a clearly inert lower-trust text artifact containing a fictional instruction and formula-like string. Never execute it."
+    }
+  ],
+  "positive_expected": "Effective authorized department member reads the live source at baseline time: ALLOW.",
+  "negative_expected": "Preserve text as data, with classification/trust labels; authorization expectations remain unchanged.",
+  "stop_reset": "Stop on baseline hash mismatch, non-owned output or unexpected network request. Reset only this scenario snapshot.",
+  "unsafe": true,
+  "status": "PREPARED",
+  "human_finding": null,
+  "remediation": null,
+  "retest": null,
+  "residual_risk": null,
+  "human_verifier": null,
+  "evidence_fields": [
+    "actor",
+    "resource",
+    "logical_time",
+    "expected",
+    "observed",
+    "http_status",
+    "evidence_sha256"
+  ],
+  "assets": [
+    "p002:tenant-a:hr:doc0"
+  ],
+  "logical_time": "2026-01-15T12:00:00Z",
+  "initial_entitlements": [
+    "Active departmental group read/update inherited from folder; explicit deny has precedence.",
+    "No cross-tenant grants; service requires separate active caller delegation."
+  ],
+  "test_oracle": "Preserve text as data, with classification/trust labels; authorization expectations remain unchanged."
+}

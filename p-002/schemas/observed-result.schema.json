@@ -1,0 +1,99 @@
+{
+  "$defs": {
+    "EvidencePointer": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "title": "EvidencePointer",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "actor": {
+      "title": "Actor",
+      "type": "string"
+    },
+    "evidence": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/EvidencePointer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "expected_decision_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expected Decision Id"
+    },
+    "http_status": {
+      "title": "Http Status",
+      "type": "integer"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "operation": {
+      "title": "Operation",
+      "type": "string"
+    },
+    "origin": {
+      "const": "OBSERVED_ENFORCEMENT",
+      "default": "OBSERVED_ENFORCEMENT",
+      "title": "Origin",
+      "type": "string"
+    },
+    "outcome": {
+      "enum": [
+        "ALLOW",
+        "DENY"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "platform": {
+      "title": "Platform",
+      "type": "string"
+    },
+    "utc": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "Utc",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "platform",
+    "actor",
+    "operation",
+    "http_status",
+    "outcome",
+    "utc"
+  ],
+  "title": "ObservedResult",
+  "type": "object"
+}

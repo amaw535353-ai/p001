@@ -1,0 +1,238 @@
+{
+  "$defs": {
+    "ScenarioStep": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "operation": {
+          "enum": [
+            "positive",
+            "cross-tenant",
+            "peer-department",
+            "revoke",
+            "delete-index",
+            "delegation",
+            "approval",
+            "untrusted-text",
+            "provenance",
+            "canary",
+            "ticket",
+            "annotation"
+          ],
+          "title": "Operation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "operation",
+        "description"
+      ],
+      "title": "ScenarioStep",
+      "type": "object"
+    },
+    "ThreatHypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "finding": {
+          "default": null,
+          "title": "Finding",
+          "type": "null"
+        },
+        "risk_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Risk Ids",
+          "type": "array"
+        },
+        "taxonomy_status": {
+          "const": "number-from-user-request; source-taxonomy-unavailable",
+          "default": "number-from-user-request; source-taxonomy-unavailable",
+          "title": "Taxonomy Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "risk_ids"
+      ],
+      "title": "ThreatHypothesis",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "actor": {
+      "title": "Actor",
+      "type": "string"
+    },
+    "assets": {
+      "items": {
+        "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+        "type": "string"
+      },
+      "title": "Assets",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "business_objective": {
+      "title": "Business Objective",
+      "type": "string"
+    },
+    "evidence_fields": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Fields",
+      "type": "array"
+    },
+    "human_finding": {
+      "default": null,
+      "title": "Human Finding",
+      "type": "null"
+    },
+    "human_verifier": {
+      "default": null,
+      "title": "Human Verifier",
+      "type": "null"
+    },
+    "hypothesis": {
+      "$ref": "#/$defs/ThreatHypothesis"
+    },
+    "id": {
+      "pattern": "^S(0[1-9]|1[0-2])$",
+      "title": "Id",
+      "type": "string"
+    },
+    "initial_entitlements": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Initial Entitlements",
+      "type": "array"
+    },
+    "logical_time": {
+      "default": "2026-01-15T12:00:00Z",
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "Logical Time",
+      "type": "string"
+    },
+    "negative_expected": {
+      "title": "Negative Expected",
+      "type": "string"
+    },
+    "positive_expected": {
+      "title": "Positive Expected",
+      "type": "string"
+    },
+    "remediation": {
+      "default": null,
+      "title": "Remediation",
+      "type": "null"
+    },
+    "residual_risk": {
+      "default": null,
+      "title": "Residual Risk",
+      "type": "null"
+    },
+    "retest": {
+      "default": null,
+      "title": "Retest",
+      "type": "null"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "starting_state": {
+      "title": "Starting State",
+      "type": "string"
+    },
+    "status": {
+      "default": "PREPARED",
+      "enum": [
+        "PREPARED",
+        "SEEDED",
+        "EXECUTED",
+        "OBSERVED",
+        "ASSESSED",
+        "RETESTED"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "steps": {
+      "items": {
+        "$ref": "#/$defs/ScenarioStep"
+      },
+      "minItems": 1,
+      "title": "Steps",
+      "type": "array"
+    },
+    "stop_reset": {
+      "title": "Stop Reset",
+      "type": "string"
+    },
+    "subsystem": {
+      "title": "Subsystem",
+      "type": "string"
+    },
+    "supporting_pids": {
+      "items": {
+        "const": "P-002",
+        "type": "string"
+      },
+      "title": "Supporting Pids",
+      "type": "array"
+    },
+    "test_oracle": {
+      "title": "Test Oracle",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "trust_boundary": {
+      "title": "Trust Boundary",
+      "type": "string"
+    },
+    "unsafe": {
+      "default": false,
+      "title": "Unsafe",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "hypothesis",
+    "supporting_pids",
+    "subsystem",
+    "business_objective",
+    "assets",
+    "initial_entitlements",
+    "test_oracle",
+    "actor",
+    "starting_state",
+    "trust_boundary",
+    "assumptions",
+    "steps",
+    "positive_expected",
+    "negative_expected",
+    "stop_reset",
+    "evidence_fields"
+  ],
+  "title": "Scenario",
+  "type": "object"
+}

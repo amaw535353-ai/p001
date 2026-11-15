@@ -1,0 +1,8 @@
+{
+  "profile": "standard",
+  "people_per_department": 6,
+  "documents_per_department": 10,
+  "requires_opt_in": false,
+  "implementation": "PROFILES in src/p002/generators/__init__.py",
+  "unlimited_override_supported": false
+}

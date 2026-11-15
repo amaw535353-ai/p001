@@ -1,0 +1,21 @@
+{
+  "approval_state": "approved",
+  "attributes": {},
+  "classification": "PUBLIC",
+  "created_at": "2026-01-01T00:00:00Z",
+  "deleted_at": null,
+  "department_id": "p002:tenant-a:hr",
+  "id": "p002:tenant-a:hr:doc0",
+  "kind": "document",
+  "lineage": [],
+  "notice": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+  "owner_id": "p002:tenant-a:hr:u0",
+  "parent_id": "p002:tenant-a:hr:folder",
+  "provenance_id": "p002:tenant-a:source",
+  "retention": "retain",
+  "schema_version": "1.0",
+  "status": "active",
+  "tenant_id": "p002:tenant-a",
+  "title": "Fictional Human Resources record 000",
+  "version": 1
+}

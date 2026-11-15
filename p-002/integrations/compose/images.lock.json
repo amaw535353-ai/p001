@@ -1,0 +1,7 @@
+{
+  "http": "python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f",
+  "label-studio": "heartexlabs/label-studio@sha256:afcc516a22775a39d0d66f4c2ddc95d01be3e3d3862b21fcf4f9de34b4ad4e12",
+  "nextcloud": "nextcloud@sha256:25d07d3091844c87c5f812037f5281b5d61fbb47f2c3f125274baabfe6f3ed1b",
+  "redmine": "redmine@sha256:a37d315fe55c3aafa5a38a9d1a02d7d761335a21a9b38a4b4037fecee607f28a",
+  "s3": "localstack/localstack@sha256:3ebc37595918b8accb852f8048fef2aff047d465167edd655528065b07bc364a"
+}

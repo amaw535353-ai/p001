@@ -1,0 +1,19 @@
+{
+  "commit": "936e6f6bc9e947508a414defda0787c06eca3f6a",
+  "docker": "29.9.2 rootless",
+  "label-studio": "1.23.0",
+  "locks": {
+    "requirements-sdv.lock": "c1837e606099d8a8c9c9f65d051b215e5aadfdcb1ce1d34fbb6896d0e8693b9f",
+    "requirements.lock": "cec332821693fd8d1ff4eda1f3b646c8cefb328238702c0a813ceeccc7af1821"
+  },
+  "nextcloud": "34.0.6",
+  "p002": "1.0.0",
+  "pydantic": "2.12.5",
+  "pytest": "9.0.3",
+  "python": "3.12.14",
+  "redmine": "6.1.6.stable",
+  "schema": "1.0",
+  "sdv": "2.2.0",
+  "source_config_sha256": "90a6e58901f010ce7606c4fda3fde6a8812db512e75f95a7e0d830a66a4f50af",
+  "torch": "2.15.0+cpu"
+}
