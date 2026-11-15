@@ -1,0 +1,68 @@
+{
+  "$id": "urn:p004:discovery-policy:1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "actor": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+      "title": "Actor",
+      "type": "string"
+    },
+    "approved_engagement_version": {
+      "minimum": 1,
+      "title": "Approved Engagement Version",
+      "type": "integer"
+    },
+    "checkpoint_completed": {
+      "title": "Checkpoint Completed",
+      "type": "boolean"
+    },
+    "contact_available": {
+      "title": "Contact Available",
+      "type": "boolean"
+    },
+    "engagement_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+      "title": "Engagement Id",
+      "type": "string"
+    },
+    "policy_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Policy Digest",
+      "type": "string"
+    },
+    "redaction_confirmed": {
+      "title": "Redaction Confirmed",
+      "type": "boolean"
+    },
+    "source_identity": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+      "title": "Source Identity",
+      "type": "string"
+    },
+    "storage_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+      "title": "Storage Id",
+      "type": "string"
+    },
+    "tenant": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+      "title": "Tenant",
+      "type": "string"
+    }
+  },
+  "required": [
+    "engagement_id",
+    "approved_engagement_version",
+    "policy_digest",
+    "actor",
+    "tenant",
+    "source_identity",
+    "storage_id",
+    "checkpoint_completed",
+    "contact_available",
+    "redaction_confirmed"
+  ],
+  "title": "LiveContext",
+  "type": "object"
+}

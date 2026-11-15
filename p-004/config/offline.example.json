@@ -1,0 +1,13 @@
+{
+  "schema_version": "p004-input-v1",
+  "inputs": [
+    {"kind": "p001"},
+    {"kind": "openapi", "path": "p-004/fixtures/static/openapi.json", "key": "p004-demo-api", "tenant_id": "tenant-a", "origin": "http://127.0.0.1:8764"},
+    {"kind": "architecture", "path": "p-004/fixtures/static/architecture.json"},
+    {"kind": "p002", "path": "p-004/.runtime/p002-seed2026.json"},
+    {"kind": "p003", "path": "p-003/examples/engagement-draft-a.json"},
+    {"kind": "dependencies", "path": "p-003/pyproject.toml"},
+    {"kind": "dockerfile", "path": "services/lab-api/Dockerfile"},
+    {"kind": "env-example", "path": ".env.example"}
+  ]
+}

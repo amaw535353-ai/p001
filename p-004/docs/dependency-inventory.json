@@ -1,0 +1,515 @@
+{
+  "dependencies": [
+    {
+      "license_classifiers": [
+        "MIT License"
+      ],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "annotated_types-0.8.0.dist-info/licenses/LICENSE": "fe1049884b1a0d9342901e88e07f32925d24b3121d9972b6a6805fb9824b095d"
+      },
+      "license_summary": "",
+      "name": "annotated-types",
+      "requires": [],
+      "version": "0.8.0"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "attrs-26.1.0.dist-info/licenses/LICENSE": "882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f"
+      },
+      "license_summary": "",
+      "name": "attrs",
+      "requires": [],
+      "version": "26.1.0"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MPL-2.0",
+      "license_file_sha256": {
+        "hypothesis-6.151.9.dist-info/licenses/LICENSE.txt": "ac89037bac63550644dce8cf32c6765e5fab9dc1a1ce94b89f8a805f341a6750"
+      },
+      "license_summary": "",
+      "name": "hypothesis",
+      "requires": [
+        "exceptiongroup>=1.0.0; python_version < \"3.11\"",
+        "sortedcontainers<3.0.0,>=2.1.0",
+        "click>=7.0; extra == \"cli\"",
+        "black>=20.8b0; extra == \"cli\"",
+        "rich>=9.0.0; extra == \"cli\"",
+        "libcst>=0.3.16; extra == \"codemods\"",
+        "black>=20.8b0; extra == \"ghostwriter\"",
+        "pytz>=2014.1; extra == \"pytz\"",
+        "python-dateutil>=1.4; extra == \"dateutil\"",
+        "lark>=0.10.1; extra == \"lark\"",
+        "numpy>=1.21.6; extra == \"numpy\"",
+        "pandas>=1.1; extra == \"pandas\"",
+        "pytest>=4.6; extra == \"pytest\"",
+        "dpcontracts>=0.4; extra == \"dpcontracts\"",
+        "redis>=3.0.0; extra == \"redis\"",
+        "hypothesis-crosshair>=0.0.27; extra == \"crosshair\"",
+        "crosshair-tool>=0.0.102; extra == \"crosshair\"",
+        "tzdata>=2025.3; (sys_platform == \"win32\" or sys_platform == \"emscripten\") and extra == \"zoneinfo\"",
+        "django>=4.2; extra == \"django\"",
+        "watchdog>=4.0.0; extra == \"watchdog\"",
+        "black>=20.8b0; extra == \"all\"",
+        "click>=7.0; extra == \"all\"",
+        "crosshair-tool>=0.0.102; extra == \"all\"",
+        "django>=4.2; extra == \"all\"",
+        "dpcontracts>=0.4; extra == \"all\"",
+        "hypothesis-crosshair>=0.0.27; extra == \"all\"",
+        "lark>=0.10.1; extra == \"all\"",
+        "libcst>=0.3.16; extra == \"all\"",
+        "numpy>=1.21.6; extra == \"all\"",
+        "pandas>=1.1; extra == \"all\"",
+        "pytest>=4.6; extra == \"all\"",
+        "python-dateutil>=1.4; extra == \"all\"",
+        "pytz>=2014.1; extra == \"all\"",
+        "redis>=3.0.0; extra == \"all\"",
+        "rich>=9.0.0; extra == \"all\"",
+        "tzdata>=2025.3; (sys_platform == \"win32\" or sys_platform == \"emscripten\") and extra == \"all\"",
+        "watchdog>=4.0.0; extra == \"all\""
+      ],
+      "version": "6.151.9"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "iniconfig-2.3.1.dist-info/licenses/LICENSE": "3409fa91f7ace557894632676656e32264fe5ef7581535725dc9a23774551bd4"
+      },
+      "license_summary": "",
+      "name": "iniconfig",
+      "requires": [],
+      "version": "2.3.1"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "jsonschema-4.26.0.dist-info/licenses/COPYING": "4f92a015a13c4d1a040bef018aa13430b4f1bc73b41b16bb846c346766de7439"
+      },
+      "license_summary": "",
+      "name": "jsonschema",
+      "requires": [
+        "attrs>=22.2.0",
+        "jsonschema-specifications>=2023.03.6",
+        "referencing>=0.28.4",
+        "rpds-py>=0.25.0",
+        "fqdn; extra == 'format'",
+        "idna; extra == 'format'",
+        "isoduration; extra == 'format'",
+        "jsonpointer>1.13; extra == 'format'",
+        "rfc3339-validator; extra == 'format'",
+        "rfc3987; extra == 'format'",
+        "uri-template; extra == 'format'",
+        "webcolors>=1.11; extra == 'format'",
+        "fqdn; extra == 'format-nongpl'",
+        "idna; extra == 'format-nongpl'",
+        "isoduration; extra == 'format-nongpl'",
+        "jsonpointer>1.13; extra == 'format-nongpl'",
+        "rfc3339-validator; extra == 'format-nongpl'",
+        "rfc3986-validator>0.1.0; extra == 'format-nongpl'",
+        "rfc3987-syntax>=1.1.0; extra == 'format-nongpl'",
+        "uri-template; extra == 'format-nongpl'",
+        "webcolors>=24.6.0; extra == 'format-nongpl'"
+      ],
+      "version": "4.26.0"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "jsonschema_specifications-2025.9.1.dist-info/licenses/COPYING": "42dcd63495f87b4eb7c7757afa379bb55a53f94afd7a5f657d9adf57236e515c"
+      },
+      "license_summary": "",
+      "name": "jsonschema-specifications",
+      "requires": [
+        "referencing>=0.31.0"
+      ],
+      "version": "2025.9.1"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "librt-0.16.0.dist-info/licenses/LICENSE": "88f9e379c684580053c58e75e296ca2eb243b6edcc6e5357f247310e96eeef8a"
+      },
+      "license_summary": "",
+      "name": "librt",
+      "requires": [],
+      "version": "0.16.0"
+    },
+    {
+      "license_classifiers": [
+        "MIT License"
+      ],
+      "license_expression": null,
+      "license_file_sha256": {
+        "mypy-1.19.1.dist-info/licenses/LICENSE": "fdf1cd17f50e1305ed8cfd37467312d27a984648dba622cef70573b5512e4e1b",
+        "mypy/typeshed/LICENSE": "295f8538c94ae5c3043301cf7cff1c852dab6a786a8ddee471e061b40d5ecabe"
+      },
+      "license_summary": "MIT",
+      "name": "mypy",
+      "requires": [
+        "typing_extensions>=4.6.0",
+        "mypy_extensions>=1.0.0",
+        "pathspec>=0.9.0",
+        "tomli>=1.1.0; python_version < \"3.11\"",
+        "librt>=0.6.2; platform_python_implementation != \"PyPy\"",
+        "psutil>=4.0; extra == \"dmypy\"",
+        "setuptools>=50; extra == \"mypyc\"",
+        "lxml; extra == \"reports\"",
+        "pip; extra == \"install-types\"",
+        "orjson; extra == \"faster-cache\""
+      ],
+      "version": "1.19.1"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "mypy_extensions-1.2.0.dist-info/licenses/LICENSE": "a50450da1d53cd777b80ced77c58ff96abe0ccd879706bd142c3ec20e245f0b4"
+      },
+      "license_summary": "",
+      "name": "mypy_extensions",
+      "requires": [],
+      "version": "1.2.0"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "Apache-2.0 OR BSD-2-Clause",
+      "license_file_sha256": {
+        "packaging-26.3.dist-info/licenses/LICENSE": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48",
+        "packaging-26.3.dist-info/licenses/LICENSE.APACHE": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+        "packaging-26.3.dist-info/licenses/LICENSE.BSD": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5",
+        "packaging/licenses/__init__.py": "590d12eee73ddbec53b4e9ee5bfc64d9cb3aacb4940e8ebcba260757ce56740b",
+        "packaging/licenses/__pycache__/__init__.cpython-312.pyc": "0402b0a90814ed64d724deff6c601675ff5b891e8c8497a79ced99d2e80fddf4",
+        "packaging/licenses/__pycache__/_spdx.cpython-312.pyc": "c1365450cad3d59811fe5a7be3c0f56997c41c4a85833166b0eb7663f1e7076f",
+        "packaging/licenses/_spdx.py": "596ec35e2ca0ebcba9fd8343ff0a51625af548786257815f24b41f7e08613314"
+      },
+      "license_summary": "",
+      "name": "packaging",
+      "requires": [],
+      "version": "26.3"
+    },
+    {
+      "license_classifiers": [
+        "Mozilla Public License 2.0 (MPL 2.0)"
+      ],
+      "license_expression": null,
+      "license_file_sha256": {
+        "pathspec-1.1.1.dist-info/licenses/LICENSE": "fab3dd6bdab226f1c08630b1dd917e11fcb4ec5e1e020e2c16f83a0a13863e85"
+      },
+      "license_summary": "",
+      "name": "pathspec",
+      "requires": [
+        "hyperscan >=0.7 ; extra == \"hyperscan\"",
+        "typing-extensions >=4 ; extra == \"optional\"",
+        "google-re2 >=1.1 ; extra == \"re2\""
+      ],
+      "version": "1.1.1"
+    },
+    {
+      "license_classifiers": [
+        "MIT License"
+      ],
+      "license_expression": null,
+      "license_file_sha256": {
+        "pip-25.0.1.dist-info/LICENSE.txt": "634300a669d49aeae65b12c6c48c924c51a4cdf3d1ff086dc3456dc8bcaa2104",
+        "pip/_vendor/packaging/licenses/__init__.py": "035d7af85538f7f0f3e35eb6338cb5b8089937846075cf3717135df048e57ea2",
+        "pip/_vendor/packaging/licenses/__pycache__/__init__.cpython-312.pyc": "ad80c1dd188f9eca8714f097e0e8f0f275452606ed86ca21decac7431066a920",
+        "pip/_vendor/packaging/licenses/__pycache__/_spdx.cpython-312.pyc": "66bb14099c7db877de4dd96997a1ded1fe063ce76798bd03c166361820c405c5",
+        "pip/_vendor/packaging/licenses/_spdx.py": "a009b5ced3c5c25b2608a7bb94002cbff38839f4b57160eef5b34191ebbeda7b"
+      },
+      "license_summary": "MIT",
+      "name": "pip",
+      "requires": [],
+      "version": "25.0.1"
+    },
+    {
+      "license_classifiers": [
+        "MIT License"
+      ],
+      "license_expression": null,
+      "license_file_sha256": {
+        "pluggy-1.7.0.dist-info/licenses/LICENSE": "d6b65e6c213a5d0b577911d34d6e5949b9f59d76c238c5071a2f3fc16cfb2606"
+      },
+      "license_summary": "MIT",
+      "name": "pluggy",
+      "requires": [],
+      "version": "1.7.0"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "pydantic-2.12.5.dist-info/licenses/LICENSE": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3"
+      },
+      "license_summary": "",
+      "name": "pydantic",
+      "requires": [
+        "annotated-types>=0.6.0",
+        "pydantic-core==2.41.5",
+        "typing-extensions>=4.14.1",
+        "typing-inspection>=0.4.2",
+        "email-validator>=2.0.0; extra == 'email'",
+        "tzdata; (python_version >= '3.9' and platform_system == 'Windows') and extra == 'timezone'"
+      ],
+      "version": "2.12.5"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "pydantic_core-2.41.5.dist-info/licenses/LICENSE": "2afdd30d54b4d62b6f488a6bcc1546e84ec5061f13f4209c03d012348783795a"
+      },
+      "license_summary": "",
+      "name": "pydantic_core",
+      "requires": [
+        "typing-extensions>=4.14.1"
+      ],
+      "version": "2.41.5"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "BSD-2-Clause",
+      "license_file_sha256": {
+        "pygments-2.21.0.dist-info/licenses/AUTHORS": "71a83872ad82f57be692cf827e048e2cd51d45169cfa1ea3f28706d97a872c0f",
+        "pygments-2.21.0.dist-info/licenses/LICENSE": "a9d66f1d526df02e29dce73436d34e56e8632f46c275bbdffc70569e882f9f17"
+      },
+      "license_summary": "",
+      "name": "Pygments",
+      "requires": [
+        "colorama>=0.4.6; extra == 'windows-terminal'"
+      ],
+      "version": "2.21.0"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "pytest-9.0.3.dist-info/licenses/LICENSE": "ca836a5f9ecca3b2f350230faa20a48fb8b145653b5568d784862df864706b9b"
+      },
+      "license_summary": "",
+      "name": "pytest",
+      "requires": [
+        "colorama>=0.4; sys_platform == \"win32\"",
+        "exceptiongroup>=1; python_version < \"3.11\"",
+        "iniconfig>=1.0.1",
+        "packaging>=22",
+        "pluggy<2,>=1.5",
+        "pygments>=2.7.2",
+        "tomli>=1; python_version < \"3.11\"",
+        "argcomplete; extra == \"dev\"",
+        "attrs>=19.2; extra == \"dev\"",
+        "hypothesis>=3.56; extra == \"dev\"",
+        "mock; extra == \"dev\"",
+        "requests; extra == \"dev\"",
+        "setuptools; extra == \"dev\"",
+        "xmlschema; extra == \"dev\""
+      ],
+      "version": "9.0.3"
+    },
+    {
+      "license_classifiers": [
+        "MIT License"
+      ],
+      "license_expression": null,
+      "license_file_sha256": {
+        "pyyaml-6.0.3.dist-info/licenses/LICENSE": "8d3928f9dc4490fd635707cb88eb26bd764102a7282954307d3e5167a577e8a4"
+      },
+      "license_summary": "MIT",
+      "name": "PyYAML",
+      "requires": [],
+      "version": "6.0.3"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "referencing-0.37.0.dist-info/licenses/COPYING": "42dcd63495f87b4eb7c7757afa379bb55a53f94afd7a5f657d9adf57236e515c"
+      },
+      "license_summary": "",
+      "name": "referencing",
+      "requires": [
+        "attrs>=22.2.0",
+        "rpds-py>=0.7.0",
+        "typing-extensions>=4.4.0; python_version < '3.13'"
+      ],
+      "version": "0.37.0"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "Apache-2.0 AND CNRI-Python",
+      "license_file_sha256": {
+        "regex-2026.11.9.dist-info/licenses/LICENSE.txt": "bff55ef4cdcc8c14ce259f8e8ab60e264418440d6335f4dc138273fbd506144d"
+      },
+      "license_summary": "",
+      "name": "regex",
+      "requires": [],
+      "version": "2026.11.9"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "rpds_py-2026.9.1.dist-info/licenses/LICENSE": "314e4e91be3baa93c0fb4bccc9e4e97cd643eb839b065af921782c2175fe9909"
+      },
+      "license_summary": "",
+      "name": "rpds-py",
+      "requires": [],
+      "version": "2026.9.1"
+    },
+    {
+      "license_classifiers": [
+        "MIT License"
+      ],
+      "license_expression": null,
+      "license_file_sha256": {
+        "ruff-0.15.6.dist-info/licenses/LICENSE": "2597d854122b77ddc71971564ca2350a37608575ce324adc5650a2b2051c8f18"
+      },
+      "license_summary": "",
+      "name": "ruff",
+      "requires": [],
+      "version": "0.15.6"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "setuptools-84.1.0.dist-info/licenses/LICENSE": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
+        "setuptools/_vendor/autocommand-2.2.2.dist-info/LICENSE": "ade78d04982d69972d444a8e14a94f87a2334dd3855cc80348ea8e240aa0df2d",
+        "setuptools/_vendor/backports.tarfile-1.2.0.dist-info/LICENSE": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
+        "setuptools/_vendor/importlib_metadata-8.7.1.dist-info/licenses/LICENSE": "458502e12d97bbf64438606a20044aa85eb05fb0a8a807bb35dbec253fd1fc04",
+        "setuptools/_vendor/jaraco.text-4.0.0.dist-info/LICENSE": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
+        "setuptools/_vendor/jaraco_context-6.1.0.dist-info/licenses/LICENSE": "9755a18519666e5f0f4cae3daad3d7012bcae48a600b31237d75e9fe134e6683",
+        "setuptools/_vendor/jaraco_functools-4.4.0.dist-info/licenses/LICENSE": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d",
+        "setuptools/_vendor/more_itertools-10.8.0.dist-info/licenses/LICENSE": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46",
+        "setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48",
+        "setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE.APACHE": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+        "setuptools/_vendor/packaging-26.0.dist-info/licenses/LICENSE.BSD": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5",
+        "setuptools/_vendor/packaging/licenses/__init__.py": "4f05cb1d9097c1281d17044b3f15bad364fa99289eba74851cce9fa7ca605bbf",
+        "setuptools/_vendor/packaging/licenses/__pycache__/__init__.cpython-312.pyc": "eb600057af3f35e2981596f55a0c275ecd3acc36945e285e7e5fbf27044dfe57",
+        "setuptools/_vendor/packaging/licenses/__pycache__/_spdx.cpython-312.pyc": "2c9c52ff4211c43e99ad99fbb603d02e85cdef66190e86822fa5a2098d5644b2",
+        "setuptools/_vendor/packaging/licenses/_spdx.py": "596ec35e2ca0ebcba9fd8343ff0a51625af548786257815f24b41f7e08613314",
+        "setuptools/_vendor/platformdirs-4.4.0.dist-info/licenses/LICENSE": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6",
+        "setuptools/_vendor/tomli-2.4.0.dist-info/licenses/LICENSE": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe",
+        "setuptools/_vendor/wheel-0.46.3.dist-info/licenses/LICENSE.txt": "30c23618679108f3e8ea1d2a658c7ca417bdfc891c98ef1a89fa4ff0c9828654",
+        "setuptools/_vendor/zipp-3.23.0.dist-info/licenses/LICENSE": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d"
+      },
+      "license_summary": "",
+      "name": "setuptools",
+      "requires": [
+        "pytest!=8.1.*,>=6; extra == \"test\"",
+        "virtualenv>=13.0.0; extra == \"test\"",
+        "wheel>=0.44.0; extra == \"test\"",
+        "pip>=19.1; extra == \"test\"",
+        "packaging>=24.2; extra == \"test\"",
+        "jaraco.envs>=2.2; extra == \"test\"",
+        "pytest-xdist>=3; extra == \"test\"",
+        "jaraco.path>=3.7.2; extra == \"test\"",
+        "build[virtualenv]>=1.0.3; extra == \"test\"",
+        "filelock>=3.4.0; extra == \"test\"",
+        "ini2toml[lite]>=0.14; extra == \"test\"",
+        "tomli-w>=1.0.0; extra == \"test\"",
+        "pytest-timeout; extra == \"test\"",
+        "pytest-perf; sys_platform != \"cygwin\" and extra == \"test\"",
+        "jaraco.develop>=7.21; (python_version >= \"3.9\" and sys_platform != \"cygwin\") and extra == \"test\"",
+        "pytest-home>=0.5; extra == \"test\"",
+        "pytest-subprocess; extra == \"test\"",
+        "pyproject-hooks!=1.1; extra == \"test\"",
+        "jaraco.test>=5.5; extra == \"test\"",
+        "sphinx>=3.5; extra == \"doc\"",
+        "jaraco.packaging>=9.3; extra == \"doc\"",
+        "rst.linker>=1.9; extra == \"doc\"",
+        "furo; extra == \"doc\"",
+        "sphinx-lint; extra == \"doc\"",
+        "jaraco.tidelift>=1.4; extra == \"doc\"",
+        "pygments-github-lexers==0.0.5; extra == \"doc\"",
+        "sphinx-favicon; extra == \"doc\"",
+        "sphinx-inline-tabs; extra == \"doc\"",
+        "sphinx-reredirects; extra == \"doc\"",
+        "sphinxcontrib-towncrier; extra == \"doc\"",
+        "sphinx-notfound-page<2,>=1; extra == \"doc\"",
+        "pyproject-hooks!=1.1; extra == \"doc\"",
+        "towncrier<24.7; extra == \"doc\"",
+        "packaging>=24.2; extra == \"core\"",
+        "more_itertools>=8.8; extra == \"core\"",
+        "jaraco.text>=3.7; extra == \"core\"",
+        "importlib_metadata>=6; python_version < \"3.10\" and extra == \"core\"",
+        "tomli>=2.0.1; python_version < \"3.11\" and extra == \"core\"",
+        "wheel>=0.43.0; extra == \"core\"",
+        "jaraco.functools>=4; extra == \"core\"",
+        "more_itertools; extra == \"core\"",
+        "pytest-checkdocs>=2.14; extra == \"check\"",
+        "pytest-ruff>=0.2.1; sys_platform != \"cygwin\" and extra == \"check\"",
+        "ruff>=0.13.0; sys_platform != \"cygwin\" and extra == \"check\"",
+        "pytest-cov; extra == \"cover\"",
+        "pytest-enabler>=3.4; extra == \"enabler\"",
+        "pytest-mypy>=1.0.1; platform_python_implementation != \"PyPy\" and extra == \"type\"",
+        "mypy==1.18.*; extra == \"type\"",
+        "importlib_metadata>=7.0.2; python_version < \"3.10\" and extra == \"type\"",
+        "jaraco.develop>=7.21; sys_platform != \"cygwin\" and extra == \"type\""
+      ],
+      "version": "84.1.0"
+    },
+    {
+      "license_classifiers": [
+        "Apache Software License"
+      ],
+      "license_expression": null,
+      "license_file_sha256": {
+        "sortedcontainers-2.4.0.dist-info/LICENSE": "1db7cae7fce6452e2e608e401a0f953e0133e4c2d75db69fb8ae851d2086f5b6"
+      },
+      "license_summary": "Apache 2.0",
+      "name": "sortedcontainers",
+      "requires": [],
+      "version": "2.4.0"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "Apache-2.0",
+      "license_file_sha256": {
+        "types_pyyaml-6.0.12.20261113.dist-info/licenses/LICENSE": "295f8538c94ae5c3043301cf7cff1c852dab6a786a8ddee471e061b40d5ecabe"
+      },
+      "license_summary": "",
+      "name": "types-PyYAML",
+      "requires": [],
+      "version": "6.0.12.20261113"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "MIT",
+      "license_file_sha256": {
+        "typing_inspection-0.4.5.dist-info/licenses/LICENSE": "804b59b25f2c31bd278f9202a19ae49a3945aa2664387e2d0a128c7cacc61ec3"
+      },
+      "license_summary": "",
+      "name": "typing-inspection",
+      "requires": [
+        "typing-extensions>=4.15.0"
+      ],
+      "version": "0.4.5"
+    },
+    {
+      "license_classifiers": [],
+      "license_expression": "PSF-2.0",
+      "license_file_sha256": {
+        "typing_extensions-4.16.0.dist-info/licenses/LICENSE": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+      },
+      "license_summary": "",
+      "name": "typing_extensions",
+      "requires": [],
+      "version": "4.16.0"
+    }
+  ],
+  "optional_not_bundled": [
+    "Onyx",
+    "OpenHands",
+    "ZAP",
+    "Playwright browsers"
+  ],
+  "repository_license": "NOT ASSUMED; human owner review required",
+  "source": "actual installed Python distribution metadata; not legal advice"
+}

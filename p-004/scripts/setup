@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+cd "$(dirname "$0")/.."
+python3 -c 'import sys; assert sys.version_info[:2] == (3,12), "Python 3.12 required"'
+python3 -m venv .venv
+mkdir -p .runtime/wheels
+if [[ "${P004_OFFLINE:-0}" != 1 ]]; then
+  .venv/bin/python -m pip download --require-hashes --only-binary=:all: --dest .runtime/wheels -r requirements.lock
+fi
+.venv/bin/python -m pip install --no-index --find-links=.runtime/wheels --require-hashes --only-binary=:all: -r requirements.lock
+.venv/bin/python -m pip install --no-index --no-deps --no-build-isolation -e . -e ../p-002 -e ../p-003
+.venv/bin/python -m pip check

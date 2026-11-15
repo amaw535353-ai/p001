@@ -1,0 +1,53 @@
+{
+  "$id": "urn:p004:owned-target:1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "instance_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+      "title": "Instance Id",
+      "type": "string"
+    },
+    "origin": {
+      "title": "Origin",
+      "type": "string"
+    },
+    "owner": {
+      "default": "p004-local-fixture",
+      "title": "Owner",
+      "type": "string"
+    },
+    "safe_paths": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Safe Paths",
+      "type": "array"
+    },
+    "schema_version": {
+      "default": "p004-owned-target-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "synthetic_only": {
+      "title": "Synthetic Only",
+      "type": "boolean"
+    },
+    "tenant_id": {
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+      "title": "Tenant Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "instance_id",
+    "origin",
+    "tenant_id",
+    "safe_paths",
+    "synthetic_only"
+  ],
+  "title": "OwnedTarget",
+  "type": "object"
+}

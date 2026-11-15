@@ -1,0 +1,1 @@
+{"schema_version":"p004-architecture-v1","assets":[{"key":"openhands-contract","kind":"agent","tenant_id":"tenant-a","label":"OpenHands optional adapter contract ONLY","attributes":{"vendor_version":"NOT VERIFIED","sandbox_enforcement":"NOT TESTED"}}],"flows":[]}

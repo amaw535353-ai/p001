@@ -1,0 +1,240 @@
+{
+  "$defs": {
+    "AssetDeclaration": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Address"
+        },
+        "attributes": {
+          "additionalProperties": true,
+          "title": "Attributes",
+          "type": "object"
+        },
+        "endpoints": {
+          "items": {
+            "$ref": "#/$defs/EndpointDeclaration"
+          },
+          "maxItems": 100,
+          "title": "Endpoints",
+          "type": "array"
+        },
+        "key": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+          "title": "Key",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "client",
+            "tenant",
+            "human-identity",
+            "workload-identity",
+            "service-account",
+            "identity-provider",
+            "application",
+            "ui",
+            "api-service",
+            "model-endpoint",
+            "agent",
+            "mcp-tool",
+            "a2a-peer",
+            "connector",
+            "retrieval-pipeline",
+            "vector-db",
+            "database",
+            "object-store",
+            "document",
+            "container",
+            "cluster",
+            "namespace",
+            "cloud-emulator",
+            "external-integration",
+            "secret-manager",
+            "telemetry",
+            "ci-cd",
+            "other"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "tenant_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "kind",
+        "tenant_id"
+      ],
+      "title": "AssetDeclaration",
+      "type": "object"
+    },
+    "EndpointDeclaration": {
+      "additionalProperties": false,
+      "properties": {
+        "auth": {
+          "default": "unknown",
+          "enum": [
+            "declared",
+            "unknown",
+            "not-applicable"
+          ],
+          "title": "Auth",
+          "type": "string"
+        },
+        "method": {
+          "enum": [
+            "GET",
+            "HEAD",
+            "OPTIONS",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "method"
+      ],
+      "title": "EndpointDeclaration",
+      "type": "object"
+    },
+    "FlowDeclaration": {
+      "additionalProperties": false,
+      "properties": {
+        "boundary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Boundary"
+        },
+        "kind": {
+          "enum": [
+            "invokes",
+            "authenticates",
+            "authorizes",
+            "delegates",
+            "retrieves",
+            "reads",
+            "writes",
+            "stores",
+            "indexes",
+            "transmits",
+            "emits-telemetry",
+            "hosts",
+            "exposed-via",
+            "candidate-trust-boundary-crossing"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "source": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+          "title": "Source",
+          "type": "string"
+        },
+        "target": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+          "title": "Target",
+          "type": "string"
+        },
+        "target_tenant": {
+          "anyOf": [
+            {
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target Tenant"
+        },
+        "tenant_id": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9:_.-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tenant_id",
+        "source",
+        "target",
+        "kind"
+      ],
+      "title": "FlowDeclaration",
+      "type": "object"
+    }
+  },
+  "$id": "urn:p004:architecture:1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assets": {
+      "items": {
+        "$ref": "#/$defs/AssetDeclaration"
+      },
+      "maxItems": 5000,
+      "title": "Assets",
+      "type": "array"
+    },
+    "flows": {
+      "items": {
+        "$ref": "#/$defs/FlowDeclaration"
+      },
+      "maxItems": 10000,
+      "title": "Flows",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "p004-architecture-v1",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "assets"
+  ],
+  "title": "ArchitectureDeclaration",
+  "type": "object"
+}

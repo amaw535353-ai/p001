@@ -1,0 +1,1 @@
+{"schema_version":"p004-architecture-v1","assets":[{"key":"onyx-contract","kind":"application","tenant_id":"tenant-a","label":"Onyx optional adapter contract ONLY","attributes":{"vendor_version":"NOT VERIFIED","edition":"NOT VERIFIED","native_permissions":"NOT TESTED"}}],"flows":[]}

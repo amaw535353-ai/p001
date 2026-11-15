@@ -1,0 +1,15 @@
+{
+  "schema_version": "p004-architecture-v1",
+  "assets": [
+    {"key": "browser", "kind": "ui", "tenant_id": "tenant-a", "label": "Synthetic browser context"},
+    {"key": "fixture-api", "kind": "api-service", "tenant_id": "tenant-a", "label": "Synthetic fixture API", "address": "http://127.0.0.1:8764"},
+    {"key": "tool", "kind": "mcp-tool", "tenant_id": "tenant-a", "label": "Declared nonfunctional tool fixture", "attributes": {"runtime": "NOT TESTED"}},
+    {"key": "retrieval", "kind": "retrieval-pipeline", "tenant_id": "tenant-a", "label": "Declared nonfunctional retrieval fixture"},
+    {"key": "documents", "kind": "object-store", "tenant_id": "tenant-a", "label": "Synthetic store fixture"}
+  ],
+  "flows": [
+    {"tenant_id": "tenant-a", "source": "browser", "target": "fixture-api", "kind": "invokes", "boundary": "browser to API; declaration only"},
+    {"tenant_id": "tenant-a", "source": "tool", "target": "retrieval", "kind": "invokes", "boundary": "tool to retrieval; fixture only"},
+    {"tenant_id": "tenant-a", "source": "retrieval", "target": "documents", "kind": "retrieves", "boundary": "retrieval to data store; fixture only"}
+  ]
+}
