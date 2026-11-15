@@ -1,0 +1,15 @@
+.venv/
+.runtime/
+generated/
+evidence/*
+!evidence/README.md
+__pycache__/
+*.pyc
+.pytest_cache/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.env
+secrets/
+.venv-core/

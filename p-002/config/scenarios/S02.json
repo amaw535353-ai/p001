@@ -1,0 +1,56 @@
+{
+  "id": "S02",
+  "schema_version": "1.0",
+  "title": "Cross-tenant read and update",
+  "hypothesis": {
+    "risk_ids": [
+      35
+    ]
+  },
+  "supporting_pids": [
+    "P-002"
+  ],
+  "subsystem": "documents",
+  "business_objective": "Tenant isolation",
+  "actor": "Other-tenant user",
+  "starting_state": "Validated clean two-tenant baseline at 2026-01-15T12:00:00Z; department-specific grants; no implicit sharing.",
+  "trust_boundary": "tenant -> tenant",
+  "assumptions": [
+    "Reference evaluator is intended policy, not native enforcement.",
+    "Public synthetic identities are not SSO."
+  ],
+  "steps": [
+    {
+      "operation": "cross-tenant",
+      "description": "Prepare an other-tenant actor read/update case, without creating any implicit cross-tenant share."
+    }
+  ],
+  "positive_expected": "Effective authorized department member reads the live source at baseline time: ALLOW.",
+  "negative_expected": "DENY read/update across tenant boundary; ALLOW resource owner.",
+  "stop_reset": "Stop on baseline hash mismatch, non-owned output or unexpected network request. Reset only this scenario snapshot.",
+  "unsafe": false,
+  "status": "PREPARED",
+  "human_finding": null,
+  "remediation": null,
+  "retest": null,
+  "residual_risk": null,
+  "human_verifier": null,
+  "evidence_fields": [
+    "actor",
+    "resource",
+    "logical_time",
+    "expected",
+    "observed",
+    "http_status",
+    "evidence_sha256"
+  ],
+  "assets": [
+    "p002:tenant-a:hr:doc0"
+  ],
+  "logical_time": "2026-01-15T12:00:00Z",
+  "initial_entitlements": [
+    "Active departmental group read/update inherited from folder; explicit deny has precedence.",
+    "No cross-tenant grants; service requires separate active caller delegation."
+  ],
+  "test_oracle": "DENY read/update across tenant boundary; ALLOW resource owner."
+}

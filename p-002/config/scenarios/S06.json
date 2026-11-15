@@ -1,0 +1,57 @@
+{
+  "id": "S06",
+  "schema_version": "1.0",
+  "title": "Scoped service delegation expiry",
+  "hypothesis": {
+    "risk_ids": [
+      1,
+      2
+    ]
+  },
+  "supporting_pids": [
+    "P-002"
+  ],
+  "subsystem": "service delegation",
+  "business_objective": "Bounded caller delegation",
+  "actor": "Synthetic service and caller",
+  "starting_state": "Validated clean two-tenant baseline at 2026-01-15T12:00:00Z; department-specific grants; no implicit sharing.",
+  "trust_boundary": "caller -> service -> resource",
+  "assumptions": [
+    "Reference evaluator is intended policy, not native enforcement.",
+    "Public synthetic identities are not SSO."
+  ],
+  "steps": [
+    {
+      "operation": "delegation",
+      "description": "Compare active read-only delegation with expired/no-caller/wrong-action contexts."
+    }
+  ],
+  "positive_expected": "Effective authorized department member reads the live source at baseline time: ALLOW.",
+  "negative_expected": "ALLOW in-scope active caller delegation; DENY expired or wrong scope.",
+  "stop_reset": "Stop on baseline hash mismatch, non-owned output or unexpected network request. Reset only this scenario snapshot.",
+  "unsafe": false,
+  "status": "PREPARED",
+  "human_finding": null,
+  "remediation": null,
+  "retest": null,
+  "residual_risk": null,
+  "human_verifier": null,
+  "evidence_fields": [
+    "actor",
+    "resource",
+    "logical_time",
+    "expected",
+    "observed",
+    "http_status",
+    "evidence_sha256"
+  ],
+  "assets": [
+    "p002:tenant-a:hr:doc0"
+  ],
+  "logical_time": "2026-01-15T12:00:00Z",
+  "initial_entitlements": [
+    "Active departmental group read/update inherited from folder; explicit deny has precedence.",
+    "No cross-tenant grants; service requires separate active caller delegation."
+  ],
+  "test_oracle": "ALLOW in-scope active caller delegation; DENY expired or wrong scope."
+}

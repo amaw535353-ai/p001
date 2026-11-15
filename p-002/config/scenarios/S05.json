@@ -1,0 +1,57 @@
+{
+  "id": "S05",
+  "schema_version": "1.0",
+  "title": "Deleted source and stale retrieval export",
+  "hypothesis": {
+    "risk_ids": [
+      3,
+      13
+    ]
+  },
+  "supporting_pids": [
+    "P-002"
+  ],
+  "subsystem": "retrieval fixture",
+  "business_objective": "Retention lifecycle",
+  "actor": "Knowledge reader",
+  "starting_state": "Validated clean two-tenant baseline at 2026-01-15T12:00:00Z; department-specific grants; no implicit sharing.",
+  "trust_boundary": "source -> index snapshot",
+  "assumptions": [
+    "Reference evaluator is intended policy, not native enforcement.",
+    "Public synthetic identities are not SSO."
+  ],
+  "steps": [
+    {
+      "operation": "delete-index",
+      "description": "Copy a lower-trust retrieval index before deleting the source in the owned snapshot. Never query an LLM."
+    }
+  ],
+  "positive_expected": "Effective authorized department member reads the live source at baseline time: ALLOW.",
+  "negative_expected": "ALLOW live source; DENY deleted source. Derived index remains explicitly stale.",
+  "stop_reset": "Stop on baseline hash mismatch, non-owned output or unexpected network request. Reset only this scenario snapshot.",
+  "unsafe": true,
+  "status": "PREPARED",
+  "human_finding": null,
+  "remediation": null,
+  "retest": null,
+  "residual_risk": null,
+  "human_verifier": null,
+  "evidence_fields": [
+    "actor",
+    "resource",
+    "logical_time",
+    "expected",
+    "observed",
+    "http_status",
+    "evidence_sha256"
+  ],
+  "assets": [
+    "p002:tenant-a:hr:doc0"
+  ],
+  "logical_time": "2026-01-15T12:00:00Z",
+  "initial_entitlements": [
+    "Active departmental group read/update inherited from folder; explicit deny has precedence.",
+    "No cross-tenant grants; service requires separate active caller delegation."
+  ],
+  "test_oracle": "ALLOW live source; DENY deleted source. Derived index remains explicitly stale."
+}

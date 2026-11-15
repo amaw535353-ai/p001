@@ -1,0 +1,8 @@
+{
+  "profile": "stress-local",
+  "people_per_department": 24,
+  "documents_per_department": 80,
+  "requires_opt_in": true,
+  "implementation": "PROFILES in src/p002/generators/__init__.py",
+  "unlimited_override_supported": false
+}

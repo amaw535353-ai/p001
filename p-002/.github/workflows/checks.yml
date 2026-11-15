@@ -1,0 +1,21 @@
+name: P002 offline core
+on:
+  push:
+    paths: ['p-002/**']
+  pull_request:
+    paths: ['p-002/**']
+permissions:
+  contents: read
+jobs:
+  core:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: p-002
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: ./scripts/setup
+      - run: make generate validate test lint typecheck

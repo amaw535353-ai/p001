@@ -1,0 +1,3249 @@
+{
+  "$defs": {
+    "ActionRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "const": "execute",
+          "default": "execute",
+          "title": "Action",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "title": "Parameters",
+          "type": "object"
+        },
+        "parameters_sha256": {
+          "title": "Parameters Sha256",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "requester_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Requester Id",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "requester_id",
+        "resource_id",
+        "parameters",
+        "parameters_sha256"
+      ],
+      "title": "ActionRequest",
+      "type": "object"
+    },
+    "Annotation": {
+      "additionalProperties": false,
+      "properties": {
+        "annotator_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Annotator Id",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "label_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Label Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "task_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Task Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "task_id",
+        "annotator_id",
+        "label_id"
+      ],
+      "title": "Annotation",
+      "type": "object"
+    },
+    "Approval": {
+      "additionalProperties": false,
+      "properties": {
+        "approver_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Approver Id",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "parameters_sha256": {
+          "title": "Parameters Sha256",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "request_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Request Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "valid_from": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Valid From",
+          "type": "string"
+        },
+        "valid_until": {
+          "default": "2027-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Valid Until",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "request_id",
+        "approver_id",
+        "parameters_sha256"
+      ],
+      "title": "Approval",
+      "type": "object"
+    },
+    "BusinessEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "effective_at": {
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Effective At",
+          "type": "string"
+        },
+        "event_type": {
+          "enum": [
+            "onboarding",
+            "offboarding",
+            "hr-case",
+            "invoice-review",
+            "engineering-change",
+            "procurement",
+            "knowledge-retrieval"
+          ],
+          "title": "Event Type",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "event_type",
+        "actor_id",
+        "resource_id",
+        "effective_at"
+      ],
+      "title": "BusinessEvent",
+      "type": "object"
+    },
+    "Classification": {
+      "enum": [
+        "PUBLIC",
+        "INTERNAL",
+        "CONFIDENTIAL",
+        "RESTRICTED"
+      ],
+      "title": "Classification",
+      "type": "string"
+    },
+    "Context": {
+      "additionalProperties": false,
+      "properties": {
+        "caller_id": {
+          "anyOf": [
+            {
+              "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Caller Id"
+        },
+        "parameters_sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parameters Sha256"
+        },
+        "request_id": {
+          "anyOf": [
+            {
+              "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Id"
+        },
+        "time": {
+          "default": "2026-01-15T12:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Time",
+          "type": "string"
+        }
+      },
+      "title": "Context",
+      "type": "object"
+    },
+    "DataOwner": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "user_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "User Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "resource_id",
+        "user_id"
+      ],
+      "title": "DataOwner",
+      "type": "object"
+    },
+    "Delegation": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "items": {
+            "enum": [
+              "read",
+              "update",
+              "approve",
+              "execute"
+            ],
+            "type": "string"
+          },
+          "title": "Actions",
+          "type": "array"
+        },
+        "caller_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Caller Id",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "revoked_at": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Revoked At"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "service_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Service Id",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "valid_from": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Valid From",
+          "type": "string"
+        },
+        "valid_until": {
+          "default": "2027-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Valid Until",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "caller_id",
+        "service_id",
+        "resource_id",
+        "actions"
+      ],
+      "title": "Delegation",
+      "type": "object"
+    },
+    "Department": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "manager_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Manager Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "name",
+        "manager_id"
+      ],
+      "title": "Department",
+      "type": "object"
+    },
+    "Document": {
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "maxLength": 32768,
+          "title": "Body",
+          "type": "string"
+        },
+        "content_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Content Sha256",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "trust": {
+          "default": "trusted-template",
+          "enum": [
+            "trusted-template",
+            "untrusted-text"
+          ],
+          "title": "Trust",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "resource_id",
+        "body",
+        "content_sha256"
+      ],
+      "title": "Document",
+      "type": "object"
+    },
+    "DocumentVersion": {
+      "additionalProperties": false,
+      "properties": {
+        "body_sha256": {
+          "title": "Body Sha256",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "document_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "effective_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Effective At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "document_id",
+        "version",
+        "body_sha256"
+      ],
+      "title": "DocumentVersion",
+      "type": "object"
+    },
+    "Enterprise": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "name"
+      ],
+      "title": "Enterprise",
+      "type": "object"
+    },
+    "ExpectedDecision": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "enum": [
+            "read",
+            "update",
+            "approve",
+            "execute"
+          ],
+          "title": "Action",
+          "type": "string"
+        },
+        "actor_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "context": {
+          "$ref": "#/$defs/Context"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "expected": {
+          "enum": [
+            "ALLOW",
+            "DENY"
+          ],
+          "title": "Expected",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "observed_result": {
+          "default": null,
+          "title": "Observed Result",
+          "type": "null"
+        },
+        "origin": {
+          "const": "generated oracle",
+          "default": "generated oracle",
+          "title": "Origin",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "rule_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Rule Ids",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "actor_id",
+        "action",
+        "resource_id",
+        "context",
+        "expected",
+        "reason",
+        "rule_ids"
+      ],
+      "title": "ExpectedDecision",
+      "type": "object"
+    },
+    "Folder": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "resource_id"
+      ],
+      "title": "Folder",
+      "type": "object"
+    },
+    "Group": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "department_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Department Id",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "department_id",
+        "name"
+      ],
+      "title": "Group",
+      "type": "object"
+    },
+    "GroupMembership": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "group_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "revoked_at": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Revoked At"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "user_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "User Id",
+          "type": "string"
+        },
+        "valid_from": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Valid From",
+          "type": "string"
+        },
+        "valid_until": {
+          "default": "2027-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Valid Until",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "group_id",
+        "user_id"
+      ],
+      "title": "GroupMembership",
+      "type": "object"
+    },
+    "HumanUser": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "department_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Department Id",
+          "type": "string"
+        },
+        "display_name": {
+          "title": "Display Name",
+          "type": "string"
+        },
+        "email": {
+          "pattern": "^[a-z0-9._-]+@[a-z0-9-]+\\.example\\.test$",
+          "title": "Email",
+          "type": "string"
+        },
+        "hired_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Hired At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "manager_id": {
+          "anyOf": [
+            {
+              "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Manager Id"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "manager",
+            "analyst",
+            "reviewer"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "terminated_at": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Terminated At"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "department_id",
+        "display_name",
+        "email",
+        "role"
+      ],
+      "title": "HumanUser",
+      "type": "object"
+    },
+    "Issue": {
+      "additionalProperties": false,
+      "properties": {
+        "assignee_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Assignee Id",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "project_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "reporter_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Reporter Id",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "state": {
+          "default": "new",
+          "enum": [
+            "new",
+            "in-review",
+            "closed"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "subject": {
+          "title": "Subject",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "resource_id",
+        "project_id",
+        "reporter_id",
+        "assignee_id",
+        "subject"
+      ],
+      "title": "Issue",
+      "type": "object"
+    },
+    "IssueComment": {
+      "additionalProperties": false,
+      "properties": {
+        "author_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Author Id",
+          "type": "string"
+        },
+        "body": {
+          "title": "Body",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "issue_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Issue Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "issue_id",
+        "author_id",
+        "body"
+      ],
+      "title": "IssueComment",
+      "type": "object"
+    },
+    "LabelDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "name": {
+          "$ref": "#/$defs/Classification"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "semantics": {
+          "const": "metadata-only",
+          "default": "metadata-only",
+          "title": "Semantics",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "name"
+      ],
+      "title": "LabelDefinition",
+      "type": "object"
+    },
+    "LabelingTask": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "document_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "label_ids": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 4,
+          "title": "Label Ids",
+          "type": "array"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "document_id",
+        "label_ids"
+      ],
+      "title": "LabelingTask",
+      "type": "object"
+    },
+    "LifecycleEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "after": {
+          "title": "After",
+          "type": "string"
+        },
+        "before": {
+          "title": "Before",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "effective_at": {
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Effective At",
+          "type": "string"
+        },
+        "event_type": {
+          "enum": [
+            "hire",
+            "terminate",
+            "membership-revoke",
+            "delete",
+            "reclassify"
+          ],
+          "title": "Event Type",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "target_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Target Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "target_id",
+        "event_type",
+        "effective_at",
+        "before",
+        "after"
+      ],
+      "title": "LifecycleEvent",
+      "type": "object"
+    },
+    "PermissionGrant": {
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "items": {
+            "enum": [
+              "read",
+              "update",
+              "approve",
+              "execute"
+            ],
+            "type": "string"
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "title": "Actions",
+          "type": "array"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "cross_tenant": {
+          "default": false,
+          "title": "Cross Tenant",
+          "type": "boolean"
+        },
+        "effect": {
+          "default": "ALLOW",
+          "enum": [
+            "ALLOW",
+            "DENY"
+          ],
+          "title": "Effect",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "inherited": {
+          "default": false,
+          "title": "Inherited",
+          "type": "boolean"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "principal_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Principal Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "revoked_at": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Revoked At"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "valid_from": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Valid From",
+          "type": "string"
+        },
+        "valid_until": {
+          "default": "2027-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Valid Until",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "principal_id",
+        "resource_id",
+        "actions"
+      ],
+      "title": "PermissionGrant",
+      "type": "object"
+    },
+    "Project": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Resource Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "resource_id",
+        "name"
+      ],
+      "title": "Project",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "generator_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Generator Version",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "source": {
+          "default": "self-created-template",
+          "enum": [
+            "self-created-template",
+            "sdv-self-generated"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "Resource": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_state": {
+          "default": "approved",
+          "enum": [
+            "draft",
+            "approved"
+          ],
+          "title": "Approval State",
+          "type": "string"
+        },
+        "attributes": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "title": "Attributes",
+          "type": "object"
+        },
+        "classification": {
+          "$ref": "#/$defs/Classification"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "deleted_at": {
+          "anyOf": [
+            {
+              "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Deleted At"
+        },
+        "department_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Department Id",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "folder",
+            "document",
+            "kb-page",
+            "invoice",
+            "tool-config",
+            "mock-dataset",
+            "cloud-object",
+            "issue",
+            "project"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "parent_id": {
+          "anyOf": [
+            {
+              "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Id"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "retention": {
+          "default": "retain",
+          "enum": [
+            "retain",
+            "scheduled-delete",
+            "deleted"
+          ],
+          "title": "Retention",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 512,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "department_id",
+        "title",
+        "classification",
+        "kind"
+      ],
+      "title": "Resource",
+      "type": "object"
+    },
+    "Scenario": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "title": "Actor",
+          "type": "string"
+        },
+        "assets": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "title": "Assets",
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "business_objective": {
+          "title": "Business Objective",
+          "type": "string"
+        },
+        "evidence_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Fields",
+          "type": "array"
+        },
+        "human_finding": {
+          "default": null,
+          "title": "Human Finding",
+          "type": "null"
+        },
+        "human_verifier": {
+          "default": null,
+          "title": "Human Verifier",
+          "type": "null"
+        },
+        "hypothesis": {
+          "$ref": "#/$defs/ThreatHypothesis"
+        },
+        "id": {
+          "pattern": "^S(0[1-9]|1[0-2])$",
+          "title": "Id",
+          "type": "string"
+        },
+        "initial_entitlements": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Initial Entitlements",
+          "type": "array"
+        },
+        "logical_time": {
+          "default": "2026-01-15T12:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Logical Time",
+          "type": "string"
+        },
+        "negative_expected": {
+          "title": "Negative Expected",
+          "type": "string"
+        },
+        "positive_expected": {
+          "title": "Positive Expected",
+          "type": "string"
+        },
+        "remediation": {
+          "default": null,
+          "title": "Remediation",
+          "type": "null"
+        },
+        "residual_risk": {
+          "default": null,
+          "title": "Residual Risk",
+          "type": "null"
+        },
+        "retest": {
+          "default": null,
+          "title": "Retest",
+          "type": "null"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "starting_state": {
+          "title": "Starting State",
+          "type": "string"
+        },
+        "status": {
+          "default": "PREPARED",
+          "enum": [
+            "PREPARED",
+            "SEEDED",
+            "EXECUTED",
+            "OBSERVED",
+            "ASSESSED",
+            "RETESTED"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "steps": {
+          "items": {
+            "$ref": "#/$defs/ScenarioStep"
+          },
+          "minItems": 1,
+          "title": "Steps",
+          "type": "array"
+        },
+        "stop_reset": {
+          "title": "Stop Reset",
+          "type": "string"
+        },
+        "subsystem": {
+          "title": "Subsystem",
+          "type": "string"
+        },
+        "supporting_pids": {
+          "items": {
+            "const": "P-002",
+            "type": "string"
+          },
+          "title": "Supporting Pids",
+          "type": "array"
+        },
+        "test_oracle": {
+          "title": "Test Oracle",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "trust_boundary": {
+          "title": "Trust Boundary",
+          "type": "string"
+        },
+        "unsafe": {
+          "default": false,
+          "title": "Unsafe",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "hypothesis",
+        "supporting_pids",
+        "subsystem",
+        "business_objective",
+        "assets",
+        "initial_entitlements",
+        "test_oracle",
+        "actor",
+        "starting_state",
+        "trust_boundary",
+        "assumptions",
+        "steps",
+        "positive_expected",
+        "negative_expected",
+        "stop_reset",
+        "evidence_fields"
+      ],
+      "title": "Scenario",
+      "type": "object"
+    },
+    "ScenarioStep": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "operation": {
+          "enum": [
+            "positive",
+            "cross-tenant",
+            "peer-department",
+            "revoke",
+            "delete-index",
+            "delegation",
+            "approval",
+            "untrusted-text",
+            "provenance",
+            "canary",
+            "ticket",
+            "annotation"
+          ],
+          "title": "Operation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "operation",
+        "description"
+      ],
+      "title": "ScenarioStep",
+      "type": "object"
+    },
+    "Tenant": {
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "domain": {
+          "pattern": "^[a-z0-9-]+\\.example\\.test$",
+          "title": "Domain",
+          "type": "string"
+        },
+        "enterprise_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Enterprise Id",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "enterprise_id",
+        "name",
+        "domain"
+      ],
+      "title": "Tenant",
+      "type": "object"
+    },
+    "ThreatHypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "finding": {
+          "default": null,
+          "title": "Finding",
+          "type": "null"
+        },
+        "risk_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Risk Ids",
+          "type": "array"
+        },
+        "taxonomy_status": {
+          "const": "number-from-user-request; source-taxonomy-unavailable",
+          "default": "number-from-user-request; source-taxonomy-unavailable",
+          "title": "Taxonomy Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "risk_ids"
+      ],
+      "title": "ThreatHypothesis",
+      "type": "object"
+    },
+    "WorkloadIdentity": {
+      "additionalProperties": false,
+      "properties": {
+        "authentication": {
+          "const": "nonfunctional-placeholder",
+          "default": "nonfunctional-placeholder",
+          "title": "Authentication",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "2026-01-01T00:00:00Z",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+          "title": "Created At",
+          "type": "string"
+        },
+        "department_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Department Id",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "lineage": {
+          "items": {
+            "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Lineage",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "notice": {
+          "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+          "title": "Notice",
+          "type": "string"
+        },
+        "owner_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Owner Id",
+          "type": "string"
+        },
+        "provenance_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Provenance Id",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "disabled",
+            "deleted",
+            "pending",
+            "approved",
+            "revoked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "tenant_id": {
+          "pattern": "^p002:[a-z0-9][a-z0-9:_-]{0,127}$",
+          "title": "Tenant Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id",
+        "owner_id",
+        "provenance_id",
+        "department_id",
+        "name"
+      ],
+      "title": "WorkloadIdentity",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "annotations": {
+      "items": {
+        "$ref": "#/$defs/Annotation"
+      },
+      "title": "Annotations",
+      "type": "array"
+    },
+    "approvals": {
+      "items": {
+        "$ref": "#/$defs/Approval"
+      },
+      "title": "Approvals",
+      "type": "array"
+    },
+    "business_events": {
+      "items": {
+        "$ref": "#/$defs/BusinessEvent"
+      },
+      "title": "Business Events",
+      "type": "array"
+    },
+    "comments": {
+      "items": {
+        "$ref": "#/$defs/IssueComment"
+      },
+      "title": "Comments",
+      "type": "array"
+    },
+    "decisions": {
+      "items": {
+        "$ref": "#/$defs/ExpectedDecision"
+      },
+      "title": "Decisions",
+      "type": "array"
+    },
+    "delegations": {
+      "items": {
+        "$ref": "#/$defs/Delegation"
+      },
+      "title": "Delegations",
+      "type": "array"
+    },
+    "departments": {
+      "items": {
+        "$ref": "#/$defs/Department"
+      },
+      "title": "Departments",
+      "type": "array"
+    },
+    "documents": {
+      "items": {
+        "$ref": "#/$defs/Document"
+      },
+      "title": "Documents",
+      "type": "array"
+    },
+    "enterprises": {
+      "items": {
+        "$ref": "#/$defs/Enterprise"
+      },
+      "title": "Enterprises",
+      "type": "array"
+    },
+    "folders": {
+      "items": {
+        "$ref": "#/$defs/Folder"
+      },
+      "title": "Folders",
+      "type": "array"
+    },
+    "generator_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Generator Version",
+      "type": "string"
+    },
+    "grants": {
+      "items": {
+        "$ref": "#/$defs/PermissionGrant"
+      },
+      "title": "Grants",
+      "type": "array"
+    },
+    "groups": {
+      "items": {
+        "$ref": "#/$defs/Group"
+      },
+      "title": "Groups",
+      "type": "array"
+    },
+    "humans": {
+      "items": {
+        "$ref": "#/$defs/HumanUser"
+      },
+      "title": "Humans",
+      "type": "array"
+    },
+    "issues": {
+      "items": {
+        "$ref": "#/$defs/Issue"
+      },
+      "title": "Issues",
+      "type": "array"
+    },
+    "labels": {
+      "items": {
+        "$ref": "#/$defs/LabelDefinition"
+      },
+      "title": "Labels",
+      "type": "array"
+    },
+    "lifecycle_events": {
+      "items": {
+        "$ref": "#/$defs/LifecycleEvent"
+      },
+      "title": "Lifecycle Events",
+      "type": "array"
+    },
+    "logical_time": {
+      "default": "2026-01-15T12:00:00Z",
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\dZ$",
+      "title": "Logical Time",
+      "type": "string"
+    },
+    "memberships": {
+      "items": {
+        "$ref": "#/$defs/GroupMembership"
+      },
+      "title": "Memberships",
+      "type": "array"
+    },
+    "mode": {
+      "default": "fixtures",
+      "enum": [
+        "fixtures",
+        "sdv"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "notice": {
+      "const": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+      "default": "SYNTHETIC — TRAINING DATA — NOT A REAL CLIENT",
+      "title": "Notice",
+      "type": "string"
+    },
+    "owners": {
+      "items": {
+        "$ref": "#/$defs/DataOwner"
+      },
+      "title": "Owners",
+      "type": "array"
+    },
+    "profile": {
+      "enum": [
+        "tiny",
+        "standard",
+        "stress-local"
+      ],
+      "title": "Profile",
+      "type": "string"
+    },
+    "projects": {
+      "items": {
+        "$ref": "#/$defs/Project"
+      },
+      "title": "Projects",
+      "type": "array"
+    },
+    "provenance": {
+      "items": {
+        "$ref": "#/$defs/Provenance"
+      },
+      "title": "Provenance",
+      "type": "array"
+    },
+    "requests": {
+      "items": {
+        "$ref": "#/$defs/ActionRequest"
+      },
+      "title": "Requests",
+      "type": "array"
+    },
+    "resources": {
+      "items": {
+        "$ref": "#/$defs/Resource"
+      },
+      "title": "Resources",
+      "type": "array"
+    },
+    "scenarios": {
+      "items": {
+        "$ref": "#/$defs/Scenario"
+      },
+      "title": "Scenarios",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sdv_report": {
+      "additionalProperties": true,
+      "title": "Sdv Report",
+      "type": "object"
+    },
+    "seed": {
+      "maximum": 4294967295,
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+    },
+    "tasks": {
+      "items": {
+        "$ref": "#/$defs/LabelingTask"
+      },
+      "title": "Tasks",
+      "type": "array"
+    },
+    "tenants": {
+      "items": {
+        "$ref": "#/$defs/Tenant"
+      },
+      "title": "Tenants",
+      "type": "array"
+    },
+    "versions": {
+      "items": {
+        "$ref": "#/$defs/DocumentVersion"
+      },
+      "title": "Versions",
+      "type": "array"
+    },
+    "workloads": {
+      "items": {
+        "$ref": "#/$defs/WorkloadIdentity"
+      },
+      "title": "Workloads",
+      "type": "array"
+    }
+  },
+  "required": [
+    "seed",
+    "profile",
+    "enterprises",
+    "tenants",
+    "departments",
+    "humans",
+    "groups",
+    "memberships",
+    "workloads",
+    "resources",
+    "folders",
+    "documents",
+    "versions",
+    "owners",
+    "provenance",
+    "projects",
+    "issues",
+    "comments",
+    "labels",
+    "tasks",
+    "annotations",
+    "grants",
+    "delegations",
+    "requests",
+    "approvals",
+    "business_events",
+    "lifecycle_events",
+    "decisions",
+    "scenarios"
+  ],
+  "title": "Dataset",
+  "type": "object"
+}

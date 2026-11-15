@@ -1,0 +1,132 @@
+{
+  "retrieved_on": "2026-11-15",
+  "sources": [
+    {
+      "name": "nc-webdav",
+      "url": "https://raw.githubusercontent.com/nextcloud/documentation/master/developer_manual/client_apis/WebDAV/basic.rst",
+      "http_status": 200,
+      "sha256": "3948886bb8451925daf64901da8137f5e0bbff2ab7c564bc93866ba1132a65bf",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "nc-users",
+      "url": "https://raw.githubusercontent.com/nextcloud/documentation/master/admin_manual/configuration_user/user_provisioning_api.rst",
+      "http_status": 200,
+      "sha256": "53a6fbbb78cecdbd30076aef931274587c5a3c6e3f50bb06436461e5045bc2a3",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "nc-create-user",
+      "url": "https://raw.githubusercontent.com/nextcloud/documentation/master/admin_manual/configuration_user/instruction_set_for_users.rst",
+      "http_status": 200,
+      "sha256": "f9e02f8165e53ff3c727771da9ea4ff02bbbd33db0c8c86d327536651ca7a2ae",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "nc-group",
+      "url": "https://raw.githubusercontent.com/nextcloud/documentation/master/admin_manual/configuration_user/instruction_set_for_groups.rst",
+      "http_status": 200,
+      "sha256": "d85182a145e09e2f4b38b1638d09bb0819eabca54954b9b7579551716e76668e",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "nc-share",
+      "url": "https://raw.githubusercontent.com/nextcloud/documentation/master/developer_manual/client_apis/OCS/ocs-share-api.rst",
+      "http_status": 200,
+      "sha256": "1e29d0305b9da5287217af9889150605896a0ab0536d2ecd4256b6832cc6bfc1",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "redmine-routes",
+      "url": "https://raw.githubusercontent.com/redmine/redmine/6.1-stable/config/routes.rb",
+      "http_status": 200,
+      "sha256": "cb5f68afbdd93d822b6f6ed60a387441fc49c7368fc39007a6e5db16e0846afc",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "redmine-projects",
+      "url": "https://raw.githubusercontent.com/redmine/redmine/6.1-stable/app/controllers/projects_controller.rb",
+      "http_status": 200,
+      "sha256": "899cb953bbf4d5ab3f9b9eef2285a181b2f19ded8e4a6860d5d2f8b8ab403828",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "redmine-api-doc",
+      "url": "https://raw.githubusercontent.com/redmine/redmine/6.1-stable/test/integration/api_test/projects_test.rb",
+      "http_status": 200,
+      "sha256": "d446cf6f8dd3f96b442c7f9d5eeda576f8422be38eb7370f7f3b0e03d9862ba7",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "ls-project",
+      "url": "https://raw.githubusercontent.com/HumanSignal/label-studio/develop/label_studio/projects/api.py",
+      "http_status": 200,
+      "sha256": "c5d69550cdabaef25cf48e679702d57d7fad62111d704f57d4cc102220be14cc",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "ls-import",
+      "url": "https://raw.githubusercontent.com/HumanSignal/label-studio/develop/label_studio/data_import/api.py",
+      "http_status": 200,
+      "sha256": "ef2a12d8cbbdfa7368efe12a951681747e29f06d8a5437c145b82f0c7d30ca6b",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "ls-tasks",
+      "url": "https://raw.githubusercontent.com/HumanSignal/label-studio/develop/label_studio/tasks/api.py",
+      "http_status": 200,
+      "sha256": "ce9afd920f95be716ffe23f2b4997fe4056c80a45adf2566b83a30c7d52fa099",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "ls-config",
+      "url": "https://raw.githubusercontent.com/HumanSignal/label-studio/develop/label_studio/core/settings/base.py",
+      "http_status": 200,
+      "sha256": "bed91fb5c0634f136845b089a365b3fcb30ac3e7293cbe3ceb24f84cc23a5ae8",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "ls-main",
+      "url": "https://raw.githubusercontent.com/HumanSignal/label-studio/develop/label_studio/server.py",
+      "http_status": 200,
+      "sha256": "085505ef49907a5d308fc9027e295c6c3320ee7713d1315bfe0f6d800ab9e1a5",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "sdv-synth",
+      "url": "https://raw.githubusercontent.com/sdv-dev/SDV/main/sdv/single_table/copulas.py",
+      "http_status": 200,
+      "sha256": "cc736e28dadf39c54211dc293ed9e25d81f90e3645ded3fd19437ec082c5da19",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "sdv-license",
+      "url": "https://raw.githubusercontent.com/sdv-dev/SDV/main/LICENSE",
+      "http_status": 200,
+      "sha256": "fcaa94d4732eb6af1a75ef2282e286786f3ca07e951b8e138b543fda19baf302",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "nc-license",
+      "url": "https://raw.githubusercontent.com/nextcloud/server/master/COPYING",
+      "http_status": 200,
+      "sha256": "57c8ff33c9c0cfc3ef00e650a1cc910d7ee479a8bc509f6c9209a7c2a11399d6",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "redmine-license",
+      "url": "https://raw.githubusercontent.com/redmine/redmine/6.1-stable/doc/COPYING",
+      "http_status": 200,
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643",
+      "basis": "official upstream source inspected; native subset verified separately"
+    },
+    {
+      "name": "ls-license",
+      "url": "https://raw.githubusercontent.com/HumanSignal/label-studio/develop/LICENSE",
+      "http_status": 200,
+      "sha256": "ca656b15c1e22468c7798df4356660755fb1ccd12d7ee0bade82bd65e3038e1b",
+      "basis": "official upstream source inspected; native subset verified separately"
+    }
+  ],
+  "documentation_hosts": "BLOCKED (403); not represented as read"
+}
