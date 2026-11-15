@@ -1,0 +1,33 @@
+name: P001 checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      integration:
+        description: 'Run local kind integration on a disposable Linux runner'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  static:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/install
+      - run: make unit static
+      - run: .tools/bin/tofu fmt -check -recursive infra/opentofu
+      - run: .tools/bin/tofu -chdir=infra/opentofu/local validate
+  integration:
+    if: github.event_name == 'workflow_dispatch' && inputs.integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/install
+      - run: make lab-rebuild-verify
+      - if: always()
+        run: make lab-evidence
+      - if: always()
+        run: make lab-down

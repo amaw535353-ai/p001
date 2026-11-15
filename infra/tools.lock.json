@@ -1,0 +1,15 @@
+{
+  "kind": {
+    "url": "https://github.com/kubernetes-sigs/kind/releases/download/v0.33.0/kind-linux-amd64",
+    "sha256": "aee6151561422756b764a4ae28e7f44cda5af5a9eead3cc9985112b1de8d8e0d"
+  },
+  "kubectl": {
+    "url": "https://dl.k8s.io/release/v1.37.0/bin/linux/amd64/kubectl",
+    "sha256": "6129359f4e1f3848a5572ccb0b26cf28b8ca08cef38c95a765b2f64a2c961a2f"
+  },
+  "tofu": {
+    "url": "https://github.com/opentofu/opentofu/releases/download/v1.13.9/tofu_1.13.9_linux_amd64.zip",
+    "sha256": "bc44eb6b06446ba83bd4072114891987f590f66cca712737a7f1147c50c539ce",
+    "binary_sha256": "9ce9173bf161f6466ef57dab7edebe8f55089fdf81caa967415323c25d004990"
+  }
+}

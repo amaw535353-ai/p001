@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+source "$(dirname "$0")/lib.sh"
+./scripts/lab-down
+./scripts/lab-down
+./scripts/lab-up
+./scripts/lab-test
+python3 - <<'PY'
+import datetime,json
+from pathlib import Path
+p=Path('.runtime/results.json');rows=json.loads(p.read_text())
+for row in rows:
+    if row['id']=='REBUILD':
+        row.update(status='PASS',command='make lab-rebuild-verify: lab-down twice; lab-up; lab-test',observed='all lifecycle subprocesses returned zero',utc=datetime.datetime.now(datetime.timezone.utc).isoformat())
+p.write_text(json.dumps(rows,indent=2)+'\n')
+PY
+./scripts/lab-evidence

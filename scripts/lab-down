@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+source "$(dirname "$0")/lib.sh"
+if kind get clusters 2>/dev/null | grep -qx p001; then
+  owned
+  # Deleting the dedicated cluster removes its emulator, ephemeral buckets and workloads.
+  kind delete cluster --name p001
+fi
+for f in .runtime/forward-*.pid; do
+  [[ -f "$f" ]] || continue
+  pid="$(cat "$f")"
+  # Only signal our recorded kubectl process with the dedicated kubeconfig.
+  if [[ -r "/proc/$pid/cmdline" ]] && tr '\0' ' ' <"/proc/$pid/cmdline" | grep -q 'kubectl.*kind-p001.*port-forward'; then kill "$pid" || true; fi
+  rm -f "$f"
+done
+# State is exclusively local, disposable and scoped to this configuration.
+rm -f infra/opentofu/local/terraform.tfstate infra/opentofu/local/terraform.tfstate.backup .runtime/local.tfplan .runtime/kubeconfig .runtime/owner
+printf '%s\n' 'PASS: owned p001 cluster is absent; scoped local state cleaned; cached images retained'

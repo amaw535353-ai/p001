@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "P-001 sanitized evidence manifest v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "utc",
+    "commit",
+    "verifier",
+    "versions",
+    "config_hashes",
+    "results"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "commit": {
+      "type": "string"
+    },
+    "verifier": {
+      "type": "string"
+    },
+    "versions": {
+      "type": "object"
+    },
+    "config_hashes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "command",
+          "utc",
+          "expected",
+          "observed",
+          "verifier"
+        ],
+        "properties": {
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "BLOCKED",
+              "NOT TESTED",
+              "NOT APPLICABLE"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

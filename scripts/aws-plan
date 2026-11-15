@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+echo 'BLOCKED: real AWS track requires separate explicit authorization and a reviewed account-specific configuration. No AWS operation performed.' >&2
+exit 2

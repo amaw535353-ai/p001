@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+source "$(dirname "$0")/lib.sh"
+trap 'echo "FAIL: lab-up line $LINENO; inspect .runtime logs; no external fallback" >&2' ERR
+./scripts/doctor
+if kind get clusters 2>/dev/null | grep -qx p001; then
+  owned
+else
+  echo p001-owned-v1 >.runtime/owner
+  kind create cluster --name p001 --config infra/kind/cluster.yaml \
+    --image "$(python3 -c 'import json;print(json.load(open("infra/images.lock.json"))["node"])')" \
+    --kubeconfig "$KUBECONFIG" --wait 120s
+fi
+k apply -f infra/kind/calico.yaml
+k -n kube-system rollout status daemonset/calico-node --timeout=180s
+k wait nodes --all --for=condition=Ready --timeout=180s
+k apply -f infra/kubernetes/bootstrap.json
+k -n emulator rollout status deployment/localstack --timeout=180s
+forward emulator localstack 4566 4566 _localstack/health
+docker build -f services/lab-api/Dockerfile -t p001-workload:local .
+kind load docker-image p001-workload:local --name p001
+# Provider only talks to fixed emulator S3 endpoint; no ambient AWS credential discovery.
+./scripts/tofu-init
+tofu -chdir=infra/opentofu/local validate
+tofu -chdir=infra/opentofu/local plan -input=false -out=../../../.runtime/local.tfplan
+tofu -chdir=infra/opentofu/local apply -input=false ../../../.runtime/local.tfplan
+for ns in tenant-a tenant-b; do
+  for app in api mock; do k -n "$ns" rollout status "deployment/$app" --timeout=120s; done
+done
+forward tenant-a api 8081 8080
+forward tenant-b api 8082 8080
+tofu -chdir=infra/opentofu/local plan -input=false -detailed-exitcode >.runtime/drift-baseline.log
+./scripts/lab-test

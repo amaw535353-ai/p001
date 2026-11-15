@@ -1,0 +1,11 @@
+.tools/
+.venv/
+.runtime/
+__pycache__/
+*.pyc
+.env
+*.tfstate*
+*.tfplan
+.terraform/
+evidence/*
+!evidence/.gitkeep

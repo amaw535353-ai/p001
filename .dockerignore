@@ -1,0 +1,9 @@
+**
+!services/
+!services/common/
+!services/common/app.py
+!services/lab-api/
+!services/lab-api/requirements.lock
+!.tools/
+!.tools/wheels/
+!.tools/wheels/*.whl

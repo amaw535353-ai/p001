@@ -1,0 +1,220 @@
+{
+  "apiVersion": "v1",
+  "kind": "List",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "metadata": {
+        "name": "tenant-a",
+        "labels": {
+          "project": "p001",
+          "kubernetes.io/metadata.name": "tenant-a",
+          "pod-security.kubernetes.io/enforce": "restricted",
+          "pod-security.kubernetes.io/enforce-version": "v1.37"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "metadata": {
+        "name": "tenant-b",
+        "labels": {
+          "project": "p001",
+          "kubernetes.io/metadata.name": "tenant-b",
+          "pod-security.kubernetes.io/enforce": "restricted",
+          "pod-security.kubernetes.io/enforce-version": "v1.37"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "metadata": {
+        "name": "emulator",
+        "labels": {
+          "project": "p001",
+          "kubernetes.io/metadata.name": "emulator"
+        }
+      }
+    },
+    {
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "name": "localstack",
+        "namespace": "emulator",
+        "labels": {
+          "project": "p001"
+        }
+      },
+      "spec": {
+        "replicas": 1,
+        "selector": {
+          "matchLabels": {
+            "app": "localstack"
+          }
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app": "localstack",
+              "project": "p001"
+            }
+          },
+          "spec": {
+            "automountServiceAccountToken": false,
+            "containers": [
+              {
+                "name": "localstack",
+                "image": "localstack/localstack:4.14.0@sha256:3ebc37595918b8accb852f8048fef2aff047d465167edd655528065b07bc364a",
+                "env": [
+                  {
+                    "name": "SERVICES",
+                    "value": "s3"
+                  },
+                  {
+                    "name": "AWS_DEFAULT_REGION",
+                    "value": "us-east-1"
+                  },
+                  {
+                    "name": "DEBUG",
+                    "value": "0"
+                  },
+                  {
+                    "name": "DNS_ADDRESS",
+                    "value": "0"
+                  },
+                  {
+                    "name": "DISABLE_EVENTS",
+                    "value": "1"
+                  },
+                  {
+                    "name": "SKIP_SSL_CERT_DOWNLOAD",
+                    "value": "1"
+                  }
+                ],
+                "ports": [
+                  {
+                    "containerPort": 4566
+                  }
+                ],
+                "resources": {
+                  "requests": {
+                    "cpu": "100m",
+                    "memory": "256Mi"
+                  },
+                  "limits": {
+                    "cpu": "1000m",
+                    "memory": "768Mi"
+                  }
+                },
+                "readinessProbe": {
+                  "httpGet": {
+                    "path": "/_localstack/health",
+                    "port": 4566
+                  },
+                  "initialDelaySeconds": 5
+                },
+                "livenessProbe": {
+                  "httpGet": {
+                    "path": "/_localstack/health",
+                    "port": 4566
+                  },
+                  "initialDelaySeconds": 30
+                },
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "name": "localstack",
+        "namespace": "emulator",
+        "labels": {
+          "project": "p001"
+        }
+      },
+      "spec": {
+        "type": "ClusterIP",
+        "selector": {
+          "app": "localstack"
+        },
+        "ports": [
+          {
+            "port": 4566,
+            "targetPort": 4566
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "networking.k8s.io/v1",
+      "kind": "NetworkPolicy",
+      "metadata": {
+        "name": "localstack-boundary",
+        "namespace": "emulator",
+        "labels": {
+          "project": "p001"
+        }
+      },
+      "spec": {
+        "podSelector": {},
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ],
+        "egress": [],
+        "ingress": [
+          {
+            "from": [
+              {
+                "namespaceSelector": {
+                  "matchLabels": {
+                    "kubernetes.io/metadata.name": "tenant-a"
+                  }
+                },
+                "podSelector": {
+                  "matchLabels": {
+                    "app": "api"
+                  }
+                }
+              },
+              {
+                "namespaceSelector": {
+                  "matchLabels": {
+                    "kubernetes.io/metadata.name": "tenant-b"
+                  }
+                },
+                "podSelector": {
+                  "matchLabels": {
+                    "app": "api"
+                  }
+                }
+              }
+            ],
+            "ports": [
+              {
+                "protocol": "TCP",
+                "port": 4566
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
