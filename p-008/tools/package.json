@@ -1,0 +1,15 @@
+{
+  "name": "p008-local-prompt-evaluator",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "promptfoo": "0.125.1"
+  },
+  "overrides": {
+    "@hono/node-server": "2.1.8",
+    "@modelcontextprotocol/server-filesystem": "2.3.0",
+    "basic-ftp": "6.2.6",
+    "glob": "14.0.6",
+    "minimatch": "11.0.8"
+  }
+}

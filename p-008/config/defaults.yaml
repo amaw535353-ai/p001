@@ -1,0 +1,6 @@
+schema_version: '1.0'
+timeout_seconds: 90
+cpu_seconds: 90
+memory_mb: 2048
+output_bytes: 4194304
+concurrency: 1

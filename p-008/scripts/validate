@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+.venv/bin/python scripts/build-schemas.py --check
+.venv/bin/python - <<'PY'
+import jsonschema
+from p008.generation import generate
+from p008.quality import audit
+from p008.models import CONTRACTS
+from p008.safety import PROJECT, load
+for name in CONTRACTS:
+    jsonschema.Draft202012Validator.check_schema(load(PROJECT/'schemas'/(name+'.schema.json')))
+result = audit(generate())
+assert result['status'] == 'PASS', result['errors']
+print('PASS generated synthetic fixture quality: 48 samples; no frozen version substituted')
+PY

@@ -1,0 +1,4 @@
+# Isolated from the sibling-compatible core. All required distributions installed.
+inspect-ai==0.3.290
+inspect-evals==0.29.0
+agentdojo==0.1.35
