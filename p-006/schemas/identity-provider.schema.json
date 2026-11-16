@@ -1,0 +1,100 @@
+{
+  "$defs": {
+    "OIDCClient": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "enum": [
+            "open-webui",
+            "p006-pep"
+          ],
+          "title": "Id",
+          "type": "string"
+        },
+        "redirect_uris": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Redirect Uris",
+          "type": "array"
+        },
+        "origins": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Origins",
+          "type": "array"
+        },
+        "pkce": {
+          "const": "S256",
+          "default": "S256",
+          "title": "Pkce",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "redirect_uris",
+        "origins"
+      ],
+      "title": "OIDCClient",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "p006-idp-v1",
+      "default": "p006-idp-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "issuer": {
+      "const": "http://127.0.0.1:8087/realms/p006",
+      "title": "Issuer",
+      "type": "string"
+    },
+    "audience": {
+      "const": "p006-pep",
+      "title": "Audience",
+      "type": "string"
+    },
+    "jwks_url": {
+      "const": "http://keycloak:8080/realms/p006/protocol/openid-connect/certs",
+      "title": "Jwks Url",
+      "type": "string"
+    },
+    "introspection_url": {
+      "const": "http://keycloak:8080/realms/p006/protocol/openid-connect/token/introspect",
+      "title": "Introspection Url",
+      "type": "string"
+    },
+    "algorithms": {
+      "items": {
+        "const": "RS256",
+        "type": "string"
+      },
+      "title": "Algorithms",
+      "type": "array"
+    },
+    "clients": {
+      "items": {
+        "$ref": "#/$defs/OIDCClient"
+      },
+      "title": "Clients",
+      "type": "array"
+    }
+  },
+  "required": [
+    "issuer",
+    "audience",
+    "jwks_url",
+    "introspection_url",
+    "algorithms",
+    "clients"
+  ],
+  "title": "IdentityProvider",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:identity-provider:v1"
+}

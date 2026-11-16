@@ -1,0 +1,27 @@
+model_list:
+  - model_name: local-basic
+    litellm_params:
+      model: openai/p006-deterministic
+      api_base: http://model:8000/v1
+      api_key: os.environ/P006_MODEL_KEY
+      max_tokens: 128
+  - model_name: local-admin
+    litellm_params:
+      model: openai/p006-deterministic
+      api_base: http://model:8000/v1
+      api_key: os.environ/P006_MODEL_KEY
+      max_tokens: 128
+litellm_settings:
+  request_timeout: 4
+  num_retries: 0
+  set_verbose: false
+  turn_off_message_logging: true
+  cache: false
+general_settings:
+  custom_auth: p006.gateway_auth.authorize
+  master_key: os.environ/LITELLM_MASTER_KEY
+  disable_spend_logs: true
+  disable_requester_ip_address_logging: true
+router_settings:
+  num_retries: 0
+  timeout: 4

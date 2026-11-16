@@ -1,0 +1,17 @@
+.venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.tools/
+.runtime/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.pyc
+*.egg-info/
+.env
+evidence/*
+!evidence/.gitkeep
+reports/*
+!reports/.gitkeep

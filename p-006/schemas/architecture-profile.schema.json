@@ -1,0 +1,473 @@
+{
+  "$defs": {
+    "Deployment": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "p006-deployment-v1",
+          "default": "p006-deployment-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "host": {
+          "const": "127.0.0.1",
+          "default": "127.0.0.1",
+          "title": "Host",
+          "type": "string"
+        },
+        "ui_port": {
+          "const": 8086,
+          "default": 8086,
+          "title": "Ui Port",
+          "type": "integer"
+        },
+        "idp_port": {
+          "const": 8087,
+          "default": 8087,
+          "title": "Idp Port",
+          "type": "integer"
+        },
+        "owner": {
+          "const": "p006",
+          "default": "p006",
+          "title": "Owner",
+          "type": "string"
+        }
+      },
+      "title": "Deployment",
+      "type": "object"
+    },
+    "EgressPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "p006-egress-v1",
+          "default": "p006-egress-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "networks": {
+          "patternProperties": {
+            "^[a-z0-9][a-z0-9-]{0,63}$": {
+              "items": {
+                "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "title": "Networks",
+          "type": "object"
+        },
+        "internal": {
+          "const": true,
+          "default": true,
+          "title": "Internal",
+          "type": "boolean"
+        },
+        "external_destinations": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 0,
+          "title": "External Destinations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "networks"
+      ],
+      "title": "EgressPolicy",
+      "type": "object"
+    },
+    "GatewayModel": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "enum": [
+            "local-basic",
+            "local-admin"
+          ],
+          "title": "Id",
+          "type": "string"
+        },
+        "provider": {
+          "const": "local-mock",
+          "default": "local-mock",
+          "title": "Provider",
+          "type": "string"
+        },
+        "required_role": {
+          "enum": [
+            "user",
+            "tenant-admin",
+            "platform-admin"
+          ],
+          "title": "Required Role",
+          "type": "string"
+        },
+        "max_tokens": {
+          "default": 64,
+          "maximum": 128,
+          "minimum": 1,
+          "title": "Max Tokens",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "required_role"
+      ],
+      "title": "GatewayModel",
+      "type": "object"
+    },
+    "GatewayRoute": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "p006-route-v1",
+          "default": "p006-route-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "id": {
+          "const": "local-mock",
+          "default": "local-mock",
+          "title": "Id",
+          "type": "string"
+        },
+        "url": {
+          "const": "http://litellm:4000/v1/chat/completions",
+          "title": "Url",
+          "type": "string"
+        },
+        "backend": {
+          "const": "http://model:8000/v1",
+          "title": "Backend",
+          "type": "string"
+        },
+        "model_ids": {
+          "items": {
+            "enum": [
+              "local-basic",
+              "local-admin"
+            ],
+            "type": "string"
+          },
+          "title": "Model Ids",
+          "type": "array"
+        },
+        "external_enabled": {
+          "const": false,
+          "default": false,
+          "title": "External Enabled",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "url",
+        "backend",
+        "model_ids"
+      ],
+      "title": "GatewayRoute",
+      "type": "object"
+    },
+    "IdentityProvider": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "p006-idp-v1",
+          "default": "p006-idp-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "issuer": {
+          "const": "http://127.0.0.1:8087/realms/p006",
+          "title": "Issuer",
+          "type": "string"
+        },
+        "audience": {
+          "const": "p006-pep",
+          "title": "Audience",
+          "type": "string"
+        },
+        "jwks_url": {
+          "const": "http://keycloak:8080/realms/p006/protocol/openid-connect/certs",
+          "title": "Jwks Url",
+          "type": "string"
+        },
+        "introspection_url": {
+          "const": "http://keycloak:8080/realms/p006/protocol/openid-connect/token/introspect",
+          "title": "Introspection Url",
+          "type": "string"
+        },
+        "algorithms": {
+          "items": {
+            "const": "RS256",
+            "type": "string"
+          },
+          "title": "Algorithms",
+          "type": "array"
+        },
+        "clients": {
+          "items": {
+            "$ref": "#/$defs/OIDCClient"
+          },
+          "title": "Clients",
+          "type": "array"
+        }
+      },
+      "required": [
+        "issuer",
+        "audience",
+        "jwks_url",
+        "introspection_url",
+        "algorithms",
+        "clients"
+      ],
+      "title": "IdentityProvider",
+      "type": "object"
+    },
+    "OIDCClient": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "enum": [
+            "open-webui",
+            "p006-pep"
+          ],
+          "title": "Id",
+          "type": "string"
+        },
+        "redirect_uris": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Redirect Uris",
+          "type": "array"
+        },
+        "origins": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Origins",
+          "type": "array"
+        },
+        "pkce": {
+          "const": "S256",
+          "default": "S256",
+          "title": "Pkce",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "redirect_uris",
+        "origins"
+      ],
+      "title": "OIDCClient",
+      "type": "object"
+    },
+    "PolicyBundle": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "p006-policy-v1",
+          "default": "p006-policy-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "version": {
+          "const": "p006-authz-v1",
+          "default": "p006-authz-v1",
+          "title": "Version",
+          "type": "string"
+        },
+        "default_allow": {
+          "const": false,
+          "default": false,
+          "title": "Default Allow",
+          "type": "boolean"
+        }
+      },
+      "title": "PolicyBundle",
+      "type": "object"
+    },
+    "Principal": {
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "pattern": "^[a-f0-9-]{36}$",
+          "title": "Subject",
+          "type": "string"
+        },
+        "username": {
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+          "title": "Username",
+          "type": "string"
+        },
+        "tenant": {
+          "enum": [
+            "tenant-a",
+            "tenant-b",
+            "platform"
+          ],
+          "title": "Tenant",
+          "type": "string"
+        },
+        "roles": {
+          "items": {
+            "enum": [
+              "user",
+              "tenant-admin",
+              "platform-admin"
+            ],
+            "type": "string"
+          },
+          "title": "Roles",
+          "type": "array"
+        },
+        "enabled": {
+          "default": true,
+          "title": "Enabled",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "subject",
+        "username",
+        "tenant",
+        "roles"
+      ],
+      "title": "Principal",
+      "type": "object"
+    },
+    "Tenant": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "enum": [
+            "tenant-a",
+            "tenant-b",
+            "platform"
+          ],
+          "title": "Id",
+          "type": "string"
+        },
+        "classification": {
+          "const": "SYNTHETIC",
+          "default": "SYNTHETIC",
+          "title": "Classification",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Tenant",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "p006-profile-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "name": {
+      "enum": [
+        "hardened",
+        "vulnerable-lab"
+      ],
+      "title": "Name",
+      "type": "string"
+    },
+    "model_mode": {
+      "const": "deterministic-local",
+      "title": "Model Mode",
+      "type": "string"
+    },
+    "identity": {
+      "$ref": "#/$defs/IdentityProvider"
+    },
+    "principals": {
+      "items": {
+        "$ref": "#/$defs/Principal"
+      },
+      "title": "Principals",
+      "type": "array"
+    },
+    "tenants": {
+      "items": {
+        "$ref": "#/$defs/Tenant"
+      },
+      "title": "Tenants",
+      "type": "array"
+    },
+    "models": {
+      "items": {
+        "$ref": "#/$defs/GatewayModel"
+      },
+      "title": "Models",
+      "type": "array"
+    },
+    "route": {
+      "$ref": "#/$defs/GatewayRoute"
+    },
+    "policy": {
+      "$ref": "#/$defs/PolicyBundle"
+    },
+    "egress": {
+      "$ref": "#/$defs/EgressPolicy"
+    },
+    "deployment": {
+      "$ref": "#/$defs/Deployment"
+    },
+    "max_request_bytes": {
+      "default": 16384,
+      "maximum": 16384,
+      "minimum": 1024,
+      "title": "Max Request Bytes",
+      "type": "integer"
+    },
+    "max_response_bytes": {
+      "default": 65536,
+      "maximum": 65536,
+      "minimum": 1024,
+      "title": "Max Response Bytes",
+      "type": "integer"
+    },
+    "requests_per_minute": {
+      "default": 20,
+      "maximum": 60,
+      "minimum": 1,
+      "title": "Requests Per Minute",
+      "type": "integer"
+    },
+    "tenant_tokens_per_minute": {
+      "default": 1024,
+      "maximum": 8192,
+      "minimum": 128,
+      "title": "Tenant Tokens Per Minute",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "name",
+    "model_mode",
+    "identity",
+    "principals",
+    "tenants",
+    "models",
+    "route",
+    "policy",
+    "egress",
+    "deployment"
+  ],
+  "title": "Profile",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:architecture-profile:v1"
+}

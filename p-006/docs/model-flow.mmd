@@ -1,0 +1,10 @@
+sequenceDiagram
+ participant P as PEP
+ participant G as LiteLLM callback
+ participant M as Deterministic backend
+ P->>G: Reconstructed local model request with bound proof
+ G->>G: Check body, key, timestamp, nonce, HMAC
+ G->>M: Fixed local OpenAI compatible route and workload key
+ M-->>G: Synthetic digest response
+ G-->>P: Completion
+ P->>P: Bound and project safe response

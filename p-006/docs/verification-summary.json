@@ -1,0 +1,519 @@
+{
+  "schema_version": "p006-reviewed-verification-v1",
+  "date_utc": "2026-11-16",
+  "repository": {
+    "schema_version": "p006-repository-v1",
+    "repository": "amaw535353-ai/p001",
+    "default_branch": "p001-initial",
+    "initial_base_commit": "2c2ddfe72cb205c89c7b7b6bf7614008dfb4dcc1",
+    "approved_base_commit": "50a61a883b5f943a7a3cd9a00a8b9b55b1581920",
+    "feature_branch": "feat/p-006-secure-llm-reference-architecture",
+    "p007_pr5_state": "MERGED",
+    "base_update": "Fast-forwarded to approved default after P008 PR6 merged; no sibling edits."
+  },
+  "offline": {
+    "schema_version": "p006-verification-v1",
+    "run_id": "20261116T141122Z-4b3d254f",
+    "offline_groups": {
+      "tests.test_config": {
+        "PASS": 28,
+        "FAIL": 0,
+        "BLOCKED": 0,
+        "NOT_TESTED": 0,
+        "INCONCLUSIVE": 0
+      },
+      "tests.test_enforcement": {
+        "PASS": 38,
+        "FAIL": 0,
+        "BLOCKED": 0,
+        "NOT_TESTED": 0,
+        "INCONCLUSIVE": 0
+      },
+      "tests.test_identity": {
+        "PASS": 19,
+        "FAIL": 0,
+        "BLOCKED": 0,
+        "NOT_TESTED": 0,
+        "INCONCLUSIVE": 0
+      },
+      "tests.test_weak": {
+        "PASS": 5,
+        "FAIL": 0,
+        "BLOCKED": 0,
+        "NOT_TESTED": 0,
+        "INCONCLUSIVE": 0
+      }
+    },
+    "commands": [
+      {
+        "command": [
+          "/workspace/p001/p-006/.venv/bin/python",
+          "-m",
+          "pytest",
+          "tests",
+          "-q",
+          "--junitxml=/workspace/p001/p-006/reports/20261116T141122Z-4b3d254f/offline.xml"
+        ],
+        "exit_code": 0
+      },
+      {
+        "command": [
+          "/workspace/p001/p-006/.venv/bin/ruff",
+          "check",
+          "src",
+          "scripts",
+          "tests"
+        ],
+        "exit_code": 0
+      },
+      {
+        "command": [
+          "/workspace/p001/p-006/.venv/bin/mypy",
+          "src"
+        ],
+        "exit_code": 0
+      },
+      {
+        "command": [
+          "make",
+          "-C",
+          "/workspace/p001",
+          "unit",
+          "static"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "hashes": {
+      "requirements.lock": "081577fdc34b4505916c57006a909c101ceb38f061220e1a8b6bc19b748b1609",
+      "config/hardened.json": "b8776ed106f0a973895f9d4ca464197d99d8d270124a00c2076ba28cec83bdd6",
+      "config/images.lock.json": "9f05ad04b7d9e80709c46886ac4a72462b71f7b97f64721398afc68bc1ec2116",
+      "policy/opa/authz.rego": "10ce7cfe07b8977ec47767eaa484a440e826424200e13458b50eceab40824d06",
+      "policy/opa/data.json": "905303c3b6f1a29ba116f8b8eabeef3278ead6e0b07811e066b92e9f5f83380d",
+      "compose.yaml": "64a2953d5612848ceb3cea2b9c728d03c78eedb3d8618479dba432c6f9e18fc1"
+    },
+    "provenance": "Codex tested",
+    "native_integration": "Separate evidence/*/results.json; adapter fixtures do not prove native enforcement",
+    "human_independent_reproduction": "NOT_DEMONSTRATED"
+  },
+  "native": {
+    "schema_version": "p006-live-summary-v1",
+    "run_id": "20261116T140528Z-07c7bad1",
+    "config_sha256": "4ddcfeffb8fe8b33adf6dc983dc2c65573c710405d3f73b0dd4282b4043ef9d5",
+    "results": [
+      {
+        "test_id": "A01",
+        "status": "PASS",
+        "observation": "Protected PEP rejects unauthenticated request"
+      },
+      {
+        "test_id": "A02-P02-L01",
+        "status": "PASS",
+        "observation": "Real Keycloak Code+PKCE token traverses PEP, OPA, Vault, LiteLLM and deterministic backend"
+      },
+      {
+        "test_id": "P03",
+        "status": "PASS",
+        "observation": "Ordinary user denied privileged model by real OPA on PEP path"
+      },
+      {
+        "test_id": "P04",
+        "status": "PASS",
+        "observation": "Tenant A token denied Tenant B resource"
+      },
+      {
+        "test_id": "P05",
+        "status": "PASS",
+        "observation": "Normal user denied tenant admin action"
+      },
+      {
+        "test_id": "P06",
+        "status": "PASS",
+        "observation": "Tenant administrator denied platform operation"
+      },
+      {
+        "test_id": "P02-admin",
+        "status": "PASS",
+        "observation": "Tenant administrator allowed own synthetic administrative operation"
+      },
+      {
+        "test_id": "P02-platform",
+        "status": "PASS",
+        "observation": "Platform administrator allowed explicit synthetic platform operation"
+      },
+      {
+        "test_id": "L02",
+        "status": "PASS",
+        "observation": "Unknown model denied"
+      },
+      {
+        "test_id": "L04",
+        "status": "PASS",
+        "observation": "Arbitrary provider URL rejected by strict PEP contract"
+      },
+      {
+        "test_id": "A09",
+        "status": "PASS",
+        "observation": "Forged user header rejected"
+      },
+      {
+        "test_id": "A10",
+        "status": "PASS",
+        "observation": "Forged tenant header rejected"
+      },
+      {
+        "test_id": "A03",
+        "status": "PASS",
+        "observation": "Corrupted Keycloak token signature rejected"
+      },
+      {
+        "test_id": "U06",
+        "status": "PASS",
+        "observation": "Unapproved origin rejected"
+      },
+      {
+        "test_id": "U07",
+        "status": "PASS",
+        "observation": "Oversized payload rejected before authorization"
+      },
+      {
+        "test_id": "P09",
+        "status": "PASS",
+        "observation": "Real LiteLLM rejects gateway request without PEP proof"
+      },
+      {
+        "test_id": "L-admin",
+        "status": "PASS",
+        "observation": "Gateway administration rejects unauthenticated operator"
+      },
+      {
+        "test_id": "L-backend",
+        "status": "PASS",
+        "observation": "Deterministic backend requires its own synthetic workload credential"
+      },
+      {
+        "test_id": "V07-U05",
+        "status": "PASS",
+        "observation": "Synthetic secret marker in prompt absent from projected browser/API response"
+      },
+      {
+        "test_id": "V01-p006-rotator",
+        "status": "PASS",
+        "observation": "Real Vault AppRole has only its named policy and a bounded lease"
+      },
+      {
+        "test_id": "V02",
+        "status": "PASS",
+        "observation": "Narrow Vault identity reads its designated KV-v2 path"
+      },
+      {
+        "test_id": "P10-proof",
+        "status": "PASS",
+        "observation": "Real LiteLLM accepts a correctly bound fresh proof from the trusted test operator"
+      },
+      {
+        "test_id": "P10-replay",
+        "status": "PASS",
+        "observation": "Real LiteLLM rejects reuse of an already consumed proof nonce"
+      },
+      {
+        "test_id": "L08",
+        "status": "PASS",
+        "observation": "Authorized proof cannot be reused for a changed model/body"
+      },
+      {
+        "test_id": "V02-scope",
+        "status": "PASS",
+        "observation": "Read outside intended path denied by real Vault ACL"
+      },
+      {
+        "test_id": "V01-p006-unrelated",
+        "status": "PASS",
+        "observation": "Real Vault AppRole has only its named policy and a bounded lease"
+      },
+      {
+        "test_id": "V03",
+        "status": "PASS",
+        "observation": "Unrelated Vault identity denied credentials"
+      },
+      {
+        "test_id": "V04",
+        "status": "PASS",
+        "observation": "Revoked real Vault token denied"
+      },
+      {
+        "test_id": "V06",
+        "status": "PASS",
+        "observation": "Gateway rotation increments KV version and is used without fallback/cache"
+      },
+      {
+        "test_id": "U01-unauth",
+        "status": "PASS",
+        "observation": "Actual Open WebUI protected user API rejects unauthenticated client"
+      },
+      {
+        "test_id": "U01",
+        "status": "PASS",
+        "observation": "Actual Open WebUI OAuth callback completes Keycloak Authorization Code flow"
+      },
+      {
+        "test_id": "U03-role",
+        "status": "PASS",
+        "observation": "First ordinary OAuth login retains normal user role"
+      },
+      {
+        "test_id": "U-model-list",
+        "status": "PASS",
+        "observation": "Native Open WebUI access grants expose only the allowed ordinary-user model"
+      },
+      {
+        "test_id": "U02",
+        "status": "PASS",
+        "observation": "Actual Open WebUI chat path forwards Keycloak access token through system_oauth to PEP chain"
+      },
+      {
+        "test_id": "U03",
+        "status": "PASS",
+        "observation": "Ordinary Open WebUI user denied administrative user API"
+      },
+      {
+        "test_id": "U04",
+        "status": "PASS",
+        "observation": "Ordinary user cannot create executable function"
+      },
+      {
+        "test_id": "U08",
+        "status": "PASS",
+        "observation": "Direct Open WebUI API cannot select privileged model as normal user"
+      },
+      {
+        "test_id": "U-cookie",
+        "status": "PASS",
+        "observation": "Observed application session cookies are HttpOnly; loopback HTTP has no Secure flag"
+      },
+      {
+        "test_id": "A12",
+        "status": "PASS",
+        "observation": "Real Keycloak deactivation is enforced by introspection on previously issued token"
+      },
+      {
+        "test_id": "A11",
+        "status": "PASS",
+        "observation": "Keycloak logout invalidates existing session token on PEP path"
+      },
+      {
+        "test_id": "N01-N05",
+        "status": "PASS",
+        "observation": "Actual UI has no default route and cannot connect to reserved off-network destination"
+      },
+      {
+        "test_id": "N02",
+        "status": "PASS",
+        "observation": "UI reaches required PEP/identity destinations"
+      },
+      {
+        "test_id": "N03",
+        "status": "PASS",
+        "observation": "Actual UI cannot reach policy, secret or gateway services"
+      },
+      {
+        "test_id": "N04",
+        "status": "PASS",
+        "observation": "Actual UI cannot bypass PEP to backend"
+      },
+      {
+        "test_id": "N01-gateway",
+        "status": "PASS",
+        "observation": "Actual gateway has no default route and off-network connection is blocked"
+      },
+      {
+        "test_id": "U02-identity",
+        "status": "PASS",
+        "observation": "Sanitized actual PEP decision identifies Ben, the user authenticated through Open WebUI"
+      },
+      {
+        "test_id": "N06-webui",
+        "status": "PASS",
+        "observation": "Runtime loopback bindings inspected separately from host accessibility"
+      },
+      {
+        "test_id": "N06-keycloak",
+        "status": "PASS",
+        "observation": "Runtime loopback bindings inspected separately from host accessibility"
+      },
+      {
+        "test_id": "P07",
+        "status": "PASS",
+        "observation": "Real owned dependency disconnected; PEP required to deny safely"
+      },
+      {
+        "test_id": "P07-recovery",
+        "status": "PASS",
+        "observation": "Fresh request succeeds after owned dependency reconnection"
+      },
+      {
+        "test_id": "V05",
+        "status": "PASS",
+        "observation": "Real owned dependency disconnected; PEP required to deny safely"
+      },
+      {
+        "test_id": "V05-recovery",
+        "status": "PASS",
+        "observation": "Fresh request succeeds after owned dependency reconnection"
+      },
+      {
+        "test_id": "L07",
+        "status": "PASS",
+        "observation": "Real owned dependency disconnected; PEP required to deny safely"
+      },
+      {
+        "test_id": "L07-recovery",
+        "status": "PASS",
+        "observation": "Fresh request succeeds after owned dependency reconnection"
+      },
+      {
+        "test_id": "W06",
+        "status": "BLOCKED",
+        "observation": "Merged P007 adapter hard-codes unavailable; descriptor v1 only permits BLOCKED/NOT_TESTED"
+      }
+    ],
+    "model": "deterministic-local; no real LLM evaluated"
+  },
+  "native_counts": {
+    "PASS": 54,
+    "FAIL": 0,
+    "BLOCKED": 1,
+    "NOT_TESTED": 0,
+    "INCONCLUSIVE": 0
+  },
+  "comparison": {
+    "schema_version": "p006-comparison-v1",
+    "results": [
+      {
+        "test_id": "W01",
+        "status": "PASS",
+        "observation": "Actual opted-in weak fixture trusts synthetic caller tenant/model and displays warning"
+      },
+      {
+        "test_id": "W02",
+        "status": "PASS",
+        "observation": "Same forged tenant/model request is denied by actual hardened server enforcement"
+      },
+      {
+        "test_id": "N01-weak",
+        "status": "PASS",
+        "observation": "Actual weak network has no default route and denies off-network connection"
+      }
+    ]
+  },
+  "comparison_counts": {
+    "PASS": 3,
+    "FAIL": 0,
+    "BLOCKED": 0,
+    "NOT_TESTED": 0,
+    "INCONCLUSIVE": 0
+  },
+  "native_opa_tests": {
+    "PASS": 3,
+    "FAIL": 0,
+    "command": "docker exec p006-opa /opa test /policy -v"
+  },
+  "root_unit": {
+    "PASS": 7,
+    "FAIL": 0
+  },
+  "root_static": "PASS",
+  "host_publications": {
+    "webui": {
+      "status": "BLOCKED",
+      "reason": "Host loopback publication unreachable on managed rootless internal network"
+    },
+    "keycloak": {
+      "status": "BLOCKED",
+      "reason": "Host loopback publication unreachable on managed rootless internal network"
+    },
+    "weak": {
+      "status": "BLOCKED",
+      "reason": "Host loopback publication unreachable on managed rootless internal network"
+    }
+  },
+  "cleanup": {
+    "status": "PASS",
+    "runtime_credentials_removed": true,
+    "owned_containers_remaining": 0,
+    "owned_networks_remaining": 0,
+    "p001_image_preserved": "sha256:fc773bac2b86a775553951b1cf197e832d8d4c5bdf05c0de357af8963e69e494",
+    "retained_artifact_hashes_verified": 6
+  },
+  "source_hashes": {
+    "src/p006/adapters.py": "98e05ac148c0103eb21f81d64aee6099d943fe16b81e34adbc2b0854625e7052",
+    "src/p006/entrypoint.py": "8131bdb5055444a5da957c5fdf905e33fa2df33ec28ab534d06a66b1545fafd6",
+    "src/p006/gateway_auth.py": "7ce8dc1da076b1eb06b20c8436ceabfc7e48b70b4c4bd5e099c58c4c3f37e8b3",
+    "src/p006/models.py": "d74e6e28c06185d9dbe821c1a73260ca05888412a663ff59ad9f4a81fad6d297",
+    "src/p006/pep.py": "83e2768428f591c6aa9419bffe7b4c2e048a99dbec1fd9353b4e979b7cce93c7",
+    "src/p006/__init__.py": "e45305cfe13586897c56b8a361a4670f72a8e2b79327b8889869411ef306b79b",
+    "src/p006/identity.py": "42f72e345cbeb5a1cd212e3167408c908051a83af08ae00e1ce4efc7aaf8f3dd",
+    "src/p006/transport.py": "67e86ec79659d4e5dd29cdb216767534fcd1c727f711ac771c3fa9e548fd023f",
+    "src/p006/mock.py": "da4851ca15bbe118474604ab0df61c2d4c1be66a0ae4d4aca310b4d6f667d2d8",
+    "src/p006/safety.py": "d3fdd1e6d33ab9f80f1ab72f77951c4899519cb80414fdcef1d989ecd9006b12",
+    "src/p006/weak.py": "fbfe7891f0c66d153b734de28a3bd39c64600dce13b486940e99890faef1f4e0",
+    "scripts/build-schemas.py": "a3f3468a321b00fc71df7e5676d92d902e7228545381bdc544a899c948017d29",
+    "scripts/verify.py": "cf8a882981b22400067e0b73457c443d89a0c775597acc95625e6a024dd113e9",
+    "scripts/p006": "4b0e8c324009ff491edb5acaea1e650c86522244ff6a74abda7928df75300c08",
+    "scripts/operate.py": "987d87141184c0641f4d41d7891eefadc4baeaeab66c22c90ac52c5a0fc39058",
+    "scripts/live.py": "c414148a1e7da564d78ffbc4b3a9f0af972ee8413407727c23e67f3f8d0a5c48",
+    "scripts/bootstrap.py": "e57b3cf851285b7eb862aeadc2d8a28f0546eeba4663f5ae3c2eacb819b99cd3",
+    "scripts/compare-live.py": "105629db6ef2656cc9bfe9294f1dec34dfc88d08790372ac8b7e7f03236bd5aa",
+    "scripts/setup": "547e349605649edb402c0cb8727f5f7de445a4d72f3ee4faf2996c5ba10371d7",
+    "config/vulnerable-lab.json": "030e077b8cf19e8256a8432a3a87170e400bd80db81fdfa102a841af93aa3414",
+    "config/vault.hcl": "33c5cfb8e23a6e53128cd4e0421fd6f6f94acf1d4f99dacbc5b59d83053f150d",
+    "config/hardened.json": "b8776ed106f0a973895f9d4ca464197d99d8d270124a00c2076ba28cec83bdd6",
+    "config/repository.json": "a7346709b1f6d92862653bee5ea0fb8ebce5e27becddee059d4b685ce1b4bc2f",
+    "config/images.lock.json": "9f05ad04b7d9e80709c46886ac4a72462b71f7b97f64721398afc68bc1ec2116",
+    "policy/opa/authz_test.rego": "2b95f44ffabf71d9341558a451896e75986b2b74f1ac1ca747d54c0abcd09d9e",
+    "policy/opa/authz.rego": "10ce7cfe07b8977ec47767eaa484a440e826424200e13458b50eceab40824d06",
+    "policy/opa/data.json": "905303c3b6f1a29ba116f8b8eabeef3278ead6e0b07811e066b92e9f5f83380d",
+    "gateway/litellm/config.yaml": "d40582e4dfed003f3bb5c2d3bd725071c3a82188f88adf8d7b82f9f779797a85",
+    "identity/keycloak/realm-template.json": "7b366077abd7eee9d7ecd89d07f6e2f9bae294ce1a5d503bc136452e05cca15f",
+    "schemas/architecture-profile.schema.json": "652ded25f65667ced1b63ed9372a91bff51c16d6a14474b88dd1f564172eedcc",
+    "schemas/identity-provider.schema.json": "d642ae29a1ab1483dd9e80479b230a0208a4ca2bf90d19d9e19e17c692c6417f",
+    "schemas/vault-policy.schema.json": "48530bcab976922f3fb17557d9894ed48b70d7016ec0618106c8d54c8959ff25",
+    "schemas/oidc-client.schema.json": "545cf04e1795830604c362a9c421e6df82b6e86cdfe24d5686150507cb5fd939",
+    "schemas/chat-request.schema.json": "e14fbc900e29606f9156bc4d746ee057844b6d37c05aa6cfa7675f672ad93962",
+    "schemas/test-result.schema.json": "9c2c4c8b00fe9aa63c20f23b489e92a5faa14e7ef37691666de1218f595389d6",
+    "schemas/authorization-decision.schema.json": "79e975965ad7356d4b1b056e27e50a3c3760028570fbf2c1be34a52539a6ab0b",
+    "schemas/principal.schema.json": "4a8b66574a7e84442faa1e297cf08240ffdc4f9695f39a8b5cf47017c7a9f540",
+    "schemas/test-case.schema.json": "63e89acf5464bc4a8e5c2c6729faa4a26b0a3038d26df07a1f35d19e83e80ec4",
+    "schemas/opa-policy-bundle.schema.json": "684a19bf79603c8f6444ac672e61f722d376d4fcd93acd1cdb961a3814544c8b",
+    "schemas/gateway-model.schema.json": "12c60d2e58fb840ddd4fd59be0c9e102cde8a784018cedb00a2a4c699094843a",
+    "schemas/role-binding.schema.json": "64e0cb3f9f730f565dc07aa5fc702f1476c5e536ed2b9f1d20a1a011dbaf502b",
+    "schemas/p006-target-adapter-v1.schema.json": "874da151e40dff026dbaef4d164eea5b7b9a803055e8c4c5ebc26a0bdf497f5d",
+    "schemas/service-inventory.schema.json": "31ff696c18f5c5e00a5fed7f43097c67224a53d8545071e583b6cc95e838c090",
+    "schemas/authorization-request.schema.json": "965f8e8e3f8ce7ef5d3493b7c9dd707900e77fb59b889d8aed89da341805170d",
+    "schemas/vault-secret-reference.schema.json": "4395696b0a63f6600c23ebf71edbb3a4adaf4951d32cc33dea6ea5393453577b",
+    "schemas/service-endpoint.schema.json": "129e77bd1965f9caa80f25e1b1a0d14cf0df1373dcc3c30490dff13ac5687f2c",
+    "schemas/tenant.schema.json": "c0adc6aae4268b1193a89082182cf533ff8b22ce823544f9a3cb25c63d9657fd",
+    "schemas/gateway-route.schema.json": "a1a95af6f1cc1c15ca5c005cc351b59a27fe5af2d32e160a296cc4eb785e5d55",
+    "schemas/deployment-config.schema.json": "c78ff47ee97383562d461aee9aea6cbaab79c911cd9ec33ead2c4ca5e0e58dd6",
+    "schemas/egress-policy.schema.json": "539b2ed3ad76e5858671b921a5049aaefc96d3ff95fce6d299cfa1f014d936c1",
+    "contracts/p006-target-adapter.json": "0c96f0443f7bb1764459a3f84d7da7226de5663c0d5bef9e986ab99cffe05949",
+    "contracts/acceptance-catalog.json": "fe6dafdc3baa34a56a13ae5e70d322913a1a9465b6736aea4513956e6fa8583b",
+    "contracts/architecture/risk-applicability.json": "8dc24d2e719f526461765b02e82530de1e3bc1f444a2c961b65683e348c1c0c7",
+    "contracts/architecture/service-inventory.json": "213782ab717b6e9cb560a27f86322ae02d46cb9b31b5a95ae8dc25eaeda97cd4",
+    "contracts/endpoint-schemas/models.schema.json": "e1e2e0c82e8023174f4ff921c47fd546b75991fecd9fa907ffa3961633d9dee7",
+    "contracts/endpoint-schemas/chat.schema.json": "8c52885d560d334bcb1d76003a4a87ba020b8df0175032dd42ef3bdfd1d9c89a"
+  },
+  "human_independent_reproduction": "NOT_DEMONSTRATED",
+  "external_human_review": "NOT_DEMONSTRATED",
+  "known_not_tested": [
+    "Graphical browser CSRF/session-fixation/natural-expiry/refresh behavior",
+    "Native Keycloak signing-key rollover",
+    "Natural Vault expiry (revocation tested)",
+    "Coordinated provider-key rotation (gateway-key rotation tested)",
+    "Full image CVE/SBOM/license audit",
+    "P004 discovery/P005 threat-model/P008 evaluator native imports",
+    "Kubernetes/AWS controls",
+    "Other hosts/architectures",
+    "Real model/provider behavior; deterministic backend only"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "enum": [
+        "p006-pep",
+        "p006-gateway",
+        "p006-rotator",
+        "p006-unrelated"
+      ],
+      "title": "Name",
+      "type": "string"
+    },
+    "path": {
+      "title": "Path",
+      "type": "string"
+    },
+    "capabilities": {
+      "items": {
+        "enum": [
+          "read",
+          "create",
+          "update"
+        ],
+        "type": "string"
+      },
+      "title": "Capabilities",
+      "type": "array"
+    },
+    "token_ttl_seconds": {
+      "default": 60,
+      "maximum": 300,
+      "minimum": 10,
+      "title": "Token Ttl Seconds",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "name",
+    "path",
+    "capabilities"
+  ],
+  "title": "VaultPolicy",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:vault-policy:v1"
+}

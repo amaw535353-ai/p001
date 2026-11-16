@@ -1,0 +1,71 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "p006-test-case-v1",
+      "default": "p006-test-case-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "objective": {
+      "title": "Objective",
+      "type": "string"
+    },
+    "requirement": {
+      "title": "Requirement",
+      "type": "string"
+    },
+    "component": {
+      "title": "Component",
+      "type": "string"
+    },
+    "boundary": {
+      "title": "Boundary",
+      "type": "string"
+    },
+    "profile": {
+      "enum": [
+        "hardened",
+        "vulnerable-lab"
+      ],
+      "title": "Profile",
+      "type": "string"
+    },
+    "preconditions": {
+      "title": "Preconditions",
+      "type": "string"
+    },
+    "action": {
+      "title": "Action",
+      "type": "string"
+    },
+    "expected": {
+      "title": "Expected",
+      "type": "string"
+    },
+    "reproduction": {
+      "title": "Reproduction",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "objective",
+    "requirement",
+    "component",
+    "boundary",
+    "profile",
+    "preconditions",
+    "action",
+    "expected",
+    "reproduction"
+  ],
+  "title": "TestCase",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:test-case:v1"
+}

@@ -1,0 +1,10 @@
+flowchart LR
+ B[Browser] --> W[Open WebUI]
+ W --> K[Keycloak]
+ W --> P[P006 PEP]
+ P --> K
+ P --> O[OPA]
+ P --> V[Vault]
+ P --> L[LiteLLM]
+ L --> V
+ L --> M[Deterministic model]

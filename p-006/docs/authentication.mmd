@@ -1,0 +1,11 @@
+sequenceDiagram
+ participant B as Browser
+ participant W as Open WebUI
+ participant K as Keycloak
+ B->>W: Start OAuth login
+ W->>K: Authorization Code with S256 PKCE
+ K->>B: Authenticate synthetic user
+ K-->>W: Exact callback with code and state
+ W->>K: Exchange code and verifier
+ K-->>W: Signed access token and refresh token
+ W-->>B: Application session cookie

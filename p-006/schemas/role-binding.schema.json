@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "principal": {
+      "title": "Principal",
+      "type": "string"
+    },
+    "tenant": {
+      "title": "Tenant",
+      "type": "string"
+    },
+    "roles": {
+      "items": {
+        "enum": [
+          "user",
+          "tenant-admin",
+          "platform-admin"
+        ],
+        "type": "string"
+      },
+      "title": "Roles",
+      "type": "array"
+    }
+  },
+  "required": [
+    "principal",
+    "tenant",
+    "roles"
+  ],
+  "title": "RoleBinding",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:role-binding:v1"
+}

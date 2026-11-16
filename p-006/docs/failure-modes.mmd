@@ -1,0 +1,10 @@
+flowchart TD
+ R[Request] --> I{Identity valid and active?}
+ I -- No or outage --> D[Safe denial]
+ I -- Yes --> O{Versioned OPA allow?}
+ O -- No or outage --> D
+ O -- Yes --> V{Fresh narrow Vault read?}
+ V -- No or outage --> D
+ V -- Yes --> G{Bound proof and local provider healthy?}
+ G -- No --> D
+ G -- Yes --> S[Projected synthetic response]

@@ -1,0 +1,96 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "p006-authz-input-v1",
+      "default": "p006-authz-input-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "policy_version": {
+      "const": "p006-authz-v1",
+      "default": "p006-authz-v1",
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "subject": {
+      "title": "Subject",
+      "type": "string"
+    },
+    "tenant": {
+      "title": "Tenant",
+      "type": "string"
+    },
+    "resource_tenant": {
+      "title": "Resource Tenant",
+      "type": "string"
+    },
+    "roles": {
+      "items": {
+        "enum": [
+          "user",
+          "tenant-admin",
+          "platform-admin"
+        ],
+        "type": "string"
+      },
+      "title": "Roles",
+      "type": "array"
+    },
+    "model": {
+      "title": "Model",
+      "type": "string"
+    },
+    "action": {
+      "enum": [
+        "chat",
+        "models",
+        "tenant-admin",
+        "platform-admin"
+      ],
+      "title": "Action",
+      "type": "string"
+    },
+    "provider": {
+      "const": "local-mock",
+      "default": "local-mock",
+      "title": "Provider",
+      "type": "string"
+    },
+    "classification": {
+      "const": "SYNTHETIC",
+      "default": "SYNTHETIC",
+      "title": "Classification",
+      "type": "string"
+    },
+    "client": {
+      "const": "open-webui",
+      "default": "open-webui",
+      "title": "Client",
+      "type": "string"
+    },
+    "active": {
+      "const": true,
+      "default": true,
+      "title": "Active",
+      "type": "boolean"
+    },
+    "within_quota": {
+      "title": "Within Quota",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "subject",
+    "tenant",
+    "resource_tenant",
+    "roles",
+    "model",
+    "action",
+    "within_quota"
+  ],
+  "title": "AuthzRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:authorization-request:v1"
+}

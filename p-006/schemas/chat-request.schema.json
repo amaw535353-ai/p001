@@ -1,0 +1,75 @@
+{
+  "$defs": {
+    "Message": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "enum": [
+            "user",
+            "assistant",
+            "system"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "content": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Content",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role",
+        "content"
+      ],
+      "title": "Message",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "model": {
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Model",
+      "type": "string"
+    },
+    "messages": {
+      "items": {
+        "$ref": "#/$defs/Message"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Messages",
+      "type": "array"
+    },
+    "max_tokens": {
+      "default": 64,
+      "maximum": 128,
+      "minimum": 1,
+      "title": "Max Tokens",
+      "type": "integer"
+    },
+    "stream": {
+      "default": false,
+      "title": "Stream",
+      "type": "boolean"
+    },
+    "temperature": {
+      "default": 0.0,
+      "maximum": 0,
+      "minimum": 0,
+      "title": "Temperature",
+      "type": "number"
+    }
+  },
+  "required": [
+    "model",
+    "messages"
+  ],
+  "title": "Chat",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:chat-request:v1"
+}

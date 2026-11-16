@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "p006-route-v1",
+      "default": "p006-route-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "const": "local-mock",
+      "default": "local-mock",
+      "title": "Id",
+      "type": "string"
+    },
+    "url": {
+      "const": "http://litellm:4000/v1/chat/completions",
+      "title": "Url",
+      "type": "string"
+    },
+    "backend": {
+      "const": "http://model:8000/v1",
+      "title": "Backend",
+      "type": "string"
+    },
+    "model_ids": {
+      "items": {
+        "enum": [
+          "local-basic",
+          "local-admin"
+        ],
+        "type": "string"
+      },
+      "title": "Model Ids",
+      "type": "array"
+    },
+    "external_enabled": {
+      "const": false,
+      "default": false,
+      "title": "External Enabled",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "url",
+    "backend",
+    "model_ids"
+  ],
+  "title": "GatewayRoute",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:gateway-route:v1"
+}

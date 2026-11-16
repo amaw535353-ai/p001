@@ -1,0 +1,28 @@
+{
+  "schema_version": "p006-target-adapter-v1",
+  "target_id": "p006-hardened",
+  "target_version": "1.0.0",
+  "implementation_ref": "refs/heads/feat/p-006-secure-llm-reference-architecture:p-006",
+  "origin": "http://127.0.0.1:8086",
+  "capabilities": [
+    "oidc",
+    "tenant-isolation",
+    "opa-enforcement",
+    "vault-approle",
+    "litellm-local",
+    "offline-egress"
+  ],
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/chat/completions",
+      "response_schema_ref": "contracts/endpoint-schemas/chat.schema.json"
+    },
+    {
+      "method": "GET",
+      "path": "/api/models",
+      "response_schema_ref": "contracts/endpoint-schemas/models.schema.json"
+    }
+  ],
+  "runtime_status": "BLOCKED"
+}
