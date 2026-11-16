@@ -1,0 +1,150 @@
+{
+  "$defs": {
+    "DiffEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "after": {
+          "anyOf": [
+            {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "BLOCKED",
+                "NOT_TESTED",
+                "INCONCLUSIVE",
+                "NOT_APPLICABLE",
+                "FLAKY"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "After"
+        },
+        "before": {
+          "anyOf": [
+            {
+              "enum": [
+                "PASS",
+                "FAIL",
+                "BLOCKED",
+                "NOT_TESTED",
+                "INCONCLUSIVE",
+                "NOT_APPLICABLE",
+                "FLAKY"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Before"
+        },
+        "classification": {
+          "enum": [
+            "REGRESSION",
+            "IMPROVED",
+            "UNCHANGED_PASS",
+            "UNCHANGED_FAIL",
+            "NEW_TEST",
+            "REMOVED_OR_NOT_APPLICABLE",
+            "BLOCKED_OR_NOT_COMPARABLE",
+            "FLAKY_OR_INCONCLUSIVE"
+          ],
+          "title": "Classification",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "test_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Test Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "test_id",
+        "classification",
+        "before",
+        "after",
+        "reason"
+      ],
+      "title": "DiffEntry",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "baseline": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Baseline",
+      "type": "string"
+    },
+    "compatibility_rule": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Compatibility Rule"
+    },
+    "current": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Current",
+      "type": "string"
+    },
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/DiffEntry"
+      },
+      "title": "Entries",
+      "type": "array"
+    },
+    "remediation_ref": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Remediation Ref"
+    },
+    "retest_evidence": {
+      "title": "Retest Evidence",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "baseline",
+    "current",
+    "entries",
+    "compatibility_rule",
+    "remediation_ref",
+    "retest_evidence"
+  ],
+  "title": "RegressionDiff",
+  "type": "object"
+}

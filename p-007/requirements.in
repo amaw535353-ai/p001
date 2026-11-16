@@ -1,0 +1,10 @@
+# Core and engineering tooling; pins align with inspected P-003/P-005 conventions.
+pydantic==2.12.5
+jsonschema==4.26.0
+PyYAML==6.0.3
+regex==2026.11.9
+pytest==9.0.3
+hypothesis==6.151.9
+ruff==0.15.6
+mypy==1.19.1
+setuptools==84.1.0

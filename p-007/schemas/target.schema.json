@@ -1,0 +1,146 @@
+{
+  "$defs": {
+    "Operation": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "llm",
+            "agent",
+            "api",
+            "browser",
+            "passive_scan",
+            "active_scan",
+            "authorization",
+            "secrets",
+            "tenant_isolation",
+            "availability"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "method": {
+          "default": "GET",
+          "enum": [
+            "GET",
+            "POST",
+            "HEAD"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "path": {
+          "maxLength": 120,
+          "pattern": "^/(?:[A-Za-z0-9_/-]*)$",
+          "title": "Path",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "category"
+      ],
+      "title": "Operation",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_ips": {
+      "items": {
+        "const": "127.0.0.1",
+        "type": "string"
+      },
+      "maxItems": 1,
+      "minItems": 1,
+      "title": "Allowed Ips",
+      "type": "array"
+    },
+    "capabilities": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+        "type": "string"
+      },
+      "title": "Capabilities",
+      "type": "array"
+    },
+    "environment": {
+      "enum": [
+        "offline",
+        "local-lab"
+      ],
+      "title": "Environment",
+      "type": "string"
+    },
+    "instance_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Instance Id",
+      "type": "string"
+    },
+    "operations": {
+      "items": {
+        "$ref": "#/$defs/Operation"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Operations",
+      "type": "array"
+    },
+    "origin": {
+      "title": "Origin",
+      "type": "string"
+    },
+    "owner": {
+      "const": "p007",
+      "title": "Owner",
+      "type": "string"
+    },
+    "ownership_ref": {
+      "title": "Ownership Ref",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "service_identity": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Service Identity",
+      "type": "string"
+    },
+    "target_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Target Id",
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "target_id",
+    "version",
+    "environment",
+    "origin",
+    "service_identity",
+    "owner",
+    "ownership_ref",
+    "instance_id",
+    "allowed_ips",
+    "operations",
+    "capabilities"
+  ],
+  "title": "Target",
+  "type": "object"
+}

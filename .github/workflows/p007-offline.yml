@@ -1,0 +1,28 @@
+name: P007 offline core and scope checks
+on:
+  push:
+    paths: ['p-007/**', 'p-00[2-5]/**', '.github/workflows/p007-offline.yml']
+  pull_request:
+    paths: ['p-007/**', 'p-00[2-5]/**', '.github/workflows/p007-offline.yml']
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: ./scripts/setup
+        working-directory: p-007
+      - run: make verify
+        working-directory: p-007
+      - run: PYTHONPATH=tests/no-network .venv/bin/python -m pytest tests -m 'not live'
+        working-directory: p-007
+      - run: PYTHONPATH=tests/no-network .venv/bin/python scripts/demo.py
+        working-directory: p-007
+      - run: PYTHONPATH=tests/no-network .venv/bin/python scripts/demo-contracts.py
+        working-directory: p-007
+      - run: make unit static

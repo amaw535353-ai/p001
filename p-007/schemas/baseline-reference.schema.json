@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "baseline_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Baseline Id",
+      "type": "string"
+    },
+    "manifest_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Manifest Sha256",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "baseline_id",
+    "run_id",
+    "manifest_sha256"
+  ],
+  "title": "BaselineReference",
+  "type": "object"
+}

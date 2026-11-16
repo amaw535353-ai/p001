@@ -1,0 +1,530 @@
+{
+  "$defs": {
+    "Artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "media_type": {
+          "title": "Media Type",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size": {
+          "maximum": 1048576,
+          "minimum": 0,
+          "title": "Size",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path",
+        "media_type",
+        "size",
+        "sha256"
+      ],
+      "title": "Artifact",
+      "type": "object"
+    },
+    "NormalizedResult": {
+      "additionalProperties": false,
+      "properties": {
+        "assertion": {
+          "title": "Assertion",
+          "type": "string"
+        },
+        "compatibility": {
+          "additionalProperties": true,
+          "title": "Compatibility",
+          "type": "object"
+        },
+        "compatibility_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Compatibility Hash",
+          "type": "string"
+        },
+        "control_ids": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "title": "Control Ids",
+          "type": "array"
+        },
+        "definition_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Definition Hash",
+          "type": "string"
+        },
+        "expected": {
+          "additionalProperties": true,
+          "title": "Expected",
+          "type": "object"
+        },
+        "observed": {
+          "additionalProperties": true,
+          "title": "Observed",
+          "type": "object"
+        },
+        "runner": {
+          "$ref": "#/$defs/RunnerResult"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "BLOCKED",
+            "NOT_TESTED",
+            "INCONCLUSIVE",
+            "NOT_APPLICABLE",
+            "FLAKY"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "test_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Test Id",
+          "type": "string"
+        },
+        "test_version": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Test Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "test_id",
+        "test_version",
+        "control_ids",
+        "status",
+        "assertion",
+        "expected",
+        "observed",
+        "runner",
+        "definition_hash",
+        "compatibility_hash",
+        "compatibility"
+      ],
+      "title": "NormalizedResult",
+      "type": "object"
+    },
+    "Operation": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "llm",
+            "agent",
+            "api",
+            "browser",
+            "passive_scan",
+            "active_scan",
+            "authorization",
+            "secrets",
+            "tenant_isolation",
+            "availability"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "method": {
+          "default": "GET",
+          "enum": [
+            "GET",
+            "POST",
+            "HEAD"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "path": {
+          "maxLength": 120,
+          "pattern": "^/(?:[A-Za-z0-9_/-]*)$",
+          "title": "Path",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "category"
+      ],
+      "title": "Operation",
+      "type": "object"
+    },
+    "RunnerResult": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter": {
+          "enum": [
+            "offline",
+            "promptfoo",
+            "inspect_ai",
+            "zap",
+            "playwright",
+            "p006"
+          ],
+          "title": "Adapter",
+          "type": "string"
+        },
+        "commands": {
+          "items": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "title": "Commands",
+          "type": "array"
+        },
+        "error_class": {
+          "default": "none",
+          "enum": [
+            "none",
+            "dependency",
+            "scope",
+            "timeout",
+            "provider",
+            "unsupported",
+            "invalid",
+            "resource"
+          ],
+          "title": "Error Class",
+          "type": "string"
+        },
+        "executed": {
+          "title": "Executed",
+          "type": "boolean"
+        },
+        "exit_code": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Exit Code"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "observed": {
+          "additionalProperties": true,
+          "title": "Observed",
+          "type": "object"
+        },
+        "original_status": {
+          "title": "Original Status",
+          "type": "string"
+        },
+        "samples": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "maxItems": 64,
+          "title": "Samples",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "tool_version": {
+          "title": "Tool Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "adapter",
+        "executed",
+        "original_status",
+        "exit_code",
+        "tool_version"
+      ],
+      "title": "RunnerResult",
+      "type": "object"
+    },
+    "Target": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_ips": {
+          "items": {
+            "const": "127.0.0.1",
+            "type": "string"
+          },
+          "maxItems": 1,
+          "minItems": 1,
+          "title": "Allowed Ips",
+          "type": "array"
+        },
+        "capabilities": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "title": "Capabilities",
+          "type": "array"
+        },
+        "environment": {
+          "enum": [
+            "offline",
+            "local-lab"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "instance_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Instance Id",
+          "type": "string"
+        },
+        "operations": {
+          "items": {
+            "$ref": "#/$defs/Operation"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Operations",
+          "type": "array"
+        },
+        "origin": {
+          "title": "Origin",
+          "type": "string"
+        },
+        "owner": {
+          "const": "p007",
+          "title": "Owner",
+          "type": "string"
+        },
+        "ownership_ref": {
+          "title": "Ownership Ref",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "service_identity": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Service Identity",
+          "type": "string"
+        },
+        "target_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Target Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "target_id",
+        "version",
+        "environment",
+        "origin",
+        "service_identity",
+        "owner",
+        "ownership_ref",
+        "instance_id",
+        "allowed_ips",
+        "operations",
+        "capabilities"
+      ],
+      "title": "Target",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "actor_label": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Actor Label",
+      "type": "string"
+    },
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/Artifact"
+      },
+      "maxItems": 128,
+      "minItems": 1,
+      "title": "Artifacts",
+      "type": "array"
+    },
+    "authorization": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Authorization",
+      "type": "array"
+    },
+    "duration_seconds": {
+      "minimum": 0,
+      "title": "Duration Seconds",
+      "type": "number"
+    },
+    "ended_at": {
+      "title": "Ended At",
+      "type": "string"
+    },
+    "framework_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Framework Version",
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "owner": {
+      "const": "p007",
+      "default": "p007",
+      "title": "Owner",
+      "type": "string"
+    },
+    "plan_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Plan Digest",
+      "type": "string"
+    },
+    "provenance": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Provenance",
+      "type": "object"
+    },
+    "redaction": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Redaction",
+      "type": "array"
+    },
+    "remediation_ref": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Remediation Ref"
+    },
+    "repository": {
+      "additionalProperties": true,
+      "title": "Repository",
+      "type": "object"
+    },
+    "reproduction": {
+      "title": "Reproduction",
+      "type": "string"
+    },
+    "results": {
+      "items": {
+        "$ref": "#/$defs/NormalizedResult"
+      },
+      "title": "Results",
+      "type": "array"
+    },
+    "retest_of": {
+      "anyOf": [
+        {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Retest Of"
+    },
+    "run_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Source Hash",
+      "type": "string"
+    },
+    "started_at": {
+      "title": "Started At",
+      "type": "string"
+    },
+    "target": {
+      "$ref": "#/$defs/Target"
+    }
+  },
+  "required": [
+    "run_id",
+    "started_at",
+    "ended_at",
+    "duration_seconds",
+    "actor_label",
+    "repository",
+    "plan_digest",
+    "target",
+    "authorization",
+    "artifacts",
+    "results",
+    "source_hash",
+    "redaction",
+    "limitations",
+    "reproduction",
+    "provenance"
+  ],
+  "title": "EvidenceManifest",
+  "type": "object"
+}

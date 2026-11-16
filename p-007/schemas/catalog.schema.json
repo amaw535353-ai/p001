@@ -1,0 +1,631 @@
+{
+  "$defs": {
+    "Control": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Control Id",
+          "type": "string"
+        },
+        "expected_behavior": {
+          "title": "Expected Behavior",
+          "type": "string"
+        },
+        "owner": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Owner",
+          "type": "string"
+        },
+        "remediation_state": {
+          "enum": [
+            "hypothesis",
+            "planned",
+            "retested"
+          ],
+          "title": "Remediation State",
+          "type": "string"
+        },
+        "requirement": {
+          "title": "Requirement",
+          "type": "string"
+        },
+        "risk_ids": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "title": "Risk Ids",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "threat_ids": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "title": "Threat Ids",
+          "type": "array"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "control_id",
+        "version",
+        "title",
+        "requirement",
+        "expected_behavior",
+        "risk_ids",
+        "threat_ids",
+        "owner",
+        "remediation_state"
+      ],
+      "title": "Control",
+      "type": "object"
+    },
+    "Limits": {
+      "additionalProperties": false,
+      "properties": {
+        "concurrency": {
+          "const": 1,
+          "default": 1,
+          "title": "Concurrency",
+          "type": "integer"
+        },
+        "cpu_seconds": {
+          "default": 60,
+          "maximum": 180,
+          "minimum": 1,
+          "title": "Cpu Seconds",
+          "type": "integer"
+        },
+        "memory_mb": {
+          "default": 1024,
+          "maximum": 2048,
+          "minimum": 256,
+          "title": "Memory Mb",
+          "type": "integer"
+        },
+        "output_bytes": {
+          "default": 262144,
+          "maximum": 1048576,
+          "minimum": 1024,
+          "title": "Output Bytes",
+          "type": "integer"
+        },
+        "requests": {
+          "default": 16,
+          "maximum": 64,
+          "minimum": 1,
+          "title": "Requests",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "timeout_seconds": {
+          "default": 30,
+          "maximum": 180,
+          "minimum": 1,
+          "title": "Timeout Seconds",
+          "type": "integer"
+        }
+      },
+      "title": "Limits",
+      "type": "object"
+    },
+    "Operation": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "llm",
+            "agent",
+            "api",
+            "browser",
+            "passive_scan",
+            "active_scan",
+            "authorization",
+            "secrets",
+            "tenant_isolation",
+            "availability"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "method": {
+          "default": "GET",
+          "enum": [
+            "GET",
+            "POST",
+            "HEAD"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "path": {
+          "maxLength": 120,
+          "pattern": "^/(?:[A-Za-z0-9_/-]*)$",
+          "title": "Path",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "category"
+      ],
+      "title": "Operation",
+      "type": "object"
+    },
+    "Oracle": {
+      "additionalProperties": false,
+      "properties": {
+        "absent_markers": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8,
+          "title": "Absent Markers",
+          "type": "array"
+        },
+        "equals": {
+          "additionalProperties": true,
+          "maxProperties": 16,
+          "minProperties": 1,
+          "title": "Equals",
+          "type": "object"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "version": {
+          "const": "oracle-v1",
+          "default": "oracle-v1",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "equals"
+      ],
+      "title": "Oracle",
+      "type": "object"
+    },
+    "Target": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_ips": {
+          "items": {
+            "const": "127.0.0.1",
+            "type": "string"
+          },
+          "maxItems": 1,
+          "minItems": 1,
+          "title": "Allowed Ips",
+          "type": "array"
+        },
+        "capabilities": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "title": "Capabilities",
+          "type": "array"
+        },
+        "environment": {
+          "enum": [
+            "offline",
+            "local-lab"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "instance_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Instance Id",
+          "type": "string"
+        },
+        "operations": {
+          "items": {
+            "$ref": "#/$defs/Operation"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Operations",
+          "type": "array"
+        },
+        "origin": {
+          "title": "Origin",
+          "type": "string"
+        },
+        "owner": {
+          "const": "p007",
+          "title": "Owner",
+          "type": "string"
+        },
+        "ownership_ref": {
+          "title": "Ownership Ref",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "service_identity": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Service Identity",
+          "type": "string"
+        },
+        "target_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Target Id",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "target_id",
+        "version",
+        "environment",
+        "origin",
+        "service_identity",
+        "owner",
+        "ownership_ref",
+        "instance_id",
+        "allowed_ips",
+        "operations",
+        "capabilities"
+      ],
+      "title": "Target",
+      "type": "object"
+    },
+    "TestCase": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter": {
+          "enum": [
+            "offline",
+            "promptfoo",
+            "inspect_ai",
+            "zap",
+            "playwright",
+            "p006"
+          ],
+          "title": "Adapter",
+          "type": "string"
+        },
+        "authorization_class": {
+          "enum": [
+            "offline-fixture",
+            "bounded-local-api",
+            "passive-inspection",
+            "active-scan"
+          ],
+          "title": "Authorization Class",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "llm",
+            "agent",
+            "api",
+            "browser",
+            "passive_scan",
+            "active_scan",
+            "authorization",
+            "secrets",
+            "tenant_isolation",
+            "availability"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "cleanup": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Cleanup",
+          "type": "array"
+        },
+        "control_ids": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Control Ids",
+          "type": "array"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "environment": {
+          "enum": [
+            "offline",
+            "local-lab"
+          ],
+          "title": "Environment",
+          "type": "string"
+        },
+        "evidence_policy": {
+          "const": "synthetic-redacted-v1",
+          "default": "synthetic-redacted-v1",
+          "title": "Evidence Policy",
+          "type": "string"
+        },
+        "expected_class": {
+          "const": "security-behavior",
+          "default": "security-behavior",
+          "title": "Expected Class",
+          "type": "string"
+        },
+        "fixture_ref": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Fixture Ref",
+          "type": "string"
+        },
+        "lifecycle": {
+          "default": "active",
+          "enum": [
+            "active",
+            "retired"
+          ],
+          "title": "Lifecycle",
+          "type": "string"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Limitations",
+          "type": "array"
+        },
+        "limits": {
+          "$ref": "#/$defs/Limits"
+        },
+        "minimum_pass_rate": {
+          "default": 1.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Minimum Pass Rate",
+          "type": "number"
+        },
+        "objective": {
+          "title": "Objective",
+          "type": "string"
+        },
+        "offline_only": {
+          "title": "Offline Only",
+          "type": "boolean"
+        },
+        "operation": {
+          "$ref": "#/$defs/Operation"
+        },
+        "operator_approval": {
+          "title": "Operator Approval",
+          "type": "boolean"
+        },
+        "oracle": {
+          "$ref": "#/$defs/Oracle"
+        },
+        "owner": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Owner",
+          "type": "string"
+        },
+        "preconditions": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Preconditions",
+          "type": "array"
+        },
+        "repetitions": {
+          "default": 1,
+          "maximum": 5,
+          "minimum": 1,
+          "title": "Repetitions",
+          "type": "integer"
+        },
+        "requirement_refs": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Requirement Refs",
+          "type": "array"
+        },
+        "risk_ids": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Risk Ids",
+          "type": "array"
+        },
+        "safe_for_ci": {
+          "title": "Safe For Ci",
+          "type": "boolean"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "setup": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Setup",
+          "type": "array"
+        },
+        "target_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Target Id",
+          "type": "string"
+        },
+        "test_id": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Test Id",
+          "type": "string"
+        },
+        "threat_ids": {
+          "items": {
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Threat Ids",
+          "type": "array"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "tool_version": {
+          "title": "Tool Version",
+          "type": "string"
+        },
+        "version": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "test_id",
+        "version",
+        "title",
+        "objective",
+        "description",
+        "category",
+        "risk_ids",
+        "threat_ids",
+        "control_ids",
+        "requirement_refs",
+        "target_id",
+        "environment",
+        "authorization_class",
+        "operation",
+        "preconditions",
+        "fixture_ref",
+        "setup",
+        "adapter",
+        "tool_version",
+        "oracle",
+        "cleanup",
+        "limitations",
+        "owner",
+        "safe_for_ci",
+        "offline_only",
+        "operator_approval"
+      ],
+      "title": "TestCase",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "controls": {
+      "items": {
+        "$ref": "#/$defs/Control"
+      },
+      "maxItems": 64,
+      "minItems": 1,
+      "title": "Controls",
+      "type": "array"
+    },
+    "risk_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+        "type": "string"
+      },
+      "title": "Risk Ids",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "targets": {
+      "items": {
+        "$ref": "#/$defs/Target"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Targets",
+      "type": "array"
+    },
+    "tests": {
+      "items": {
+        "$ref": "#/$defs/TestCase"
+      },
+      "maxItems": 64,
+      "minItems": 1,
+      "title": "Tests",
+      "type": "array"
+    },
+    "threat_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+        "type": "string"
+      },
+      "title": "Threat Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "tests",
+    "controls",
+    "targets",
+    "risk_ids",
+    "threat_ids"
+  ],
+  "title": "Catalog",
+  "type": "object"
+}

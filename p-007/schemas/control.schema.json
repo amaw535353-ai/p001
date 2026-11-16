@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "control_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Control Id",
+      "type": "string"
+    },
+    "expected_behavior": {
+      "title": "Expected Behavior",
+      "type": "string"
+    },
+    "owner": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Owner",
+      "type": "string"
+    },
+    "remediation_state": {
+      "enum": [
+        "hypothesis",
+        "planned",
+        "retested"
+      ],
+      "title": "Remediation State",
+      "type": "string"
+    },
+    "requirement": {
+      "title": "Requirement",
+      "type": "string"
+    },
+    "risk_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+        "type": "string"
+      },
+      "title": "Risk Ids",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "threat_ids": {
+      "items": {
+        "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+        "type": "string"
+      },
+      "title": "Threat Ids",
+      "type": "array"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "control_id",
+    "version",
+    "title",
+    "requirement",
+    "expected_behavior",
+    "risk_ids",
+    "threat_ids",
+    "owner",
+    "remediation_state"
+  ],
+  "title": "Control",
+  "type": "object"
+}

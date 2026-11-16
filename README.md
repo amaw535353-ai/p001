@@ -63,6 +63,10 @@ Troubleshooting: [operations](docs/operations-and-troubleshooting.md),
 [assessment brief](docs/assessment-brief.md), [workbook](docs/learner-workbook.md).
 The root is the requested project directory; no redundant nested checkout is created.
 
+P-007 adds a local AI security control regression framework: [offline runs,
+guarded tool adapters and evidence reproduction](p-007/README.md). Its synthetic
+test results do not establish P-006 integration or independent human verification.
+
 Engineering review: [inventories](docs/inventories.md),
 [traceability matrix](docs/traceability-matrix.md), [command evidence](docs/reproducible-command-transcript.md),
 [extension contract](docs/extension-contract.md), [AI/license disclosure](docs/publication-and-ai-disclosure.md).
