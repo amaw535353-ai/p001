@@ -35,20 +35,24 @@ def repository_identity() -> dict:
         return subprocess.check_output(["git", *args], cwd=REPO, text=True, timeout=5).strip()
 
     try:
+        branch = git("branch", "--show-current") or None
+        dirty = bool(git("status", "--porcelain"))
         return {
             "repository": "amaw535353-ai/p001",
             "commit_sha": git("rev-parse", "HEAD"),
-            "branch": git("branch", "--show-current"),
-            "dirty": bool(git("status", "--porcelain")),
+            "branch": branch,
+            "head_state": "attached" if branch else "detached",
+            "dirty": dirty,
             "source_hash": source_hash(),
             "runtime": {"python": platform.python_version(), "platform": platform.platform()},
-            "commit_represents_working_tree": not bool(git("status", "--porcelain")),
+            "commit_represents_working_tree": not dirty,
         }
     except (subprocess.SubprocessError, OSError):
         return {
             "repository": "UNKNOWN",
             "commit_sha": None,
             "branch": None,
+            "head_state": "unknown",
             "dirty": True,
             "source_hash": source_hash(),
             "commit_represents_working_tree": False,

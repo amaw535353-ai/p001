@@ -9,7 +9,12 @@ from p007.safety import Invalid
 
 def test_E01_manifest_identities(offline_run):
     value = verify(offline_run)
-    assert value.repository["commit_sha"] and value.repository["branch"]
+    assert value.repository["commit_sha"]
+    assert value.repository["head_state"] in ("attached", "detached")
+    if value.repository["head_state"] == "attached":
+        assert value.repository["branch"]
+    else:
+        assert value.repository["branch"] is None
     assert value.target.target_id == "offline-demo" and value.target.environment == "offline"
     assert all(r.definition_hash for r in value.results)
 
@@ -80,16 +85,27 @@ def test_E07_recorded_offline_reproduction(offline_run):
 def test_E08_dirty_tree_disclosure(monkeypatch):
     from p007.evidence import repository_identity
 
+    state = {"status": "?? synthetic-uncommitted-file", "branch": "synthetic-feature"}
+
     def git(command, **kwargs):
         if "status" in command:
-            return "?? synthetic-uncommitted-file"
+            return state["status"]
         if "rev-parse" in command:
             return "a" * 40
-        return "synthetic-feature"
+        return state["branch"]
 
     monkeypatch.setattr("subprocess.check_output", git)
     repo = repository_identity()
     assert repo["dirty"] is True and repo["commit_represents_working_tree"] is False
+    assert repo["head_state"] == "attached" and repo["branch"] == "synthetic-feature"
+
+    # GitHub PR checkouts have an actual commit but no named branch. Preserve
+    # that identity without fabricating a branch or classifying it as unknown.
+    state.update(status="", branch="")
+    detached = repository_identity()
+    assert detached["commit_sha"] == "a" * 40
+    assert detached["head_state"] == "detached" and detached["branch"] is None
+    assert detached["dirty"] is False and detached["commit_represents_working_tree"] is True
 
 
 def test_manifest_result_edit_detected(offline_run):

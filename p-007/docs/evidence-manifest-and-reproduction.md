@@ -7,6 +7,10 @@ commands/tool/model/browser settings; P003 reference and decision digests; artif
 path/type/size/hash; redaction omissions; remediation/retest and provenance fields.
 The plan snapshot contains fixture data and all selected definitions.
 
+A detached HEAD, as used by GitHub PR checks, is recorded with `branch: null`
+and `head_state: detached`, while retaining the actual commit SHA. It is not
+assigned a fabricated branch or treated as an unknown repository.
+
 `p007 evidence verify --run <id>` validates contracts, plan digest, result identities,
 artifact hashes/sizes, missing/modified files, and manifest/result agreement.
 Traversal/symlinks and collisions fail closed. A valid SHA256 shows consistency
