@@ -1,0 +1,9 @@
+pydantic==2.12.5
+jsonschema==4.26.0
+PyYAML==6.0.3
+pytest==9.0.3
+ruff==0.15.6
+mypy==1.19.1
+types-PyYAML==6.0.12.20250915
+setuptools==84.1.0
+regex==2026.11.9

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+export UV_CACHE_DIR="$PWD/.tools/uv-cache"
+mkdir -p .tools
+if [[ ! -x .venv/bin/python ]]; then
+  uv venv --python python3.12 .venv
+fi
+uv pip sync --python .venv/bin/python requirements.lock
+uv pip install --python .venv/bin/python --no-deps --no-build-isolation -e .
+for sibling in p-002 p-003 p-005 p-007; do
+  if [[ -f "../$sibling/pyproject.toml" ]]; then
+    uv pip install --python .venv/bin/python --no-deps --no-build-isolation -e "../$sibling"
+  fi
+done
+if [[ "${1:-}" == "--tools" ]]; then
+  if [[ ! -x .tools/venv/bin/python ]]; then
+    uv venv --python python3.12 .tools/venv
+  fi
+  uv pip sync --python .tools/venv/bin/python requirements-tools.lock
+  mkdir -p .tools/npm
+  cp tools/package.json tools/package-lock.json .tools/npm/
+  npm ci --prefix .tools/npm --ignore-scripts --no-audit --no-fund --cache "$PWD/.tools/npm-cache"
+fi
