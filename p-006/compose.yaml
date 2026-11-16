@@ -1,0 +1,759 @@
+{
+  "services": {
+    "vault": {
+      "labels": {
+        "io.p006.owner": "p006"
+      },
+      "user": "1000:1000",
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "read_only": true,
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,size=128m,uid=1000,gid=1000"
+      ],
+      "pids_limit": 128,
+      "mem_limit": "256m",
+      "cpus": 1,
+      "restart": "on-failure:2",
+      "logging": {
+        "driver": "none"
+      },
+      "environment": {
+        "NO_PROXY": "*",
+        "HTTP_PROXY": "",
+        "HTTPS_PROXY": "",
+        "ALL_PROXY": "",
+        "http_proxy": "",
+        "https_proxy": "",
+        "all_proxy": "",
+        "no_proxy": "*"
+      },
+      "container_name": "p006-vault",
+      "image": "hashicorp/vault:2.2.2@sha256:dfa48c2fa2b0099ccb47681ec5c4804bf5aec9d6879ecfee07ad4b92a5427ad6",
+      "networks": [
+        "secrets"
+      ],
+      "entrypoint": [
+        "vault",
+        "server",
+        "-config=/vault/p006.hcl"
+      ],
+      "volumes": [
+        "./secrets/vault/server.hcl:/vault/p006.hcl:ro"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "vault",
+          "status",
+          "-address=http://127.0.0.1:8200"
+        ],
+        "interval": "10s",
+        "timeout": "3s",
+        "retries": 12
+      }
+    },
+    "keycloak": {
+      "labels": {
+        "io.p006.owner": "p006"
+      },
+      "user": "1000:1000",
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "read_only": false,
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,size=128m,uid=1000,gid=1000",
+        "/opt/keycloak/data:rw,nosuid,size=128m,uid=1000,gid=1000"
+      ],
+      "pids_limit": 256,
+      "mem_limit": "1g",
+      "cpus": 1,
+      "restart": "on-failure:2",
+      "logging": {
+        "driver": "local",
+        "options": {
+          "max-size": "1m",
+          "max-file": "2"
+        }
+      },
+      "environment": {
+        "NO_PROXY": "*",
+        "HTTP_PROXY": "",
+        "HTTPS_PROXY": "",
+        "ALL_PROXY": "",
+        "KC_HOSTNAME": "http://127.0.0.1:8087",
+        "KC_HOSTNAME_BACKCHANNEL_DYNAMIC": "true",
+        "KC_HTTP_ENABLED": "true",
+        "KC_HEALTH_ENABLED": "true",
+        "KC_LOG_LEVEL": "warn",
+        "JAVA_OPTS_KC_HEAP": "-Xms128m -Xmx512m",
+        "http_proxy": "",
+        "https_proxy": "",
+        "all_proxy": "",
+        "no_proxy": "*"
+      },
+      "container_name": "p006-keycloak",
+      "image": "quay.io/keycloak/keycloak:26.8.2@sha256:c68e286cacd87b942ac1939a0a1481461109d6acd3a57dc496969a319a76bbf0",
+      "networks": [
+        "identity"
+      ],
+      "command": [
+        "start-dev",
+        "--import-realm"
+      ],
+      "volumes": [
+        "./.runtime/keycloak:/opt/keycloak/data/import:ro"
+      ],
+      "ports": [
+        "127.0.0.1:8087:8080"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "bash",
+          "-c",
+          "exec 3<>/dev/tcp/127.0.0.1/9000; printf \"GET /health/ready HTTP/1.0\\r\\n\\r\\n\" >&3; head -1 <&3 | /usr/bin/grep -q 200"
+        ],
+        "interval": "10s",
+        "timeout": "3s",
+        "retries": 18,
+        "start_period": "30s"
+      }
+    },
+    "opa": {
+      "labels": {
+        "io.p006.owner": "p006"
+      },
+      "user": "65532:65532",
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "read_only": true,
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,size=128m,uid=1000,gid=1000"
+      ],
+      "pids_limit": 128,
+      "mem_limit": "128m",
+      "cpus": 1,
+      "restart": "on-failure:2",
+      "logging": {
+        "driver": "local",
+        "options": {
+          "max-size": "1m",
+          "max-file": "2"
+        }
+      },
+      "environment": {
+        "NO_PROXY": "*",
+        "HTTP_PROXY": "",
+        "HTTPS_PROXY": "",
+        "ALL_PROXY": "",
+        "http_proxy": "",
+        "https_proxy": "",
+        "all_proxy": "",
+        "no_proxy": "*"
+      },
+      "container_name": "p006-opa",
+      "image": "openpolicyagent/opa:1.22.4-static@sha256:12cecac5a174368f7d3f09d3a19d040ebe0c91d576e520335ae7a985a26e39d3",
+      "networks": [
+        "policy"
+      ],
+      "command": [
+        "run",
+        "--server",
+        "--addr=0.0.0.0:8181",
+        "--log-level=error",
+        "/policy/authz.rego",
+        "/policy/data.json"
+      ],
+      "volumes": [
+        "./policy/opa:/policy:ro"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "/opa",
+          "eval",
+          "--fail",
+          "http.send({\"method\":\"GET\",\"url\":\"http://127.0.0.1:8181/health\"}).status_code == 200"
+        ],
+        "interval": "10s",
+        "timeout": "3s",
+        "retries": 12
+      }
+    },
+    "model": {
+      "labels": {
+        "io.p006.owner": "p006"
+      },
+      "user": "1000:1000",
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "read_only": true,
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,size=128m,uid=1000,gid=1000"
+      ],
+      "pids_limit": 128,
+      "mem_limit": "512m",
+      "cpus": 1,
+      "restart": "on-failure:2",
+      "logging": {
+        "driver": "local",
+        "options": {
+          "max-size": "1m",
+          "max-file": "2"
+        }
+      },
+      "environment": {
+        "NO_PROXY": "*",
+        "HTTP_PROXY": "",
+        "HTTPS_PROXY": "",
+        "ALL_PROXY": "",
+        "P006_COMPONENT": "model",
+        "http_proxy": "",
+        "https_proxy": "",
+        "all_proxy": "",
+        "no_proxy": "*"
+      },
+      "container_name": "p006-model",
+      "image": "p006-runtime:1.0.0",
+      "networks": [
+        "model"
+      ],
+      "volumes": [
+        "./.runtime/model:/run/p006:ro",
+        "./src:/app/src:ro",
+        "./config:/app/config:ro",
+        "./scripts:/app/scripts:ro"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen(\"http://127.0.0.1:8000/healthz\",timeout=2)"
+        ],
+        "interval": "10s",
+        "timeout": "3s",
+        "retries": 18,
+        "start_period": "60s"
+      }
+    },
+    "pep": {
+      "labels": {
+        "io.p006.owner": "p006"
+      },
+      "user": "1000:1000",
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "read_only": true,
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,size=128m,uid=1000,gid=1000"
+      ],
+      "pids_limit": 128,
+      "mem_limit": "512m",
+      "cpus": 1,
+      "restart": "on-failure:2",
+      "logging": {
+        "driver": "local",
+        "options": {
+          "max-size": "1m",
+          "max-file": "2"
+        }
+      },
+      "environment": {
+        "NO_PROXY": "*",
+        "HTTP_PROXY": "",
+        "HTTPS_PROXY": "",
+        "ALL_PROXY": "",
+        "http_proxy": "",
+        "https_proxy": "",
+        "all_proxy": "",
+        "no_proxy": "*"
+      },
+      "container_name": "p006-pep",
+      "image": "p006-runtime:1.0.0",
+      "networks": [
+        "ui",
+        "identity",
+        "policy",
+        "secrets",
+        "gateway"
+      ],
+      "build": {
+        "context": ".",
+        "args": {
+          "P006_LOCK_SHA": "081577fdc34b4505916c57006a909c101ceb38f061220e1a8b6bc19b748b1609"
+        }
+      },
+      "volumes": [
+        "./.runtime/pep:/run/p006:ro",
+        "./src:/app/src:ro",
+        "./config:/app/config:ro",
+        "./scripts:/app/scripts:ro"
+      ],
+      "depends_on": {
+        "keycloak": {
+          "condition": "service_started"
+        },
+        "opa": {
+          "condition": "service_started"
+        },
+        "vault": {
+          "condition": "service_started"
+        },
+        "litellm": {
+          "condition": "service_started"
+        }
+      },
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen(\"http://127.0.0.1:8080/healthz\",timeout=2)"
+        ],
+        "interval": "10s",
+        "timeout": "3s",
+        "retries": 12
+      }
+    },
+    "litellm": {
+      "labels": {
+        "io.p006.owner": "p006"
+      },
+      "user": "1000:1000",
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "read_only": true,
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,size=128m,uid=1000,gid=1000"
+      ],
+      "pids_limit": 256,
+      "mem_limit": "1g",
+      "cpus": 1,
+      "restart": "on-failure:2",
+      "logging": {
+        "driver": "none"
+      },
+      "environment": {
+        "NO_PROXY": "*",
+        "HTTP_PROXY": "",
+        "HTTPS_PROXY": "",
+        "ALL_PROXY": "",
+        "P006_COMPONENT": "gateway",
+        "PYTHONPATH": "/opt/p006",
+        "LITELLM_LOCAL_MODEL_COST_MAP": "True",
+        "LITELLM_LOG": "ERROR",
+        "LITELLM_TELEMETRY": "False",
+        "DO_NOT_TRACK": "1",
+        "DISABLE_ADMIN_UI": "True",
+        "LITELLM_MODE": "PRODUCTION",
+        "http_proxy": "",
+        "https_proxy": "",
+        "all_proxy": "",
+        "no_proxy": "*"
+      },
+      "container_name": "p006-litellm",
+      "image": "ghcr.io/berriai/litellm:v1.109.1@sha256:11175975a3093e05e92faee2fe2fe3412a3ae2fcaa849eb0fe25d5f0d8bcb2e9",
+      "networks": [
+        "gateway",
+        "secrets",
+        "model"
+      ],
+      "entrypoint": [
+        "python",
+        "-m",
+        "p006.entrypoint"
+      ],
+      "volumes": [
+        "./src:/opt/p006:ro",
+        "./gateway:/app/gateway:ro",
+        "./.runtime/gateway:/run/p006:ro"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen(\"http://127.0.0.1:4000/health/liveliness\",timeout=2)"
+        ],
+        "interval": "10s",
+        "timeout": "3s",
+        "retries": 18,
+        "start_period": "60s"
+      }
+    },
+    "webui": {
+      "labels": {
+        "io.p006.owner": "p006"
+      },
+      "user": "1000:1000",
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "read_only": false,
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,size=128m,uid=1000,gid=1000",
+        "/app/backend/data:rw,nosuid,size=256m,uid=1000,gid=1000"
+      ],
+      "pids_limit": 256,
+      "mem_limit": "2g",
+      "cpus": 1,
+      "restart": "on-failure:2",
+      "logging": {
+        "driver": "none"
+      },
+      "environment": {
+        "NO_PROXY": "*",
+        "HTTP_PROXY": "",
+        "HTTPS_PROXY": "",
+        "ALL_PROXY": "",
+        "P006_COMPONENT": "webui",
+        "PYTHONPATH": "/opt/p006:/app/backend",
+        "WEBUI_URL": "http://127.0.0.1:8086",
+        "WEBUI_AUTH": "True",
+        "ENABLE_SIGNUP": "False",
+        "ENABLE_LOGIN_FORM": "False",
+        "ENABLE_INITIAL_ADMIN_SIGNUP": "False",
+        "ENABLE_OAUTH_SIGNUP": "True",
+        "ENABLE_OAUTH_ROLE_MANAGEMENT": "True",
+        "OAUTH_ROLES_CLAIM": "p006_roles",
+        "OAUTH_ALLOWED_ROLES": "user,tenant-admin,platform-admin",
+        "OAUTH_ADMIN_ROLES": "platform-admin",
+        "OAUTH_MERGE_ACCOUNTS_BY_EMAIL": "False",
+        "OAUTH_CLIENT_ID": "open-webui",
+        "OPENID_PROVIDER_URL": "http://keycloak:8080/realms/p006/.well-known/openid-configuration",
+        "OPENID_REDIRECT_URI": "http://127.0.0.1:8086/oauth/oidc/callback",
+        "OAUTH_CODE_CHALLENGE_METHOD": "S256",
+        "OAUTH_SCOPES": "openid email profile",
+        "OAUTH_PROVIDER_NAME": "P006 Keycloak",
+        "OAUTH_PICTURE_CLAIM": "",
+        "DEFAULT_USER_ROLE": "user",
+        "JWT_EXPIRES_IN": "5m",
+        "WEBUI_SESSION_COOKIE_SAME_SITE": "lax",
+        "WEBUI_AUTH_COOKIE_SAME_SITE": "lax",
+        "WEBUI_SESSION_COOKIE_SECURE": "False",
+        "WEBUI_AUTH_COOKIE_SECURE": "False",
+        "ENABLE_API_KEYS": "False",
+        "ENABLE_DIRECT_CONNECTIONS": "False",
+        "ENABLE_OPENAI_API_PASSTHROUGH": "False",
+        "ENABLE_FORWARD_USER_INFO_HEADERS": "False",
+        "ENABLE_OLLAMA_API": "False",
+        "OPENAI_API_BASE_URL": "http://pep:8080/v1",
+        "OPENAI_API_KEY": "",
+        "OPENAI_API_CONFIGS": "{\"0\": {\"auth_type\": \"system_oauth\", \"model_ids\": [\"local-basic\", \"local-admin\"], \"enable\": true}}",
+        "CORS_ALLOW_ORIGIN": "http://127.0.0.1:8086",
+        "OFFLINE_MODE": "True",
+        "HF_HUB_OFFLINE": "1",
+        "ENABLE_VERSION_UPDATE_CHECK": "False",
+        "DO_NOT_TRACK": "True",
+        "SCARF_NO_ANALYTICS": "True",
+        "ENABLE_PERSISTENT_CONFIG": "False",
+        "ENABLE_OAUTH_PERSISTENT_CONFIG": "False",
+        "ENABLE_AUTOCOMPLETE_GENERATION": "False",
+        "ENABLE_TITLE_GENERATION": "False",
+        "ENABLE_TAGS_GENERATION": "False",
+        "ENABLE_EVALUATION_ARENA_MODELS": "False",
+        "ENABLE_WEB_SEARCH": "False",
+        "ENABLE_CODE_EXECUTION": "False",
+        "ENABLE_CODE_INTERPRETER": "False",
+        "USER_PERMISSIONS_CHAT_FILE_UPLOAD": "False",
+        "USER_PERMISSIONS_CHAT_WEB_UPLOAD": "False",
+        "USER_PERMISSIONS_CHAT_PARAMS": "False",
+        "USER_PERMISSIONS_CHAT_CONTROLS": "False",
+        "USER_PERMISSIONS_CHAT_VALVES": "False",
+        "USER_PERMISSIONS_FEATURES_WEB_SEARCH": "False",
+        "USER_PERMISSIONS_FEATURES_CODE_INTERPRETER": "False",
+        "USER_PERMISSIONS_FEATURES_DIRECT_TOOL_SERVERS": "False",
+        "USER_PERMISSIONS_WORKSPACE_TOOLS_ACCESS": "False",
+        "USER_PERMISSIONS_WORKSPACE_MODELS_ACCESS": "False",
+        "USER_PERMISSIONS_WORKSPACE_SKILLS_ACCESS": "False",
+        "http_proxy": "",
+        "https_proxy": "",
+        "all_proxy": "",
+        "no_proxy": "*",
+        "ENABLE_FOLLOW_UP_GENERATION": "False"
+      },
+      "container_name": "p006-webui",
+      "image": "ghcr.io/open-webui/open-webui:v0.13.3-slim@sha256:8faf917243afee55e042b10ddc08ed6ae6fa9c62522c7e14d81e7cf2922325ae",
+      "networks": [
+        "ui",
+        "identity"
+      ],
+      "entrypoint": [
+        "python",
+        "-m",
+        "p006.entrypoint"
+      ],
+      "volumes": [
+        "./src:/opt/p006:ro",
+        "./.runtime/webui:/run/p006:ro"
+      ],
+      "depends_on": {
+        "pep": {
+          "condition": "service_healthy"
+        }
+      },
+      "ports": [
+        "127.0.0.1:8086:8080"
+      ],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen(\"http://127.0.0.1:8080/health\",timeout=2)"
+        ],
+        "interval": "10s",
+        "timeout": "3s",
+        "retries": 18,
+        "start_period": "60s"
+      }
+    },
+    "weak": {
+      "labels": {
+        "io.p006.owner": "p006"
+      },
+      "user": "1000:1000",
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "read_only": true,
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,size=128m,uid=1000,gid=1000"
+      ],
+      "pids_limit": 128,
+      "mem_limit": "512m",
+      "cpus": 1,
+      "restart": "on-failure:2",
+      "logging": {
+        "driver": "local",
+        "options": {
+          "max-size": "1m",
+          "max-file": "2"
+        }
+      },
+      "environment": {
+        "NO_PROXY": "*",
+        "HTTP_PROXY": "",
+        "HTTPS_PROXY": "",
+        "ALL_PROXY": "",
+        "P006_COMPONENT": "weak",
+        "P006_WEAK_CONFIRM": "local-synthetic-only",
+        "http_proxy": "",
+        "https_proxy": "",
+        "all_proxy": "",
+        "no_proxy": "*"
+      },
+      "container_name": "p006-weak",
+      "image": "p006-runtime:1.0.0",
+      "networks": [
+        "weak"
+      ],
+      "profiles": [
+        "weak"
+      ],
+      "volumes": [
+        "./src:/app/src:ro",
+        "./config:/app/config:ro",
+        "./scripts:/app/scripts:ro"
+      ],
+      "ports": [
+        "127.0.0.1:8088:8080"
+      ]
+    },
+    "bootstrap": {
+      "labels": {
+        "io.p006.owner": "p006"
+      },
+      "user": "1000:1000",
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "read_only": true,
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,size=128m,uid=1000,gid=1000"
+      ],
+      "pids_limit": 128,
+      "mem_limit": "512m",
+      "cpus": 1,
+      "restart": "no",
+      "logging": {
+        "driver": "none"
+      },
+      "environment": {
+        "NO_PROXY": "*",
+        "HTTP_PROXY": "",
+        "HTTPS_PROXY": "",
+        "ALL_PROXY": "",
+        "http_proxy": "",
+        "https_proxy": "",
+        "all_proxy": "",
+        "no_proxy": "*"
+      },
+      "container_name": "p006-bootstrap",
+      "image": "p006-runtime:1.0.0",
+      "networks": [
+        "secrets"
+      ],
+      "profiles": [
+        "tools"
+      ],
+      "entrypoint": [
+        "python",
+        "/app/scripts/bootstrap.py"
+      ],
+      "volumes": [
+        "./.runtime/model:/bootstrap/model:ro",
+        "./src:/app/src:ro",
+        "./scripts:/app/scripts:ro"
+      ]
+    },
+    "tester": {
+      "labels": {
+        "io.p006.owner": "p006"
+      },
+      "user": "1000:1000",
+      "cap_drop": [
+        "ALL"
+      ],
+      "security_opt": [
+        "no-new-privileges:true"
+      ],
+      "read_only": true,
+      "tmpfs": [
+        "/tmp:rw,noexec,nosuid,size=128m,uid=1000,gid=1000"
+      ],
+      "pids_limit": 128,
+      "mem_limit": "512m",
+      "cpus": 1,
+      "restart": "no",
+      "logging": {
+        "driver": "local",
+        "options": {
+          "max-size": "1m",
+          "max-file": "2"
+        }
+      },
+      "environment": {
+        "NO_PROXY": "*",
+        "HTTP_PROXY": "",
+        "HTTPS_PROXY": "",
+        "ALL_PROXY": "",
+        "http_proxy": "",
+        "https_proxy": "",
+        "all_proxy": "",
+        "no_proxy": "*"
+      },
+      "container_name": "p006-tester",
+      "image": "p006-runtime:1.0.0",
+      "networks": [
+        "ui",
+        "identity",
+        "policy",
+        "secrets",
+        "gateway",
+        "model"
+      ],
+      "profiles": [
+        "tools"
+      ],
+      "entrypoint": [
+        "python",
+        "/app/tests/live_probe.py"
+      ],
+      "volumes": [
+        "./.runtime/operator:/run/operator:ro",
+        "./.runtime/unrelated:/run/unrelated:ro",
+        "./tests/live_probe.py:/app/tests/live_probe.py:ro",
+        "./src:/app/src:ro",
+        "./config:/app/config:ro",
+        "./scripts:/app/scripts:ro"
+      ]
+    }
+  },
+  "networks": {
+    "ui": {
+      "name": "p006_ui",
+      "internal": true,
+      "labels": {
+        "io.p006.owner": "p006"
+      }
+    },
+    "identity": {
+      "name": "p006_identity",
+      "internal": true,
+      "labels": {
+        "io.p006.owner": "p006"
+      }
+    },
+    "policy": {
+      "name": "p006_policy",
+      "internal": true,
+      "labels": {
+        "io.p006.owner": "p006"
+      }
+    },
+    "secrets": {
+      "name": "p006_secrets",
+      "internal": true,
+      "labels": {
+        "io.p006.owner": "p006"
+      }
+    },
+    "gateway": {
+      "name": "p006_gateway",
+      "internal": true,
+      "labels": {
+        "io.p006.owner": "p006"
+      }
+    },
+    "model": {
+      "name": "p006_model",
+      "internal": true,
+      "labels": {
+        "io.p006.owner": "p006"
+      }
+    },
+    "weak": {
+      "name": "p006_weak",
+      "internal": true,
+      "labels": {
+        "io.p006.owner": "p006"
+      }
+    }
+  }
+}

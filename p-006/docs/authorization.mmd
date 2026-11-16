@@ -1,0 +1,12 @@
+sequenceDiagram
+ participant W as Open WebUI
+ participant P as PEP
+ participant K as Keycloak
+ participant O as OPA
+ W->>P: Human OAuth bearer and chat
+ P->>P: JWT validation and registry binding
+ P->>K: Introspect current token
+ K-->>P: Active subject
+ P->>O: Trusted subject, tenant, roles, action, model, quota
+ O-->>P: Versioned allow or default deny
+ P->>P: Enforce before secret/gateway access

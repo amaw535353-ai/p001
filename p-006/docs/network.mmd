@@ -1,0 +1,7 @@
+flowchart TD
+ U[UI network: WebUI and PEP] --- I[Identity: WebUI, PEP, Keycloak]
+ P[PEP] --- O[Policy: OPA]
+ P --- V[Secrets: Vault and LiteLLM]
+ P --- G[Gateway: LiteLLM]
+ G --- M[Model: deterministic backend]
+ X[External network has no default route from internal bridges]

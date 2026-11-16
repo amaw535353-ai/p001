@@ -1,0 +1,39 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "p006-deployment-v1",
+      "default": "p006-deployment-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "host": {
+      "const": "127.0.0.1",
+      "default": "127.0.0.1",
+      "title": "Host",
+      "type": "string"
+    },
+    "ui_port": {
+      "const": 8086,
+      "default": 8086,
+      "title": "Ui Port",
+      "type": "integer"
+    },
+    "idp_port": {
+      "const": 8087,
+      "default": 8087,
+      "title": "Idp Port",
+      "type": "integer"
+    },
+    "owner": {
+      "const": "p006",
+      "default": "p006",
+      "title": "Owner",
+      "type": "string"
+    }
+  },
+  "title": "Deployment",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:deployment-config:v1"
+}

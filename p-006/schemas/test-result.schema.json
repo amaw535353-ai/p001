@@ -1,0 +1,56 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "p006-test-result-v1",
+      "default": "p006-test-result-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "test_id": {
+      "title": "Test Id",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED",
+        "NOT_TESTED",
+        "INCONCLUSIVE",
+        "NOT_APPLICABLE"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "observation": {
+      "title": "Observation",
+      "type": "string"
+    },
+    "config_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Config Sha256",
+      "type": "string"
+    },
+    "evidence_ref": {
+      "title": "Evidence Ref",
+      "type": "string"
+    },
+    "limitations": {
+      "title": "Limitations",
+      "type": "string"
+    }
+  },
+  "required": [
+    "test_id",
+    "status",
+    "observation",
+    "config_sha256",
+    "evidence_ref",
+    "limitations"
+  ],
+  "title": "TestResult",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:test-result:v1"
+}

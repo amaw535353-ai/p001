@@ -1,0 +1,6 @@
+flowchart LR
+ W[Authenticated WebUI] --> P[Verify signed human identity]
+ P --> O[Default deny OPA]
+ O --> V[Narrow Vault credential read]
+ V --> G[Request bound gateway proof]
+ G --> M[Authenticated deterministic backend]

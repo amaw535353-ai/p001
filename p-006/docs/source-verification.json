@@ -1,0 +1,65 @@
+{
+  "checked_date": "2026-11-16",
+  "sources": [
+    {
+      "name": "Open WebUI",
+      "tag": "v0.13.3",
+      "anchors": [
+        "backend/open_webui/utils/headers.py: system_oauth",
+        "backend/open_webui/utils/oauth.py: PKCE and first-user handling",
+        "backend/open_webui/config.py: OIDC env configuration",
+        "LICENSE"
+      ],
+      "tag_ref_sha": "b0e6098e940942281d9c83f3529ea117287a3a22",
+      "repository_url": "https://github.com/open-webui/open-webui",
+      "source_url": "https://github.com/open-webui/open-webui/tree/v0.13.3"
+    },
+    {
+      "name": "Keycloak",
+      "tag": "26.8.2",
+      "anchors": [
+        "docs/guides/server/containers.adoc",
+        "LICENSE.txt"
+      ],
+      "tag_ref_sha": "e514445f9dcdabc5bdcf67cab56c1e49655de067",
+      "repository_url": "https://github.com/keycloak/keycloak",
+      "source_url": "https://github.com/keycloak/keycloak/tree/26.8.2"
+    },
+    {
+      "name": "OPA",
+      "tag": "v1.22.4",
+      "anchors": [
+        "LICENSE",
+        "actual opa test command"
+      ],
+      "tag_ref_sha": "ba39415db4b3c90cd68942a74b3cc2223ec2b23c",
+      "repository_url": "https://github.com/open-policy-agent/opa",
+      "source_url": "https://github.com/open-policy-agent/opa/tree/v1.22.4"
+    },
+    {
+      "name": "Vault",
+      "tag": "v2.2.2",
+      "anchors": [
+        "LICENSE",
+        "actual sys/init, AppRole and KV-v2 API bootstrap"
+      ],
+      "tag_ref_sha": "c56e7e670bd8c79104c27b6c10138226538a6db2",
+      "repository_url": "https://github.com/hashicorp/vault",
+      "source_url": "https://github.com/hashicorp/vault/tree/v2.2.2"
+    },
+    {
+      "name": "LiteLLM",
+      "tag": "v1.109.1",
+      "anchors": [
+        "litellm/proxy/auth/user_api_key_auth.py: custom_auth",
+        "litellm/proxy/proxy_server.py: configuration loader",
+        "litellm/proxy/_types.py: UserAPIKeyAuth",
+        "LICENSE"
+      ],
+      "tag_ref_sha": "6c4ead4fc064d14e36b0c69d6795acc130c866bf",
+      "repository_url": "https://github.com/BerriAI/litellm",
+      "source_url": "https://github.com/BerriAI/litellm/tree/v1.109.1"
+    }
+  ],
+  "method": "Read-only official git tag resolution, versioned upstream source and license reads; actual image pull digests. Latest status is only as observed on this date, not ongoing support certification."
+}

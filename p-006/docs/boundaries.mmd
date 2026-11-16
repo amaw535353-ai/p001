@@ -1,0 +1,21 @@
+flowchart LR
+ subgraph Untrusted
+ B[Browser and request fields]
+ end
+ subgraph Application
+ W[WebUI]
+ P[PEP]
+ end
+ subgraph ControlPlane
+ K[Keycloak]
+ O[OPA]
+ V[Vault]
+ end
+ subgraph Inference
+ L[LiteLLM]
+ M[Model]
+ end
+ B --> W --> P --> L --> M
+ P --> K
+ P --> O
+ P --> V

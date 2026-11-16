@@ -1,0 +1,1299 @@
+{
+  "schema_version": "p006-acceptance-catalog-v1",
+  "entries": [
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "C01",
+        "objective": "P-006 starts from the approved repository base and does not alter sibling project source.",
+        "requirement": "C01",
+        "component": "deployment/configuration",
+        "boundary": "deployment/configuration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_c01_repository_and_siblings_preserved",
+        "expected": "P-006 starts from the approved repository base and does not alter sibling project source.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_c01_repository_and_siblings_preserved"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "C02",
+        "objective": "hardened profile is the default.",
+        "requirement": "C02",
+        "component": "deployment/configuration",
+        "boundary": "deployment/configuration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_c02_hardened_default",
+        "expected": "hardened profile is the default.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_c02_hardened_default"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "C03",
+        "objective": "weak profile requires explicit opt-in.",
+        "requirement": "C03",
+        "component": "deployment/configuration",
+        "boundary": "deployment/configuration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_c03_weak_cli_requires_confirmation",
+        "expected": "weak profile requires explicit opt-in.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_c03_weak_cli_requires_confirmation"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "C04",
+        "objective": "weak profile cannot bind public interfaces.",
+        "requirement": "C04",
+        "component": "deployment/configuration",
+        "boundary": "deployment/configuration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_c04_weak_cannot_bind_public",
+        "expected": "weak profile cannot bind public interfaces.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_c04_weak_cannot_bind_public"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "C05",
+        "objective": "strict configuration rejects unknown security-sensitive fields.",
+        "requirement": "C05",
+        "component": "deployment/configuration",
+        "boundary": "deployment/configuration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_c05_unknown_config_rejected",
+        "expected": "strict configuration rejects unknown security-sensitive fields.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_c05_unknown_config_rejected"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "C06",
+        "objective": "unpinned/`latest` service images are rejected in the reproducible profile.",
+        "requirement": "C06",
+        "component": "deployment/configuration",
+        "boundary": "deployment/configuration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_c06_mutable_image_rejected",
+        "expected": "unpinned/`latest` service images are rejected in the reproducible profile.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_c06_mutable_image_rejected"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "C07",
+        "objective": "committed files contain no real credentials or generated secrets.",
+        "requirement": "C07",
+        "component": "deployment/configuration",
+        "boundary": "deployment/configuration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_c07_committed_inputs_secret_scan",
+        "expected": "committed files contain no real credentials or generated secrets.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_c07_committed_inputs_secret_scan"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "C08",
+        "objective": "cleanup removes only explicitly labelled P-006-owned resources.",
+        "requirement": "C08",
+        "component": "deployment/configuration",
+        "boundary": "deployment/configuration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_c08_cleanup_refuses_unrelated_resource",
+        "expected": "cleanup removes only explicitly labelled P-006-owned resources.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_c08_cleanup_refuses_unrelated_resource"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A01",
+        "objective": "protected UI/API denies unauthenticated access.",
+        "requirement": "A01",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a01_identity_missing_denied",
+        "expected": "protected UI/API denies unauthenticated access.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a01_identity_missing_denied"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A02",
+        "objective": "valid Keycloak-issued token is accepted for the intended client.",
+        "requirement": "A02",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a02_identity_valid_signed_fixture",
+        "expected": "valid Keycloak-issued token is accepted for the intended client.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a02_identity_valid_signed_fixture"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A03",
+        "objective": "invalid signature is denied.",
+        "requirement": "A03",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a03_identity_invalid_signature",
+        "expected": "invalid signature is denied.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a03_identity_invalid_signature"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A04",
+        "objective": "wrong issuer is denied.",
+        "requirement": "A04",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a04_identity_wrong_issuer",
+        "expected": "wrong issuer is denied.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a04_identity_wrong_issuer"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A05",
+        "objective": "wrong audience is denied.",
+        "requirement": "A05",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a05_identity_wrong_audience",
+        "expected": "wrong audience is denied.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a05_identity_wrong_audience"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A06",
+        "objective": "expired token is denied.",
+        "requirement": "A06",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a06_identity_expired",
+        "expected": "expired token is denied.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a06_identity_expired"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A07",
+        "objective": "unsupported signing algorithm is denied.",
+        "requirement": "A07",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a07_identity_unsafe_algorithm",
+        "expected": "unsupported signing algorithm is denied.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a07_identity_unsafe_algorithm"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A08",
+        "objective": "missing required subject/tenant claims is denied.",
+        "requirement": "A08",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a08_identity_missing_subject",
+        "expected": "missing required subject/tenant claims is denied.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a08_identity_missing_subject"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A09",
+        "objective": "client-supplied identity headers cannot impersonate another user.",
+        "requirement": "A09",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a09_identity_header_impersonation",
+        "expected": "client-supplied identity headers cannot impersonate another user.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a09_identity_header_impersonation"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A10",
+        "objective": "client-supplied tenant headers cannot cross tenant boundaries.",
+        "requirement": "A10",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a10_identity_tenant_header",
+        "expected": "client-supplied tenant headers cannot cross tenant boundaries.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a10_identity_tenant_header"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A11",
+        "objective": "session expiry/logout behavior is verified.",
+        "requirement": "A11",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a11_identity_logout_introspection_fixture",
+        "expected": "session expiry/logout behavior is verified.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a11_identity_logout_introspection_fixture"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "A12",
+        "objective": "disabled/deprovisioned user behavior is tested or explicitly marked unsupported.",
+        "requirement": "A12",
+        "component": "identity",
+        "boundary": "identity",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_a12_identity_deactivated_fixture",
+        "expected": "disabled/deprovisioned user behavior is tested or explicitly marked unsupported.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_a12_identity_deactivated_fixture"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "P01",
+        "objective": "OPA policy denies by default.",
+        "requirement": "P01",
+        "component": "OPA/PEP",
+        "boundary": "OPA/PEP",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_p01_policy_deny_never_reaches_vault",
+        "expected": "OPA policy denies by default.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_p01_policy_deny_never_reaches_vault"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "P02",
+        "objective": "authorized user/model/action is allowed.",
+        "requirement": "P02",
+        "component": "OPA/PEP",
+        "boundary": "OPA/PEP",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_p02_policy_allow_uses_trusted_context",
+        "expected": "authorized user/model/action is allowed.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_p02_policy_allow_uses_trusted_context"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "P03",
+        "objective": "unauthorized model is denied.",
+        "requirement": "P03",
+        "component": "OPA/PEP",
+        "boundary": "OPA/PEP",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_p03_policy_unauthorized_model",
+        "expected": "unauthorized model is denied.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_p03_policy_unauthorized_model"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "P04",
+        "objective": "Tenant A cannot access Tenant B.",
+        "requirement": "P04",
+        "component": "OPA/PEP",
+        "boundary": "OPA/PEP",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_p04_policy_cross_tenant",
+        "expected": "Tenant A cannot access Tenant B.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_p04_policy_cross_tenant"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "P05",
+        "objective": "normal user cannot access administrative operation.",
+        "requirement": "P05",
+        "component": "OPA/PEP",
+        "boundary": "OPA/PEP",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_p05_policy_normal_user_admin_denied",
+        "expected": "normal user cannot access administrative operation.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_p05_policy_normal_user_admin_denied"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "P06",
+        "objective": "tenant admin cannot become platform admin.",
+        "requirement": "P06",
+        "component": "OPA/PEP",
+        "boundary": "OPA/PEP",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_p06_policy_tenant_admin_not_platform",
+        "expected": "tenant admin cannot become platform admin.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_p06_policy_tenant_admin_not_platform"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "P07",
+        "objective": "OPA outage fails closed.",
+        "requirement": "P07",
+        "component": "OPA/PEP",
+        "boundary": "OPA/PEP",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_p07_policy_outage_fails_closed",
+        "expected": "OPA outage fails closed.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_p07_policy_outage_fails_closed"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "P08",
+        "objective": "invalid OPA response fails closed.",
+        "requirement": "P08",
+        "component": "OPA/PEP",
+        "boundary": "OPA/PEP",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_p08_policy_invalid_response_fails_closed",
+        "expected": "invalid OPA response fails closed.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_p08_policy_invalid_response_fails_closed"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "P09",
+        "objective": "direct LiteLLM bypass without required PEP authorization is denied.",
+        "requirement": "P09",
+        "component": "OPA/PEP",
+        "boundary": "OPA/PEP",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "direct LiteLLM bypass without required PEP authorization is denied.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "P10",
+        "objective": "authorization is bound to the actual request model/action/tenant and cannot be reused for a different request.",
+        "requirement": "P10",
+        "component": "OPA/PEP",
+        "boundary": "OPA/PEP",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_p10_policy_authorized_request_reconstructed",
+        "expected": "authorization is bound to the actual request model/action/tenant and cannot be reused for a different request.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_p10_policy_authorized_request_reconstructed"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "V01",
+        "objective": "application never uses the Vault root token.",
+        "requirement": "V01",
+        "component": "Vault",
+        "boundary": "Vault",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_v01_vault_root_policy_rejected",
+        "expected": "application never uses the Vault root token.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_v01_vault_root_policy_rejected"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "V02",
+        "objective": "intended service can read its approved synthetic secret.",
+        "requirement": "V02",
+        "component": "Vault",
+        "boundary": "Vault",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_v02_vault_reads_and_revokes_per_request",
+        "expected": "intended service can read its approved synthetic secret.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_v02_vault_reads_and_revokes_per_request"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "V03",
+        "objective": "unrelated identity cannot read the secret.",
+        "requirement": "V03",
+        "component": "Vault",
+        "boundary": "Vault",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "unrelated identity cannot read the secret.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "V04",
+        "objective": "expired/revoked application token is denied.",
+        "requirement": "V04",
+        "component": "Vault",
+        "boundary": "Vault",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_v04_vault_revoked_token_denied",
+        "expected": "expired/revoked application token is denied.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_v04_vault_revoked_token_denied"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "V05",
+        "objective": "Vault outage does not trigger insecure fallback.",
+        "requirement": "V05",
+        "component": "Vault",
+        "boundary": "Vault",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_v05_vault_outage_no_fallback",
+        "expected": "Vault outage does not trigger insecure fallback.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_v05_vault_outage_no_fallback"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "V06",
+        "objective": "rotation changes the secret version and application uses the new approved version.",
+        "requirement": "V06",
+        "component": "Vault",
+        "boundary": "Vault",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_v06_vault_rotation_used_without_cache",
+        "expected": "rotation changes the secret version and application uses the new approved version.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_v06_vault_rotation_used_without_cache"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "V07",
+        "objective": "secret values do not appear in logs, browser responses or error traces.",
+        "requirement": "V07",
+        "component": "Vault",
+        "boundary": "Vault",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_v07_vault_secret_not_returned_or_logged",
+        "expected": "secret values do not appear in logs, browser responses or error traces.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_v07_vault_secret_not_returned_or_logged"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "V08",
+        "objective": "secret scanning detects a planted dummy-secret marker in a disposable negative-test fixture.",
+        "requirement": "V08",
+        "component": "Vault",
+        "boundary": "Vault",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_v08_secret_scan_negative_control",
+        "expected": "secret scanning detects a planted dummy-secret marker in a disposable negative-test fixture.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_v08_secret_scan_negative_control"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "L01",
+        "objective": "approved local model route works.",
+        "requirement": "L01",
+        "component": "LiteLLM/gateway",
+        "boundary": "LiteLLM/gateway",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_l01_gateway_local_request_and_safe_projection",
+        "expected": "approved local model route works.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_l01_gateway_local_request_and_safe_projection"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "L02",
+        "objective": "unknown model route is denied.",
+        "requirement": "L02",
+        "component": "LiteLLM/gateway",
+        "boundary": "LiteLLM/gateway",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_l02_gateway_unknown_model",
+        "expected": "unknown model route is denied.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_l02_gateway_unknown_model"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "L03",
+        "objective": "unauthorized provider route is denied.",
+        "requirement": "L03",
+        "component": "LiteLLM/gateway",
+        "boundary": "LiteLLM/gateway",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_l03_gateway_provider_route_override",
+        "expected": "unauthorized provider route is denied.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_l03_gateway_provider_route_override"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "L04",
+        "objective": "user cannot supply arbitrary provider URL.",
+        "requirement": "L04",
+        "component": "LiteLLM/gateway",
+        "boundary": "LiteLLM/gateway",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_l04_gateway_arbitrary_url_rejected",
+        "expected": "user cannot supply arbitrary provider URL.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_l04_gateway_arbitrary_url_rejected"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "L05",
+        "objective": "LiteLLM master key is never exposed to browser/client.",
+        "requirement": "L05",
+        "component": "LiteLLM/gateway",
+        "boundary": "LiteLLM/gateway",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_l05_gateway_key_not_in_http_error",
+        "expected": "LiteLLM master key is never exposed to browser/client.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_l05_gateway_key_not_in_http_error"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "L06",
+        "objective": "quota/rate/size limits are enforced where configured.",
+        "requirement": "L06",
+        "component": "LiteLLM/gateway",
+        "boundary": "LiteLLM/gateway",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_l06_gateway_rate_limit",
+        "expected": "quota/rate/size limits are enforced where configured.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_l06_gateway_rate_limit"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "L07",
+        "objective": "provider timeout/outage is safely handled without secret leakage or fail-open routing.",
+        "requirement": "L07",
+        "component": "LiteLLM/gateway",
+        "boundary": "LiteLLM/gateway",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_l07_gateway_timeout_safely_denied",
+        "expected": "provider timeout/outage is safely handled without secret leakage or fail-open routing.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_l07_gateway_timeout_safely_denied"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "L08",
+        "objective": "model/provider override after authorization is denied.",
+        "requirement": "L08",
+        "component": "LiteLLM/gateway",
+        "boundary": "LiteLLM/gateway",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_l08_gateway_identity_metadata_override",
+        "expected": "model/provider override after authorization is denied.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_l08_gateway_identity_metadata_override"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "N01",
+        "objective": "application/gateway local default network has no public egress.",
+        "requirement": "N01",
+        "component": "network",
+        "boundary": "network",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "application/gateway local default network has no public egress.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "N02",
+        "objective": "only required service-to-service paths are reachable.",
+        "requirement": "N02",
+        "component": "network",
+        "boundary": "network",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "only required service-to-service paths are reachable.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "N03",
+        "objective": "browser/client cannot reach OPA, Vault or internal administration endpoints.",
+        "requirement": "N03",
+        "component": "network",
+        "boundary": "network",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "browser/client cannot reach OPA, Vault or internal administration endpoints.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "N04",
+        "objective": "Open WebUI cannot bypass the PEP to reach an unrestricted backend.",
+        "requirement": "N04",
+        "component": "network",
+        "boundary": "network",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "Open WebUI cannot bypass the PEP to reach an unrestricted backend.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "N05",
+        "objective": "unapproved external destination is blocked at an actual network enforcement point or marked `NOT_TESTED`/`BLOCKED`.",
+        "requirement": "N05",
+        "component": "network",
+        "boundary": "network",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "unapproved external destination is blocked at an actual network enforcement point or marked `NOT_TESTED`/`BLOCKED`.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "N06",
+        "objective": "host listeners bind to loopback only.",
+        "requirement": "N06",
+        "component": "network",
+        "boundary": "network",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "host listeners bind to loopback only.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "U01",
+        "objective": "supported Keycloak login path is verified end-to-end or marked blocked.",
+        "requirement": "U01",
+        "component": "Open WebUI/application",
+        "boundary": "Open WebUI/application",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "supported Keycloak login path is verified end-to-end or marked blocked.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "U02",
+        "objective": "authenticated end-user identity is correctly propagated to the PEP or marked blocked.",
+        "requirement": "U02",
+        "component": "Open WebUI/application",
+        "boundary": "Open WebUI/application",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "authenticated end-user identity is correctly propagated to the PEP or marked blocked.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "U03",
+        "objective": "ordinary user cannot access admin UI/API.",
+        "requirement": "U03",
+        "component": "Open WebUI/application",
+        "boundary": "Open WebUI/application",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "ordinary user cannot access admin UI/API.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "U04",
+        "objective": "disabled plugins/functions/tools remain unavailable to ordinary users.",
+        "requirement": "U04",
+        "component": "Open WebUI/application",
+        "boundary": "Open WebUI/application",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "disabled plugins/functions/tools remain unavailable to ordinary users.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "U05",
+        "objective": "browser does not receive gateway/Vault secrets.",
+        "requirement": "U05",
+        "component": "Open WebUI/application",
+        "boundary": "Open WebUI/application",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute matching native gate in tests/live_probe.py or scripts/live.py",
+        "expected": "browser does not receive gateway/Vault secrets.",
+        "reproduction": "make up && make test-live"
+      },
+      "offline_tests": [],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "U06",
+        "objective": "unapproved origin is rejected.",
+        "requirement": "U06",
+        "component": "Open WebUI/application",
+        "boundary": "Open WebUI/application",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_u06_unapproved_origin",
+        "expected": "unapproved origin is rejected.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_u06_unapproved_origin"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "U07",
+        "objective": "oversized input is rejected within documented bounds.",
+        "requirement": "U07",
+        "component": "Open WebUI/application",
+        "boundary": "Open WebUI/application",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_u07_input_size_bounded",
+        "expected": "oversized input is rejected within documented bounds.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_u07_input_size_bounded"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "U08",
+        "objective": "direct API calls cannot bypass UI restrictions and server-side authorization.",
+        "requirement": "U08",
+        "component": "Open WebUI/application",
+        "boundary": "Open WebUI/application",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_u08_direct_api_still_authorized",
+        "expected": "direct API calls cannot bypass UI restrictions and server-side authorization.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_u08_direct_api_still_authorized"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "W01",
+        "objective": "selected weakness is reproduced only in the isolated weak profile.",
+        "requirement": "W01",
+        "component": "comparison/integration",
+        "boundary": "comparison/integration",
+        "profile": "vulnerable-lab",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_w01_weak_cross_tenant_header_reproduced",
+        "expected": "selected weakness is reproduced only in the isolated weak profile.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_w01_weak_cross_tenant_header_reproduced"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "W02",
+        "objective": "same scenario is blocked by a verified hardened enforcement point.",
+        "requirement": "W02",
+        "component": "comparison/integration",
+        "boundary": "comparison/integration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_w02_weak_same_attack_hardened_denied",
+        "expected": "same scenario is blocked by a verified hardened enforcement point.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_w02_weak_same_attack_hardened_denied"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "W03",
+        "objective": "weak profile is disabled by default and cannot be accidentally exposed.",
+        "requirement": "W03",
+        "component": "comparison/integration",
+        "boundary": "comparison/integration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_w03_weak_factory_opt_in",
+        "expected": "weak profile is disabled by default and cannot be accidentally exposed.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_w03_weak_factory_opt_in"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "W04",
+        "objective": "hardened profile cannot silently fall back to weak settings.",
+        "requirement": "W04",
+        "component": "comparison/integration",
+        "boundary": "comparison/integration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_w04_weak_profile_cannot_enter_hardened_engine",
+        "expected": "hardened profile cannot silently fall back to weak settings.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_w04_weak_profile_cannot_enter_hardened_engine"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "W05",
+        "objective": "P-006 target descriptor validates against the actual P-007 schema.",
+        "requirement": "W05",
+        "component": "comparison/integration",
+        "boundary": "comparison/integration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_w05_real_p007_descriptor_validates",
+        "expected": "P-006 target descriptor validates against the actual P-007 schema.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_w05_real_p007_descriptor_validates"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    },
+    {
+      "case": {
+        "schema_version": "p006-test-case-v1",
+        "id": "W06",
+        "objective": "P-007 live target integration is marked verified only after actual end-to-end P-007 execution; otherwise it remains blocked/not tested.",
+        "requirement": "W06",
+        "component": "comparison/integration",
+        "boundary": "comparison/integration",
+        "profile": "hardened",
+        "preconditions": "Synthetic fixture or owned local stack; never real client authorization.",
+        "action": "Execute test_w06_live_p007_not_claimed_available",
+        "expected": "P-007 live target integration is marked verified only after actual end-to-end P-007 execution; otherwise it remains blocked/not tested.",
+        "reproduction": "make test"
+      },
+      "offline_tests": [
+        "test_w06_live_p007_not_claimed_available"
+      ],
+      "native_gate": "tests/live_probe.py + scripts/live.py",
+      "native_status": "NOT_TESTED; see immutable observed live outputs"
+    }
+  ]
+}

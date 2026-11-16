@@ -1,0 +1,43 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "enum": [
+        "local-basic",
+        "local-admin"
+      ],
+      "title": "Id",
+      "type": "string"
+    },
+    "provider": {
+      "const": "local-mock",
+      "default": "local-mock",
+      "title": "Provider",
+      "type": "string"
+    },
+    "required_role": {
+      "enum": [
+        "user",
+        "tenant-admin",
+        "platform-admin"
+      ],
+      "title": "Required Role",
+      "type": "string"
+    },
+    "max_tokens": {
+      "default": 64,
+      "maximum": 128,
+      "minimum": 1,
+      "title": "Max Tokens",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "required_role"
+  ],
+  "title": "GatewayModel",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:gateway-model:v1"
+}

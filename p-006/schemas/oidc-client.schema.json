@@ -1,0 +1,42 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "enum": [
+        "open-webui",
+        "p006-pep"
+      ],
+      "title": "Id",
+      "type": "string"
+    },
+    "redirect_uris": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Redirect Uris",
+      "type": "array"
+    },
+    "origins": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Origins",
+      "type": "array"
+    },
+    "pkce": {
+      "const": "S256",
+      "default": "S256",
+      "title": "Pkce",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "redirect_uris",
+    "origins"
+  ],
+  "title": "OIDCClient",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:oidc-client:v1"
+}

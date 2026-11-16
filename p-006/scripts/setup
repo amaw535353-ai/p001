@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+export UV_CACHE_DIR="$PWD/.tools/uv-cache"
+mkdir -p .tools/wheels
+uv venv --python python3 --allow-existing .venv
+uv pip install --python .venv/bin/python --require-hashes -r requirements.lock
+.venv/bin/python -m ensurepip >/dev/null
+.venv/bin/python -m pip download --cache-dir .tools/pip-cache --require-hashes --only-binary=:all: -r requirements.lock -d .tools/wheels >/dev/null
+echo 'P006 dependencies ready; synthetic local mode; no stack started.'

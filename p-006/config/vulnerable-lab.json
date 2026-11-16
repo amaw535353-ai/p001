@@ -1,0 +1,187 @@
+{
+  "schema_version": "p006-profile-v1",
+  "name": "vulnerable-lab",
+  "model_mode": "deterministic-local",
+  "identity": {
+    "issuer": "http://127.0.0.1:8087/realms/p006",
+    "audience": "p006-pep",
+    "jwks_url": "http://keycloak:8080/realms/p006/protocol/openid-connect/certs",
+    "introspection_url": "http://keycloak:8080/realms/p006/protocol/openid-connect/token/introspect",
+    "algorithms": [
+      "RS256"
+    ],
+    "clients": [
+      {
+        "id": "open-webui",
+        "redirect_uris": [
+          "http://127.0.0.1:8086/oauth/oidc/callback"
+        ],
+        "origins": [
+          "http://127.0.0.1:8086"
+        ],
+        "pkce": "S256"
+      },
+      {
+        "id": "p006-pep",
+        "redirect_uris": [],
+        "origins": [],
+        "pkce": "S256"
+      }
+    ]
+  },
+  "principals": [
+    {
+      "subject": "00000000-0000-4000-8000-000000000001",
+      "username": "ada",
+      "tenant": "tenant-a",
+      "roles": [
+        "user"
+      ],
+      "enabled": true
+    },
+    {
+      "subject": "00000000-0000-4000-8000-000000000002",
+      "username": "ari",
+      "tenant": "tenant-a",
+      "roles": [
+        "user"
+      ],
+      "enabled": true
+    },
+    {
+      "subject": "00000000-0000-4000-8000-000000000003",
+      "username": "admin-a",
+      "tenant": "tenant-a",
+      "roles": [
+        "user",
+        "tenant-admin"
+      ],
+      "enabled": true
+    },
+    {
+      "subject": "00000000-0000-4000-8000-000000000004",
+      "username": "bea",
+      "tenant": "tenant-b",
+      "roles": [
+        "user"
+      ],
+      "enabled": true
+    },
+    {
+      "subject": "00000000-0000-4000-8000-000000000005",
+      "username": "ben",
+      "tenant": "tenant-b",
+      "roles": [
+        "user"
+      ],
+      "enabled": true
+    },
+    {
+      "subject": "00000000-0000-4000-8000-000000000006",
+      "username": "admin-b",
+      "tenant": "tenant-b",
+      "roles": [
+        "user",
+        "tenant-admin"
+      ],
+      "enabled": true
+    },
+    {
+      "subject": "00000000-0000-4000-8000-000000000007",
+      "username": "platform-admin",
+      "tenant": "platform",
+      "roles": [
+        "user",
+        "platform-admin"
+      ],
+      "enabled": true
+    }
+  ],
+  "tenants": [
+    {
+      "id": "tenant-a",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "id": "tenant-b",
+      "classification": "SYNTHETIC"
+    },
+    {
+      "id": "platform",
+      "classification": "SYNTHETIC"
+    }
+  ],
+  "models": [
+    {
+      "id": "local-basic",
+      "provider": "local-mock",
+      "required_role": "user",
+      "max_tokens": 64
+    },
+    {
+      "id": "local-admin",
+      "provider": "local-mock",
+      "required_role": "platform-admin",
+      "max_tokens": 64
+    }
+  ],
+  "route": {
+    "schema_version": "p006-route-v1",
+    "id": "local-mock",
+    "url": "http://litellm:4000/v1/chat/completions",
+    "backend": "http://model:8000/v1",
+    "model_ids": [
+      "local-basic",
+      "local-admin"
+    ]
+  },
+  "policy": {
+    "schema_version": "p006-policy-v1",
+    "version": "p006-authz-v1",
+    "default_allow": false
+  },
+  "egress": {
+    "schema_version": "p006-egress-v1",
+    "networks": {
+      "ui": [
+        "webui",
+        "pep"
+      ],
+      "identity": [
+        "webui",
+        "pep",
+        "keycloak"
+      ],
+      "policy": [
+        "pep",
+        "opa"
+      ],
+      "secrets": [
+        "pep",
+        "vault",
+        "litellm"
+      ],
+      "gateway": [
+        "pep",
+        "litellm"
+      ],
+      "model": [
+        "litellm",
+        "model"
+      ]
+    },
+    "internal": true,
+    "external_destinations": []
+  },
+  "deployment": {
+    "schema_version": "p006-deployment-v1",
+    "host": "127.0.0.1",
+    "ui_port": 8086,
+    "idp_port": 8087,
+    "owner": "p006"
+  },
+  "max_request_bytes": 16384,
+  "max_response_bytes": 65536,
+  "requests_per_minute": 20,
+  "tenant_tokens_per_minute": 1024
+}

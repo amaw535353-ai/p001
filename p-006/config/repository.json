@@ -1,0 +1,10 @@
+{
+  "schema_version": "p006-repository-v1",
+  "repository": "amaw535353-ai/p001",
+  "default_branch": "p001-initial",
+  "initial_base_commit": "2c2ddfe72cb205c89c7b7b6bf7614008dfb4dcc1",
+  "approved_base_commit": "50a61a883b5f943a7a3cd9a00a8b9b55b1581920",
+  "feature_branch": "feat/p-006-secure-llm-reference-architecture",
+  "p007_pr5_state": "MERGED",
+  "base_update": "Fast-forwarded to approved default after P008 PR6 merged; no sibling edits."
+}

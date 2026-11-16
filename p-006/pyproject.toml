@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools==84.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "p006-secure-llm-reference"
+version = "1.0.0"
+requires-python = ">=3.12,<3.13"
+description = "Synthetic local five-component LLM security reference architecture"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --import-mode=importlib"
+asyncio_mode = "auto"
+markers = ["live: real Docker service integration"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "S102", "S307"]
+
+[tool.mypy]
+python_version = "3.12"
+check_untyped_defs = true
+ignore_missing_imports = true
+exclude = ["tests", ".tools", ".venv"]

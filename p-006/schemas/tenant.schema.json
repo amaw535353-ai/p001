@@ -1,0 +1,27 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "enum": [
+        "tenant-a",
+        "tenant-b",
+        "platform"
+      ],
+      "title": "Id",
+      "type": "string"
+    },
+    "classification": {
+      "const": "SYNTHETIC",
+      "default": "SYNTHETIC",
+      "title": "Classification",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id"
+  ],
+  "title": "Tenant",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:tenant:v1"
+}

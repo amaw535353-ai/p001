@@ -1,0 +1,79 @@
+{
+  "schema_version": "p006-inventory-v1",
+  "services": [
+    {
+      "id": "webui",
+      "image": "ghcr.io/open-webui/open-webui:v0.13.3-slim@sha256:8faf917243afee55e042b10ddc08ed6ae6fa9c62522c7e14d81e7cf2922325ae",
+      "networks": [
+        "ui",
+        "identity"
+      ],
+      "port": 8080
+    },
+    {
+      "id": "keycloak",
+      "image": "quay.io/keycloak/keycloak:26.8.2@sha256:c68e286cacd87b942ac1939a0a1481461109d6acd3a57dc496969a319a76bbf0",
+      "networks": [
+        "identity"
+      ],
+      "port": 8080
+    },
+    {
+      "id": "opa",
+      "image": "openpolicyagent/opa:1.22.4-static@sha256:12cecac5a174368f7d3f09d3a19d040ebe0c91d576e520335ae7a985a26e39d3",
+      "networks": [
+        "policy"
+      ],
+      "port": 8181
+    },
+    {
+      "id": "vault",
+      "image": "hashicorp/vault:2.2.2@sha256:dfa48c2fa2b0099ccb47681ec5c4804bf5aec9d6879ecfee07ad4b92a5427ad6",
+      "networks": [
+        "secrets"
+      ],
+      "port": 8200
+    },
+    {
+      "id": "pep",
+      "image": "p006-runtime:1.0.0",
+      "networks": [
+        "ui",
+        "identity",
+        "policy",
+        "secrets",
+        "gateway"
+      ],
+      "port": 8080,
+      "build_recipe_sha256": "fc8ba394c7d80791afd3b21739c8262da3fb4824729e292d32b8f522492cefb1"
+    },
+    {
+      "id": "litellm",
+      "image": "ghcr.io/berriai/litellm:v1.109.1@sha256:11175975a3093e05e92faee2fe2fe3412a3ae2fcaa849eb0fe25d5f0d8bcb2e9",
+      "networks": [
+        "secrets",
+        "gateway",
+        "model"
+      ],
+      "port": 4000
+    },
+    {
+      "id": "model",
+      "image": "p006-runtime:1.0.0",
+      "networks": [
+        "model"
+      ],
+      "port": 8000,
+      "build_recipe_sha256": "fc8ba394c7d80791afd3b21739c8262da3fb4824729e292d32b8f522492cefb1"
+    }
+  ],
+  "endpoints": [
+    {
+      "schema_version": "p006-endpoint-v1",
+      "service_id": "pep",
+      "method": "POST",
+      "path": "/v1/chat/completions",
+      "response_schema_ref": "contracts/endpoint-schemas/chat.schema.json"
+    }
+  ]
+}

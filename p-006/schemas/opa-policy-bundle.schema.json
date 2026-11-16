@@ -1,0 +1,27 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "p006-policy-v1",
+      "default": "p006-policy-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "version": {
+      "const": "p006-authz-v1",
+      "default": "p006-authz-v1",
+      "title": "Version",
+      "type": "string"
+    },
+    "default_allow": {
+      "const": false,
+      "default": false,
+      "title": "Default Allow",
+      "type": "boolean"
+    }
+  },
+  "title": "PolicyBundle",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:opa-policy-bundle:v1"
+}

@@ -1,0 +1,66 @@
+{
+  "p006": {
+    "principals": {
+      "00000000-0000-4000-8000-000000000001": {
+        "tenant": "tenant-a",
+        "roles": [
+          "user"
+        ],
+        "enabled": true
+      },
+      "00000000-0000-4000-8000-000000000002": {
+        "tenant": "tenant-a",
+        "roles": [
+          "user"
+        ],
+        "enabled": true
+      },
+      "00000000-0000-4000-8000-000000000003": {
+        "tenant": "tenant-a",
+        "roles": [
+          "user",
+          "tenant-admin"
+        ],
+        "enabled": true
+      },
+      "00000000-0000-4000-8000-000000000004": {
+        "tenant": "tenant-b",
+        "roles": [
+          "user"
+        ],
+        "enabled": true
+      },
+      "00000000-0000-4000-8000-000000000005": {
+        "tenant": "tenant-b",
+        "roles": [
+          "user"
+        ],
+        "enabled": true
+      },
+      "00000000-0000-4000-8000-000000000006": {
+        "tenant": "tenant-b",
+        "roles": [
+          "user",
+          "tenant-admin"
+        ],
+        "enabled": true
+      },
+      "00000000-0000-4000-8000-000000000007": {
+        "tenant": "platform",
+        "roles": [
+          "user",
+          "platform-admin"
+        ],
+        "enabled": true
+      }
+    },
+    "models": {
+      "local-basic": {
+        "required_role": "user"
+      },
+      "local-admin": {
+        "required_role": "platform-admin"
+      }
+    }
+  }
+}

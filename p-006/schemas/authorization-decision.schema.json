@@ -1,0 +1,31 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "allow": {
+      "title": "Allow",
+      "type": "boolean"
+    },
+    "policy_version": {
+      "const": "p006-authz-v1",
+      "title": "Policy Version",
+      "type": "string"
+    },
+    "reason": {
+      "enum": [
+        "ALLOW",
+        "DEFAULT_DENY"
+      ],
+      "title": "Reason",
+      "type": "string"
+    }
+  },
+  "required": [
+    "allow",
+    "policy_version",
+    "reason"
+  ],
+  "title": "AuthzDecision",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p006:authorization-decision:v1"
+}

@@ -1,0 +1,266 @@
+{
+  "schema_version": "p006-proposed-risk-v1",
+  "source_mapping": "No formal P006-to-risk assignment in source crosswalk",
+  "source_status": "PROMPT_SUBSET_FULL_TAXONOMY_BLOCKED",
+  "relationships": [
+    {
+      "risk_id": "R1",
+      "source_description": "Workload identity confusion, wrong token audience, over-scoped delegation",
+      "source_available": true,
+      "relationship": "DIRECTLY_APPLICABLE",
+      "rationale": "Human/workload identity, audience and role/tenant enforcement."
+    },
+    {
+      "risk_id": "R2",
+      "source_description": "Tool-level unauthorized external actions / confused deputy",
+      "source_available": true,
+      "relationship": "SUPPORTING_ONLY",
+      "rationale": "Architecture enforcement and bounded fixtures support later specialist assessments; no full risk evaluation."
+    },
+    {
+      "risk_id": "R3",
+      "source_description": "Cross-tenant RAG/document retrieval",
+      "source_available": true,
+      "relationship": "PARTIALLY_APPLICABLE",
+      "rationale": "Tenant isolation applies; no RAG/document retrieval implementation exists."
+    },
+    {
+      "risk_id": "R4",
+      "source_description": "Synthetic secrets or sensitive values in responses, logs and traces",
+      "source_available": true,
+      "relationship": "DIRECTLY_APPLICABLE",
+      "rationale": "Narrow Vault retrieval, safe errors and secret-free projected responses/events."
+    },
+    {
+      "risk_id": "R5",
+      "source_description": "Low-trust retrieved document/tool output influencing high-privilege action selection",
+      "source_available": true,
+      "relationship": "OUT_OF_SCOPE",
+      "rationale": "No corresponding specialist feature is implemented or assessed by this local reference."
+    },
+    {
+      "risk_id": "R6",
+      "source_description": "Autonomous goal drift",
+      "source_available": true,
+      "relationship": "OUT_OF_SCOPE",
+      "rationale": "No corresponding specialist feature is implemented or assessed by this local reference."
+    },
+    {
+      "risk_id": "R7",
+      "source_description": "Approval-to-action integrity/replay",
+      "source_available": true,
+      "relationship": "PARTIALLY_APPLICABLE",
+      "rationale": "Request proof resists replay/body substitution; no human approval platform assessed."
+    },
+    {
+      "risk_id": "R8",
+      "source_description": "Unsafe downstream handling of AI-generated commands or HTML",
+      "source_available": true,
+      "relationship": "SUPPORTING_ONLY",
+      "rationale": "Architecture enforcement and bounded fixtures support later specialist assessments; no full risk evaluation."
+    },
+    {
+      "risk_id": "R9",
+      "source_description": "Coding-agent workspace boundaries",
+      "source_available": true,
+      "relationship": "OUT_OF_SCOPE",
+      "rationale": "No corresponding specialist feature is implemented or assessed by this local reference."
+    },
+    {
+      "risk_id": "R10",
+      "source_description": "MCP trust boundaries",
+      "source_available": true,
+      "relationship": "OUT_OF_SCOPE",
+      "rationale": "No corresponding specialist feature is implemented or assessed by this local reference."
+    },
+    {
+      "risk_id": "R11",
+      "source_description": "Persistent memory manipulation",
+      "source_available": true,
+      "relationship": "OUT_OF_SCOPE",
+      "rationale": "No corresponding specialist feature is implemented or assessed by this local reference."
+    },
+    {
+      "risk_id": "R12",
+      "source_description": "Direct instruction boundary issues where a model exists",
+      "source_available": true,
+      "relationship": "OUT_OF_SCOPE",
+      "rationale": "No corresponding specialist feature is implemented or assessed by this local reference."
+    },
+    {
+      "risk_id": "R13",
+      "source_description": "Retrieval metadata/ranking/corpus integrity boundaries",
+      "source_available": true,
+      "relationship": "OUT_OF_SCOPE",
+      "rationale": "No corresponding specialist feature is implemented or assessed by this local reference."
+    },
+    {
+      "risk_id": "R14",
+      "source_description": "Provider gateway, cache, inference API and routing access controls",
+      "source_available": true,
+      "relationship": "DIRECTLY_APPLICABLE",
+      "rationale": "Model/provider allowlist and authenticated gateway request path."
+    },
+    {
+      "risk_id": "R15",
+      "source_description": "Provider gateway, cache, inference API and routing access controls",
+      "source_available": true,
+      "relationship": "DIRECTLY_APPLICABLE",
+      "rationale": "Fixed local inference route and bypass prevention; no cache platform assessed."
+    },
+    {
+      "risk_id": "R16",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R17",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R18",
+      "source_description": "Rate/token/tool-budget exhaustion",
+      "source_available": true,
+      "relationship": "DIRECTLY_APPLICABLE",
+      "rationale": "Bounded size, timeout, concurrency and local user/tenant budgets."
+    },
+    {
+      "risk_id": "R19",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R20",
+      "source_description": "Inter-agent/A2A message authenticity and scope",
+      "source_available": true,
+      "relationship": "OUT_OF_SCOPE",
+      "rationale": "No corresponding specialist feature is implemented or assessed by this local reference."
+    },
+    {
+      "risk_id": "R21",
+      "source_description": "Evaluator data trust",
+      "source_available": true,
+      "relationship": "SUPPORTING_ONLY",
+      "rationale": "Architecture enforcement and bounded fixtures support later specialist assessments; no full risk evaluation."
+    },
+    {
+      "risk_id": "R22",
+      "source_description": "Guardrail/monitoring limitations",
+      "source_available": true,
+      "relationship": "SUPPORTING_ONLY",
+      "rationale": "Architecture enforcement and bounded fixtures support later specialist assessments; no full risk evaluation."
+    },
+    {
+      "risk_id": "R23",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R24",
+      "source_description": "Retention, privacy and user/tenant isolation assumptions",
+      "source_available": true,
+      "relationship": "DIRECTLY_APPLICABLE",
+      "rationale": "Tenant isolation and ephemeral synthetic retention; production privacy unassessed."
+    },
+    {
+      "risk_id": "R25",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R26",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R27",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R28",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R29",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R30",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R31",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R32",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R33",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R34",
+      "source_description": null,
+      "source_available": false,
+      "relationship": "NOT_TESTED",
+      "rationale": "Full source risk definition absent from supplied repository subset; no invented name or mapping."
+    },
+    {
+      "risk_id": "R35",
+      "source_description": "Stale authorization inheritance and tenant isolation assumptions",
+      "source_available": true,
+      "relationship": "DIRECTLY_APPLICABLE",
+      "rationale": "Fresh introspection and request-bound decisions; no stale authorization cache."
+    },
+    {
+      "risk_id": "R36",
+      "source_description": "Agent skill/plugin and model/data dependency provenance",
+      "source_available": true,
+      "relationship": "PARTIALLY_APPLICABLE",
+      "rationale": "Pinned artifacts/locks and disabled tools; complete supply-chain attestation/CVE review not performed."
+    },
+    {
+      "risk_id": "R37",
+      "source_description": "Cascading recovery/kill switches",
+      "source_available": true,
+      "relationship": "DIRECTLY_APPLICABLE",
+      "rationale": "Dependency outages deny without permissive recovery/fallback."
+    }
+  ]
+}
