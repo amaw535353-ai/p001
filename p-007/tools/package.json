@@ -1,0 +1,7 @@
+{
+  "name": "p007-local-runners",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Pinned optional local Promptfoo installation",
+  "dependencies": {"promptfoo": "0.125.1"}
+}

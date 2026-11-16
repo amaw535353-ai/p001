@@ -4,7 +4,8 @@ import ast,json,re,subprocess
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 for f in root.rglob('*.py'):
-    if not any(x in f.parts for x in ['.tools','.venv','.terraform']):ast.parse(f.read_text())
+    # Ignored runtime tool homes can contain non-CPython templates (e.g. ZAP Jython).
+    if not any(x in f.parts for x in ['.tools','.venv','.terraform','.runtime']):ast.parse(f.read_text())
 for base in ['infra','schemas']:
     for f in (root/base).rglob('*.json'):
         if '.terraform' not in f.parts:json.loads(f.read_text())

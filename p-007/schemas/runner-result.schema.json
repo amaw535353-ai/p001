@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adapter": {
+      "enum": [
+        "offline",
+        "promptfoo",
+        "inspect_ai",
+        "zap",
+        "playwright",
+        "p006"
+      ],
+      "title": "Adapter",
+      "type": "string"
+    },
+    "commands": {
+      "items": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "title": "Commands",
+      "type": "array"
+    },
+    "error_class": {
+      "default": "none",
+      "enum": [
+        "none",
+        "dependency",
+        "scope",
+        "timeout",
+        "provider",
+        "unsupported",
+        "invalid",
+        "resource"
+      ],
+      "title": "Error Class",
+      "type": "string"
+    },
+    "executed": {
+      "title": "Executed",
+      "type": "boolean"
+    },
+    "exit_code": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Exit Code"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    },
+    "observed": {
+      "additionalProperties": true,
+      "title": "Observed",
+      "type": "object"
+    },
+    "original_status": {
+      "title": "Original Status",
+      "type": "string"
+    },
+    "samples": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "maxItems": 64,
+      "title": "Samples",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "tool_version": {
+      "title": "Tool Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "adapter",
+    "executed",
+    "original_status",
+    "exit_code",
+    "tool_version"
+  ],
+  "title": "RunnerResult",
+  "type": "object"
+}

@@ -1,0 +1,26 @@
+{
+  "synthetic-regression-v1": {
+    "policy_hashes": [
+      "4d21ee8794ae518167378964a89416799dd8abf0c319426c81fbd3798348896d",
+      "becbba15f1a45bf936cddefd6b5a9256b63d707b441f27cf0096764a9a552bc6"
+    ],
+    "reason": "Explicit comparison of synthetic policy variants only; case definitions, fixtures, controls, source and tools must match",
+    "target_id": "offline-demo",
+    "versions": [
+      "offline-v2",
+      "offline-v3"
+    ]
+  },
+  "synthetic-remediation-v1": {
+    "policy_hashes": [
+      "e21ecba2b46a79bb09772b5e41545b63530daddd5e0bc56cc2af1361d9af804b",
+      "4d21ee8794ae518167378964a89416799dd8abf0c319426c81fbd3798348896d"
+    ],
+    "reason": "Explicit comparison of synthetic policy variants only; case definitions, fixtures, controls, source and tools must match",
+    "target_id": "offline-demo",
+    "versions": [
+      "offline-v1",
+      "offline-v2"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "executable": "/usr/bin/chromium",
+  "version": "156.0.8078.79",
+  "sandbox": false,
+  "source": "Existing Debian Chromium; sandbox helper is unavailable on this managed host. Only trusted in-process synthetic fixture pages, with every request fulfilled by the guarded broker. Never use this profile for untrusted browsing."
+}

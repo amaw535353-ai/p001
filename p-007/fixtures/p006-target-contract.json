@@ -1,0 +1,10 @@
+{
+  "schema_version": "p006-target-adapter-v1",
+  "target_id": "p006-unavailable",
+  "target_version": null,
+  "implementation_ref": null,
+  "origin": null,
+  "capabilities": [],
+  "endpoints": [],
+  "runtime_status": "BLOCKED"
+}

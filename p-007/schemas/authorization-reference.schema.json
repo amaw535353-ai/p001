@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "actor": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Actor",
+      "type": "string"
+    },
+    "checkpoint_completed": {
+      "title": "Checkpoint Completed",
+      "type": "boolean"
+    },
+    "contact_available": {
+      "title": "Contact Available",
+      "type": "boolean"
+    },
+    "engagement_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Engagement Id",
+      "type": "string"
+    },
+    "engagement_version": {
+      "minimum": 1,
+      "title": "Engagement Version",
+      "type": "integer"
+    },
+    "policy_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Policy Digest",
+      "type": "string"
+    },
+    "redaction_confirmed": {
+      "title": "Redaction Confirmed",
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_identity": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Source Identity",
+      "type": "string"
+    },
+    "storage_id": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Storage Id",
+      "type": "string"
+    },
+    "store_path": {
+      "title": "Store Path",
+      "type": "string"
+    },
+    "tenant": {
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_.:-]{0,95}$",
+      "title": "Tenant",
+      "type": "string"
+    }
+  },
+  "required": [
+    "engagement_id",
+    "engagement_version",
+    "policy_digest",
+    "store_path",
+    "actor",
+    "tenant",
+    "source_identity",
+    "storage_id",
+    "checkpoint_completed",
+    "contact_available",
+    "redaction_confirmed"
+  ],
+  "title": "AuthorizationReference",
+  "type": "object"
+}

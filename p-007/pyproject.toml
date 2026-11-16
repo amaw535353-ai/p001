@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools==84.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "p007-control-regression"
+version = "1.0.0"
+description = "Local AI security control regression and evidence reproduction"
+requires-python = ">=3.12,<3.13"
+dependencies = ["pydantic==2.12.5", "jsonschema==4.26.0", "PyYAML==6.0.3"]
+
+[project.scripts]
+p007 = "p007.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --import-mode=importlib"
+markers = ["live: executes actual optional tools or loopback services"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "S102", "S307"]
+
+[tool.mypy]
+python_version = "3.12"
+check_untyped_defs = true
+ignore_missing_imports = true
+exclude = ["tests", ".tools", ".venv"]

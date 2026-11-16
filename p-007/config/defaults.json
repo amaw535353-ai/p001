@@ -1,0 +1,7 @@
+{
+  "active_zap": false,
+  "host_binding": "127.0.0.1",
+  "hosted_models": false,
+  "profile": "offline",
+  "target": "offline-demo"
+}
