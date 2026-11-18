@@ -1,0 +1,71 @@
+{
+  "clickhouse": {
+    "image_id": "sha256:b8f16712a8012a59005e27fe5cebf3874ca5d810ac049c5e147783b1de153e47",
+    "pin": "clickhouse/clickhouse-server:26.3.62.3@sha256:6eb24df16477b65c87b772a56eb341a9624529491856c103e74c537db59669f1",
+    "version_label": "22.04",
+    "versions": {}
+  },
+  "collector": {
+    "image_id": "sha256:1080afcdde7624998314ebd6cc707c401436f00dfbd778eb9d0466f7a2501c40",
+    "pin": "otel/opentelemetry-collector-contrib:0.165.0@sha256:e40d61f10c9a617cca1ffd1be4d7e2b3a4b0f0001798ff07e58cabe82e618cea",
+    "version_label": "0.165.0",
+    "versions": {}
+  },
+  "langfuse": {
+    "image_id": "sha256:c784b5de85c43a157d79539df16fb4fd55099bbb88dfad684ece2300fe5bca0c",
+    "pin": "langfuse/langfuse:4.80.0@sha256:8e39640475efebf85e7d19f8e036046049a800fb0dd7fe826c216fe0cbe5c7cb",
+    "version_label": "4.80.0",
+    "versions": {}
+  },
+  "langfuse-worker": {
+    "image_id": "sha256:2bd3d39da90732d784f70920c3e4d5441473674f40099616bcbd81460abba0a0",
+    "pin": "langfuse/langfuse-worker:4.80.0@sha256:86c2d68fee500b4e6a1f788cde37a5aceb48eb490aef4d3ca57266093d796d51",
+    "version_label": "4.80.0",
+    "versions": {}
+  },
+  "minio": {
+    "image_id": "sha256:f555a1aa2e8db261c2ffd3dab2dd35271d6b555831b1ab55095c93542ec4a1bc",
+    "pin": "chainguard/minio:latest@sha256:832a80c375c8cee5ab1aa19e73e1f466ef8037f2e6f34f7563cf3176bf405198",
+    "version_label": null,
+    "versions": {}
+  },
+  "postgres": {
+    "image_id": "sha256:140936e8665d5274aa58df31b722693b4b451c541bb0f1a263a345d424bfacb4",
+    "pin": "postgres:17@sha256:6f7593c161689b6b02c78668b314af7da8811b592c5519108c57a49d0b6ad788",
+    "version_label": null,
+    "versions": {
+      "PG_MAJOR": "17",
+      "PG_VERSION": "17.12-1.pgdg13+1"
+    }
+  },
+  "python": {
+    "image_id": "sha256:9e87977b867847e186d066f531ef783b006d582a985c341c269446088d90f2c4",
+    "pin": "python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f",
+    "version_label": null,
+    "versions": {
+      "PYTHON_VERSION": "3.12.14"
+    }
+  },
+  "redis": {
+    "image_id": "sha256:3a17a97bb6c7d9a7ee1bd3d5ecf7c6d02adf4bfd9fe73a974b3767b442dfbfaa",
+    "pin": "redis:7.4@sha256:a6dd428750118c2c2c67d3f555faef0aa15a2b71198b40e1cb3b9229b1cf3094",
+    "version_label": null,
+    "versions": {
+      "REDIS_VERSION": "7.4.12"
+    }
+  },
+  "wazuh": {
+    "image_id": "sha256:353ab4dbd0ad9d33b632b7befb8d179a66bc901a3f1f7133b45521386c254890",
+    "pin": "wazuh/wazuh-manager:4.14.10@sha256:beda27e1e88bfe5fe5e882eea3b006dfc4a77e19f31d5a0292e5126f23900e75",
+    "version_label": null,
+    "versions": {}
+  },
+  "wazuh-dashboard": {
+    "image_status": "NOT_PULLED",
+    "pin": "wazuh/wazuh-dashboard:4.14.10@sha256:2987776f76cbf3d47452a51b0e59792453686e5d37bbff7768ec033987b073a0"
+  },
+  "wazuh-indexer": {
+    "image_status": "NOT_PULLED",
+    "pin": "wazuh/wazuh-indexer:4.14.10@sha256:1780a13d5950deda05860fdb2e2d6cc466a15b341a88de01452d99932e05f610"
+  }
+}

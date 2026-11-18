@@ -1,0 +1,128 @@
+<group name="p009,synthetic,">
+  <rule id="110899" level="0">
+    <category>syslog</category>
+    <decoded_as>json</decoded_as>
+    <field name="p009">^v1$</field>
+    <description>P009 synthetic metadata</description>
+  </rule>
+  <rule id="110900" level="5">
+    <if_sid>110899</if_sid>
+    <field name="signal">^authorization-denials$</field>
+    <field name="count" type="pcre2">^(?:[3-9]|[1-9][0-9]{1,6})$</field>
+    <description>P009 authorization-denials observation v1.0</description>
+  </rule>
+  <rule id="110901" level="8">
+    <if_sid>110899</if_sid>
+    <field name="signal">^cross-tenant$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 cross-tenant observation v1.0</description>
+  </rule>
+  <rule id="110902" level="8">
+    <if_sid>110899</if_sid>
+    <field name="signal">^gateway-bypass$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 gateway-bypass observation v1.0</description>
+  </rule>
+  <rule id="110903" level="7">
+    <if_sid>110899</if_sid>
+    <field name="signal">^unexpected-tool$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 unexpected-tool observation v1.0</description>
+  </rule>
+  <rule id="110904" level="7">
+    <if_sid>110899</if_sid>
+    <field name="signal">^unapproved-route$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 unapproved-route observation v1.0</description>
+  </rule>
+  <rule id="110905" level="5">
+    <if_sid>110899</if_sid>
+    <field name="signal">^request-rate$</field>
+    <field name="count" type="pcre2">^(?:[2-9][0-9]|[1-9][0-9]{2,6})$</field>
+    <description>P009 request-rate observation v1.0</description>
+  </rule>
+  <rule id="110906" level="5">
+    <if_sid>110899</if_sid>
+    <field name="signal">^invalid-identity$</field>
+    <field name="count" type="pcre2">^(?:[3-9]|[1-9][0-9]{1,6})$</field>
+    <description>P009 invalid-identity observation v1.0</description>
+  </rule>
+  <rule id="110907" level="6">
+    <if_sid>110899</if_sid>
+    <field name="signal">^secret-denial$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 secret-denial observation v1.0</description>
+  </rule>
+  <rule id="110908" level="8">
+    <if_sid>110899</if_sid>
+    <field name="signal">^exporter-outage$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 exporter-outage observation v1.0</description>
+  </rule>
+  <rule id="110909" level="6">
+    <if_sid>110899</if_sid>
+    <field name="signal">^malformed-burst$</field>
+    <field name="count" type="pcre2">^(?:[5-9]|[1-9][0-9]{1,6})$</field>
+    <description>P009 malformed-burst observation v1.0</description>
+  </rule>
+  <rule id="110910" level="4">
+    <if_sid>110899</if_sid>
+    <field name="signal">^event-replay$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 event-replay observation v1.0</description>
+  </rule>
+  <rule id="110911" level="6">
+    <if_sid>110899</if_sid>
+    <field name="signal">^log-injection$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 log-injection observation v1.0</description>
+  </rule>
+  <rule id="110912" level="10">
+    <if_sid>110899</if_sid>
+    <field name="signal">^hash-mismatch$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 hash-mismatch observation v1.0</description>
+  </rule>
+  <rule id="110913" level="8">
+    <if_sid>110899</if_sid>
+    <field name="signal">^unauthorized-export$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 unauthorized-export observation v1.0</description>
+  </rule>
+  <rule id="110914" level="8">
+    <if_sid>110899</if_sid>
+    <field name="signal">^suspicious-admin$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 suspicious-admin observation v1.0</description>
+  </rule>
+  <rule id="110915" level="7">
+    <if_sid>110899</if_sid>
+    <field name="signal">^local-data-egress$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 local-data-egress observation v1.0</description>
+  </rule>
+  <rule id="110916" level="6">
+    <if_sid>110899</if_sid>
+    <field name="signal">^model-query-volume$</field>
+    <field name="count" type="pcre2">^(?:[5-9][0-9]|[1-9][0-9]{2,6})$</field>
+    <description>P009 model-query-volume observation v1.0</description>
+  </rule>
+  <rule id="110917" level="8">
+    <if_sid>110899</if_sid>
+    <field name="signal">^unexpected-workload$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 unexpected-workload observation v1.0</description>
+  </rule>
+  <rule id="110918" level="8">
+    <if_sid>110899</if_sid>
+    <field name="signal">^configuration-change$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 configuration-change observation v1.0</description>
+  </rule>
+  <rule id="110919" level="5">
+    <if_sid>110899</if_sid>
+    <field name="signal">^missing-event$</field>
+    <field name="count" type="pcre2">^[1-9][0-9]{0,6}$</field>
+    <description>P009 missing-event observation v1.0</description>
+  </rule>
+</group>

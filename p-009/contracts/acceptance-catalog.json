@@ -1,0 +1,1011 @@
+{
+  "schema_version": "p009-acceptance-catalog-1.0",
+  "engineering_test_count": 168,
+  "requirements_count": 88,
+  "interpretation": "Acceptance rows are requirements, not additional pytest tests. PASS applies only to the synthetic local scope. Native products and source bytes have separate explicit gates.",
+  "requirements": [
+    {
+      "id": "C01",
+      "requirement": "P-009 uses the current approved default branch and preserves all sibling source.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_repository_source.py::test_scope_has_no_sibling_changes"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "C02",
+      "requirement": "P-009 services have explicit ownership labels and safe cleanup.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_repository_source.py::test_cleanup_confirmation_refuses_before_docker",
+        "tests/test_repository_source.py::test_unowned_named_resource_collision_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Owned Docker configuration inspection and completed scoped cleanup; docs/verification-summary.json"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "C03",
+      "requirement": "all host listeners bind to `127.0.0.1`.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_configuration_security_bounds"
+      ],
+      "native_or_delivery_evidence": [
+        "Owned Docker configuration inspection and completed scoped cleanup; docs/verification-summary.json"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "C04",
+      "requirement": "no default public-network attachment exists.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_configuration_security_bounds"
+      ],
+      "native_or_delivery_evidence": [
+        "Owned Docker configuration inspection and completed scoped cleanup; docs/verification-summary.json"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "C05",
+      "requirement": "strict schemas reject unknown security-critical fields.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_privacy.py::test_unknown_fields_strict_on_source_contract"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "C06",
+      "requirement": "all selected product versions and image digests are pinned and recorded.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_configuration_security_bounds"
+      ],
+      "native_or_delivery_evidence": [
+        "Registry digest resolution and inspected local images; docs/image-verification.json"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "C07",
+      "requirement": "no secrets, raw telemetry or generated runtime evidence are committed.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_repository_source.py::test_runtime_and_evidence_ignored"
+      ],
+      "native_or_delivery_evidence": [
+        "Runtime-secret byte comparison against publishable source and ignored-file checks; zero matches"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "C08",
+      "requirement": "cleanup removes only P-009-owned resources and refuses unrelated resources.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_repository_source.py::test_cleanup_confirmation_refuses_before_docker",
+        "tests/test_repository_source.py::test_unowned_named_resource_collision_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Owned Docker configuration inspection and completed scoped cleanup; docs/verification-summary.json"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "T01",
+      "requirement": "actual OTLP trace ingestion succeeds from the synthetic instrumented app.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "T02",
+      "requirement": "malformed OTLP payload is rejected safely.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_malformed_or_ambiguous_json_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Native core T02: malformed OTLP refused"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "T03",
+      "requirement": "unknown telemetry source is rejected or quarantined.",
+      "status": "PARTIAL",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_unknown_source_rejected"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": "Archive unknown-source refusal tested offline; native Collector unknown-source drop/quarantine accounting not measured."
+    },
+    {
+      "id": "T04",
+      "requirement": "source identity cannot be overwritten by untrusted event attributes.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_source_credential_tenant_binding"
+      ],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "T05",
+      "requirement": "payload and batch size bounds are enforced.",
+      "status": "PARTIAL",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_payload_size_bound_before_queue",
+        "tests/test_config_pipeline.py::test_batch_bound",
+        "tests/test_config_pipeline.py::test_bad_batch_cannot_leave_partially_accepted_events"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": "Atomic payload/batch bounds exercised offline; actual Collector oversize boundary not driven."
+    },
+    {
+      "id": "T06",
+      "requirement": "queue/memory bounds are enforced.",
+      "status": "PARTIAL",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_queue_saturation_visible_and_sanitized"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": "Application queue saturation is measured; native Collector memory/queue exhaustion and per-container cgroup enforcement are unverified."
+    },
+    {
+      "id": "T07",
+      "requirement": "exporter outage is detected and reported.",
+      "status": "NOT_TESTED",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_export_outage_retains_queue_for_retry"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": "Archive write outage/retry is tested offline. A controlled native Collector exporter-outage detection assertion was not executed."
+    },
+    {
+      "id": "T08",
+      "requirement": "dropped/rejected event metrics are observable.",
+      "status": "PARTIAL",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_queue_saturation_visible_and_sanitized"
+      ],
+      "native_or_delivery_evidence": [
+        "Native core T08: accepted-span self-metric observable; rejection counters tested offline"
+      ],
+      "limitation": "Native accepted-span metric observed; rejected/dropped source and exporter-failure metric increments not measured end to end."
+    },
+    {
+      "id": "T09",
+      "requirement": "collector health/readiness reflects actual pipeline state.",
+      "status": "PARTIAL",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native core T09: actual Collector liveness endpoint; end-to-end spans checked separately"
+      ],
+      "limitation": "Actual liveness and separate ingestion checks pass. Health endpoint does not guarantee downstream exporter readiness."
+    },
+    {
+      "id": "T10",
+      "requirement": "arbitrary exporter URL/config injection is rejected.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_configuration_security_bounds"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "O01",
+      "requirement": "OpenLLMetry is used by an executed synthetic LLM request path.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "O02",
+      "requirement": "actual spans reach the configured Collector.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "O03",
+      "requirement": "trace/span/parent relationships are preserved.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "O04",
+      "requirement": "request context propagates across the synthetic service boundary.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "O05",
+      "requirement": "tool-call span/event is emitted for a real synthetic tool execution.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "O06",
+      "requirement": "raw prompt/completion capture is disabled by default.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_privacy.py::test_sensitive_classes_removed_before_queue"
+      ],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "O07",
+      "requirement": "planted secret/prompt canaries do not appear in persisted telemetry.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_privacy.py::test_sensitive_classes_removed_before_queue"
+      ],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "O08",
+      "requirement": "model/provider failure is represented without leaking raw provider errors or secrets.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "F01",
+      "requirement": "the selected Langfuse version actually receives the supported trace data.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native Langfuse checks: four PASS on actual v2 observations API; six observations"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "F02",
+      "requirement": "Langfuse trace IDs correlate with P-009 event references where shared IDs exist.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native Langfuse checks: four PASS on actual v2 observations API; six observations"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "F03",
+      "requirement": "Langfuse UI/API access is restricted to the authorized synthetic operator.",
+      "status": "PARTIAL",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native Langfuse checks: four PASS on actual v2 observations API; six observations"
+      ],
+      "limitation": "Authenticated observation read succeeds and unauthenticated API read receives 401; graphical UI/session access was not tested."
+    },
+    {
+      "id": "F04",
+      "requirement": "Langfuse API keys are not exposed to browser clients or Git.",
+      "status": "PARTIAL",
+      "offline_assertions": [
+        "tests/test_repository_source.py::test_runtime_and_evidence_ignored"
+      ],
+      "native_or_delivery_evidence": [
+        "Runtime-secret byte comparison against publishable source and ignored-file checks; zero matches"
+      ],
+      "limitation": "Keys remain in server environment and outside Git; browser network/client bundles not independently inspected."
+    },
+    {
+      "id": "F05",
+      "requirement": "prompt/completion canaries are absent from Langfuse storage by default.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native Langfuse checks: four PASS on actual v2 observations API; six observations"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "F06",
+      "requirement": "synthetic tenant/project separation is tested using supported features.",
+      "status": "NOT_TESTED",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [],
+      "limitation": "A second native Langfuse project and cross-project credential isolation test were not created/executed."
+    },
+    {
+      "id": "F07",
+      "requirement": "Langfuse outage does not silently discard the only P-009 evidence copy.",
+      "status": "PARTIAL",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native archive retained while Langfuse was stopped after successful staged verification; controlled outage/loss assertion remains unverified"
+      ],
+      "limitation": "Independent archive persisted through staged Langfuse stop/start failures; a controlled per-exporter loss/outage experiment is unverified."
+    },
+    {
+      "id": "F08",
+      "requirement": "actual Langfuse retention/deletion behavior is documented and tested or marked NOT_TESTED.",
+      "status": "NOT_TESTED",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native Langfuse report explicitly records NOT_TESTED for its retention lifecycle"
+      ],
+      "limitation": "Native per-trace retention/deletion across Langfuse stores not tested. This explicit status satisfies disclosure, not deletion assurance."
+    },
+    {
+      "id": "W01",
+      "requirement": "a synthetic event is actually ingested by the selected Wazuh deployment.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native Wazuh checks: 20 exact child rule IDs, 20 benign controls, actual localfile alert, fixed level 5 despite supplied severity 15"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "W02",
+      "requirement": "a P-009-owned Wazuh rule generates the expected alert.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_detection.py::test_synthetic_abnormal_pair_has_exact_candidate",
+        "tests/test_detection.py::test_synthetic_benign_pair_below_precondition"
+      ],
+      "native_or_delivery_evidence": [
+        "Native Wazuh checks: 20 exact child rule IDs, 20 benign controls, actual localfile alert, fixed level 5 despite supplied severity 15"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "W03",
+      "requirement": "alert contains the correct rule/source/reference metadata.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_imports.py::test_wazuh_alert_preserves_reference_and_fixed_level",
+        "tests/test_imports.py::test_wazuh_forged_native_level_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Native Wazuh checks: 20 exact child rule IDs, 20 benign controls, actual localfile alert, fixed level 5 despite supplied severity 15"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "W04",
+      "requirement": "benign control event does not generate the tested alert.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_detection.py::test_synthetic_abnormal_pair_has_exact_candidate",
+        "tests/test_detection.py::test_synthetic_benign_pair_below_precondition"
+      ],
+      "native_or_delivery_evidence": [
+        "Native Wazuh checks: 20 exact child rule IDs, 20 benign controls, actual localfile alert, fixed level 5 despite supplied severity 15"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "W05",
+      "requirement": "malformed or forged severity input cannot arbitrarily set trusted alert severity.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_imports.py::test_wazuh_alert_preserves_reference_and_fixed_level",
+        "tests/test_imports.py::test_wazuh_forged_native_level_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Native Wazuh checks: 20 exact child rule IDs, 20 benign controls, actual localfile alert, fixed level 5 despite supplied severity 15"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "W06",
+      "requirement": "log-injection payload is safely handled.",
+      "status": "PARTIAL",
+      "offline_assertions": [
+        "tests/test_detection.py::test_unclassified_log_injection_body_refused"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": "Newline/control-character refusal and source projection tested offline; hostile native Wazuh log-injection path not exercised."
+    },
+    {
+      "id": "W07",
+      "requirement": "Wazuh outage is detected by P-009.",
+      "status": "PARTIAL",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native readiness loop and failed-start reports retained; controlled running-manager outage remains unverified"
+      ],
+      "limitation": "Native startup/readiness failures are detected and retained; explicit running-manager outage test and continuous monitoring unverified."
+    },
+    {
+      "id": "W08",
+      "requirement": "no privileged host agent, Docker socket mount or broad host log collection is used by default.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Owned Docker configuration inspection and completed scoped cleanup; docs/verification-summary.json"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "X01",
+      "requirement": "exact trace ID correlation succeeds.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_correlation.py::test_exact_identifier_link"
+      ],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive",
+        "Preserved native case: eight exact-ID events, six Langfuse observations, nine verified objects/manifests, sanitized handoff"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "X02",
+      "requirement": "exact request ID correlation succeeds where the source provides it.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_correlation.py::test_exact_identifier_link"
+      ],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive",
+        "Preserved native case: eight exact-ID events, six Langfuse observations, nine verified objects/manifests, sanitized handoff"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "X03",
+      "requirement": "exact tool-call ID correlation succeeds.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_correlation.py::test_exact_identifier_link"
+      ],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive",
+        "Preserved native case: eight exact-ID events, six Langfuse observations, nine verified objects/manifests, sanitized handoff"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "X04",
+      "requirement": "exact authorization-decision ID correlation succeeds.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_correlation.py::test_exact_identifier_link"
+      ],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive",
+        "Preserved native case: eight exact-ID events, six Langfuse observations, nine verified objects/manifests, sanitized handoff"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "X05",
+      "requirement": "Wazuh alert references link to the correct source event.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_correlation.py::test_alert_links_only_to_unique_original_event"
+      ],
+      "native_or_delivery_evidence": [
+        "Native Wazuh checks: 20 exact child rule IDs, 20 benign controls, actual localfile alert, fixed level 5 despite supplied severity 15",
+        "Preserved native case: eight exact-ID events, six Langfuse observations, nine verified objects/manifests, sanitized handoff"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "X06",
+      "requirement": "duplicate event delivery is detected and not double-counted.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_duplicate_delivery_no_double_count",
+        "tests/test_archive.py::test_same_event_id_changed_payload_rejected"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "X07",
+      "requirement": "out-of-order events are preserved and reported.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_correlation.py::test_out_of_order_preserves_source_and_observed_time",
+        "tests/test_correlation.py::test_mixed_utc_formats_sort_by_actual_time"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "X08",
+      "requirement": "missing expected events are represented as gaps, not invented events.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_correlation.py::test_missing_event_and_sequence_are_gaps",
+        "tests/test_correlation.py::test_missing_p006_request_id_stays_partial"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "X09",
+      "requirement": "timestamp proximity alone cannot create a verified correlation.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_correlation.py::test_time_proximity_never_joins",
+        "tests/test_correlation.py::test_ambiguous_request_does_not_create_link"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "X10",
+      "requirement": "cross-tenant events cannot be joined or exposed to an unauthorized tenant.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_correlation.py::test_cross_tenant_join_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Native core checks: 20 PASS; actual source SDK, Collector and authenticated archive"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "D01",
+      "requirement": "access tokens are removed before export/persistence.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_privacy.py::test_sensitive_classes_removed_before_queue"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "D02",
+      "requirement": "cookies and session secrets are removed before export/persistence.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_privacy.py::test_sensitive_classes_removed_before_queue"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "D03",
+      "requirement": "provider/API/Vault keys are removed before export/persistence.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_privacy.py::test_sensitive_classes_removed_before_queue"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "D04",
+      "requirement": "planted prompt canaries are absent by default.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_privacy.py::test_sensitive_classes_removed_before_queue"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "D05",
+      "requirement": "synthetic PII canaries are redacted or dropped according to policy.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_privacy.py::test_sensitive_classes_removed_before_queue"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "D06",
+      "requirement": "raw request/response bodies are not stored by default.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_privacy.py::test_sensitive_classes_removed_before_queue"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "D07",
+      "requirement": "redaction failure blocks export or persistence.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_privacy.py::test_secret_in_allowed_identifier_fails_closed",
+        "tests/test_privacy.py::test_unsafe_import_or_allowed_metadata_is_refused"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "D08",
+      "requirement": "redaction status and policy version are recorded.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_privacy.py::test_redaction_policy_and_counter_recorded"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "D09",
+      "requirement": "untrusted tenant/actor metadata is not accepted as verified identity.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_source_credential_tenant_binding"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "D10",
+      "requirement": "debug mode does not silently disable privacy controls.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_configuration_security_bounds"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "E01",
+      "requirement": "new evidence object receives a deterministic content digest.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_deterministic_object_digest"
+      ],
+      "native_or_delivery_evidence": [
+        "Socket-disabled suite and disposable demo: integrity, tamper, safe paths, local retention; native archives verified before/after cleanup"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "E02",
+      "requirement": "manifest includes actual byte size and SHA-256.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_manifest_exact_size_hash_and_provenance"
+      ],
+      "native_or_delivery_evidence": [
+        "Socket-disabled suite and disposable demo: integrity, tamper, safe paths, local retention; native archives verified before/after cleanup"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "E03",
+      "requirement": "modified evidence bytes fail integrity verification.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_object_tamper_fails"
+      ],
+      "native_or_delivery_evidence": [
+        "Socket-disabled suite and disposable demo: integrity, tamper, safe paths, local retention; native archives verified before/after cleanup"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "E04",
+      "requirement": "modified manifest or hash chain is detected within the stated threat model.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_manifest_tamper_fails",
+        "tests/test_archive.py::test_missing_middle_manifest_detected"
+      ],
+      "native_or_delivery_evidence": [
+        "Socket-disabled suite and disposable demo: integrity, tamper, safe paths, local retention; native archives verified before/after cleanup"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "E05",
+      "requirement": "path traversal and symlink references are rejected.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_traversal_refused",
+        "tests/test_archive.py::test_intermediate_symlink_refused",
+        "tests/test_archive.py::test_final_symlink_refused",
+        "tests/test_archive.py::test_special_file_refused_without_blocking"
+      ],
+      "native_or_delivery_evidence": [
+        "Socket-disabled suite and disposable demo: integrity, tamper, safe paths, local retention; native archives verified before/after cleanup"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "E06",
+      "requirement": "duplicate object/manifest creation cannot overwrite historical evidence.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_duplicate_delivery_no_double_count",
+        "tests/test_archive.py::test_same_event_id_changed_payload_rejected",
+        "tests/test_archive.py::test_creation_collision_keeps_original",
+        "tests/test_archive.py::test_concurrent_append_preserves_chain"
+      ],
+      "native_or_delivery_evidence": [
+        "Socket-disabled suite and disposable demo: integrity, tamper, safe paths, local retention; native archives verified before/after cleanup"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "E07",
+      "requirement": "append-only creation semantics are enforced by the P-009 application.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_creation_collision_keeps_original",
+        "tests/test_archive.py::test_concurrent_append_preserves_chain"
+      ],
+      "native_or_delivery_evidence": [
+        "Socket-disabled suite and disposable demo: integrity, tamper, safe paths, local retention; native archives verified before/after cleanup"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "E08",
+      "requirement": "evidence export includes provenance and redaction metadata.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_export_has_provenance_and_redaction"
+      ],
+      "native_or_delivery_evidence": [
+        "Preserved native case: eight exact-ID events, six Langfuse observations, nine verified objects/manifests, sanitized handoff"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "E09",
+      "requirement": "evidence integrity claims explicitly disclaim source authenticity/trusted time/WORM unless implemented.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_manifest_exact_size_hash_and_provenance"
+      ],
+      "native_or_delivery_evidence": [
+        "Socket-disabled suite and disposable demo: integrity, tamper, safe paths, local retention; native archives verified before/after cleanup"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "E10",
+      "requirement": "raw runtime evidence remains outside Git.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_repository_source.py::test_runtime_and_evidence_ignored"
+      ],
+      "native_or_delivery_evidence": [
+        "Runtime-secret byte comparison against publishable source and ignored-file checks; zero matches"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "H01",
+      "requirement": "actual P-007 ReportExport 1.0 validates against the merged schema.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_imports.py::test_actual_p007_report_schema_and_status_preservation",
+        "tests/test_imports.py::test_invalid_p007_handoff_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Actual committed P007 ReportExport example: 11 source results preserved (9 PASS, 1 FAIL, 1 FLAKY); REFERENCE_ONLY artifact provenance"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "H02",
+      "requirement": "actual `p007-handoff-v1` is validated.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_imports.py::test_actual_p007_report_schema_and_status_preservation",
+        "tests/test_imports.py::test_invalid_p007_handoff_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Actual committed P007 ReportExport example: 11 source results preserved (9 PASS, 1 FAIL, 1 FLAKY); REFERENCE_ONLY artifact provenance"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "H03",
+      "requirement": "P-007 artifact paths are restricted to the selected run root and actual hashes/sizes are checked.",
+      "status": "REFERENCE_ONLY",
+      "offline_assertions": [
+        "tests/test_imports.py::test_p007_selected_run_bytes_size_and_hash_verified",
+        "tests/test_imports.py::test_p007_artifact_tamper_refused",
+        "tests/test_imports.py::test_p007_artifact_symlink_refused"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": "Safe path/hash/size checks pass on synthetic run-byte fixtures; original committed P007 example has no selected run bytes here."
+    },
+    {
+      "id": "H04",
+      "requirement": "P-007 result status/provenance is preserved read-only.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_imports.py::test_actual_p007_report_schema_and_status_preservation",
+        "tests/test_imports.py::test_invalid_p007_handoff_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Actual committed P007 ReportExport example: 11 source results preserved (9 PASS, 1 FAIL, 1 FLAKY); REFERENCE_ONLY artifact provenance"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "H05",
+      "requirement": "actual P-008 `p008-handoff-1.0` is validated.",
+      "status": "PARTIAL",
+      "offline_assertions": [
+        "tests/test_imports.py::test_p008_actual_shape_metadata_only",
+        "tests/test_imports.py::test_p008_incompatible_handoff_refused"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": "Actual exporter shape and sibling subcontracts are validated using an explicitly authored fixture; no generated P008 handoff existed."
+    },
+    {
+      "id": "H06",
+      "requirement": "P-008 sealed sample results and raw prompts/outputs/traces are not imported.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_imports.py::test_p008_summary_omits_sample_results_and_evaluator_content"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "H07",
+      "requirement": "P-006 actual event source is tested and missing correlation fields are reported honestly.",
+      "status": "PARTIAL",
+      "offline_assertions": [
+        "tests/test_repository_source.py::test_actual_p006_authorize_emits_observed_schema",
+        "tests/test_imports.py::test_p006_failure_without_tenant_is_quarantined",
+        "tests/test_imports.py::test_p006_unknown_tenant_refused"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": "Actual unchanged P006 authorization method executed with fixture dependencies. Missing request ID is preserved; live P006 deployment not tested."
+    },
+    {
+      "id": "H08",
+      "requirement": "no P-006/P-007/P-008 source or schema is modified by P-009.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_repository_source.py::test_scope_has_no_sibling_changes"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "R01",
+      "requirement": "retention policy applies only to P-009-owned artifacts.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_retention_dry_run_preserves_bytes",
+        "tests/test_archive.py::test_retention_purges_scoped_objects_and_exports",
+        "tests/test_archive.py::test_future_source_time_cannot_prevent_collection_retention",
+        "tests/test_archive.py::test_unowned_archive_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Socket-disabled suite and disposable demo: integrity, tamper, safe paths, local retention; native archives verified before/after cleanup"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "R02",
+      "requirement": "deletion behavior is verified across every P-009-owned store in scope.",
+      "status": "PARTIAL",
+      "offline_assertions": [
+        "tests/test_archive.py::test_retention_dry_run_preserves_bytes",
+        "tests/test_archive.py::test_retention_purges_scoped_objects_and_exports",
+        "tests/test_archive.py::test_future_source_time_cannot_prevent_collection_retention",
+        "tests/test_archive.py::test_unowned_archive_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Socket-disabled suite and disposable demo: integrity, tamper, safe paths, local retention; native archives verified before/after cleanup"
+      ],
+      "limitation": "Local tenant object/export purges and complete disposable store cleanup pass; native per-record retention across every downstream store is unverified."
+    },
+    {
+      "id": "R03",
+      "requirement": "unauthorized evidence access is denied.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_tenant_read_filter",
+        "tests/test_archive.py::test_producer_cannot_read_evidence",
+        "tests/test_archive.py::test_cross_tenant_ingest_denied"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "R04",
+      "requirement": "unauthorized evidence export is denied and audited.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_archive.py::test_unauthorized_export_audited"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": ""
+    },
+    {
+      "id": "R05",
+      "requirement": "Collector restart behavior is tested.",
+      "status": "PASS",
+      "offline_assertions": [],
+      "native_or_delivery_evidence": [
+        "Native core R05: Collector restart and six retained trace events"
+      ],
+      "limitation": ""
+    },
+    {
+      "id": "R06",
+      "requirement": "event loss/backpressure behavior is measured and documented.",
+      "status": "PARTIAL",
+      "offline_assertions": [
+        "tests/test_config_pipeline.py::test_queue_saturation_visible_and_sanitized",
+        "tests/test_config_pipeline.py::test_export_outage_retains_queue_for_retry"
+      ],
+      "native_or_delivery_evidence": [],
+      "limitation": "Application saturation/retry counts measured offline; native Collector sustained outage, queue exhaustion and loss accounting are not measured."
+    },
+    {
+      "id": "R07",
+      "requirement": "P-009-owned resource usage remains within configured bounds or reports resource failure.",
+      "status": "PARTIAL",
+      "offline_assertions": [
+        "tests/test_archive.py::test_archive_capacity_failure"
+      ],
+      "native_or_delivery_evidence": [
+        "Resource preflight and failure reports executed; shared-cgroup accounting limits independent enforcement claims"
+      ],
+      "limitation": "Finite configuration, preflight and resource failures recorded. Shared parent cgroup makes individual container enforcement inconclusive."
+    },
+    {
+      "id": "R08",
+      "requirement": "P-009 cleanup preserves P-001--P-008 resources and historical source artifacts.",
+      "status": "PASS",
+      "offline_assertions": [
+        "tests/test_repository_source.py::test_scope_has_no_sibling_changes",
+        "tests/test_repository_source.py::test_cleanup_confirmation_refuses_before_docker",
+        "tests/test_repository_source.py::test_unowned_named_resource_collision_refused"
+      ],
+      "native_or_delivery_evidence": [
+        "Owned Docker configuration inspection and completed scoped cleanup; docs/verification-summary.json"
+      ],
+      "limitation": ""
+    }
+  ],
+  "native_execution_date_utc": "2026-11-16",
+  "final_source_verification_date_utc": "2026-11-18"
+}

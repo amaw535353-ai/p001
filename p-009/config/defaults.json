@@ -1,0 +1,19 @@
+{
+  "schema_version": "p009-config-1.0",
+  "capture_content": false,
+  "debug": false,
+  "exporter": "http://collector:4318",
+  "queue_size": 64,
+  "max_batch": 32,
+  "max_events": 5000,
+  "max_payload": 65536,
+  "sources": [
+    {"source_id":"synthetic-a","source_type":"synthetic","source_version":"1.0.0","tenant_ref":"tenant-a","actor_ref":"synthetic-operator-a","service_id":"p009-synthetic"},
+    {"source_id":"synthetic-b","source_type":"synthetic","source_version":"1.0.0","tenant_ref":"tenant-b","actor_ref":"synthetic-operator-b","service_id":"p009-synthetic"},
+    {"source_id":"otel-a","source_type":"otel","source_version":"0.165.0","tenant_ref":"tenant-a","actor_ref":"collector-a","service_id":"p009-synthetic"},
+    {"source_id":"otel-b","source_type":"otel","source_version":"0.165.0","tenant_ref":"tenant-b","actor_ref":"collector-b","service_id":"p009-synthetic"},
+    {"source_id":"p006-a","source_type":"p006","source_version":"1.0.0","tenant_ref":"tenant-a","actor_ref":"p006-mapped-a","service_id":"p006-pep"},
+    {"source_id":"p006-b","source_type":"p006","source_version":"1.0.0","tenant_ref":"tenant-b","actor_ref":"p006-mapped-b","service_id":"p006-pep"},
+    {"source_id":"wazuh-a","source_type":"wazuh","source_version":"4.14.10","tenant_ref":"tenant-a","actor_ref":"wazuh-analysis","service_id":"wazuh-manager"}
+  ]
+}

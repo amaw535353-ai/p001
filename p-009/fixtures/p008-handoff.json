@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "contract": "p008-handoff-1.0",
+  "p007": {"kind": "evaluation-metadata-only", "dataset": "synthetic-core", "manifest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+  "p009": {"kind": "evaluation-event-references", "run_id": null, "evidence_manifest_digest": null},
+  "p010": {"kind": "synthetic-evaluation-summary", "findings": [], "limitations": ["Synthetic contract fixture authored for P009; not a generated P008 run."]},
+  "summary": null
+}

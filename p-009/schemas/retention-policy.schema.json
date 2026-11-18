@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "audit_days": {
+      "default": 7,
+      "maximum": 30,
+      "minimum": 1,
+      "title": "Audit Days",
+      "type": "integer"
+    },
+    "export_days": {
+      "default": 1,
+      "maximum": 7,
+      "minimum": 1,
+      "title": "Export Days",
+      "type": "integer"
+    },
+    "health_days": {
+      "default": 1,
+      "maximum": 30,
+      "minimum": 1,
+      "title": "Health Days",
+      "type": "integer"
+    },
+    "metric_days": {
+      "default": 1,
+      "maximum": 30,
+      "minimum": 1,
+      "title": "Metric Days",
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "p009-retention-1.0",
+      "default": "p009-retention-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "security_days": {
+      "default": 7,
+      "maximum": 30,
+      "minimum": 1,
+      "title": "Security Days",
+      "type": "integer"
+    },
+    "trace_days": {
+      "default": 1,
+      "maximum": 30,
+      "minimum": 1,
+      "title": "Trace Days",
+      "type": "integer"
+    }
+  },
+  "title": "Retention",
+  "type": "object"
+}

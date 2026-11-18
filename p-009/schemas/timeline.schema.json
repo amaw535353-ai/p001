@@ -1,0 +1,664 @@
+{
+  "$defs": {
+    "Event": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_ref": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Actor Ref",
+          "type": "string"
+        },
+        "alert_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Alert Id"
+        },
+        "artifact_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Artifact Ref"
+        },
+        "authorization_decision_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Authorization Decision Id"
+        },
+        "conversation_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Conversation Id"
+        },
+        "correlation_status": {
+          "default": "unmatched",
+          "enum": [
+            "unmatched",
+            "partial"
+          ],
+          "title": "Correlation Status",
+          "type": "string"
+        },
+        "count": {
+          "anyOf": [
+            {
+              "maximum": 1000000,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Count"
+        },
+        "decision": {
+          "default": "unknown",
+          "enum": [
+            "allow",
+            "deny",
+            "unknown"
+          ],
+          "title": "Decision",
+          "type": "string"
+        },
+        "deployment_id": {
+          "default": "p009-local-v1",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Deployment Id",
+          "type": "string"
+        },
+        "environment_id": {
+          "const": "p009-synthetic-local",
+          "default": "p009-synthetic-local",
+          "title": "Environment Id",
+          "type": "string"
+        },
+        "evaluation_run_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evaluation Run Id"
+        },
+        "event_category": {
+          "enum": [
+            "audit",
+            "trace",
+            "security",
+            "metric",
+            "health"
+          ],
+          "title": "Event Category",
+          "type": "string"
+        },
+        "event_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "event_severity": {
+          "maximum": 15,
+          "minimum": 0,
+          "title": "Event Severity",
+          "type": "integer"
+        },
+        "event_time": {
+          "title": "Event Time",
+          "type": "string"
+        },
+        "event_type": {
+          "enum": [
+            "request",
+            "authorization",
+            "tool",
+            "model",
+            "completion",
+            "error",
+            "security",
+            "alert",
+            "health",
+            "metric",
+            "request_failed"
+          ],
+          "title": "Event Type",
+          "type": "string"
+        },
+        "gateway_route_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Gateway Route Ref"
+        },
+        "model_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model Ref"
+        },
+        "observed_time": {
+          "title": "Observed Time",
+          "type": "string"
+        },
+        "operation": {
+          "default": "observe",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Operation",
+          "type": "string"
+        },
+        "outcome": {
+          "default": "observed",
+          "enum": [
+            "success",
+            "denied",
+            "error",
+            "observed",
+            "unknown"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "parent_span_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{16}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Span Id"
+        },
+        "policy_version": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Policy Version"
+        },
+        "provenance": {
+          "enum": [
+            "synthetic-executed",
+            "synthetic-fixture",
+            "source-adapter",
+            "collector-observed"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "redacted_fields": {
+          "minimum": 0,
+          "title": "Redacted Fields",
+          "type": "integer"
+        },
+        "redaction_policy": {
+          "const": "p009-metadata-v1",
+          "default": "p009-metadata-v1",
+          "title": "Redaction Policy",
+          "type": "string"
+        },
+        "redaction_status": {
+          "const": "metadata-only",
+          "default": "metadata-only",
+          "title": "Redaction Status",
+          "type": "string"
+        },
+        "related_event_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Related Event Id"
+        },
+        "request_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Id"
+        },
+        "resource_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Resource Ref"
+        },
+        "schema_version": {
+          "const": "p009-event-1.0",
+          "default": "p009-event-1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "sequence": {
+          "anyOf": [
+            {
+              "maximum": 1000000,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sequence"
+        },
+        "service_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Service Id",
+          "type": "string"
+        },
+        "service_version": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Service Version",
+          "type": "string"
+        },
+        "session_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Session Id"
+        },
+        "signal": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Signal"
+        },
+        "source_event_digest": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Source Event Digest",
+          "type": "string"
+        },
+        "source_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_type": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Source Type",
+          "type": "string"
+        },
+        "source_version": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Source Version",
+          "type": "string"
+        },
+        "span_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{16}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Span Id"
+        },
+        "tenant_ref": {
+          "enum": [
+            "tenant-a",
+            "tenant-b"
+          ],
+          "title": "Tenant Ref",
+          "type": "string"
+        },
+        "test_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Test Id"
+        },
+        "test_run_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Test Run Id"
+        },
+        "tool_call_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tool Call Id"
+        },
+        "trace_id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{32}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Trace Id"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        },
+        "wazuh_rule_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Wazuh Rule Id"
+        },
+        "workload_identity_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Workload Identity Ref"
+        }
+      },
+      "required": [
+        "event_id",
+        "event_type",
+        "event_time",
+        "event_category",
+        "event_severity",
+        "observed_time",
+        "source_id",
+        "source_type",
+        "source_version",
+        "service_id",
+        "service_version",
+        "tenant_ref",
+        "actor_ref",
+        "source_event_digest",
+        "redacted_fields",
+        "provenance"
+      ],
+      "title": "Event",
+      "type": "object"
+    },
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Key",
+          "type": "string"
+        },
+        "left": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Left",
+          "type": "string"
+        },
+        "right": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Right",
+          "type": "string"
+        },
+        "rule": {
+          "const": "p009-exact-v1",
+          "default": "p009-exact-v1",
+          "title": "Rule",
+          "type": "string"
+        },
+        "value": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "left",
+        "right",
+        "key",
+        "value"
+      ],
+      "title": "Link",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "case_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Case Id",
+      "type": "string"
+    },
+    "clock_skew": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Clock Skew",
+      "type": "array"
+    },
+    "events": {
+      "items": {
+        "$ref": "#/$defs/Event"
+      },
+      "title": "Events",
+      "type": "array"
+    },
+    "integrity": {
+      "const": "PASS",
+      "default": "PASS",
+      "title": "Integrity",
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "links": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "title": "Links",
+      "type": "array"
+    },
+    "missing_sequences": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Missing Sequences",
+      "type": "array"
+    },
+    "missing_types": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Types",
+      "type": "array"
+    },
+    "out_of_order": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Out Of Order",
+      "type": "array"
+    },
+    "rule": {
+      "const": "p009-exact-v1",
+      "default": "p009-exact-v1",
+      "title": "Rule",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "p009-timeline-1.0",
+      "default": "p009-timeline-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "statuses": {
+      "additionalProperties": {
+        "enum": [
+          "exact",
+          "partial",
+          "unmatched",
+          "ambiguous"
+        ],
+        "type": "string"
+      },
+      "title": "Statuses",
+      "type": "object"
+    },
+    "tenant_ref": {
+      "enum": [
+        "tenant-a",
+        "tenant-b"
+      ],
+      "title": "Tenant Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "case_id",
+    "tenant_ref",
+    "events",
+    "links",
+    "statuses",
+    "missing_types",
+    "missing_sequences",
+    "out_of_order",
+    "clock_skew",
+    "limitations"
+  ],
+  "title": "Timeline",
+  "type": "object"
+}

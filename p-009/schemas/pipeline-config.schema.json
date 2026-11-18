@@ -1,0 +1,199 @@
+{
+  "$defs": {
+    "Retention": {
+      "additionalProperties": false,
+      "properties": {
+        "audit_days": {
+          "default": 7,
+          "maximum": 30,
+          "minimum": 1,
+          "title": "Audit Days",
+          "type": "integer"
+        },
+        "export_days": {
+          "default": 1,
+          "maximum": 7,
+          "minimum": 1,
+          "title": "Export Days",
+          "type": "integer"
+        },
+        "health_days": {
+          "default": 1,
+          "maximum": 30,
+          "minimum": 1,
+          "title": "Health Days",
+          "type": "integer"
+        },
+        "metric_days": {
+          "default": 1,
+          "maximum": 30,
+          "minimum": 1,
+          "title": "Metric Days",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "p009-retention-1.0",
+          "default": "p009-retention-1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "security_days": {
+          "default": 7,
+          "maximum": 30,
+          "minimum": 1,
+          "title": "Security Days",
+          "type": "integer"
+        },
+        "trace_days": {
+          "default": 1,
+          "maximum": 30,
+          "minimum": 1,
+          "title": "Trace Days",
+          "type": "integer"
+        }
+      },
+      "title": "Retention",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_ref": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Actor Ref",
+          "type": "string"
+        },
+        "service_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Service Id",
+          "type": "string"
+        },
+        "service_version": {
+          "default": "1.0.0",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Service Version",
+          "type": "string"
+        },
+        "source_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_type": {
+          "enum": [
+            "synthetic",
+            "p006",
+            "otel",
+            "wazuh",
+            "p007",
+            "p008"
+          ],
+          "title": "Source Type",
+          "type": "string"
+        },
+        "source_version": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+          "title": "Source Version",
+          "type": "string"
+        },
+        "tenant_ref": {
+          "enum": [
+            "tenant-a",
+            "tenant-b"
+          ],
+          "title": "Tenant Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "source_type",
+        "source_version",
+        "tenant_ref",
+        "actor_ref",
+        "service_id"
+      ],
+      "title": "Source",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "capture_content": {
+      "const": false,
+      "default": false,
+      "title": "Capture Content",
+      "type": "boolean"
+    },
+    "debug": {
+      "const": false,
+      "default": false,
+      "title": "Debug",
+      "type": "boolean"
+    },
+    "exporter": {
+      "const": "http://collector:4318",
+      "default": "http://collector:4318",
+      "title": "Exporter",
+      "type": "string"
+    },
+    "langfuse_exporter": {
+      "const": "http://langfuse-web:3000/api/public/otel",
+      "default": "http://langfuse-web:3000/api/public/otel",
+      "title": "Langfuse Exporter",
+      "type": "string"
+    },
+    "max_batch": {
+      "default": 32,
+      "maximum": 32,
+      "minimum": 1,
+      "title": "Max Batch",
+      "type": "integer"
+    },
+    "max_events": {
+      "default": 5000,
+      "maximum": 5000,
+      "minimum": 1,
+      "title": "Max Events",
+      "type": "integer"
+    },
+    "max_payload": {
+      "default": 65536,
+      "maximum": 65536,
+      "minimum": 1024,
+      "title": "Max Payload",
+      "type": "integer"
+    },
+    "queue_size": {
+      "default": 64,
+      "maximum": 64,
+      "minimum": 1,
+      "title": "Queue Size",
+      "type": "integer"
+    },
+    "retention": {
+      "$ref": "#/$defs/Retention"
+    },
+    "schema_version": {
+      "const": "p009-config-1.0",
+      "default": "p009-config-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/Source"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    }
+  },
+  "required": [
+    "sources"
+  ],
+  "title": "Config",
+  "type": "object"
+}

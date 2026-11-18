@@ -1,0 +1,22 @@
+[
+  {"rule_id":110900,"version":"1.0","signal":"authorization-denials","minimum_count":3,"severity":5,"rationale":"Repeated denials in a controlled source window"},
+  {"rule_id":110901,"version":"1.0","signal":"cross-tenant","minimum_count":1,"severity":8,"rationale":"Synthetic cross-tenant request denied"},
+  {"rule_id":110902,"version":"1.0","signal":"gateway-bypass","minimum_count":1,"severity":8,"rationale":"Synthetic direct backend access attempt"},
+  {"rule_id":110903,"version":"1.0","signal":"unexpected-tool","minimum_count":1,"severity":7,"rationale":"Tool outside the deterministic approved sequence"},
+  {"rule_id":110904,"version":"1.0","signal":"unapproved-route","minimum_count":1,"severity":7,"rationale":"Model or provider route outside the local allowlist"},
+  {"rule_id":110905,"version":"1.0","signal":"request-rate","minimum_count":20,"severity":5,"rationale":"Bounded synthetic resource-abuse window"},
+  {"rule_id":110906,"version":"1.0","signal":"invalid-identity","minimum_count":3,"severity":5,"rationale":"Repeated invalid synthetic credential attempts"},
+  {"rule_id":110907,"version":"1.0","signal":"secret-denial","minimum_count":1,"severity":6,"rationale":"Synthetic denied secret-access metadata only"},
+  {"rule_id":110908,"version":"1.0","signal":"exporter-outage","minimum_count":1,"severity":8,"rationale":"Observed collector or exporter failure"},
+  {"rule_id":110909,"version":"1.0","signal":"malformed-burst","minimum_count":5,"severity":6,"rationale":"Malformed or dropped-event burst in a controlled window"},
+  {"rule_id":110910,"version":"1.0","signal":"event-replay","minimum_count":1,"severity":4,"rationale":"Repeated source event identity"},
+  {"rule_id":110911,"version":"1.0","signal":"log-injection","minimum_count":1,"severity":6,"rationale":"Sanitized injection-attempt classification; raw text omitted"},
+  {"rule_id":110912,"version":"1.0","signal":"hash-mismatch","minimum_count":1,"severity":10,"rationale":"Stored bytes differ from their recorded digest"},
+  {"rule_id":110913,"version":"1.0","signal":"unauthorized-export","minimum_count":1,"severity":8,"rationale":"Denied evidence export"},
+  {"rule_id":110914,"version":"1.0","signal":"suspicious-admin","minimum_count":1,"severity":8,"rationale":"Synthetic administrative operation outside approved sequence"},
+  {"rule_id":110915,"version":"1.0","signal":"local-data-egress","minimum_count":1,"severity":7,"rationale":"Synthetic egress to a P009 local dummy sink"},
+  {"rule_id":110916,"version":"1.0","signal":"model-query-volume","minimum_count":50,"severity":6,"rationale":"High-volume synthetic model-query window"},
+  {"rule_id":110917,"version":"1.0","signal":"unexpected-workload","minimum_count":1,"severity":8,"rationale":"Workload outside verified source mapping"},
+  {"rule_id":110918,"version":"1.0","signal":"configuration-change","minimum_count":1,"severity":8,"rationale":"Configuration digest differs from approved configuration"},
+  {"rule_id":110919,"version":"1.0","signal":"missing-event","minimum_count":1,"severity":5,"rationale":"Missing expected event in a known controlled sequence"}
+]
