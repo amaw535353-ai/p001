@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "key": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Key",
+      "type": "string"
+    },
+    "left": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Left",
+      "type": "string"
+    },
+    "right": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Right",
+      "type": "string"
+    },
+    "rule": {
+      "const": "p009-exact-v1",
+      "default": "p009-exact-v1",
+      "title": "Rule",
+      "type": "string"
+    },
+    "value": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Value",
+      "type": "string"
+    }
+  },
+  "required": [
+    "left",
+    "right",
+    "key",
+    "value"
+  ],
+  "title": "Link",
+  "type": "object"
+}

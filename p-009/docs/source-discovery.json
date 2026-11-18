@@ -1,0 +1,77 @@
+{
+  "base_branch": "p001-initial",
+  "base_commit": "85302ea391f11df403630416b5dbf0decda831d3",
+  "image_pins": {
+    "clickhouse": "clickhouse/clickhouse-server:26.3.62.3@sha256:6eb24df16477b65c87b772a56eb341a9624529491856c103e74c537db59669f1",
+    "collector": "otel/opentelemetry-collector-contrib:0.165.0@sha256:e40d61f10c9a617cca1ffd1be4d7e2b3a4b0f0001798ff07e58cabe82e618cea",
+    "langfuse": "langfuse/langfuse:4.80.0@sha256:8e39640475efebf85e7d19f8e036046049a800fb0dd7fe826c216fe0cbe5c7cb",
+    "langfuse-worker": "langfuse/langfuse-worker:4.80.0@sha256:86c2d68fee500b4e6a1f788cde37a5aceb48eb490aef4d3ca57266093d796d51",
+    "minio": "chainguard/minio:latest@sha256:832a80c375c8cee5ab1aa19e73e1f466ef8037f2e6f34f7563cf3176bf405198",
+    "postgres": "postgres:17@sha256:6f7593c161689b6b02c78668b314af7da8811b592c5519108c57a49d0b6ad788",
+    "python": "python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f",
+    "redis": "redis:7.4@sha256:a6dd428750118c2c2c67d3f555faef0aa15a2b71198b40e1cb3b9229b1cf3094",
+    "wazuh": "wazuh/wazuh-manager:4.14.10@sha256:beda27e1e88bfe5fe5e882eea3b006dfc4a77e19f31d5a0292e5126f23900e75",
+    "wazuh-dashboard": "wazuh/wazuh-dashboard:4.14.10@sha256:2987776f76cbf3d47452a51b0e59792453686e5d37bbff7768ec033987b073a0",
+    "wazuh-indexer": "wazuh/wazuh-indexer:4.14.10@sha256:1780a13d5950deda05860fdb2e2d6cc466a15b341a88de01452d99932e05f610"
+  },
+  "observed_prs": {
+    "5": "MERGED",
+    "6": "MERGED",
+    "7": "MERGED"
+  },
+  "repository": "https://github.com/amaw535353-ai/p001",
+  "reviewed_documents_sha256": {
+    "collector-auth.txt": "4f0879ff946300f6f4a09c87a599d92ed1675205e635ed3d5f84c2139c9c4ea3",
+    "collector-filter.txt": "a97dcc1c48d08bfbe745ea29f8289cea5507585a4ee45b294e0dda625dc822be",
+    "collector-readme.txt": "b64c26e3876adcf544f79b004710d7365fd75e1973af9540612183bffbc04f20",
+    "langfuse-compose-pin.txt": "c70d77f1b450435bc9539a8824555c0c90d31037b53a28cbd26205b3ccff0652",
+    "langfuse-license.txt": "9ee6ca42e813fb58bcad18bed834438503bcc997da3b452d3f9ad4af4292b6b3",
+    "langfuse-otel.txt": "7c71ebc9dbacc501ba0a8f8e8ce8f3dc8c9934fa36d73d6927d0f58fc4f9d26e",
+    "langfuse-readme.txt": "1dae4f71cec43ff4aa0b1309f450d019f1600ecc241d1374fad898a8b3c3abf0",
+    "openllmetry-decorators.txt": "5d8c23b4b4eb7a3d1c7b4318755d1ea2c08341c896a8e4d0befb9048f121ff98",
+    "openllmetry-license.txt": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "openllmetry-readme.txt": "cc23a623407899839e861f65140e97870c168ed44c0c66c1498bc84e171f10a4",
+    "openllmetry-sdk.txt": "a37867f05f45e890d7eb521b1989a5c73cfa02866b545b02d139e51928d8cc75",
+    "otel-components.txt": "66dd3645c1d8f633917f0450832465bd79673728a07d0a056d423c7d8830e96b",
+    "otel-license.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "ottlspan.txt": "83b73bc291ce1139b2dde7523d87010cab4c4fec0c25387c510b381f59861462",
+    "wazuh-analysis-config.txt": "7a301ad9449192a5b82dd1ae271327dd5eab6e1d5908d101501b8dce4b149a8e",
+    "wazuh-compose-pin.txt": "c320060156fb0c4d07156357bcd3f02b8aa638ac88c34b573adf332dfa9279ce",
+    "wazuh-docker-readme.txt": "c0862ab462577834617127c57315d55fa091f1ae9ef5b6a04d398720c48f568a",
+    "wazuh-license.txt": "9136fd9ef577a45b1bcea8c8cd761e8c9c21e15cc2a09e7c139755e581bde00e",
+    "wazuh-readme.txt": "1a8941c692e533c3b2be76b95970cc45cb00b2d7350b1a2fa29a4efaa8d6e4c5"
+  },
+  "sibling_source_sha256": {
+    "../p-006/src/p006/models.py": "d74e6e28c06185d9dbe821c1a73260ca05888412a663ff59ad9f4a81fad6d297",
+    "../p-006/src/p006/pep.py": "83e2768428f591c6aa9419bffe7b4c2e048a99dbec1fd9353b4e979b7cce93c7",
+    "../p-007/schemas/evidence-manifest.schema.json": "ec454fed2d8218cc86d02eab88e673e0229489d6e04fc0d76e47a63eae3d7107",
+    "../p-007/schemas/report-export.schema.json": "fe0ef9eada29b4a7e221d42d5cdf1cade43e070767fc05fd6ecbe60f53d4894f",
+    "../p-007/src/p007/exports.py": "dd129a014626f4cddcdc1996e152aaa6a343e2daabb8f42365221ae21f144856",
+    "../p-008/schemas/evaluation-run.schema.json": "ae357b4440e6f98712aaaefe17be9e89c47c94528a009baed6e0cc6a003f34db",
+    "../p-008/src/p008/exports.py": "c2d794bc3949d1ad043cb8fd5cf8aa4f4b56df07e71858a08a97f6f985317f0d"
+  },
+  "upstream": {
+    "Langfuse": {
+      "repository": "https://github.com/langfuse/langfuse",
+      "tag": "v4.80.0",
+      "tag_ref_sha": "fd23d7e66992ae9e19eadcd3a7cf6421137cd076"
+    },
+    "OpenLLMetry": {
+      "package": "traceloop-sdk==0.63.0",
+      "repository": "https://github.com/traceloop/openllmetry",
+      "tag": "v0.63.0",
+      "tag_ref_sha": "e3d651a0c9f2f5f5019819df5b6320273fd65049"
+    },
+    "OpenTelemetry Collector": {
+      "distribution": "otelcol-contrib",
+      "repository": "https://github.com/open-telemetry/opentelemetry-collector",
+      "tag": "v0.165.0",
+      "tag_ref_sha": "031efbf75e28093b7eb3f392d270dfa16f26ae16"
+    },
+    "Wazuh": {
+      "repository": "https://github.com/wazuh/wazuh",
+      "tag": "v4.14.10",
+      "tag_ref_sha": "e2af19e52895ddf785f4d56823a67197040bb99f"
+    }
+  }
+}

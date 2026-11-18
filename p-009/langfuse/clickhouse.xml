@@ -1,0 +1,12 @@
+<clickhouse>
+  <max_server_memory_usage>2147483648</max_server_memory_usage>
+  <max_thread_pool_size>512</max_thread_pool_size>
+  <max_thread_pool_free_size>16</max_thread_pool_free_size>
+  <max_thread_pool_queue_size>512</max_thread_pool_queue_size>
+  <background_pool_size>16</background_pool_size>
+  <background_schedule_pool_size>4</background_schedule_pool_size>
+  <background_buffer_flush_schedule_pool_size>2</background_buffer_flush_schedule_pool_size>
+  <background_message_broker_schedule_pool_size>2</background_message_broker_schedule_pool_size>
+  <background_distributed_schedule_pool_size>2</background_distributed_schedule_pool_size>
+  <logger><level>information</level><console>true</console></logger>
+</clickhouse>

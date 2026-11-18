@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "actor_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Actor Ref",
+      "type": "string"
+    },
+    "service_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Service Id",
+      "type": "string"
+    },
+    "service_version": {
+      "default": "1.0.0",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Service Version",
+      "type": "string"
+    },
+    "source_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_type": {
+      "enum": [
+        "synthetic",
+        "p006",
+        "otel",
+        "wazuh",
+        "p007",
+        "p008"
+      ],
+      "title": "Source Type",
+      "type": "string"
+    },
+    "source_version": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Source Version",
+      "type": "string"
+    },
+    "tenant_ref": {
+      "enum": [
+        "tenant-a",
+        "tenant-b"
+      ],
+      "title": "Tenant Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_id",
+    "source_type",
+    "source_version",
+    "tenant_ref",
+    "actor_ref",
+    "service_id"
+  ],
+  "title": "Source",
+  "type": "object"
+}

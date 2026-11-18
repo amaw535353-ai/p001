@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools==84.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "p009-security-evidence-telemetry"
+version = "1.0.0"
+description = "Synthetic local AI security telemetry and evidence platform"
+requires-python = ">=3.12,<3.13"
+dependencies = ["pydantic==2.12.5", "jsonschema==4.26.0", "PyYAML==6.0.3"]
+
+[project.scripts]
+p009 = "p009.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --import-mode=importlib"
+markers = ["live: actual isolated selected product execution"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "S102", "S307"]
+
+[tool.mypy]
+python_version = "3.12"
+check_untyped_defs = true
+ignore_missing_imports = true
+exclude = ["tests", "work", ".venv"]

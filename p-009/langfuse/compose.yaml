@@ -1,0 +1,141 @@
+x-lf: &lf
+  labels: {io.p009.owner: p009}
+  restart: "no"
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  pids_limit: 256
+  logging: {driver: local, options: {max-size: 2m, max-file: "2"}}
+  networks: [langfuse]
+  environment: &env
+    HTTP_PROXY: ""
+    HTTPS_PROXY: ""
+    ALL_PROXY: ""
+    http_proxy: ""
+    https_proxy: ""
+    all_proxy: ""
+    NO_PROXY: "*"
+    NEXTAUTH_URL: http://127.0.0.1:3009
+    DATABASE_URL: postgresql://postgres:${P009_PG_PASSWORD}@postgres:5432/langfuse
+    SALT: ${P009_SALT}
+    ENCRYPTION_KEY: ${P009_ENCRYPTION_KEY}
+    TELEMETRY_ENABLED: "false"
+    CLICKHOUSE_MIGRATION_URL: clickhouse://clickhouse:9000
+    CLICKHOUSE_URL: http://clickhouse:8123
+    CLICKHOUSE_USER: p009
+    CLICKHOUSE_PASSWORD: ${P009_CH_PASSWORD}
+    CLICKHOUSE_CLUSTER_ENABLED: "false"
+    REDIS_HOST: redis
+    REDIS_PORT: "6379"
+    REDIS_AUTH: ${P009_REDIS_PASSWORD}
+    LANGFUSE_S3_EVENT_UPLOAD_BUCKET: langfuse
+    LANGFUSE_S3_EVENT_UPLOAD_REGION: auto
+    LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID: p009minio
+    LANGFUSE_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY: ${P009_MINIO_PASSWORD}
+    LANGFUSE_S3_EVENT_UPLOAD_ENDPOINT: http://minio:9000
+    LANGFUSE_S3_EVENT_UPLOAD_FORCE_PATH_STYLE: "true"
+    LANGFUSE_S3_EVENT_UPLOAD_PREFIX: events/
+    LANGFUSE_S3_MEDIA_UPLOAD_BUCKET: langfuse
+    LANGFUSE_S3_MEDIA_UPLOAD_REGION: auto
+    LANGFUSE_S3_MEDIA_UPLOAD_ACCESS_KEY_ID: p009minio
+    LANGFUSE_S3_MEDIA_UPLOAD_SECRET_ACCESS_KEY: ${P009_MINIO_PASSWORD}
+    LANGFUSE_S3_MEDIA_UPLOAD_ENDPOINT: http://minio:9000
+    LANGFUSE_S3_MEDIA_UPLOAD_FORCE_PATH_STYLE: "true"
+services:
+  archive:
+    networks: [core, langfuse]
+    environment:
+      P009_LANGFUSE_PUBLIC_KEY: ${P009_LANGFUSE_PUBLIC_KEY}
+      P009_LANGFUSE_SECRET_KEY: ${P009_LANGFUSE_SECRET_KEY}
+      P009_MINIO_PASSWORD: ${P009_MINIO_PASSWORD}
+  collector:
+    networks: [core, langfuse]
+    volumes: ["./.runtime/collector-langfuse.yaml:/etc/otel/config.yaml:ro"]
+    environment:
+      P009_LANGFUSE_AUTH: ${P009_LANGFUSE_AUTH}
+  langfuse-web:
+    <<: *lf
+    image: ${P009_IMAGE_LANGFUSE}
+    mem_limit: 1536m
+    cpus: 1
+    ports: ["127.0.0.1:3009:3000"]
+    environment:
+      <<: *env
+      NEXTAUTH_SECRET: ${P009_NEXTAUTH_SECRET}
+      LANGFUSE_INIT_ORG_ID: p009-org
+      LANGFUSE_INIT_ORG_NAME: P009 Synthetic
+      LANGFUSE_INIT_PROJECT_ID: p009-tenant-a
+      LANGFUSE_INIT_PROJECT_NAME: P009 Tenant A
+      LANGFUSE_INIT_PROJECT_PUBLIC_KEY: ${P009_LANGFUSE_PUBLIC_KEY}
+      LANGFUSE_INIT_PROJECT_SECRET_KEY: ${P009_LANGFUSE_SECRET_KEY}
+      LANGFUSE_INIT_USER_EMAIL: operator@p009.invalid
+      LANGFUSE_INIT_USER_PASSWORD: ${P009_LF_OPERATOR_PASSWORD}
+      AUTH_DISABLE_SIGNUP: "true"
+      LANGFUSE_DISABLE_SIGNUP_ONBOARDING: "true"
+    depends_on: [postgres, redis, clickhouse, minio]
+  langfuse-worker:
+    <<: *lf
+    image: ${P009_IMAGE_LANGFUSE_WORKER}
+    mem_limit: 1024m
+    cpus: 0.5
+    environment: *env
+    depends_on: [postgres, redis, clickhouse, minio]
+  postgres:
+    <<: *lf
+    image: ${P009_IMAGE_POSTGRES}
+    cap_add: [CHOWN, FOWNER, SETUID, SETGID, DAC_OVERRIDE]
+    mem_limit: 256m
+    cpus: 0.5
+    environment:
+      POSTGRES_PASSWORD: ${P009_PG_PASSWORD}
+      POSTGRES_DB: langfuse
+      TZ: UTC
+    volumes: [postgres:/var/lib/postgresql/data]
+  redis:
+    <<: *lf
+    image: ${P009_IMAGE_REDIS}
+    user: "0:0"
+    mem_limit: 128m
+    cpus: 0.25
+    environment: {P009_REDIS_PASSWORD: "${P009_REDIS_PASSWORD}"}
+    command: [sh, -c, 'exec redis-server --requirepass "$$P009_REDIS_PASSWORD" --maxmemory 64mb --maxmemory-policy noeviction --save "" --appendonly no']
+    volumes: [redis:/data]
+  clickhouse:
+    <<: *lf
+    image: ${P009_IMAGE_CLICKHOUSE}
+    user: "101:101"
+    mem_limit: 2560m
+    cpus: 0.5
+    pids_limit: 512
+    environment:
+      CLICKHOUSE_DB: default
+      CLICKHOUSE_USER: p009
+      CLICKHOUSE_PASSWORD: ${P009_CH_PASSWORD}
+    volumes:
+      - clickhouse:/var/lib/clickhouse
+      - clickhouse-logs:/var/log/clickhouse-server
+      - ./langfuse/clickhouse.xml:/etc/clickhouse-server/config.d/p009.xml:ro
+      - ./langfuse/clickhouse-users.xml:/etc/clickhouse-server/users.d/p009.xml:ro
+    ulimits:
+      nofile: {soft: 16384, hard: 16384}
+  minio:
+    <<: *lf
+    image: ${P009_IMAGE_MINIO}
+    user: "0:0"
+    mem_limit: 256m
+    cpus: 0.25
+    environment:
+      MINIO_ROOT_USER: p009minio
+      MINIO_ROOT_PASSWORD: ${P009_MINIO_PASSWORD}
+    command: [server, --address, ":9000", /data]
+    volumes: [minio:/data]
+networks:
+  langfuse:
+    name: p009-langfuse
+    internal: true
+    labels: {io.p009.owner: p009}
+volumes:
+  postgres: {name: p009-postgres, labels: {io.p009.owner: p009}}
+  clickhouse: {name: p009-clickhouse, labels: {io.p009.owner: p009}}
+  minio: {name: p009-minio, labels: {io.p009.owner: p009}}
+  redis: {name: p009-redis, labels: {io.p009.owner: p009}}
+  clickhouse-logs: {name: p009-clickhouse-logs, labels: {io.p009.owner: p009}}

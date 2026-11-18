@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+export UV_CACHE_DIR="$PWD/.tools/uv-cache"
+export UV_PYTHON_INSTALL_DIR="$PWD/.tools/python"
+uv venv --python 3.12 .venv
+uv pip sync --python .venv/bin/python --require-hashes requirements.lock
+uv pip install --python .venv/bin/python --no-deps --no-build-isolation -e .

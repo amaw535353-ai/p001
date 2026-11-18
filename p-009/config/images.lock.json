@@ -1,0 +1,13 @@
+{
+  "collector": "otel/opentelemetry-collector-contrib:0.165.0@sha256:e40d61f10c9a617cca1ffd1be4d7e2b3a4b0f0001798ff07e58cabe82e618cea",
+  "python": "python:3.12.14-slim@sha256:f77ac9e44ae96ef2c90b8053ea08c31f8be030f824196b0ae4db6d462c84e51f",
+  "langfuse": "langfuse/langfuse:4.80.0@sha256:8e39640475efebf85e7d19f8e036046049a800fb0dd7fe826c216fe0cbe5c7cb",
+  "langfuse-worker": "langfuse/langfuse-worker:4.80.0@sha256:86c2d68fee500b4e6a1f788cde37a5aceb48eb490aef4d3ca57266093d796d51",
+  "wazuh": "wazuh/wazuh-manager:4.14.10@sha256:beda27e1e88bfe5fe5e882eea3b006dfc4a77e19f31d5a0292e5126f23900e75",
+  "wazuh-indexer": "wazuh/wazuh-indexer:4.14.10@sha256:1780a13d5950deda05860fdb2e2d6cc466a15b341a88de01452d99932e05f610",
+  "wazuh-dashboard": "wazuh/wazuh-dashboard:4.14.10@sha256:2987776f76cbf3d47452a51b0e59792453686e5d37bbff7768ec033987b073a0",
+  "clickhouse": "clickhouse/clickhouse-server:26.3.62.3@sha256:6eb24df16477b65c87b772a56eb341a9624529491856c103e74c537db59669f1",
+  "redis": "redis:7.4@sha256:a6dd428750118c2c2c67d3f555faef0aa15a2b71198b40e1cb3b9229b1cf3094",
+  "postgres": "postgres:17@sha256:6f7593c161689b6b02c78668b314af7da8811b592c5519108c57a49d0b6ad788",
+  "minio": "chainguard/minio:latest@sha256:832a80c375c8cee5ab1aa19e73e1f466ef8037f2e6f34f7563cf3176bf405198"
+}

@@ -1,0 +1,364 @@
+{
+  "schema_version": "p009-verification-summary-1.0",
+  "interpretation": "Sanitized engineering result counters and source fingerprints only; no raw telemetry, runtime credentials or evidence objects. PASS is limited to the tested synthetic scope.",
+  "native_execution_date_utc": "2026-11-16",
+  "final_source_verification_date_utc": "2026-11-18",
+  "repository": {
+    "url": "https://github.com/amaw535353-ai/p001",
+    "base_branch": "p001-initial",
+    "base_commit": "85302ea391f11df403630416b5dbf0decda831d3",
+    "feature_branch": "feat/p-009-security-evidence-telemetry",
+    "sibling_prs_observed": {
+      "5": "MERGED",
+      "6": "MERGED",
+      "7": "MERGED"
+    }
+  },
+  "offline": {
+    "PASS": 168,
+    "FAIL": 0,
+    "socket_and_dns_disabled": true,
+    "by_category": {
+      "tests.test_archive": 27,
+      "tests.test_config_pipeline": 32,
+      "tests.test_correlation": 18,
+      "tests.test_detection": 43,
+      "tests.test_imports": 21,
+      "tests.test_privacy": 22,
+      "tests.test_repository_source": 5
+    }
+  },
+  "root": {
+    "unit_pass": 7,
+    "static": "PASS",
+    "lab_test": "NOT_TESTED; no root infrastructure changes"
+  },
+  "quality": {
+    "ruff_lint": "PASS",
+    "ruff_format": "PASS",
+    "mypy_source_modules": 22,
+    "generated_schema_drift_checks": 11,
+    "generated_rule_drift_checks": 20
+  },
+  "native": {
+    "core": {
+      "counts": {
+        "BLOCKED": 0,
+        "FAIL": 0,
+        "NOT_TESTED": 0,
+        "PASS": 20
+      },
+      "checks": [
+        {
+          "id": "T09",
+          "assertion": "Actual Collector health endpoint responds",
+          "status": "PASS"
+        },
+        {
+          "id": "T02",
+          "assertion": "Malformed OTLP JSON rejected",
+          "status": "PASS"
+        },
+        {
+          "id": "AUTH01",
+          "assertion": "OTLP producer authentication enforced",
+          "status": "PASS"
+        },
+        {
+          "id": "O-SOURCE",
+          "assertion": "SDK output checked before first network exporter",
+          "status": "PASS"
+        },
+        {
+          "id": "T01",
+          "assertion": "Executed spans arrive through actual Collector",
+          "status": "PASS"
+        },
+        {
+          "id": "O01",
+          "assertion": "OpenLLMetry executes model, authorization and tool path",
+          "status": "PASS"
+        },
+        {
+          "id": "O02",
+          "assertion": "Collector-observed provenance on received spans",
+          "status": "PASS"
+        },
+        {
+          "id": "O03",
+          "assertion": "Real child spans retain parent IDs",
+          "status": "PASS"
+        },
+        {
+          "id": "O04",
+          "assertion": "W3C context reaches independently executed backend",
+          "status": "PASS"
+        },
+        {
+          "id": "O05",
+          "assertion": "Executed arithmetic tool span is correlated",
+          "status": "PASS"
+        },
+        {
+          "id": "O06",
+          "assertion": "Prompt content absent from stored event shape",
+          "status": "PASS"
+        },
+        {
+          "id": "O07",
+          "assertion": "Planted source prompt absent after Collector and archive",
+          "status": "PASS"
+        },
+        {
+          "id": "T04",
+          "assertion": "Collector source mapped to trusted tenant",
+          "status": "PASS"
+        },
+        {
+          "id": "X10",
+          "assertion": "Other tenant cannot retrieve the same trace",
+          "status": "PASS"
+        },
+        {
+          "id": "O08",
+          "assertion": "Provider failure has safe error outcome",
+          "status": "PASS"
+        },
+        {
+          "id": "METRIC01",
+          "assertion": "Actual Collector accepts OTLP metrics",
+          "status": "PASS"
+        },
+        {
+          "id": "LOG-security",
+          "assertion": "Actual Collector accepts structured security",
+          "status": "PASS"
+        },
+        {
+          "id": "LOG-authorization",
+          "assertion": "Actual Collector accepts structured authorization",
+          "status": "PASS"
+        },
+        {
+          "id": "T08",
+          "assertion": "Actual Collector self metrics are observable",
+          "status": "PASS"
+        },
+        {
+          "id": "R05",
+          "assertion": "Collector restart preserves retained archive",
+          "status": "PASS"
+        }
+      ]
+    },
+    "langfuse": {
+      "counts": {
+        "BLOCKED": 0,
+        "FAIL": 0,
+        "NOT_TESTED": 1,
+        "PASS": 4
+      },
+      "checks": [
+        {
+          "id": "F01",
+          "assertion": "Actual Langfuse v4 OTLP observations retrieved for trace ID",
+          "status": "PASS"
+        },
+        {
+          "id": "F02",
+          "assertion": "Langfuse and P009 exact trace identity agrees",
+          "status": "PASS"
+        },
+        {
+          "id": "F03",
+          "assertion": "Unauthenticated Langfuse trace API denied",
+          "status": "PASS"
+        },
+        {
+          "id": "F05",
+          "assertion": "Planted source content absent from Langfuse trace",
+          "status": "PASS"
+        },
+        {
+          "id": "F08",
+          "status": "NOT_TESTED"
+        }
+      ]
+    },
+    "wazuh": {
+      "counts": {
+        "BLOCKED": 1,
+        "FAIL": 0,
+        "NOT_TESTED": 0,
+        "PASS": 5
+      },
+      "checks": [
+        {
+          "id": "W02",
+          "assertion": "Native Wazuh rule engine produces all 20 exact expected alert IDs",
+          "status": "PASS"
+        },
+        {
+          "id": "W04",
+          "assertion": "Native benign controls produce no P009 alerts",
+          "status": "PASS"
+        },
+        {
+          "id": "W01",
+          "assertion": "Actual manager ingests synthetic localfile event",
+          "status": "PASS"
+        },
+        {
+          "id": "W03",
+          "assertion": "Native alert retains source event reference and fixed level",
+          "status": "PASS"
+        },
+        {
+          "id": "X05",
+          "assertion": "Actual Wazuh alert and SDK/Langfuse trace join by original IDs",
+          "status": "PASS"
+        },
+        {
+          "id": "W-STACK",
+          "status": "BLOCKED"
+        }
+      ]
+    }
+  },
+  "acceptance": {
+    "requirements": 88,
+    "counts": {
+      "PASS": 69,
+      "PARTIAL": 15,
+      "NOT_TESTED": 3,
+      "REFERENCE_ONLY": 1
+    },
+    "full_wazuh_stack": "BLOCKED; host vm.max_map_count 65530 < 262144 and no verified full deployment profile"
+  },
+  "native_case": {
+    "events": 8,
+    "langfuse_observations": 6,
+    "objects_verified": 9,
+    "manifests_verified": 9,
+    "integrity": "PASS",
+    "handoff_export": "PASS",
+    "p010_consumer": "NOT_TESTED"
+  },
+  "recorded_native_logtest_individual_input_recheck": {
+    "inputs": 40,
+    "abnormal_exact_rule_ids": 20,
+    "benign_no_child_alerts": 20,
+    "status": "PASS"
+  },
+  "cleanup": {
+    "status": "PASS",
+    "scope": "exact p009 Docker resources and runtime credentials",
+    "local_evidence": "retained; use tenant retention workflow for deletion",
+    "owned_containers_remaining": 0,
+    "owned_volumes_remaining": 0,
+    "owned_networks_remaining": 0,
+    "runtime_credentials_remaining": 0,
+    "legacy_anonymous_volume_removed": true,
+    "unrelated_anonymous_volumes_preserved": 2,
+    "unrelated_containers_preserved": true,
+    "p001_workload_image_unchanged": true,
+    "native_archive_snapshot": {
+      "status": "PASS",
+      "objects_verified": 84,
+      "manifests_verified": 84,
+      "deleted_objects": 0,
+      "assurance": "digest consistency; no source authenticity, trusted time or WORM"
+    },
+    "native_case_archives_verified": 2,
+    "images_and_build_cache": "retained; no global prune"
+  },
+  "publication_review": {
+    "runtime_secret_matches": 0,
+    "scope": "Only p-009/ and dedicated workflow; runtime/evidence ignored",
+    "new_documentation": "Sanitized summaries authored after the secret comparison; no credentials copied"
+  },
+  "human_independent_reproduction": "NOT_DEMONSTRATED",
+  "external_human_review": "NOT_DEMONSTRATED",
+  "learner_gates": {
+    "G1": "NOT_DEMONSTRATED",
+    "G2": "NOT_DEMONSTRATED",
+    "G3": "NOT_DEMONSTRATED",
+    "G4": "NOT_DEMONSTRATED",
+    "G5": "NOT_DEMONSTRATED"
+  },
+  "source_fingerprint": {
+    "algorithm": "SHA-256 over UTF-8 canonical sorted filename-to-SHA256 JSON, without newline",
+    "digest": "cc020aae8e02f27ddfd925f85507151ccba60dbbe569002edd1af620a60a085d",
+    "files": {
+      ".github/workflows/p009-offline.yml": "08cd12bcf16415e7ccfb17ed2d82ea9606a5b827ebac381710de8429e50bb79d",
+      "p-009/.dockerignore": "1be6f81b93e1e43b20c808f4b71dc826478e4999ad5dc390c7b57f30fbddd8b8",
+      "p-009/.gitignore": "1404e1e4b09a728ec94c25a2f3b511884e6e43dd681934bc77e3e652cdfd0584",
+      "p-009/AGENTS.md": "dc6d8538c80a5e52959956793964036a9b669d080380fa39f49cf39d26667f8a",
+      "p-009/Dockerfile": "b2fbca82a143c1f7787887a488b8d52873429ad1357c861186558e433b600f13",
+      "p-009/Makefile": "27d232649039424a34d84752b52eaf791c6b59f78cc5eeec3bf16faa54eaacd3",
+      "p-009/collector/config.yaml": "87cae89adb221576fce3c675bd51e0d51b407df1b9f7a97cc64ae11dcaa91445",
+      "p-009/compose.yaml": "f34a0a4b5f4416f9168824eac3ed5f9dfe7632e98785e1bfc88b8a5c6ea00f44",
+      "p-009/config/defaults.json": "cc89cc254f0ffba3a177564a52c980d88dd80da44fc77aeb2f10322e8788f09a",
+      "p-009/config/detection-rules.json": "5b0db3c581a194dd90c6d9fcb9ff73183c1dc3066a0ff9256102b978071f4a4b",
+      "p-009/config/images.lock.json": "5c937612609fb05c30d568ea7be4017c59e69d11fb14f9a40092d7a8e19e029b",
+      "p-009/fixtures/p008-handoff.json": "6bf1e2f9599d535ca00f089f1ab2e05461ec900811658d18e6b01ca93b35e54f",
+      "p-009/langfuse/clickhouse-users.xml": "b279ad9ac0622cd84b280378102511af2d5afd959f48e6ee2214a247adc1c276",
+      "p-009/langfuse/clickhouse.xml": "950cf6918455bb5da8ea4655e44a77d536431bb7f13046eb93dd5b21d5370eaa",
+      "p-009/langfuse/compose.yaml": "30d81d6255cd82fcab69e568b016a685b631fdab62d835ea345a805852007d62",
+      "p-009/pyproject.toml": "53d5e62eca98d56faec156b334f92b99493a27fc524b43ff2950e204cd57e72f",
+      "p-009/requirements.in": "e6ed48c9046b7451157f2680d156bb331466c242805762a34302691f50064e48",
+      "p-009/requirements.lock": "2e49c97c4396cc9ff70f92302955311c47182261ea1ce02abbdadb80525a433c",
+      "p-009/schemas/correlation.schema.json": "a8350b1978c430287c76b0f9c93a6737864f074022bb80ee6c32b58daa0e9a1d",
+      "p-009/schemas/detection-rule.schema.json": "0c0052ddd4f360147db5e2d58c598980753c0647edfe616c57af22843c0bce4b",
+      "p-009/schemas/evidence-manifest.schema.json": "2817cadfbc43028d5279fd7cff638a97d2fcb098e745baa527945ce5c56faa97",
+      "p-009/schemas/evidence-object.schema.json": "5f8aa4047705be0e01267016b8014c1d6af8f229cbfb86eefcbe788baadfebcd",
+      "p-009/schemas/normalized-event.schema.json": "adc1a2cb7b2006b9ef8ec239fb08db08e5c2a4be2b24758653284f471332af63",
+      "p-009/schemas/p009-handoff-v1.schema.json": "f74e730596a85d9d18a38f7885ed46472181847cdac74520b69c09b79fa6cbca",
+      "p-009/schemas/pipeline-config.schema.json": "cb35ef58afc545d39fc5d2725bbc7fe20e0adf3da94d104995158a2217b212bd",
+      "p-009/schemas/retention-policy.schema.json": "ba54d8496e2ba885b93f2ffcef959c82f715114f6c4105b16c5b0a05f2ac0914",
+      "p-009/schemas/source-config.schema.json": "9f7dea4915d170952873b152d1bcafdee132fa91f475e91394a5d82169a1767c",
+      "p-009/schemas/source-event.schema.json": "273b02f8aff15f1c7f94b34fa23c871727e143cb0db193463f4d3af2c536b77d",
+      "p-009/schemas/timeline.schema.json": "b3dc325131b781827074989d8368b90b7bcabb2fc6537f53a905a21bbf314d54",
+      "p-009/scripts/build-rules.py": "4d4d36c5961617da9c09e46bd4961292f4e7b5d6dd30bd1e5ae5c9e814412af2",
+      "p-009/scripts/build-schemas.py": "72f9f1ddf21df04f6277186a2a6145cc1af37135e03988f5dba2e4b0ea0f3931",
+      "p-009/scripts/dependency-inventory.py": "3dc9da0c1b901d7848fbc8c13e96169699bb223968452add21cecd133e0fab56",
+      "p-009/scripts/p009": "55502eff6f0430925d04c24e32e6a464150065b1b75fa8a00bc48fef70ff79e3",
+      "p-009/scripts/setup": "690cc7cd4acd93b8de955f30b851a6fe463619186f94cd582a36466ead8e3a35",
+      "p-009/src/p009/__init__.py": "5839b50aa38d76a849fbd1adf097572e6ac412fbcab562dd2c950c806019a1f9",
+      "p-009/src/p009/adapters.py": "ad96418e53fc1fcb13c292f70e11ecc4aa2f3fbceaed8567d9f82a55d7ea44cb",
+      "p-009/src/p009/archive.py": "5d2469735f76c5499d0c852a2a46ae1ec31a7a91ea51ebe2e30e5dbf967751cd",
+      "p-009/src/p009/auth.py": "6a08ccfbdd277c57400f41c9f65b4601e0c3b9a5f9bc9df0b1a5f43258e61f28",
+      "p-009/src/p009/cli.py": "fda4ff8ebd0e10ff4d0a78b3132b4de7c62c64ce020e68b9ee189742f659f519",
+      "p-009/src/p009/config.py": "2292665249fcdb472b1dcab50308b64edb180502a2304964f2d42ed23527f517",
+      "p-009/src/p009/correlate.py": "a76da60e4734758be3c6fca1f0612926939b181422d4e4cca8e5f3628e8a17c2",
+      "p-009/src/p009/demo.py": "a0fa073fce03065563cf040f747928ac3cb238ef02a9988d67e4c5907a150c41",
+      "p-009/src/p009/detection.py": "415c8a2efe5843033efe6a3004aa53889d7a565ad81f9630893be7927b648712",
+      "p-009/src/p009/exports.py": "e9d0f1ddd84e76a67763d9572696d182e88ca3fd599433b07e40a81d5a43c005",
+      "p-009/src/p009/ingest.py": "9ba6dfc990d2bf5cb5b2a9ccdade66b97f6e753905bd79576e43aef35f3980c7",
+      "p-009/src/p009/live.py": "0aac950993a903a39dfa62ea1e6aab324bf2b003a6f14a4ef992df78207b7081",
+      "p-009/src/p009/models.py": "959c97a20b6f681d13b582190e72b1f79d9e2a2591e32950aef1770f82b5eb5f",
+      "p-009/src/p009/native_case.py": "4a58309b7b952491c9ff0df63cc1b00a3785386f5c18459e9e14deb709d2768a",
+      "p-009/src/p009/normalize.py": "d2893be55f058c040fcdb28a64668ce12a1ea2bdb8e2350edb2851353aaa756e",
+      "p-009/src/p009/operate.py": "312167e5a1ff283010569fa6e0cf3fd1707beca41830f124f2f7631d5f15f124",
+      "p-009/src/p009/privacy.py": "fb3860bc9654543839a77cc39f9be497d8aa2f971a38e4b15239f48da03990e8",
+      "p-009/src/p009/products.py": "745e0824eb24052059b099af0e1939e29f2117461ab6c36b6afa395251c8f3ba",
+      "p-009/src/p009/safety.py": "4a64b631fc9fb06dc1494b5bc0c2e232ebb279a887bd2ceb6b6dd3a95630d76d",
+      "p-009/src/p009/service.py": "bbc8bf50b8ad968ac8715349d1459407a5ee04163b2f46982a5f458be669657c",
+      "p-009/src/p009/synthetic.py": "7924dfa7f886721ff2bf640fb7c1a080d84ba95de446a3a70fab5aed3324575a",
+      "p-009/src/p009/validation.py": "e4b9b7e95bc6eb49b58a4a1f0990c358d5b5a77fae5103c2ef26b1c2f02707b9",
+      "p-009/tests/conftest.py": "c15c4d8eaa4c7f90bd615e1b1ad644092140567fabed3669d8b0c89248ae72c1",
+      "p-009/tests/no-network/sitecustomize.py": "15ecc596e46b7009f18d67b2038f3001f6a45223a142cf2cd62d7301c861d6b4",
+      "p-009/tests/test_archive.py": "b3b0dcad2dab26b5d4f8a766af48a1f5cdae782596d7058d60ce5241ee867cc2",
+      "p-009/tests/test_config_pipeline.py": "06ad2ba4a9b7d0047bc2f5afc8208e1fc742cd87572334eb9828f08e1aa382dd",
+      "p-009/tests/test_correlation.py": "d2da35fbb6e2e6565fd8cd986647b95d9165fd3b999fa30596a377503f87e7e5",
+      "p-009/tests/test_detection.py": "1612ba1221e94ce5912f252c98e35e9e60c2ce36796312913b528436c1854572",
+      "p-009/tests/test_imports.py": "3b29d78cefeae515646023e5d6ced07e93572e171bdb52379692ffa0ffe81bb1",
+      "p-009/tests/test_privacy.py": "9928fd02e1d27c314cfb602f6476374f347252023f51321c842190dbce25a580",
+      "p-009/tests/test_repository_source.py": "ba2429b51b79ae4e6b23252e500e93ee4b90cb40a730f2b2b8cb014355bdd239",
+      "p-009/wazuh/local_internal_options.conf": "321b6ee3b617931bc3c77a1ef9223b4e7ab98b4125f1707098ed860f9c17006a",
+      "p-009/wazuh/ossec.conf": "0ec4d643da7487a636598ca2bf161b53ca2107bcc44b681efc24c170541bcae3",
+      "p-009/wazuh/rules/p009.xml": "dbf391c8d4a02019389c7331a386a670dc72fb58f7b651de575fd50dd1d4ca23",
+      "p-009/wazuh/start.sh": "3f96e19f537c2c33a3f974e630409f9a1eeda1ad934c0e21640a1fe3808f8ab8"
+    }
+  }
+}

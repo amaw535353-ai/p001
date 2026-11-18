@@ -1,0 +1,133 @@
+{
+  "$defs": {
+    "ObjectRef": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "event",
+            "import"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size": {
+          "maximum": 1048576,
+          "minimum": 0,
+          "title": "Size",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sha256",
+        "size",
+        "kind"
+      ],
+      "title": "ObjectRef",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "config_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Config Digest",
+      "type": "string"
+    },
+    "correlation_rule": {
+      "const": "p009-exact-v1",
+      "default": "p009-exact-v1",
+      "title": "Correlation Rule",
+      "type": "string"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    },
+    "deployment_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Deployment Digest",
+      "type": "string"
+    },
+    "object": {
+      "$ref": "#/$defs/ObjectRef"
+    },
+    "owner": {
+      "const": "p009",
+      "default": "p009",
+      "title": "Owner",
+      "type": "string"
+    },
+    "previous": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Previous"
+    },
+    "redaction_policy": {
+      "const": "p009-metadata-v1",
+      "default": "p009-metadata-v1",
+      "title": "Redaction Policy",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "p009-manifest-1.0",
+      "default": "p009-manifest-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "sequence": {
+      "minimum": 1,
+      "title": "Sequence",
+      "type": "integer"
+    },
+    "source_event_time": {
+      "title": "Source Event Time",
+      "type": "string"
+    },
+    "source_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_version": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Source Version",
+      "type": "string"
+    },
+    "tenant_ref": {
+      "enum": [
+        "tenant-a",
+        "tenant-b"
+      ],
+      "title": "Tenant Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "sequence",
+    "previous",
+    "created_at",
+    "tenant_ref",
+    "object",
+    "source_id",
+    "source_version",
+    "source_event_time",
+    "config_digest",
+    "deployment_digest"
+  ],
+  "title": "Manifest",
+  "type": "object"
+}

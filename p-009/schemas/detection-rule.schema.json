@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "minimum_count": {
+      "maximum": 100,
+      "minimum": 1,
+      "title": "Minimum Count",
+      "type": "integer"
+    },
+    "rationale": {
+      "title": "Rationale",
+      "type": "string"
+    },
+    "rule_id": {
+      "maximum": 110919,
+      "minimum": 110900,
+      "title": "Rule Id",
+      "type": "integer"
+    },
+    "severity": {
+      "maximum": 15,
+      "minimum": 1,
+      "title": "Severity",
+      "type": "integer"
+    },
+    "signal": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}$",
+      "title": "Signal",
+      "type": "string"
+    },
+    "version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "rule_id",
+    "signal",
+    "minimum_count",
+    "severity",
+    "rationale"
+  ],
+  "title": "Rule",
+  "type": "object"
+}

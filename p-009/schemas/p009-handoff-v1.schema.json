@@ -1,0 +1,163 @@
+{
+  "$defs": {
+    "ObjectRef": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "event",
+            "import"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size": {
+          "maximum": 1048576,
+          "minimum": 0,
+          "title": "Size",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sha256",
+        "size",
+        "kind"
+      ],
+      "title": "ObjectRef",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "consumer_status": {
+      "const": "NOT_TESTED",
+      "default": "NOT_TESTED",
+      "title": "Consumer Status",
+      "type": "string"
+    },
+    "contract": {
+      "const": "p009-handoff-v1",
+      "default": "p009-handoff-v1",
+      "title": "Contract",
+      "type": "string"
+    },
+    "correlation_rule": {
+      "const": "p009-exact-v1",
+      "default": "p009-exact-v1",
+      "title": "Correlation Rule",
+      "type": "string"
+    },
+    "findings": {
+      "items": {},
+      "maxItems": 0,
+      "title": "Findings",
+      "type": "array"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "manifest_digests": {
+      "items": {
+        "pattern": "^[a-f0-9]{64}$",
+        "type": "string"
+      },
+      "title": "Manifest Digests",
+      "type": "array"
+    },
+    "objects": {
+      "items": {
+        "$ref": "#/$defs/ObjectRef"
+      },
+      "title": "Objects",
+      "type": "array"
+    },
+    "redaction_policy": {
+      "const": "p009-metadata-v1",
+      "default": "p009-metadata-v1",
+      "title": "Redaction Policy",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_provenance": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Source Provenance",
+      "type": "object"
+    },
+    "status_counts": {
+      "additionalProperties": {
+        "maximum": 1000000,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "propertyNames": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "BLOCKED",
+          "NOT_TESTED",
+          "INCONCLUSIVE",
+          "NOT_APPLICABLE",
+          "REFERENCE_ONLY",
+          "PARTIAL",
+          "FLAKY"
+        ]
+      },
+      "title": "Status Counts",
+      "type": "object"
+    },
+    "telemetry_coverage": {
+      "additionalProperties": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "BLOCKED",
+          "NOT_TESTED",
+          "INCONCLUSIVE",
+          "NOT_APPLICABLE",
+          "REFERENCE_ONLY",
+          "PARTIAL",
+          "FLAKY"
+        ],
+        "type": "string"
+      },
+      "title": "Telemetry Coverage",
+      "type": "object"
+    },
+    "tenant_ref": {
+      "enum": [
+        "tenant-a",
+        "tenant-b"
+      ],
+      "title": "Tenant Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "tenant_ref",
+    "manifest_digests",
+    "objects",
+    "status_counts",
+    "source_provenance",
+    "telemetry_coverage",
+    "limitations"
+  ],
+  "title": "Handoff",
+  "type": "object"
+}

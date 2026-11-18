@@ -1,0 +1,87 @@
+name: p009
+x-common: &common
+  labels: {io.p009.owner: p009}
+  restart: "no"
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  pids_limit: 128
+  logging: {driver: local, options: {max-size: 2m, max-file: "2"}}
+  environment: &private-env
+    HTTP_PROXY: ""
+    HTTPS_PROXY: ""
+    ALL_PROXY: ""
+    http_proxy: ""
+    https_proxy: ""
+    all_proxy: ""
+    NO_PROXY: "*"
+  networks: [core]
+services:
+  archive:
+    <<: *common
+    image: p009-app:local
+    build: .
+    user: "1000:1000"
+    read_only: true
+    mem_limit: 512m
+    cpus: 0.5
+    tmpfs: ["/tmp:size=16m,mode=1777"]
+    volumes: [archive:/app/.runtime]
+    environment:
+      <<: *private-env
+      P009_COLLECTOR_TOKEN: ${P009_COLLECTOR_TOKEN:?run scripts/p009 up}
+      P009_OPERATOR_TOKEN: ${P009_OPERATOR_TOKEN:?run scripts/p009 up}
+      P009_VIEWER_B_TOKEN: ${P009_VIEWER_B_TOKEN:?run scripts/p009 up}
+      P009_OTLP_PASSWORD: ${P009_OTLP_PASSWORD:?run scripts/p009 up}
+      P009_DEPLOYMENT_DIGEST: ${P009_DEPLOYMENT_DIGEST:?run scripts/p009 up}
+    ports: ["127.0.0.1:8099:8090"]
+  collector:
+    <<: *common
+    image: otel/opentelemetry-collector-contrib:0.165.0@sha256:e40d61f10c9a617cca1ffd1be4d7e2b3a4b0f0001798ff07e58cabe82e618cea
+    read_only: true
+    mem_limit: 256m
+    cpus: 0.5
+    command: ["--config=/etc/otel/config.yaml"]
+    volumes: ["./collector/config.yaml:/etc/otel/config.yaml:ro"]
+    environment:
+      <<: *private-env
+      P009_OTLP_HTPASSWD: ${P009_OTLP_HTPASSWD:?run scripts/p009 up}
+      P009_COLLECTOR_TOKEN: ${P009_COLLECTOR_TOKEN:?run scripts/p009 up}
+    depends_on: [archive]
+  model-backend:
+    <<: *common
+    image: p009-app:local
+    user: "1000:1000"
+    read_only: true
+    mem_limit: 512m
+    cpus: 0.5
+    tmpfs: ["/tmp:size=16m,mode=1777"]
+    command: [python, -m, p009.synthetic, backend]
+    environment:
+      <<: *private-env
+      TRACELOOP_TRACE_CONTENT: "false"
+      P009_OTLP_PASSWORD: ${P009_OTLP_PASSWORD:?run scripts/p009 up}
+    depends_on: [collector]
+  synthetic:
+    <<: *common
+    image: p009-app:local
+    profiles: [run]
+    user: "1000:1000"
+    read_only: true
+    mem_limit: 512m
+    cpus: 0.5
+    tmpfs: ["/tmp:size=16m,mode=1777"]
+    command: [python, -m, p009.synthetic]
+    environment:
+      <<: *private-env
+      TRACELOOP_TRACE_CONTENT: "false"
+      P009_OTLP_PASSWORD: ${P009_OTLP_PASSWORD:?run scripts/p009 up}
+    depends_on: [model-backend]
+networks:
+  core:
+    name: p009-core
+    internal: true
+    labels: {io.p009.owner: p009}
+volumes:
+  archive:
+    name: p009-archive
+    labels: {io.p009.owner: p009}
