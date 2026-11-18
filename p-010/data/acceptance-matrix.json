@@ -1,0 +1,710 @@
+[
+  {
+    "id": "A01",
+    "requirement": "P-010 uses the latest approved default branch.",
+    "status": "PASS",
+    "evidence": "test_delivery: approved base ancestry and live git ls-remote"
+  },
+  {
+    "id": "A02",
+    "requirement": "P-010 changes are confined to `p-010/` and justified P-010-owned CI.",
+    "status": "PASS",
+    "evidence": "test_delivery: scope check and staged diff"
+  },
+  {
+    "id": "A03",
+    "requirement": "P-001 through P-009 source files are unchanged.",
+    "status": "PASS",
+    "evidence": "test_delivery: sibling trees and staged diff"
+  },
+  {
+    "id": "A04",
+    "requirement": "P-010 branch creation preserves any existing user changes.",
+    "status": "PASS",
+    "evidence": "Clean initial git status and branch switch from approved tip"
+  },
+  {
+    "id": "A05",
+    "requirement": "no push/publication/external issue creation occurs without explicit authorization.",
+    "status": "PASS",
+    "evidence": "Direct user authorization for commit, push and merge; local Redmine fixture only"
+  },
+  {
+    "id": "A06",
+    "requirement": "generated runtime data and secrets are ignored by Git.",
+    "status": "PASS",
+    "evidence": "test_delivery: git check-ignore and staged inventory"
+  },
+  {
+    "id": "A07",
+    "requirement": "actual sibling source schemas are read rather than guessed.",
+    "status": "PASS",
+    "evidence": "test_sources: actual sibling schemas and contracts"
+  },
+  {
+    "id": "A08",
+    "requirement": "stale P-006 blocked descriptions are not repeated as current status.",
+    "status": "PASS",
+    "evidence": "Current P-006 hardened/profile/inventory and merged validation inspected"
+  },
+  {
+    "id": "A09",
+    "requirement": "missing P-009 contract is reported `BLOCKED`/`NOT_TESTED`.",
+    "status": "PASS",
+    "evidence": "test_delivery: missing P-009 input is explicit; approved contract present"
+  },
+  {
+    "id": "A10",
+    "requirement": "root `make unit` and `make static` are executed after code edits.",
+    "status": "PASS",
+    "evidence": "Root make unit and make static"
+  },
+  {
+    "id": "B01",
+    "requirement": "strict P-010 schemas validate a complete synthetic engagement.",
+    "status": "PASS",
+    "evidence": "test_workflow: engagement roundtrip"
+  },
+  {
+    "id": "B02",
+    "requirement": "unknown security-critical fields are rejected.",
+    "status": "PASS",
+    "evidence": "test_workflow and test_delivery: unknown fields and schema closure"
+  },
+  {
+    "id": "B03",
+    "requirement": "malformed IDs, hashes, timestamps and enums are rejected.",
+    "status": "PASS",
+    "evidence": "test_workflow: ID, digest, UTC, enum and integer constraints"
+  },
+  {
+    "id": "B04",
+    "requirement": "each imported source record preserves project, contract and version.",
+    "status": "PASS",
+    "evidence": "test_sources: provenance envelope"
+  },
+  {
+    "id": "B05",
+    "requirement": "source hashes are retained when actually available.",
+    "status": "PASS",
+    "evidence": "test_sources: exact raw and schema hashes"
+  },
+  {
+    "id": "B06",
+    "requirement": "missing source hashes are not invented.",
+    "status": "PASS",
+    "evidence": "test_sources: absent source commit and source timestamp"
+  },
+  {
+    "id": "B07",
+    "requirement": "source timestamps and P-010 import timestamps remain distinct.",
+    "status": "PASS",
+    "evidence": "test_sources: distinct original/import clocks"
+  },
+  {
+    "id": "B08",
+    "requirement": "imported records are read-only and cannot overwrite source files.",
+    "status": "PASS",
+    "evidence": "test_sources: protected fixture bytes and mtime"
+  },
+  {
+    "id": "B09",
+    "requirement": "incompatible schema versions fail closed.",
+    "status": "PASS",
+    "evidence": "test_sources: incompatible P-003, P-007, P-008 and P-009 versions"
+  },
+  {
+    "id": "B10",
+    "requirement": "every derived record identifies its source records and transformation version.",
+    "status": "PASS",
+    "evidence": "test_sources: transformation version; report manifest exact links"
+  },
+  {
+    "id": "C01",
+    "requirement": "actual P-003 engagement schema validates.",
+    "status": "PASS",
+    "evidence": "test_sources: approved actual engagement"
+  },
+  {
+    "id": "C02",
+    "requirement": "P-003 scope, exclusions, window and ROE fields are preserved.",
+    "status": "PASS",
+    "evidence": "test_sources: scope, window, ROE, evidence policy"
+  },
+  {
+    "id": "C03",
+    "requirement": "expired/revoked/out-of-scope policy is not treated as current authority.",
+    "status": "PASS",
+    "evidence": "test_sources: expiry, revocation, before window and historical context"
+  },
+  {
+    "id": "C04",
+    "requirement": "P-003 training approval is not represented as real legal authority.",
+    "status": "PASS",
+    "evidence": "test_sources: training notice and non-bearer caveat"
+  },
+  {
+    "id": "C05",
+    "requirement": "P-003 OSCAL mapping draft remains labelled NOT VALID OSCAL.",
+    "status": "PASS",
+    "evidence": "test_sources: reject P-003 draft under official AP schema"
+  },
+  {
+    "id": "C06",
+    "requirement": "actual P-005 `p005-model-1.0` validates.",
+    "status": "PASS",
+    "evidence": "test_sources: actual P-005 model"
+  },
+  {
+    "id": "C07",
+    "requirement": "P-005 threat hypotheses retain `HYPOTHESIS` status.",
+    "status": "PASS",
+    "evidence": "test_sources: exact hypotheses and IDs"
+  },
+  {
+    "id": "C08",
+    "requirement": "P-005 verification cases retain `NOT_TESTED`.",
+    "status": "PASS",
+    "evidence": "test_sources: source NOT_TESTED and refusal of executed claims"
+  },
+  {
+    "id": "C09",
+    "requirement": "P-005 risk/ATLAS mapping provenance and review state are preserved.",
+    "status": "PARTIAL",
+    "evidence": "test_sources: risk provenance and rule/review fields; upstream ATLAS association validation remains partial"
+  },
+  {
+    "id": "C10",
+    "requirement": "P-005 threat hypotheses cannot directly become confirmed findings.",
+    "status": "PASS",
+    "evidence": "test_workflow: a versioned hypothesis alone cannot confirm"
+  },
+  {
+    "id": "D01",
+    "requirement": "actual P-006 architecture/service inventory validates or reports missing.",
+    "status": "PASS",
+    "evidence": "test_sources: actual P-006 profile and inventory"
+  },
+  {
+    "id": "D02",
+    "requirement": "P-006 unverified/declared/observed states remain distinct.",
+    "status": "PASS",
+    "evidence": "test_sources: proposed applicability and architecture limitations"
+  },
+  {
+    "id": "D03",
+    "requirement": "actual P-007 ReportExport 1.0 validates.",
+    "status": "PASS",
+    "evidence": "test_sources: actual P-007 ReportExport"
+  },
+  {
+    "id": "D04",
+    "requirement": "actual `p007-handoff-v1` validates.",
+    "status": "PASS",
+    "evidence": "test_sources: P-007 handoff version and provenance mismatch"
+  },
+  {
+    "id": "D05",
+    "requirement": "P-007 statuses and runner metadata are preserved read-only.",
+    "status": "PASS",
+    "evidence": "test_sources: original results and allowed runner metadata"
+  },
+  {
+    "id": "D06",
+    "requirement": "P-007 artifact path traversal/symlink references are rejected.",
+    "status": "PASS",
+    "evidence": "test_sources: parent, absolute, noncanonical and symlink refusal"
+  },
+  {
+    "id": "D07",
+    "requirement": "P-007 artifact hashes/sizes are verified when bytes are available.",
+    "status": "PARTIAL",
+    "evidence": "test_sources: byte-verified manifest fixture; original published run absent"
+  },
+  {
+    "id": "D08",
+    "requirement": "P-007 `FAIL` cannot auto-create a confirmed finding.",
+    "status": "PASS",
+    "evidence": "test_workflow and demo: P-007 FAIL remains unconfirmed"
+  },
+  {
+    "id": "D09",
+    "requirement": "actual P-008 `p008-handoff-1.0` validates.",
+    "status": "PASS",
+    "evidence": "test_sources and demo: actual P-008 exporter output"
+  },
+  {
+    "id": "D10",
+    "requirement": "P-008 non-sealed result rows, aggregate metrics and omission policy are preserved accurately.",
+    "status": "PASS",
+    "evidence": "test_sources: 48 aggregate, 38 non-sealed, 10 omitted"
+  },
+  {
+    "id": "D11",
+    "requirement": "P-008 sealed holdout results/label keys/raw prompts are not imported or reconstructed.",
+    "status": "PASS",
+    "evidence": "test_sources: private prompt omission and prohibited row keys"
+  },
+  {
+    "id": "D12",
+    "requirement": "P-009 imports only an actual versioned contract; otherwise its integration stays blocked/not tested.",
+    "status": "PASS",
+    "evidence": "test_sources and demo: P-009 v1 and exact native exporter fixture joins"
+  },
+  {
+    "id": "F01",
+    "requirement": "candidate observation can be created from a valid synthetic evidence reference.",
+    "status": "PASS",
+    "evidence": "test_workflow: evidence-linked candidate transition"
+  },
+  {
+    "id": "F02",
+    "requirement": "candidate observation is not labelled a confirmed finding.",
+    "status": "PASS",
+    "evidence": "test_workflow: source fail and observation do not create finding"
+  },
+  {
+    "id": "F03",
+    "requirement": "human reviewer decision is required to confirm.",
+    "status": "PASS",
+    "evidence": "test_workflow: role-gated independent review"
+  },
+  {
+    "id": "F04",
+    "requirement": "confirmation without required rationale is rejected.",
+    "status": "PASS",
+    "evidence": "test_workflow: empty and placeholder rationale rejected"
+  },
+  {
+    "id": "F05",
+    "requirement": "out-of-scope observation cannot become a confirmed in-scope finding.",
+    "status": "PASS",
+    "evidence": "test_workflow: inactive scope refusal"
+  },
+  {
+    "id": "F06",
+    "requirement": "false-positive disposition is preserved.",
+    "status": "PASS",
+    "evidence": "test_workflow: distinct false-positive disposition"
+  },
+  {
+    "id": "F07",
+    "requirement": "inconclusive and not-reproducible states remain distinct.",
+    "status": "PASS",
+    "evidence": "test_workflow: distinct inconclusive and not-reproducible states"
+  },
+  {
+    "id": "F08",
+    "requirement": "a threat hypothesis alone cannot confirm a finding.",
+    "status": "PASS",
+    "evidence": "test_workflow: threat metadata cannot be direct evidence"
+  },
+  {
+    "id": "F09",
+    "requirement": "a Langfuse trace alone cannot confirm a finding.",
+    "status": "PASS",
+    "evidence": "test_workflow: supporting trace evidence cannot confirm"
+  },
+  {
+    "id": "F10",
+    "requirement": "a Wazuh alert alone cannot confirm a finding.",
+    "status": "PASS",
+    "evidence": "test_workflow: supporting alert metadata cannot confirm"
+  },
+  {
+    "id": "F11",
+    "requirement": "all finding state changes are versioned and audited.",
+    "status": "PASS",
+    "evidence": "test_workflow: audited revisions"
+  },
+  {
+    "id": "F12",
+    "requirement": "prior finding versions remain retrievable after edits.",
+    "status": "PASS",
+    "evidence": "test_workflow: retrieve previous version after edits"
+  },
+  {
+    "id": "R01",
+    "requirement": "severity rubric is versioned and has a content digest.",
+    "status": "PASS",
+    "evidence": "test_workflow: exact rubric digest"
+  },
+  {
+    "id": "R02",
+    "requirement": "each final severity requires human rationale.",
+    "status": "PASS",
+    "evidence": "test_workflow: severity requires rationale"
+  },
+  {
+    "id": "R03",
+    "requirement": "unknown evidence quality can produce UNRATED/UNKNOWN.",
+    "status": "PASS",
+    "evidence": "test_workflow: unknown dimensions or low evidence yield UNRATED"
+  },
+  {
+    "id": "R04",
+    "requirement": "confidence and severity are separate fields.",
+    "status": "PASS",
+    "evidence": "test_workflow: confidence and severity independent"
+  },
+  {
+    "id": "R05",
+    "requirement": "test status and finding status are separate fields.",
+    "status": "PASS",
+    "evidence": "test_workflow: upstream failure independent from finding state"
+  },
+  {
+    "id": "R06",
+    "requirement": "business impact is not generated as fact without evidence or human input.",
+    "status": "PASS",
+    "evidence": "test_workflow: technical/business explanation preserved from author"
+  },
+  {
+    "id": "R07",
+    "requirement": "severity suggestion never auto-confirms a finding.",
+    "status": "PASS",
+    "evidence": "test_workflow: rubric suggestion has no finding effect"
+  },
+  {
+    "id": "R08",
+    "requirement": "severity override preserves previous rating and rationale.",
+    "status": "PASS",
+    "evidence": "test_workflow: override preserves rating and suggestion"
+  },
+  {
+    "id": "R09",
+    "requirement": "risk applicability requires explicit rationale.",
+    "status": "PASS",
+    "evidence": "test_workflow: explicit applicability rationale"
+  },
+  {
+    "id": "R10",
+    "requirement": "missing evidence cannot be silently classified NOT_APPLICABLE.",
+    "status": "PASS",
+    "evidence": "test_workflow: unknown taxonomy or missing basis refused"
+  },
+  {
+    "id": "R11",
+    "requirement": "risk treatment and risk acceptance are separate.",
+    "status": "PASS",
+    "evidence": "test_workflow: accountable decision separate from selected treatment"
+  },
+  {
+    "id": "R12",
+    "requirement": "risk acceptance requires accountable owner, scope, rationale and review/expiry metadata.",
+    "status": "PASS",
+    "evidence": "test_workflow: owner, version, scope and expiry gate"
+  },
+  {
+    "id": "E01",
+    "requirement": "evidence references preserve exact source record IDs.",
+    "status": "PASS",
+    "evidence": "test_workflow: exact reproduction source ID"
+  },
+  {
+    "id": "E02",
+    "requirement": "reference-only artifacts are not labelled verified files.",
+    "status": "PASS",
+    "evidence": "test_workflow and test_sources: no verified metrics for reference-only bytes"
+  },
+  {
+    "id": "E03",
+    "requirement": "actual artifact bytes fail verification when modified.",
+    "status": "PASS",
+    "evidence": "test_sources: size and digest tampering"
+  },
+  {
+    "id": "E04",
+    "requirement": "missing artifact bytes remain explicitly unavailable.",
+    "status": "PASS",
+    "evidence": "test_sources: missing artifact unavailable"
+  },
+  {
+    "id": "E05",
+    "requirement": "reproduction steps include preconditions and expected/actual behavior.",
+    "status": "PASS",
+    "evidence": "test_workflow: required expected/observed preconditions and steps"
+  },
+  {
+    "id": "E06",
+    "requirement": "source test results are not rerun or modified by P-010.",
+    "status": "PASS",
+    "evidence": "test_sources and demo: read-only source bytes, no source runner invoked by P-010"
+  },
+  {
+    "id": "E07",
+    "requirement": "evidence excerpts are allowlisted and redacted before report inclusion.",
+    "status": "PASS",
+    "evidence": "test_workflow: explicit excerpt selection and redaction"
+  },
+  {
+    "id": "E08",
+    "requirement": "report evidence appendix preserves source limitations.",
+    "status": "PASS",
+    "evidence": "test_workflow: evidence appendix limitations"
+  },
+  {
+    "id": "E09",
+    "requirement": "evidence hashes do not claim source authenticity or trusted time.",
+    "status": "PASS",
+    "evidence": "test_workflow: hash limitation statement"
+  },
+  {
+    "id": "E10",
+    "requirement": "report/source digests detect accidental mutation.",
+    "status": "PASS",
+    "evidence": "test_workflow: modified package and record chain rejected"
+  },
+  {
+    "id": "M01",
+    "requirement": "local synthetic Redmine integration can be started and stopped safely.",
+    "status": "PASS",
+    "evidence": "verify-redmine.py: isolated native start and cleanup"
+  },
+  {
+    "id": "M02",
+    "requirement": "dry-run mode creates no issues.",
+    "status": "PASS",
+    "evidence": "verify-redmine.py: native issue count stays zero during dry run"
+  },
+  {
+    "id": "M03",
+    "requirement": "idempotent sync does not create duplicate issues.",
+    "status": "PASS",
+    "evidence": "verify-redmine.py and test_redmine: idempotent and lost-reply cases"
+  },
+  {
+    "id": "M04",
+    "requirement": "explicit mapping links a P-010 finding to the correct Redmine issue.",
+    "status": "PASS",
+    "evidence": "verify-redmine.py and test_redmine: exact issue readback and binding"
+  },
+  {
+    "id": "M05",
+    "requirement": "permission denial is handled safely.",
+    "status": "PASS",
+    "evidence": "verify-redmine.py: actual native read-only account cannot create"
+  },
+  {
+    "id": "M06",
+    "requirement": "API outage does not corrupt canonical P-010 records.",
+    "status": "PASS",
+    "evidence": "test_redmine: outage, ownership and malformed listing"
+  },
+  {
+    "id": "M07",
+    "requirement": "conflicting Redmine/P-010 edits are surfaced for reconciliation.",
+    "status": "PASS",
+    "evidence": "verify-redmine.py: edited issue preserved and retry refused"
+  },
+  {
+    "id": "M08",
+    "requirement": "issue closure does not automatically close a finding.",
+    "status": "PASS",
+    "evidence": "test_redmine: remote closure leaves canonical finding unchanged"
+  },
+  {
+    "id": "M09",
+    "requirement": "no external Redmine write occurs without explicit authorization.",
+    "status": "PASS",
+    "evidence": "test_redmine: invalid destination and exact write confirmation"
+  },
+  {
+    "id": "M10",
+    "requirement": "Redmine credentials never appear in Git, logs or reports.",
+    "status": "PASS",
+    "evidence": "test_redmine and native fixture: ignored secrets, private container tokens, exported field inspection"
+  },
+  {
+    "id": "O01",
+    "requirement": "exact official OSCAL schema version and hash are recorded.",
+    "status": "PASS",
+    "evidence": "test_frameworks: five byte-pinned official schemas with release identity"
+  },
+  {
+    "id": "O02",
+    "requirement": "valid OSCAL output passes official schema validation when prerequisites exist.",
+    "status": "PASS",
+    "evidence": "test_frameworks: actual official Assessment Results schema and linked local context"
+  },
+  {
+    "id": "O03",
+    "requirement": "missing SSP/catalog prerequisites result in explicit nonconformant draft/block.",
+    "status": "PASS",
+    "evidence": "test_frameworks and demo: labelled missing-context mapping draft"
+  },
+  {
+    "id": "O04",
+    "requirement": "P-003's invalid OSCAL draft is never relabelled valid.",
+    "status": "PASS",
+    "evidence": "test_sources: reject P-003 draft promotion"
+  },
+  {
+    "id": "O05",
+    "requirement": "schema validation is not presented as certification or ATO.",
+    "status": "PASS",
+    "evidence": "test_frameworks: structured validation assurance limitation"
+  },
+  {
+    "id": "O06",
+    "requirement": "MITRE ATLAS source commit/version is recorded.",
+    "status": "PASS",
+    "evidence": "test_frameworks: exact ATLAS version, digest, source commit and IDs"
+  },
+  {
+    "id": "O07",
+    "requirement": "accepted technique mappings require exact IDs and human rationale.",
+    "status": "PASS",
+    "evidence": "test_frameworks: technique identity, evidence and reviewed acceptance"
+  },
+  {
+    "id": "O08",
+    "requirement": "ATLAS technique mapping is not treated as proof of exploitation.",
+    "status": "PASS",
+    "evidence": "test_frameworks: mapping leaves finding unchanged"
+  },
+  {
+    "id": "O09",
+    "requirement": "unknown/removed technique IDs are preserved as unresolved historical references.",
+    "status": "PASS",
+    "evidence": "test_frameworks: unresolved historical reference retained"
+  },
+  {
+    "id": "O10",
+    "requirement": "unsupported framework fields are listed rather than fabricated.",
+    "status": "PASS",
+    "evidence": "test_frameworks: explicit unsupported framework fields"
+  },
+  {
+    "id": "L01",
+    "requirement": "actual Langfuse trace reference can be validated when a supported service exists.",
+    "status": "NOT_TESTED",
+    "evidence": "Native Langfuse service unavailable for P-010 in this delivery; verified endpoint contract double"
+  },
+  {
+    "id": "L02",
+    "requirement": "unavailable Langfuse integration is marked NOT_TESTED.",
+    "status": "PASS",
+    "evidence": "test_frameworks: reference-only default and unavailable profile status"
+  },
+  {
+    "id": "L03",
+    "requirement": "raw prompts/completions are not copied into reports by default.",
+    "status": "PASS",
+    "evidence": "test_frameworks and test_sources: omit prompts, completions and arbitrary response content"
+  },
+  {
+    "id": "L04",
+    "requirement": "Langfuse credentials are not exposed to browser clients or Git.",
+    "status": "PASS",
+    "evidence": "test_frameworks and Git inventory: no hosted client, Langfuse keys private"
+  },
+  {
+    "id": "L05",
+    "requirement": "planted synthetic secrets are absent from generated reports.",
+    "status": "PASS",
+    "evidence": "test_workflow and demo: secret canary not exported"
+  },
+  {
+    "id": "L06",
+    "requirement": "synthetic PII canaries are redacted or rejected according to policy.",
+    "status": "PASS",
+    "evidence": "test_workflow and demo: PII canary redacted"
+  },
+  {
+    "id": "L07",
+    "requirement": "untrusted imported Markdown/HTML cannot execute active content in report previews.",
+    "status": "PASS",
+    "evidence": "test_frameworks: active Markdown/HTML syntax neutralized"
+  },
+  {
+    "id": "L08",
+    "requirement": "raw source fields outside the allowlist do not leak into exports.",
+    "status": "PASS",
+    "evidence": "test_workflow and test_sources: field allowlists, prohibited fields refused"
+  },
+  {
+    "id": "L09",
+    "requirement": "redaction failure blocks report approval.",
+    "status": "PASS",
+    "evidence": "test_workflow: simulated redaction gate failure blocks approval"
+  },
+  {
+    "id": "L10",
+    "requirement": "privacy omissions and redaction policy version are recorded.",
+    "status": "PASS",
+    "evidence": "test_workflow: manifest includes privacy policy version"
+  },
+  {
+    "id": "Q01",
+    "requirement": "report cannot be approved with unresolved required quality gates.",
+    "status": "PASS",
+    "evidence": "test_workflow: unresolved content and review block approval"
+  },
+  {
+    "id": "Q02",
+    "requirement": "every confirmed finding in a report has reviewer validation.",
+    "status": "PASS",
+    "evidence": "test_workflow: every confirmed example has reviewer and inspected evidence"
+  },
+  {
+    "id": "Q03",
+    "requirement": "every final severity has rationale and rubric version.",
+    "status": "PASS",
+    "evidence": "test_workflow: severity rationale and rubric required"
+  },
+  {
+    "id": "Q04",
+    "requirement": "blocked and not-tested activities remain visible.",
+    "status": "PASS",
+    "evidence": "test_workflow: reports retain NOT_TESTED and other coverage limits"
+  },
+  {
+    "id": "Q05",
+    "requirement": "no unsupported executive-summary claim is generated.",
+    "status": "PASS",
+    "evidence": "test_workflow: generated summary uses typed counts and supplied narrative"
+  },
+  {
+    "id": "Q06",
+    "requirement": "report provenance distinguishes generated, AI-assisted and human-authored content.",
+    "status": "PASS",
+    "evidence": "test_workflow: narrative and review provenance"
+  },
+  {
+    "id": "Q07",
+    "requirement": "report approval requires an attributable reviewer decision.",
+    "status": "PASS",
+    "evidence": "test_workflow: approval lease and independent attributed reviewer"
+  },
+  {
+    "id": "Q08",
+    "requirement": "report version changes preserve the previous approved report.",
+    "status": "PASS",
+    "evidence": "test_workflow: approved historical versions protected"
+  },
+  {
+    "id": "Q09",
+    "requirement": "audit log mutation is detected within the documented threat model.",
+    "status": "PASS",
+    "evidence": "test_workflow: audit mutation or missing version detected"
+  },
+  {
+    "id": "Q10",
+    "requirement": "retention applies only to P-010-owned data.",
+    "status": "PASS",
+    "evidence": "test_workflow: eligible scope and atomic retention, source bytes unchanged"
+  },
+  {
+    "id": "Q11",
+    "requirement": "cleanup preserves P-001 through P-009 source and runtime resources.",
+    "status": "PASS",
+    "evidence": "verify-redmine.py and test_redmine: label-scoped cleanup and sibling inventory"
+  },
+  {
+    "id": "Q12",
+    "requirement": "no deletion or modification is made to source artifacts or Redmine issues.",
+    "status": "PASS",
+    "evidence": "test_workflow and test_redmine: source preservation and no Redmine deletion operation"
+  }
+]

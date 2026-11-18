@@ -1,0 +1,241 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Ref",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "AUTHOR",
+            "REVIEWER",
+            "REMEDIATION_OWNER",
+            "RISK_OWNER",
+            "CUSTODIAN"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "role"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "Decision": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "authorship": {
+          "enum": [
+            "HUMAN_AUTHORED",
+            "AI_ASSISTED",
+            "TEMPLATE_GENERATED",
+            "IMPORTED",
+            "TRAINING_FIXTURE"
+          ],
+          "title": "Authorship",
+          "type": "string"
+        },
+        "decided_at": {
+          "format": "date-time",
+          "title": "Decided At",
+          "type": "string"
+        },
+        "rationale": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor",
+        "authorship",
+        "rationale",
+        "decided_at"
+      ],
+      "title": "Decision",
+      "type": "object"
+    },
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "catalog_commit": {
+      "pattern": "^[a-f0-9]{40}$",
+      "title": "Catalog Commit",
+      "type": "string"
+    },
+    "catalog_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Catalog Sha256",
+      "type": "string"
+    },
+    "catalog_url": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Catalog Url",
+      "type": "string"
+    },
+    "catalog_version": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Catalog Version",
+      "type": "string"
+    },
+    "confidence": {
+      "enum": [
+        "UNKNOWN",
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "title": "Confidence",
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "finding": {
+      "$ref": "#/$defs/Link"
+    },
+    "limitations": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Limitations",
+      "type": "array"
+    },
+    "review": {
+      "$ref": "#/$defs/Decision"
+    },
+    "schema_version": {
+      "const": "p010-atlas-mapping-1.0",
+      "default": "p010-atlas-mapping-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "CANDIDATE",
+        "REVIEWED",
+        "ACCEPTED",
+        "REJECTED",
+        "NOT_APPLICABLE"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "technique_id": {
+      "pattern": "^AML\\.T\\d{4}(?:\\.\\d{3})?$",
+      "title": "Technique Id",
+      "type": "string"
+    },
+    "technique_url": {
+      "anyOf": [
+        {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Technique Url"
+    },
+    "title": {
+      "anyOf": [
+        {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Title"
+    }
+  },
+  "required": [
+    "technique_id",
+    "state",
+    "confidence",
+    "evidence_refs",
+    "limitations",
+    "finding",
+    "title",
+    "catalog_version",
+    "catalog_commit",
+    "catalog_sha256",
+    "catalog_url",
+    "technique_url",
+    "review"
+  ],
+  "title": "AtlasMapping",
+  "type": "object"
+}

@@ -1,0 +1,3 @@
+# Preserve exact upstream NIST release bytes for the declared SHA-256 pins.
+data/oscal/*.json -text -whitespace
+data/oscal/LICENSE.md -text -whitespace

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+umask 077
+mkdir -p .runtime
+export UV_CACHE_DIR="${UV_CACHE_DIR:-$PWD/.runtime/uv-cache}"
+if [[ ! -x .venv/bin/python ]]; then
+  uv venv --python 3.12 .venv
+fi
+uv pip sync --python .venv/bin/python --require-hashes requirements.lock

@@ -1,0 +1,299 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Ref",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "AUTHOR",
+            "REVIEWER",
+            "REMEDIATION_OWNER",
+            "RISK_OWNER",
+            "CUSTODIAN"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "role"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "Decision": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "authorship": {
+          "enum": [
+            "HUMAN_AUTHORED",
+            "AI_ASSISTED",
+            "TEMPLATE_GENERATED",
+            "IMPORTED",
+            "TRAINING_FIXTURE"
+          ],
+          "title": "Authorship",
+          "type": "string"
+        },
+        "decided_at": {
+          "format": "date-time",
+          "title": "Decided At",
+          "type": "string"
+        },
+        "rationale": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor",
+        "authorship",
+        "rationale",
+        "decided_at"
+      ],
+      "title": "Decision",
+      "type": "object"
+    },
+    "Gate": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Code",
+          "type": "string"
+        },
+        "detail": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Detail",
+          "type": "string"
+        },
+        "passed": {
+          "title": "Passed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "code",
+        "passed",
+        "detail"
+      ],
+      "title": "Gate",
+      "type": "object"
+    },
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    },
+    "ReportNarrative": {
+      "additionalProperties": false,
+      "properties": {
+        "architecture_context": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Architecture Context",
+          "type": "string"
+        },
+        "authorship": {
+          "enum": [
+            "HUMAN_AUTHORED",
+            "AI_ASSISTED",
+            "TEMPLATE_GENERATED",
+            "IMPORTED",
+            "TRAINING_FIXTURE"
+          ],
+          "title": "Authorship",
+          "type": "string"
+        },
+        "executive_summary": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Executive Summary",
+          "type": "string"
+        },
+        "follow_up": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Follow Up",
+          "type": "string"
+        },
+        "limitations": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "title": "Limitations",
+          "type": "array"
+        },
+        "management_response": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Management Response",
+          "type": "string"
+        },
+        "methodology": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Methodology",
+          "type": "string"
+        }
+      },
+      "required": [
+        "executive_summary",
+        "methodology",
+        "architecture_context",
+        "management_response",
+        "follow_up",
+        "limitations",
+        "authorship"
+      ],
+      "title": "ReportNarrative",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "approvals": {
+      "items": {
+        "$ref": "#/$defs/Decision"
+      },
+      "title": "Approvals",
+      "type": "array"
+    },
+    "author": {
+      "$ref": "#/$defs/Decision"
+    },
+    "gates": {
+      "items": {
+        "$ref": "#/$defs/Gate"
+      },
+      "title": "Gates",
+      "type": "array"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    },
+    "narrative": {
+      "$ref": "#/$defs/ReportNarrative"
+    },
+    "oscal_conformance": {
+      "const": "NOT VALID OSCAL",
+      "default": "NOT VALID OSCAL",
+      "title": "Oscal Conformance",
+      "type": "string"
+    },
+    "privacy_policy": {
+      "const": "p010-minimization-1.0",
+      "default": "p010-minimization-1.0",
+      "title": "Privacy Policy",
+      "type": "string"
+    },
+    "reviews": {
+      "items": {
+        "$ref": "#/$defs/Decision"
+      },
+      "title": "Reviews",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "p010-report-package-1.0",
+      "default": "p010-report-package-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_record_versions": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "title": "Source Record Versions",
+      "type": "array"
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "REVIEW_READY",
+        "REVIEWED",
+        "APPROVED_FOR_DELIVERY",
+        "PUBLISHED"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "template_version": {
+      "const": "p010-markdown-1.0",
+      "default": "p010-markdown-1.0",
+      "title": "Template Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "author",
+    "narrative",
+    "source_record_versions",
+    "gates",
+    "generated_at"
+  ],
+  "title": "Report",
+  "type": "object"
+}

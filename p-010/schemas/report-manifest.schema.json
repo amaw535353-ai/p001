@@ -1,0 +1,108 @@
+{
+  "$defs": {
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "files": {
+      "additionalProperties": {
+        "pattern": "^[a-f0-9]{64}$",
+        "type": "string"
+      },
+      "title": "Files",
+      "type": "object"
+    },
+    "hash_limitation": {
+      "default": "SHA-256 checks byte consistency. Source authenticity, trusted time and independent custody are unverified.",
+      "title": "Hash Limitation",
+      "type": "string"
+    },
+    "privacy_policy": {
+      "const": "p010-minimization-1.0",
+      "default": "p010-minimization-1.0",
+      "title": "Privacy Policy",
+      "type": "string"
+    },
+    "report": {
+      "$ref": "#/$defs/Link"
+    },
+    "schema_version": {
+      "const": "p010-report-manifest-1.0",
+      "default": "p010-report-manifest-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_hashes": {
+      "patternProperties": {
+        "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "title": "Source Hashes",
+      "type": "object"
+    },
+    "source_record_versions": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "title": "Source Record Versions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "report",
+    "files",
+    "source_record_versions",
+    "source_hashes"
+  ],
+  "title": "ReportManifest",
+  "type": "object"
+}

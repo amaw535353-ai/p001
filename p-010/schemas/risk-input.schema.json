@@ -1,0 +1,187 @@
+{
+  "$defs": {
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "affected_assets": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+        "type": "string"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Affected Assets",
+      "type": "array"
+    },
+    "applicability": {
+      "enum": [
+        "APPLICABLE",
+        "NOT_APPLICABLE",
+        "OUT_OF_SCOPE",
+        "UNKNOWN",
+        "NEEDS_INFORMATION"
+      ],
+      "title": "Applicability",
+      "type": "string"
+    },
+    "basis_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "title": "Basis Refs",
+      "type": "array"
+    },
+    "catalog_source": {
+      "$ref": "#/$defs/Link"
+    },
+    "control_refs": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Control Refs",
+      "type": "array"
+    },
+    "current_control_state": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Current Control State",
+      "type": "string"
+    },
+    "description": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Description",
+      "type": "string"
+    },
+    "finding_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "title": "Finding Refs",
+      "type": "array"
+    },
+    "inherent_risk": {
+      "enum": [
+        "UNRATED",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ],
+      "title": "Inherent Risk",
+      "type": "string"
+    },
+    "residual_risk": {
+      "enum": [
+        "UNRATED",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ],
+      "title": "Residual Risk",
+      "type": "string"
+    },
+    "risk_owner_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Risk Owner Ref",
+      "type": "string"
+    },
+    "source_risk_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Source Risk Id",
+      "type": "string"
+    },
+    "threat_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "title": "Threat Refs",
+      "type": "array"
+    },
+    "treatment": {
+      "enum": [
+        "MITIGATE",
+        "AVOID",
+        "TRANSFER_SHARE",
+        "ACCEPT"
+      ],
+      "title": "Treatment",
+      "type": "string"
+    },
+    "treatment_plan": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Treatment Plan",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_risk_id",
+    "catalog_source",
+    "description",
+    "affected_assets",
+    "applicability",
+    "inherent_risk",
+    "current_control_state",
+    "residual_risk",
+    "treatment",
+    "treatment_plan",
+    "risk_owner_ref"
+  ],
+  "title": "RiskInput",
+  "type": "object"
+}

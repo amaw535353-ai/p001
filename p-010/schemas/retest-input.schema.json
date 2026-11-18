@@ -1,0 +1,175 @@
+{
+  "$defs": {
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    },
+    "TestRef": {
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/Link"
+        },
+        "test_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Test Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "test_id"
+      ],
+      "title": "TestRef",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "comparable": {
+      "title": "Comparable",
+      "type": "boolean"
+    },
+    "configuration_comparison": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Configuration Comparison",
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "expected_behavior": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Expected Behavior",
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Limitations",
+      "type": "array"
+    },
+    "new_tests": {
+      "items": {
+        "$ref": "#/$defs/TestRef"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "New Tests",
+      "type": "array"
+    },
+    "observed_behavior": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Observed Behavior",
+      "type": "string"
+    },
+    "original_tests": {
+      "items": {
+        "$ref": "#/$defs/TestRef"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Original Tests",
+      "type": "array"
+    },
+    "plan_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Link"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "regression_tests": {
+      "items": {
+        "$ref": "#/$defs/TestRef"
+      },
+      "maxItems": 30,
+      "title": "Regression Tests",
+      "type": "array"
+    },
+    "remediation": {
+      "$ref": "#/$defs/Link"
+    },
+    "source_version_comparison": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Source Version Comparison",
+      "type": "string"
+    }
+  },
+  "required": [
+    "remediation",
+    "original_tests",
+    "new_tests",
+    "comparable",
+    "configuration_comparison",
+    "source_version_comparison",
+    "expected_behavior",
+    "observed_behavior",
+    "evidence_refs",
+    "limitations"
+  ],
+  "title": "RetestInput",
+  "type": "object"
+}

@@ -1,0 +1,108 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Ref",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "AUTHOR",
+            "REVIEWER",
+            "REMEDIATION_OWNER",
+            "RISK_OWNER",
+            "CUSTODIAN"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "role"
+      ],
+      "title": "Actor",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "actor": {
+      "$ref": "#/$defs/Actor"
+    },
+    "classification": {
+      "default": "SYNTHETIC_INTERNAL",
+      "enum": [
+        "SYNTHETIC_INTERNAL",
+        "SENSITIVE_SOURCE_REFERENCE"
+      ],
+      "title": "Classification",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "data": {
+      "additionalProperties": true,
+      "title": "Data",
+      "type": "object"
+    },
+    "engagement_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Engagement Id",
+      "type": "string"
+    },
+    "id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "engagement",
+        "source",
+        "evidence",
+        "observation",
+        "finding",
+        "risk",
+        "remediation",
+        "retest",
+        "retest-plan",
+        "acceptance",
+        "atlas",
+        "report",
+        "redmine-sync"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "p010-record-version-1.0",
+      "default": "p010-record-version-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "version": {
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "kind",
+    "id",
+    "version",
+    "engagement_id",
+    "created_at",
+    "actor",
+    "data"
+  ],
+  "title": "Envelope",
+  "type": "object"
+}

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+p010_project="$(cd "$(dirname "$0")/.." && pwd)"
+if [[ ! -x "$p010_project/.venv/bin/python" ]]; then
+  echo 'Run p-010/scripts/setup first.' >&2
+  exit 2
+fi
+export PYTHONPATH="$p010_project/src${PYTHONPATH:+:$PYTHONPATH}"
+exec "$p010_project/.venv/bin/python" -m p010.cli "$@"

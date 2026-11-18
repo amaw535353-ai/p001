@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "project_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "project_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Project Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_ref",
+    "project_id"
+  ],
+  "title": "Binding",
+  "type": "object"
+}

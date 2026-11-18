@@ -1,0 +1,310 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Ref",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "AUTHOR",
+            "REVIEWER",
+            "REMEDIATION_OWNER",
+            "RISK_OWNER",
+            "CUSTODIAN"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "role"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "Decision": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "authorship": {
+          "enum": [
+            "HUMAN_AUTHORED",
+            "AI_ASSISTED",
+            "TEMPLATE_GENERATED",
+            "IMPORTED",
+            "TRAINING_FIXTURE"
+          ],
+          "title": "Authorship",
+          "type": "string"
+        },
+        "decided_at": {
+          "format": "date-time",
+          "title": "Decided At",
+          "type": "string"
+        },
+        "rationale": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor",
+        "authorship",
+        "rationale",
+        "decided_at"
+      ],
+      "title": "Decision",
+      "type": "object"
+    },
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    },
+    "TestRef": {
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/Link"
+        },
+        "test_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Test Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "test_id"
+      ],
+      "title": "TestRef",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "comparable": {
+      "title": "Comparable",
+      "type": "boolean"
+    },
+    "configuration_comparison": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Configuration Comparison",
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "expected_behavior": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Expected Behavior",
+      "type": "string"
+    },
+    "finding": {
+      "$ref": "#/$defs/Link"
+    },
+    "limitations": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Limitations",
+      "type": "array"
+    },
+    "new_tests": {
+      "items": {
+        "$ref": "#/$defs/TestRef"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "New Tests",
+      "type": "array"
+    },
+    "observed_behavior": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Observed Behavior",
+      "type": "string"
+    },
+    "original_tests": {
+      "items": {
+        "$ref": "#/$defs/TestRef"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Original Tests",
+      "type": "array"
+    },
+    "plan_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Link"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "regression_results": {
+      "items": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "BLOCKED",
+          "NOT_TESTED",
+          "INCONCLUSIVE",
+          "NOT_APPLICABLE",
+          "FLAKY"
+        ],
+        "type": "string"
+      },
+      "title": "Regression Results",
+      "type": "array"
+    },
+    "regression_tests": {
+      "items": {
+        "$ref": "#/$defs/TestRef"
+      },
+      "maxItems": 30,
+      "title": "Regression Tests",
+      "type": "array"
+    },
+    "remediation": {
+      "$ref": "#/$defs/Link"
+    },
+    "result_status": {
+      "anyOf": [
+        {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "BLOCKED",
+            "NOT_TESTED",
+            "INCONCLUSIVE",
+            "NOT_APPLICABLE",
+            "FLAKY"
+          ],
+          "type": "string"
+        },
+        {
+          "const": "NOT_COMPARABLE",
+          "type": "string"
+        }
+      ],
+      "title": "Result Status"
+    },
+    "review": {
+      "$ref": "#/$defs/Decision"
+    },
+    "schema_version": {
+      "const": "p010-retest-1.0",
+      "default": "p010-retest-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_results": {
+      "items": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "BLOCKED",
+          "NOT_TESTED",
+          "INCONCLUSIVE",
+          "NOT_APPLICABLE",
+          "FLAKY"
+        ],
+        "type": "string"
+      },
+      "title": "Source Results",
+      "type": "array"
+    },
+    "source_version_comparison": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Source Version Comparison",
+      "type": "string"
+    }
+  },
+  "required": [
+    "remediation",
+    "original_tests",
+    "new_tests",
+    "comparable",
+    "configuration_comparison",
+    "source_version_comparison",
+    "expected_behavior",
+    "observed_behavior",
+    "evidence_refs",
+    "limitations",
+    "finding",
+    "source_results",
+    "regression_results",
+    "result_status",
+    "review"
+  ],
+  "title": "Retest",
+  "type": "object"
+}

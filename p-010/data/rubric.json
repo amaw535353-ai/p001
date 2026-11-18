@@ -1,0 +1,66 @@
+{
+  "version": "p010-risk-rubric-1.0",
+  "purpose": "Local P-010 ordinal suggestion for human severity assessment. Confidence, evidence strength and business risk are separate.",
+  "levels": {
+    "UNRATED": "Unknown impact, exploitability, or insufficient evidence.",
+    "LOW": "Limited and bounded failure with modest consequences.",
+    "MEDIUM": "Material failure with constrained exposure or prerequisites.",
+    "HIGH": "Severe consequences or repeatable failure with material exposure.",
+    "CRITICAL": "Systemic consequences with a repeatable or likely path."
+  },
+  "impacts": {
+    "UNKNOWN": "No defensible consequence assessment.",
+    "LIMITED": "Single function or synthetic record with contained impact.",
+    "MATERIAL": "Meaningful security-property failure for a defined asset or workflow.",
+    "SEVERE": "Substantial impact on sensitive data, required integrity or service availability.",
+    "SYSTEMIC": "Widespread or critical process impact across documented boundaries."
+  },
+  "exploitability": {
+    "UNKNOWN": "Path and prerequisites are not established.",
+    "HIGH_PRECONDITIONS": "Specialized access or several restrictive conditions.",
+    "CONDITIONAL": "A documented condition narrows the exposed cases.",
+    "LIKELY": "Accessible path with ordinary prerequisites.",
+    "REPEATABLE": "Observed consistently within the assessed conditions."
+  },
+  "matrix": {
+    "LIMITED": {
+      "HIGH_PRECONDITIONS": "LOW",
+      "CONDITIONAL": "LOW",
+      "LIKELY": "LOW",
+      "REPEATABLE": "MEDIUM"
+    },
+    "MATERIAL": {
+      "HIGH_PRECONDITIONS": "LOW",
+      "CONDITIONAL": "MEDIUM",
+      "LIKELY": "MEDIUM",
+      "REPEATABLE": "HIGH"
+    },
+    "SEVERE": {
+      "HIGH_PRECONDITIONS": "MEDIUM",
+      "CONDITIONAL": "MEDIUM",
+      "LIKELY": "HIGH",
+      "REPEATABLE": "HIGH"
+    },
+    "SYSTEMIC": {
+      "HIGH_PRECONDITIONS": "MEDIUM",
+      "CONDITIONAL": "HIGH",
+      "LIKELY": "CRITICAL",
+      "REPEATABLE": "CRITICAL"
+    }
+  },
+  "rules": [
+    "Use the matrix only after recording exposure, prerequisites and compensating controls.",
+    "Preserve the suggestion and require attributable rationale for the selected rating and any override.",
+    "Do not derive risk owner acceptance or business risk from the suggestion.",
+    "CVSS is optional and recorded as a separate sourced vector when applicable."
+  ],
+  "evidence_quality": {
+    "UNKNOWN": "The record is unavailable or its quality was not assessed.",
+    "INSUFFICIENT": "The record cannot substantiate the claimed behavior.",
+    "LIMITED": "A direct observation with a material documented limitation.",
+    "CORROBORATED": "Comparable evidence with independently inspectable supporting context."
+  },
+  "change_history": [
+    "1.0: initial P-010 synthetic rubric."
+  ]
+}

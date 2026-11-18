@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "architecture_context": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Architecture Context",
+      "type": "string"
+    },
+    "authorship": {
+      "enum": [
+        "HUMAN_AUTHORED",
+        "AI_ASSISTED",
+        "TEMPLATE_GENERATED",
+        "IMPORTED",
+        "TRAINING_FIXTURE"
+      ],
+      "title": "Authorship",
+      "type": "string"
+    },
+    "executive_summary": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Executive Summary",
+      "type": "string"
+    },
+    "follow_up": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Follow Up",
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Limitations",
+      "type": "array"
+    },
+    "management_response": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Management Response",
+      "type": "string"
+    },
+    "methodology": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Methodology",
+      "type": "string"
+    }
+  },
+  "required": [
+    "executive_summary",
+    "methodology",
+    "architecture_context",
+    "management_response",
+    "follow_up",
+    "limitations",
+    "authorship"
+  ],
+  "title": "ReportNarrative",
+  "type": "object"
+}

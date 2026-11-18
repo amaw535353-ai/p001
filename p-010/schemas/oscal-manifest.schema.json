@@ -1,0 +1,133 @@
+{
+  "$defs": {
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "conformance": {
+      "enum": [
+        "NOT VALID OSCAL",
+        "VALIDATED_LOCAL_SUBSET",
+        "SCHEMA_VALID_ONLY"
+      ],
+      "title": "Conformance",
+      "type": "string"
+    },
+    "context_hashes": {
+      "additionalProperties": {
+        "pattern": "^[a-f0-9]{64}$",
+        "type": "string"
+      },
+      "title": "Context Hashes",
+      "type": "object"
+    },
+    "controls": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Controls",
+      "type": "array"
+    },
+    "kind": {
+      "enum": [
+        "oscal-assessment-results",
+        "oscal-mapping-draft",
+        "oscal-validation"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    },
+    "missing": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing",
+      "type": "array"
+    },
+    "source_report": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Link"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "unsupported": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unsupported",
+      "type": "array"
+    }
+  },
+  "required": [
+    "kind",
+    "conformance",
+    "metadata",
+    "limitations"
+  ],
+  "title": "OscalManifest",
+  "type": "object"
+}

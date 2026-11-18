@@ -1,0 +1,213 @@
+{
+  "$defs": {
+    "Artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "declared_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Declared Sha256",
+          "type": "string"
+        },
+        "declared_size": {
+          "maximum": 4194304,
+          "minimum": 0,
+          "title": "Declared Size",
+          "type": "integer"
+        },
+        "integrity": {
+          "enum": [
+            "VERIFIED_BYTES",
+            "REFERENCE_ONLY",
+            "UNAVAILABLE"
+          ],
+          "title": "Integrity",
+          "type": "string"
+        },
+        "media_type": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Media Type",
+          "type": "string"
+        },
+        "path": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "media_type",
+        "declared_sha256",
+        "declared_size",
+        "integrity"
+      ],
+      "title": "Artifact",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "items": {
+        "$ref": "#/$defs/Artifact"
+      },
+      "maxItems": 128,
+      "title": "Artifacts",
+      "type": "array"
+    },
+    "contract": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Contract",
+      "type": "string"
+    },
+    "imported_at": {
+      "format": "date-time",
+      "title": "Imported At",
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Limitations",
+      "type": "array"
+    },
+    "omissions": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Omissions",
+      "type": "array"
+    },
+    "payload": {
+      "additionalProperties": true,
+      "title": "Payload",
+      "type": "object"
+    },
+    "privacy_policy": {
+      "const": "p010-minimization-1.0",
+      "default": "p010-minimization-1.0",
+      "title": "Privacy Policy",
+      "type": "string"
+    },
+    "project": {
+      "enum": [
+        "P-003",
+        "P-004",
+        "P-005",
+        "P-006",
+        "P-007",
+        "P-008",
+        "P-009",
+        "P-010",
+        "Langfuse"
+      ],
+      "title": "Project",
+      "type": "string"
+    },
+    "schema_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Schema Sha256"
+    },
+    "schema_version": {
+      "const": "p010-source-1.0",
+      "default": "p010-source-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_commit": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{40}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Commit"
+    },
+    "source_record_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Source Record Id",
+      "type": "string"
+    },
+    "source_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Sha256"
+    },
+    "source_time": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Time"
+    },
+    "source_version": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Source Version",
+      "type": "string"
+    },
+    "transform_version": {
+      "const": "p010-source-projection-1.0",
+      "default": "p010-source-projection-1.0",
+      "title": "Transform Version",
+      "type": "string"
+    },
+    "validation": {
+      "enum": [
+        "SCHEMA_VALIDATED",
+        "REFERENCE_ONLY",
+        "VERIFIED_BYTES",
+        "TRAINING_FIXTURE"
+      ],
+      "title": "Validation",
+      "type": "string"
+    }
+  },
+  "required": [
+    "project",
+    "contract",
+    "source_version",
+    "source_record_id",
+    "imported_at",
+    "validation",
+    "payload",
+    "limitations"
+  ],
+  "title": "SourceRecord",
+  "type": "object"
+}

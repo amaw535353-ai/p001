@@ -1,0 +1,514 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Ref",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "AUTHOR",
+            "REVIEWER",
+            "REMEDIATION_OWNER",
+            "RISK_OWNER",
+            "CUSTODIAN"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "role"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "Decision": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "authorship": {
+          "enum": [
+            "HUMAN_AUTHORED",
+            "AI_ASSISTED",
+            "TEMPLATE_GENERATED",
+            "IMPORTED",
+            "TRAINING_FIXTURE"
+          ],
+          "title": "Authorship",
+          "type": "string"
+        },
+        "decided_at": {
+          "format": "date-time",
+          "title": "Decided At",
+          "type": "string"
+        },
+        "rationale": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor",
+        "authorship",
+        "rationale",
+        "decided_at"
+      ],
+      "title": "Decision",
+      "type": "object"
+    },
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    },
+    "SeverityDecision": {
+      "additionalProperties": false,
+      "properties": {
+        "business_context": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Business Context",
+          "type": "string"
+        },
+        "compensating_controls": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Compensating Controls",
+          "type": "array"
+        },
+        "confidence": {
+          "enum": [
+            "UNKNOWN",
+            "LOW",
+            "MEDIUM",
+            "HIGH"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "cvss_limitations": {
+          "anyOf": [
+            {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cvss Limitations"
+        },
+        "cvss_source": {
+          "anyOf": [
+            {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cvss Source"
+        },
+        "cvss_vector": {
+          "anyOf": [
+            {
+              "maxLength": 4096,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cvss Vector"
+        },
+        "cvss_version": {
+          "anyOf": [
+            {
+              "enum": [
+                "3.0",
+                "3.1",
+                "4.0"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cvss Version"
+        },
+        "decision": {
+          "$ref": "#/$defs/Decision"
+        },
+        "exploitability": {
+          "enum": [
+            "UNKNOWN",
+            "HIGH_PRECONDITIONS",
+            "CONDITIONAL",
+            "LIKELY",
+            "REPEATABLE"
+          ],
+          "title": "Exploitability",
+          "type": "string"
+        },
+        "exploitability_rationale": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Exploitability Rationale",
+          "type": "string"
+        },
+        "exposure": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Exposure",
+          "type": "string"
+        },
+        "impact": {
+          "enum": [
+            "UNKNOWN",
+            "LIMITED",
+            "MATERIAL",
+            "SEVERE",
+            "SYSTEMIC"
+          ],
+          "title": "Impact",
+          "type": "string"
+        },
+        "likelihood_rationale": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Likelihood Rationale",
+          "type": "string"
+        },
+        "rubric_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Rubric Sha256",
+          "type": "string"
+        },
+        "rubric_version": {
+          "const": "p010-risk-rubric-1.0",
+          "default": "p010-risk-rubric-1.0",
+          "title": "Rubric Version",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "UNRATED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "suggested_severity": {
+          "enum": [
+            "UNRATED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "title": "Suggested Severity",
+          "type": "string"
+        },
+        "uncertainty": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Uncertainty",
+          "type": "string"
+        }
+      },
+      "required": [
+        "severity",
+        "impact",
+        "exploitability",
+        "exposure",
+        "likelihood_rationale",
+        "exploitability_rationale",
+        "business_context",
+        "compensating_controls",
+        "uncertainty",
+        "confidence",
+        "rubric_sha256",
+        "suggested_severity",
+        "decision"
+      ],
+      "title": "SeverityDecision",
+      "type": "object"
+    },
+    "Validation": {
+      "additionalProperties": false,
+      "properties": {
+        "attacker_capability": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Attacker Capability",
+          "type": "string"
+        },
+        "availability_impact": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Availability Impact",
+          "type": "string"
+        },
+        "business_impact": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Business Impact",
+          "type": "string"
+        },
+        "control_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Control Ids",
+          "type": "array"
+        },
+        "data_impact": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Data Impact",
+          "type": "string"
+        },
+        "false_positive_analysis": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "False Positive Analysis",
+          "type": "string"
+        },
+        "inspected_evidence": {
+          "items": {
+            "$ref": "#/$defs/Link"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "title": "Inspected Evidence",
+          "type": "array"
+        },
+        "limitations": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "title": "Limitations",
+          "type": "array"
+        },
+        "reproduction_steps": {
+          "items": {
+            "maxLength": 4096,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "title": "Reproduction Steps",
+          "type": "array"
+        },
+        "requirement_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+            "type": "string"
+          },
+          "maxItems": 30,
+          "minItems": 1,
+          "title": "Requirement Ids",
+          "type": "array"
+        },
+        "security_impact": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Security Impact",
+          "type": "string"
+        }
+      },
+      "required": [
+        "requirement_ids",
+        "attacker_capability",
+        "reproduction_steps",
+        "security_impact",
+        "business_impact",
+        "data_impact",
+        "availability_impact",
+        "false_positive_analysis",
+        "limitations",
+        "inspected_evidence"
+      ],
+      "title": "Validation",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "author_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Author Ref",
+      "type": "string"
+    },
+    "executive_summary": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Executive Summary",
+      "type": "string"
+    },
+    "lifecycle": {
+      "default": "OPEN",
+      "enum": [
+        "OPEN",
+        "RESIDUAL_RISK_ACCEPTED",
+        "CLOSED"
+      ],
+      "title": "Lifecycle",
+      "type": "string"
+    },
+    "observation": {
+      "$ref": "#/$defs/Link"
+    },
+    "remediation_status": {
+      "default": "UNPLANNED",
+      "enum": [
+        "UNPLANNED",
+        "REMEDIATION_PLANNED",
+        "REMEDIATION_REPORTED"
+      ],
+      "title": "Remediation Status",
+      "type": "string"
+    },
+    "retest_status": {
+      "default": "NOT_TESTED",
+      "enum": [
+        "NOT_TESTED",
+        "PENDING_RETEST",
+        "RETEST_PASSED",
+        "RETEST_FAILED",
+        "INCONCLUSIVE"
+      ],
+      "title": "Retest Status",
+      "type": "string"
+    },
+    "review_history": {
+      "items": {
+        "$ref": "#/$defs/Decision"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Review History",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "p010-finding-1.0",
+      "default": "p010-finding-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "severity": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SeverityDecision"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "title": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "validation": {
+      "$ref": "#/$defs/Validation"
+    },
+    "validation_status": {
+      "enum": [
+        "CONFIRMED",
+        "WITHDRAWN"
+      ],
+      "title": "Validation Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "observation",
+    "title",
+    "executive_summary",
+    "author_ref",
+    "validation_status",
+    "validation",
+    "review_history"
+  ],
+  "title": "Finding",
+  "type": "object"
+}
