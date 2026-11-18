@@ -1,0 +1,197 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Ref",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "AUTHOR",
+            "REVIEWER",
+            "REMEDIATION_OWNER",
+            "RISK_OWNER",
+            "CUSTODIAN"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "role"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "Decision": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "authorship": {
+          "enum": [
+            "HUMAN_AUTHORED",
+            "AI_ASSISTED",
+            "TEMPLATE_GENERATED",
+            "IMPORTED",
+            "TRAINING_FIXTURE"
+          ],
+          "title": "Authorship",
+          "type": "string"
+        },
+        "decided_at": {
+          "format": "date-time",
+          "title": "Decided At",
+          "type": "string"
+        },
+        "rationale": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor",
+        "authorship",
+        "rationale",
+        "decided_at"
+      ],
+      "title": "Decision",
+      "type": "object"
+    },
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    },
+    "TestRef": {
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/Link"
+        },
+        "test_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Test Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "test_id"
+      ],
+      "title": "TestRef",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "comparability_criteria": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Comparability Criteria",
+      "type": "string"
+    },
+    "expected_behavior": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Expected Behavior",
+      "type": "string"
+    },
+    "finding": {
+      "$ref": "#/$defs/Link"
+    },
+    "original_tests": {
+      "items": {
+        "$ref": "#/$defs/TestRef"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Original Tests",
+      "type": "array"
+    },
+    "plan_provenance": {
+      "$ref": "#/$defs/Decision"
+    },
+    "planned_checks": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Planned Checks",
+      "type": "array"
+    },
+    "remediation": {
+      "$ref": "#/$defs/Link"
+    },
+    "schema_version": {
+      "const": "p010-retest-plan-1.0",
+      "default": "p010-retest-plan-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "remediation",
+    "original_tests",
+    "planned_checks",
+    "comparability_criteria",
+    "expected_behavior",
+    "finding",
+    "plan_provenance"
+  ],
+  "title": "RetestPlan",
+  "type": "object"
+}

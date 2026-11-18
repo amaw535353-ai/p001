@@ -1,0 +1,199 @@
+{
+  "$defs": {
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "alternative_explanations": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Alternative Explanations",
+      "type": "array"
+    },
+    "asset_refs": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+        "type": "string"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Asset Refs",
+      "type": "array"
+    },
+    "attacker_preconditions": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Attacker Preconditions",
+      "type": "array"
+    },
+    "authorship": {
+      "enum": [
+        "HUMAN_AUTHORED",
+        "AI_ASSISTED",
+        "TEMPLATE_GENERATED",
+        "IMPORTED",
+        "TRAINING_FIXTURE"
+      ],
+      "title": "Authorship",
+      "type": "string"
+    },
+    "context_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "title": "Context Refs",
+      "type": "array"
+    },
+    "description": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Description",
+      "type": "string"
+    },
+    "epistemic_status": {
+      "enum": [
+        "OBSERVED",
+        "DECLARED",
+        "INFERRED",
+        "UNKNOWN"
+      ],
+      "title": "Epistemic Status",
+      "type": "string"
+    },
+    "evidence_quality": {
+      "enum": [
+        "UNKNOWN",
+        "INSUFFICIENT",
+        "LIMITED",
+        "CORROBORATED"
+      ],
+      "title": "Evidence Quality",
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "expected_behavior": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Expected Behavior",
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Limitations",
+      "type": "array"
+    },
+    "observed_behavior": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Observed Behavior",
+      "type": "string"
+    },
+    "reproduction_conditions": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Reproduction Conditions",
+      "type": "string"
+    },
+    "scope_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Scope Ref",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "asset_refs",
+    "scope_ref",
+    "evidence_refs",
+    "expected_behavior",
+    "observed_behavior",
+    "attacker_preconditions",
+    "reproduction_conditions",
+    "evidence_quality",
+    "epistemic_status",
+    "alternative_explanations",
+    "limitations",
+    "authorship"
+  ],
+  "title": "ObservationDraft",
+  "type": "object"
+}

@@ -1,0 +1,203 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Ref",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "AUTHOR",
+            "REVIEWER",
+            "REMEDIATION_OWNER",
+            "RISK_OWNER",
+            "CUSTODIAN"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "role"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "Decision": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "authorship": {
+          "enum": [
+            "HUMAN_AUTHORED",
+            "AI_ASSISTED",
+            "TEMPLATE_GENERATED",
+            "IMPORTED",
+            "TRAINING_FIXTURE"
+          ],
+          "title": "Authorship",
+          "type": "string"
+        },
+        "decided_at": {
+          "format": "date-time",
+          "title": "Decided At",
+          "type": "string"
+        },
+        "rationale": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor",
+        "authorship",
+        "rationale",
+        "decided_at"
+      ],
+      "title": "Decision",
+      "type": "object"
+    },
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "affected_control": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Affected Control",
+      "type": "string"
+    },
+    "compensating_controls": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Compensating Controls",
+      "type": "array"
+    },
+    "dependencies": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Dependencies",
+      "type": "array"
+    },
+    "finding": {
+      "$ref": "#/$defs/Link"
+    },
+    "implementation": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Decision"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "owner_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Owner Ref",
+      "type": "string"
+    },
+    "recommendation": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Recommendation",
+      "type": "string"
+    },
+    "recommendation_provenance": {
+      "$ref": "#/$defs/Decision"
+    },
+    "schema_version": {
+      "const": "p010-remediation-1.0",
+      "default": "p010-remediation-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "target_date": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\d$",
+      "title": "Target Date",
+      "type": "string"
+    },
+    "verification_criteria": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Verification Criteria",
+      "type": "string"
+    }
+  },
+  "required": [
+    "recommendation",
+    "affected_control",
+    "owner_ref",
+    "target_date",
+    "dependencies",
+    "verification_criteria",
+    "compensating_controls",
+    "finding",
+    "recommendation_provenance"
+  ],
+  "title": "Remediation",
+  "type": "object"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "p010-reproduction-record-1.0",
+  "record_id": "fixture-metadata-before",
+  "asset_ref": "demo-a-health",
+  "collection_time": "2026-11-15T10:00:00Z",
+  "preconditions": [
+    "Use the recorded fictional diagnostic inventory."
+  ],
+  "steps": [
+    "Inspect the classification column of the static synthetic fixture.",
+    "Compare the fixture result with the local evidence policy."
+  ],
+  "expected": "Every diagnostic metadata row has a classification label.",
+  "observed": "One fictional diagnostic metadata row has no classification label.",
+  "status": "FAIL",
+  "configuration_ref": "fixture-diagnostic-inventory-v1",
+  "limitations": [
+    "Synthetic observation record. The subject of review is an inert local metadata row."
+  ]
+}

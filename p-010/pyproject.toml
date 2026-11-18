@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools==84.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "p010-consultancy"
+version = "1.0.0"
+description = "Local, evidence-linked AI security findings, risk register, and consultancy reports"
+requires-python = ">=3.12,<3.13"
+dependencies = ["pydantic==2.12.5", "jsonschema==4.26.0", "PyYAML==6.0.3", "regex==2026.11.9"]
+
+[project.scripts]
+p010 = "p010.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "S102", "S307"]
+
+[tool.mypy]
+python_version = "3.12"
+check_untyped_defs = true
+ignore_missing_imports = true

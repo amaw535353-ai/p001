@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "business_context": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Business Context",
+      "type": "string"
+    },
+    "compensating_controls": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Compensating Controls",
+      "type": "array"
+    },
+    "confidence": {
+      "enum": [
+        "UNKNOWN",
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "title": "Confidence",
+      "type": "string"
+    },
+    "cvss_limitations": {
+      "anyOf": [
+        {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cvss Limitations"
+    },
+    "cvss_source": {
+      "anyOf": [
+        {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cvss Source"
+    },
+    "cvss_vector": {
+      "anyOf": [
+        {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cvss Vector"
+    },
+    "cvss_version": {
+      "anyOf": [
+        {
+          "enum": [
+            "3.0",
+            "3.1",
+            "4.0"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cvss Version"
+    },
+    "exploitability": {
+      "enum": [
+        "UNKNOWN",
+        "HIGH_PRECONDITIONS",
+        "CONDITIONAL",
+        "LIKELY",
+        "REPEATABLE"
+      ],
+      "title": "Exploitability",
+      "type": "string"
+    },
+    "exploitability_rationale": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Exploitability Rationale",
+      "type": "string"
+    },
+    "exposure": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Exposure",
+      "type": "string"
+    },
+    "impact": {
+      "enum": [
+        "UNKNOWN",
+        "LIMITED",
+        "MATERIAL",
+        "SEVERE",
+        "SYSTEMIC"
+      ],
+      "title": "Impact",
+      "type": "string"
+    },
+    "likelihood_rationale": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Likelihood Rationale",
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "UNRATED",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "uncertainty": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Uncertainty",
+      "type": "string"
+    }
+  },
+  "required": [
+    "severity",
+    "impact",
+    "exploitability",
+    "exposure",
+    "likelihood_rationale",
+    "exploitability_rationale",
+    "business_context",
+    "compensating_controls",
+    "uncertainty",
+    "confidence"
+  ],
+  "title": "SeverityInput",
+  "type": "object"
+}

@@ -1,0 +1,290 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Ref",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "AUTHOR",
+            "REVIEWER",
+            "REMEDIATION_OWNER",
+            "RISK_OWNER",
+            "CUSTODIAN"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "role"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "Decision": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "authorship": {
+          "enum": [
+            "HUMAN_AUTHORED",
+            "AI_ASSISTED",
+            "TEMPLATE_GENERATED",
+            "IMPORTED",
+            "TRAINING_FIXTURE"
+          ],
+          "title": "Authorship",
+          "type": "string"
+        },
+        "decided_at": {
+          "format": "date-time",
+          "title": "Decided At",
+          "type": "string"
+        },
+        "rationale": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor",
+        "authorship",
+        "rationale",
+        "decided_at"
+      ],
+      "title": "Decision",
+      "type": "object"
+    },
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "affected_assets": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+        "type": "string"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Affected Assets",
+      "type": "array"
+    },
+    "applicability": {
+      "enum": [
+        "APPLICABLE",
+        "NOT_APPLICABLE",
+        "OUT_OF_SCOPE",
+        "UNKNOWN",
+        "NEEDS_INFORMATION"
+      ],
+      "title": "Applicability",
+      "type": "string"
+    },
+    "applicability_rationale": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Applicability Rationale",
+      "type": "string"
+    },
+    "basis_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "title": "Basis Refs",
+      "type": "array"
+    },
+    "catalog_source": {
+      "$ref": "#/$defs/Link"
+    },
+    "control_refs": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Control Refs",
+      "type": "array"
+    },
+    "current_control_state": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Current Control State",
+      "type": "string"
+    },
+    "description": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Description",
+      "type": "string"
+    },
+    "finding_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "title": "Finding Refs",
+      "type": "array"
+    },
+    "inherent_risk": {
+      "enum": [
+        "UNRATED",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ],
+      "title": "Inherent Risk",
+      "type": "string"
+    },
+    "residual_risk": {
+      "enum": [
+        "UNRATED",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ],
+      "title": "Residual Risk",
+      "type": "string"
+    },
+    "review": {
+      "$ref": "#/$defs/Decision"
+    },
+    "risk_owner_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Risk Owner Ref",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "p010-risk-register-1.0",
+      "default": "p010-risk-register-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_risk_definition": {
+      "anyOf": [
+        {
+          "maxLength": 4096,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Risk Definition"
+    },
+    "source_risk_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Source Risk Id",
+      "type": "string"
+    },
+    "source_risk_provenance": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Source Risk Provenance",
+      "type": "string"
+    },
+    "threat_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "title": "Threat Refs",
+      "type": "array"
+    },
+    "treatment": {
+      "enum": [
+        "MITIGATE",
+        "AVOID",
+        "TRANSFER_SHARE",
+        "ACCEPT"
+      ],
+      "title": "Treatment",
+      "type": "string"
+    },
+    "treatment_plan": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Treatment Plan",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_risk_id",
+    "catalog_source",
+    "description",
+    "affected_assets",
+    "applicability",
+    "inherent_risk",
+    "current_control_state",
+    "residual_risk",
+    "treatment",
+    "treatment_plan",
+    "risk_owner_ref",
+    "source_risk_provenance",
+    "applicability_rationale",
+    "review"
+  ],
+  "title": "Risk",
+  "type": "object"
+}

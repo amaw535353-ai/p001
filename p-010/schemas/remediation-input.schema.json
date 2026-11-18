@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "affected_control": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Affected Control",
+      "type": "string"
+    },
+    "compensating_controls": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Compensating Controls",
+      "type": "array"
+    },
+    "dependencies": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Dependencies",
+      "type": "array"
+    },
+    "owner_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Owner Ref",
+      "type": "string"
+    },
+    "recommendation": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Recommendation",
+      "type": "string"
+    },
+    "target_date": {
+      "pattern": "^\\d{4}-\\d\\d-\\d\\d$",
+      "title": "Target Date",
+      "type": "string"
+    },
+    "verification_criteria": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Verification Criteria",
+      "type": "string"
+    }
+  },
+  "required": [
+    "recommendation",
+    "affected_control",
+    "owner_ref",
+    "target_date",
+    "dependencies",
+    "verification_criteria",
+    "compensating_controls"
+  ],
+  "title": "RemediationInput",
+  "type": "object"
+}

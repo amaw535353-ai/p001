@@ -1,0 +1,143 @@
+{
+  "$defs": {
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "expected_fields": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Expected Fields",
+      "type": "string"
+    },
+    "finding": {
+      "$ref": "#/$defs/Link"
+    },
+    "issue_id": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Issue Id"
+    },
+    "mapping_version": {
+      "const": "p010-redmine-map-1.0",
+      "default": "p010-redmine-map-1.0",
+      "title": "Mapping Version",
+      "type": "string"
+    },
+    "project": {
+      "const": "p010-synthetic",
+      "default": "p010-synthetic",
+      "title": "Project",
+      "type": "string"
+    },
+    "remote_fingerprint": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Remote Fingerprint"
+    },
+    "schema_version": {
+      "const": "p010-redmine-sync-1.0",
+      "default": "p010-redmine-sync-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "PENDING_CREATE",
+        "PENDING_UPDATE",
+        "SYNCED",
+        "REJECTED"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "sync_key": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Sync Key",
+      "type": "string"
+    },
+    "synced_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Synced At"
+    }
+  },
+  "required": [
+    "finding",
+    "sync_key",
+    "state",
+    "expected_fields"
+  ],
+  "title": "RedmineSync",
+  "type": "object"
+}

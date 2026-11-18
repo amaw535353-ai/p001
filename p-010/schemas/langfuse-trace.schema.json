@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "observation_id": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{16}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Observation Id"
+    },
+    "project_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Project Ref",
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "p009-handoff",
+        "operator-provided"
+      ],
+      "title": "Source",
+      "type": "string"
+    },
+    "source_time": {
+      "format": "date-time",
+      "title": "Source Time",
+      "type": "string"
+    },
+    "trace_id": {
+      "pattern": "^[a-f0-9]{32}$",
+      "title": "Trace Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "trace_id",
+    "source_time",
+    "project_ref",
+    "source"
+  ],
+  "title": "TraceReference",
+  "type": "object"
+}

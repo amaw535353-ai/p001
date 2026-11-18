@@ -1,0 +1,28 @@
+name: P010 offline consultancy checks
+
+on:
+  push:
+    paths: ['p-010/**', '.github/workflows/p010-offline.yml']
+  pull_request:
+    paths: ['p-010/**', '.github/workflows/p010-offline.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  p010-offline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v6
+      - run: ./scripts/setup
+        working-directory: p-010
+      - run: make verify demo
+        working-directory: p-010
+      - run: make unit static

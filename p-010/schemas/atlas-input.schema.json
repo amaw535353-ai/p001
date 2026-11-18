@@ -1,0 +1,109 @@
+{
+  "$defs": {
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "confidence": {
+      "enum": [
+        "UNKNOWN",
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "title": "Confidence",
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "maxItems": 30,
+      "title": "Evidence Refs",
+      "type": "array"
+    },
+    "limitations": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Limitations",
+      "type": "array"
+    },
+    "state": {
+      "enum": [
+        "CANDIDATE",
+        "REVIEWED",
+        "ACCEPTED",
+        "REJECTED",
+        "NOT_APPLICABLE"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "technique_id": {
+      "pattern": "^AML\\.T\\d{4}(?:\\.\\d{3})?$",
+      "title": "Technique Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "technique_id",
+    "state",
+    "confidence",
+    "evidence_refs",
+    "limitations"
+  ],
+  "title": "AtlasInput",
+  "type": "object"
+}

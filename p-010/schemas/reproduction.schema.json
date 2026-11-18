@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "asset_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Asset Ref",
+      "type": "string"
+    },
+    "collection_time": {
+      "format": "date-time",
+      "title": "Collection Time",
+      "type": "string"
+    },
+    "configuration_ref": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Configuration Ref",
+      "type": "string"
+    },
+    "expected": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Expected",
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Limitations",
+      "type": "array"
+    },
+    "observed": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "title": "Observed",
+      "type": "string"
+    },
+    "preconditions": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Preconditions",
+      "type": "array"
+    },
+    "record_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "p010-reproduction-record-1.0",
+      "default": "p010-reproduction-record-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED",
+        "NOT_TESTED",
+        "INCONCLUSIVE",
+        "NOT_APPLICABLE",
+        "FLAKY"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "steps": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Steps",
+      "type": "array"
+    }
+  },
+  "required": [
+    "record_id",
+    "asset_ref",
+    "collection_time",
+    "preconditions",
+    "steps",
+    "expected",
+    "observed",
+    "status",
+    "configuration_ref",
+    "limitations"
+  ],
+  "title": "Reproduction",
+  "type": "object"
+}

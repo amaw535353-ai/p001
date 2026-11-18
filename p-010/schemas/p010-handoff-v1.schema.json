@@ -1,0 +1,190 @@
+{
+  "$defs": {
+    "FindingHandoff": {
+      "additionalProperties": false,
+      "properties": {
+        "disposition": {
+          "enum": [
+            "OPEN",
+            "RESIDUAL_RISK_ACCEPTED",
+            "CLOSED"
+          ],
+          "title": "Disposition",
+          "type": "string"
+        },
+        "finding": {
+          "$ref": "#/$defs/Link"
+        },
+        "review_basis": {
+          "enum": [
+            "HUMAN_AUTHORED",
+            "AI_ASSISTED",
+            "TEMPLATE_GENERATED",
+            "IMPORTED",
+            "TRAINING_FIXTURE"
+          ],
+          "title": "Review Basis",
+          "type": "string"
+        },
+        "reviewed_severity": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reviewed Severity"
+        },
+        "validation_status": {
+          "enum": [
+            "CONFIRMED",
+            "WITHDRAWN"
+          ],
+          "title": "Validation Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "finding",
+        "validation_status",
+        "disposition",
+        "reviewed_severity",
+        "review_basis"
+      ],
+      "title": "FindingHandoff",
+      "type": "object"
+    },
+    "Link": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "engagement",
+            "source",
+            "evidence",
+            "observation",
+            "finding",
+            "risk",
+            "remediation",
+            "retest",
+            "retest-plan",
+            "acceptance",
+            "atlas",
+            "report",
+            "redmine-sync"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "sha256"
+      ],
+      "title": "Link",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "engagement_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,119}$",
+      "title": "Engagement Id",
+      "type": "string"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/FindingHandoff"
+      },
+      "title": "Findings",
+      "type": "array"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Limitations",
+      "type": "array"
+    },
+    "privacy_policy": {
+      "const": "p010-minimization-1.0",
+      "default": "p010-minimization-1.0",
+      "title": "Privacy Policy",
+      "type": "string"
+    },
+    "report": {
+      "$ref": "#/$defs/Link"
+    },
+    "report_status": {
+      "title": "Report Status",
+      "type": "string"
+    },
+    "reports_limited_to": {
+      "const": "SYNTHETIC_TRAINING",
+      "default": "SYNTHETIC_TRAINING",
+      "title": "Reports Limited To",
+      "type": "string"
+    },
+    "risks": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "title": "Risks",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "p010-handoff-v1",
+      "default": "p010-handoff-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_records": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "title": "Source Records",
+      "type": "array"
+    }
+  },
+  "required": [
+    "engagement_id",
+    "report",
+    "report_status",
+    "findings",
+    "risks",
+    "evidence",
+    "source_records",
+    "limitations"
+  ],
+  "title": "Handoff",
+  "type": "object"
+}
