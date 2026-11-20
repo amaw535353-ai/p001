@@ -1,0 +1,201 @@
+name: Onyx 6.1.1 isolated behavior checks
+on:
+  push:
+    branches:
+      - assessment/onyx-611-verification
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pinned-source-execution:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout assessment repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Checkout pinned public Onyx source
+        uses: actions/checkout@v4
+        with:
+          repository: onyx-dot-app/onyx
+          ref: 0135795fdf8f28f2c8bd8b52361a5b7f2172586f
+          path: onyx-source
+          persist-credentials: false
+      - name: Verify exact target revision
+        run: |
+          test "$(git -C onyx-source rev-parse HEAD)" = "0135795fdf8f28f2c8bd8b52361a5b7f2172586f"
+      - name: Isolated source-behavior tests (not live deployment)
+        run: |
+          python3 - <<'PY'
+          import ast
+          import asyncio
+          import enum
+          import pathlib
+          import sys
+          import types
+          import unittest
+          from types import SimpleNamespace as Obj
+          
+          ROOT = pathlib.Path("onyx-source/backend/onyx")
+          PIN = "0135795fdf8f28f2c8bd8b52361a5b7f2172586f"
+          
+          def parse(relative):
+              return ast.parse((ROOT / relative).read_text(encoding="utf-8"))
+          
+          def extract_enum(tree, name):
+              cls = next(n for n in tree.body if isinstance(n, ast.ClassDef) and n.name == name)
+              values = {}
+              for a in cls.body:
+                  if isinstance(a, ast.Assign) and len(a.targets) == 1 and isinstance(a.targets[0], ast.Name) and isinstance(a.value, ast.Constant) and isinstance(a.value.value, str):
+                      values[a.targets[0].id] = a.value.value
+              assert values, f"Enum {name} changed unexpectedly"
+              return enum.Enum(name, values, type=str)
+          
+          def constant(tree, name, env):
+              node = next(n for n in tree.body if isinstance(n, ast.AnnAssign) and isinstance(n.target, ast.Name) and n.target.id == name)
+              return eval(compile(ast.Expression(node.value), "<pinned-onyx-constant>", "eval"), {"__builtins__": {}}, env)
+          
+          def load_functions(tree, namespace, names):
+              found = [n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef)) and n.name in names]
+              assert {n.name for n in found} == set(names), "Pinned source functions missing"
+              # Remove route decorator only. Function bodies remain from the pinned source.
+              for n in found:
+                  n.decorator_list = []
+              future = ast.ImportFrom(module="__future__", names=[ast.alias(name="annotations")], level=0)
+              module = ast.fix_missing_locations(ast.Module(body=[future, *found], type_ignores=[]))
+              exec(compile(module, "<pinned-onyx-functions>", "exec"), namespace)
+          
+          class Denied(Exception):
+              def __init__(self, code, message):
+                  super().__init__(message)
+                  self.code = code
+          
+          enum_tree = parse("db/enums.py")
+          Permission = extract_enum(enum_tree, "Permission")
+          PermissionAuthority = extract_enum(enum_tree, "PermissionAuthority")
+          AccountType = extract_enum(enum_tree, "AccountType")
+          perm_tree = parse("auth/permissions.py")
+          env = {
+              "Permission": Permission,
+              "PermissionAuthority": PermissionAuthority,
+              "AccountType": AccountType,
+              "ALL_PERMISSIONS": frozenset(p.value for p in Permission),
+              "parse_permission_values": lambda values: values,
+              "global_version": Obj(is_ee_version=lambda: True),
+              "OnyxError": Denied,
+              "OnyxErrorCode": Obj(INSUFFICIENT_PERMISSIONS="insufficient_permissions"),
+              "Depends": lambda *args, **kwargs: None,
+          }
+          env["IMPLIED_PERMISSIONS"] = constant(perm_tree, "IMPLIED_PERMISSIONS", {"Permission": Permission})
+          env["CE_UNGATED_PERMISSIONS"] = constant(perm_tree, "CE_UNGATED_PERMISSIONS", {"Permission": Permission, "frozenset": frozenset})
+          env["SCOPED_MANAGER_PERMISSIONS"] = constant(perm_tree, "SCOPED_MANAGER_PERMISSIONS", {"Permission": Permission, "frozenset": frozenset})
+          load_functions(perm_tree, env, ["resolve_effective_permissions", "get_effective_permissions", "has_permission", "has_global_permission", "token_allows", "require_permission"])
+          env["SCOPED_MANAGER_PERMISSIONS_EXPANDED"] = frozenset(env["resolve_effective_permissions"]({p.value for p in env["SCOPED_MANAGER_PERMISSIONS"]}))
+          
+          # require_permission imports the identity dependency lazily; replace *only* this
+          # module dependency with a fixture. Do not import/start the real application.
+          for module_name in ("onyx", "onyx.auth", "onyx.auth.users"):
+              sys.modules[module_name] = types.ModuleType(module_name)
+          sys.modules["onyx.auth.users"].current_user = object()
+          sys.modules["onyx.auth.users"].current_chat_accessible_user = object()
+          
+          scope_tree = parse("auth/scoped_permissions.py")
+          env["fetch_managed_group_ids"] = lambda user, db_session: set(user.managed)
+          load_functions(scope_tree, env, ["get_scoped_groups", "within_scope"])
+          
+          def person(email, *, manager=False, admin=False, groups=(), kind=AccountType.STANDARD):
+              return Obj(
+                  email=email, id=email, effective_permissions=[Permission.FULL_ADMIN_PANEL_ACCESS.value] if admin else [],
+                  account_type=kind, is_group_manager=manager, managed={11} if manager else set(),
+                  groups=list(groups), is_active=True, is_admin=admin,
+              )
+          
+          class Snapshot:
+              @classmethod
+              def from_user_model(cls, user, **fields):
+                  return Obj(email=user.email, groups=fields["groups"], is_admin=fields["is_admin"])
+          
+          env.update({
+              "FullUserSnapshot": Snapshot,
+              "UserGroupInfo": lambda id, name: Obj(id=id, name=name),
+              "batch_get_user_groups": lambda db_session, user_ids, include_default: {p.id: p.groups for p in roster if p.id in user_ids},
+              "user_is_admin": lambda user: user.is_admin,
+              "AllUsersResponse": lambda **fields: Obj(**fields),
+              "InvitedUserSnapshot": lambda email: Obj(email=email),
+              "get_invited_users": lambda: ["invited@example.invalid"],
+              "get_session": lambda: None,
+              "USERS_PAGE_SIZE": 10,
+          })
+          load_functions(parse("server/manage/users.py"), env, ["_snapshots_with_groups", "list_all_users"])
+          
+          manager = person("manager@example.invalid", manager=True, groups=[(11, "Group A")])
+          outsider = person("outsider@example.invalid", groups=[(22, "Group B")])
+          bot = person("bot@example.invalid", kind=AccountType.BOT, groups=[(22, "Group B")])
+          api_key = person("API_KEY__example@example.invalid", kind=AccountType.SERVICE_ACCOUNT)
+          admin = person("admin@example.invalid", admin=True, groups=[(11, "Group A"), (22, "Group B")])
+          roster = [manager, outsider, bot, api_key]
+          def get_all_users(db_session, email_filter_string=None, include_api_key_users=True):
+              candidates = roster if include_api_key_users else roster[:-1]
+              return [u for u in candidates if email_filter_string is None or email_filter_string.lower() in u.email.lower()]
+          env["get_all_users"] = get_all_users
+          
+          class Verification(unittest.TestCase):
+              def test_permission_implication(self):
+                  expanded = env["resolve_effective_permissions"]({Permission.MANAGE_USER_GROUPS.value})
+                  self.assertIn(Permission.READ_USERS.value, expanded)
+                  self.assertIn(Permission.READ_USER_GROUPS.value, expanded)
+          
+              def test_global_scoped_and_none_authority(self):
+                  f = env["has_permission"]
+                  self.assertEqual(f(admin, Permission.FULL_ADMIN_PANEL_ACCESS), PermissionAuthority.GLOBAL)
+                  self.assertEqual(f(manager, Permission.READ_USERS), PermissionAuthority.SCOPED)
+                  self.assertEqual(f(outsider, Permission.READ_USERS), PermissionAuthority.NONE)
+          
+              def test_gate1_scoped_and_admin_protection(self):
+                  dep = env["require_permission"](Permission.READ_USERS, allow_scope=True)
+                  scoped = asyncio.run(dep(Obj(state=Obj(token_scopes=None)), manager))
+                  self.assertIs(scoped, manager)
+                  with self.assertRaises(Denied):
+                      asyncio.run(dep(Obj(state=Obj(token_scopes=None)), outsider))
+                  strict = env["require_permission"](Permission.FULL_ADMIN_PANEL_ACCESS)
+                  with self.assertRaises(Denied):
+                      asyncio.run(strict(Obj(state=Obj(token_scopes=None)), manager))
+                  self.assertIs(asyncio.run(strict(Obj(state=Obj(token_scopes=None)), admin)), admin)
+          
+              def test_token_restriction_stops_scope_escalation(self):
+                  dep = env["require_permission"](Permission.READ_USERS, allow_scope=True)
+                  with self.assertRaises(Denied):
+                      asyncio.run(dep(Obj(state=Obj(token_scopes=[Permission.READ_CHAT])), manager))
+                  self.assertIs(asyncio.run(dep(Obj(state=Obj(token_scopes=[Permission.MANAGE_USER_GROUPS])), manager)), manager)
+          
+              def test_gate2_rejects_unmanaged_and_public(self):
+                  f = env["within_scope"]
+                  opts = dict(user=manager, db_session=None, permission=Permission.MANAGE_USER_GROUPS)
+                  self.assertTrue(f(**opts, current_group_ids=[11], requested_group_ids=[11], is_non_public=True))
+                  self.assertFalse(f(**opts, current_group_ids=[22], requested_group_ids=[22], is_non_public=True))
+                  self.assertFalse(f(**opts, current_group_ids=[11], requested_group_ids=[22], is_non_public=True))
+                  self.assertFalse(f(**opts, current_group_ids=[11], requested_group_ids=[11], is_non_public=False))
+          
+              def test_scoped_directory_candidate_visibility_and_redaction(self):
+                  result = env["list_all_users"](current_user=manager, db_session=None, include_api_keys=True)
+                  names = {u.email for u in result.accepted}
+                  self.assertEqual(names, {manager.email, outsider.email})
+                  self.assertEqual([u.email for u in result.slack_users], [bot.email])
+                  self.assertEqual(result.invited, [])
+                  self.assertFalse(any(u.is_admin for u in result.accepted + result.slack_users))
+                  self.assertEqual(next(u.groups for u in result.accepted if u.email == outsider.email), [])
+                  self.assertEqual([(g.id, g.name) for g in next(u.groups for u in result.accepted if u.email == manager.email)], [(11, "Group A")])
+          
+              def test_paginated_scoped_directory(self):
+                  result = env["list_all_users"](current_user=manager, db_session=None, include_api_keys=True, accepted_page=0, slack_users_page=0, invited_page=0)
+                  self.assertEqual({u.email for u in result.accepted}, {manager.email, outsider.email})
+                  self.assertEqual(result.invited, [])
+          
+          if __name__ == "__main__":
+              print("PINNED ONYX SOURCE", PIN)
+              print("MODE: isolated extracted-function behavioral verification with synthetic fixtures")
+              print("NOT: live Onyx API, database, deployed permissions, or Enterprise integration tests")
+              unittest.main(verbosity=2)
+          
+          PY
